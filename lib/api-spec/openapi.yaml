@@ -1,0 +1,417 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: newsletter
+    description: Newsletter subscription operations
+  - name: admin
+    description: Admin-only operations (require an admin session)
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /newsletter/subscribe:
+    post:
+      operationId: subscribeNewsletter
+      tags: [newsletter]
+      summary: Subscribe to the newsletter
+      description: Adds an email to the newsletter subscribers list and notifies support.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsletterSubscribeRequest"
+      responses:
+        "200":
+          description: Subscription accepted (newly added or already subscribed)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterSubscribeResponse"
+        "400":
+          description: Invalid input (missing or malformed email)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterSubscribeError"
+  /newsletter/unsubscribe:
+    post:
+      operationId: unsubscribeNewsletter
+      tags: [newsletter]
+      summary: Unsubscribe from the newsletter
+      description: Marks a subscriber as unsubscribed using a signed token from an email link.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsletterUnsubscribeRequest"
+      responses:
+        "200":
+          description: Unsubscribe processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterUnsubscribeResponse"
+        "400":
+          description: Token is missing, malformed, or has been tampered with
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterSubscribeError"
+  /admin/newsletter-subscribers:
+    get:
+      operationId: listNewsletterSubscribers
+      tags: [admin]
+      summary: List newsletter subscribers (admin)
+      description: |
+        Paginated, searchable list of active (not unsubscribed) newsletter
+        subscribers, newest first. Requires an admin session.
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 320
+          description: Case-insensitive email substring filter.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 50
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        "200":
+          description: Page of subscribers plus overall signup stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminNewsletterSubscriberListResponse"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "403":
+          description: Authenticated but not an admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "503":
+          description: Database not available
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+  /admin/newsletter-subscribers.csv:
+    get:
+      operationId: exportNewsletterSubscribersCsv
+      tags: [admin]
+      summary: Export newsletter subscribers as CSV (admin)
+      description: |
+        Downloads the full filtered list of active subscribers (up to 50,000
+        rows) as a CSV attachment with columns email, source, signed_up_at.
+        Cell values are escaped against spreadsheet formula injection.
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 320
+          description: Case-insensitive email substring filter.
+      responses:
+        "200":
+          description: CSV file attachment
+          content:
+            text/csv:
+              schema:
+                type: string
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "403":
+          description: Authenticated but not an admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "503":
+          description: Database not available
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+  /admin/newsletter-subscribers/{id}/unsubscribe:
+    patch:
+      operationId: adminUnsubscribeNewsletterSubscriber
+      tags: [admin]
+      summary: Mark a subscriber as unsubscribed (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 64
+      responses:
+        "200":
+          description: Subscriber marked as unsubscribed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSubscriberActionResponse"
+        "404":
+          description: Subscriber not found or already unsubscribed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "403":
+          description: Authenticated but not an admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+  /admin/newsletter-subscribers/{id}:
+    delete:
+      operationId: adminDeleteNewsletterSubscriber
+      tags: [admin]
+      summary: Permanently delete a subscriber (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 64
+      responses:
+        "200":
+          description: Subscriber deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSubscriberActionResponse"
+        "404":
+          description: Subscriber not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+        "403":
+          description: Authenticated but not an admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminError"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    NewsletterSubscribeRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          minLength: 3
+          maxLength: 320
+          description: Subscriber email address.
+        source:
+          type: string
+          maxLength: 64
+          description: Optional page that produced the signup. Defaults to "homepage".
+        lang:
+          type: string
+          enum: [en, ar]
+          description: |
+            Preferred language for the welcome email. Falls back to the
+            Accept-Language header, then English.
+        website:
+          type: string
+          maxLength: 500
+          description: |
+            Honeypot field. Real visitors never see or fill this; bots
+            usually do. Submissions with a non-empty value are silently
+            accepted (200 status) but discarded.
+      required:
+        - email
+    NewsletterSubscribeResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [subscribed, resubscribed]
+          description: |
+            "subscribed" for both newly inserted and already-active emails
+            (the server intentionally does NOT distinguish these to prevent
+            email-existence enumeration). "resubscribed" when an email that
+            had previously unsubscribed opts back in — `unsubscribed_at` is
+            cleared and the UI surfaces a welcome-back message so users
+            don't have to email support to re-join the list.
+      required:
+        - status
+    NewsletterUnsubscribeRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          minLength: 1
+          maxLength: 2048
+          description: Signed token issued by the server and embedded in newsletter emails.
+      required:
+        - token
+    NewsletterUnsubscribeResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [unsubscribed, already_unsubscribed, not_found]
+        email:
+          type: string
+          description: The email address the token referred to (lowercased).
+      required:
+        - status
+    NewsletterSubscribeError:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - error
+    AdminNewsletterSubscriberItem:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - email
+        - source
+        - createdAt
+    AdminNewsletterSubscriberListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: true
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/AdminNewsletterSubscriberItem"
+        total:
+          type: integer
+          description: Total rows matching the current filter.
+        limit:
+          type: integer
+        offset:
+          type: integer
+        filter:
+          type: object
+          properties:
+            search:
+              type: [string, "null"]
+          required:
+            - search
+        stats:
+          type: object
+          description: Overall (unfiltered) counts of active subscribers.
+          properties:
+            total:
+              type: integer
+            last7Days:
+              type: integer
+              description: Active subscribers who signed up in the last 7 days.
+          required:
+            - total
+            - last7Days
+      required:
+        - success
+        - items
+        - total
+        - limit
+        - offset
+        - filter
+        - stats
+    AdminSubscriberActionResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: true
+        id:
+          type: string
+      required:
+        - success
+        - id
+    AdminError:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - error

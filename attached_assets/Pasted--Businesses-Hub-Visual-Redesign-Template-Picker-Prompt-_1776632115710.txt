@@ -1,0 +1,171 @@
+# Businesses Hub — Visual Redesign + Template Picker Prompt
+
+> Paste this into Replit. This is a targeted upgrade — do NOT rebuild from scratch. Improve and extend the existing code.
+
+---
+
+## PROMPT
+
+You are upgrading the existing **Businesses Hub** website. I am sharing screenshots of the current design. The site works but looks plain and generic. I need it to feel like a modern, premium SaaS product that attracts users and drives traffic. Implement all changes below precisely.
+
+---
+
+## PART 1 — NAVBAR REDESIGN
+
+The current navbar has: logo, nav links, dark mode icon, language switcher, Login, Sign Up.
+
+Upgrade it as follows:
+
+**Structure changes:**
+- Add a top announcement bar ABOVE the navbar: thin strip (36px height), gradient background from-blue-600 to-violet-600, white text centered: "✦ Now supporting 170+ currencies and Arabic RTL — Try it free →". Make the entire bar a clickable link. Add an X button to dismiss it (save dismissed state to localStorage).
+- Make the navbar background white/90 with backdrop-blur-md and a very subtle bottom border. On scroll past 60px, add a soft box-shadow.
+- Logo: keep "Businesses Hub" text but add a small animated gradient shimmer effect on the icon mark on hover.
+- Nav links: add a hover underline animation (slides in from left, accent blue color). On the active page, show a small filled dot below the link.
+- Add a "Templates" nav link between "Receipt" and "Calculators".
+- Language switcher: replace the plain globe+text with a pill-shaped toggle showing "EN | عربي" — clicking switches instantly.
+- Dark mode toggle: replace the plain moon icon with a smooth animated sun/moon morph icon.
+- "Login" button: ghost style with border.
+- "Sign Up" button: gradient background from-blue-500 to-violet-500, white text, rounded-full, subtle glow on hover.
+- On mobile: hamburger menu with a smooth slide-down drawer. All nav links stacked. Language and dark mode toggles visible in drawer.
+
+---
+
+## PART 2 — HERO SECTION REDESIGN
+
+The current hero has: badge text, large heading, subtitle, two CTA buttons. It is flat with a light gray/blue background.
+
+Completely rebuild it:
+
+**Layout:**
+- Split into two columns on desktop: left = text content, right = animated document preview mockup.
+- Full-width background: use a subtle animated mesh gradient — soft blue, violet, and white tones. Use CSS @keyframes to slowly shift the gradient.
+
+**Left column — text:**
+- Badge pill (top): gradient border, icon + "Trusted by 2,000+ businesses in MENA" — animate it fading in on load.
+- Main heading: "Create Professional Business Documents in Seconds" — text-5xl font-extrabold on desktop. Apply a gradient text effect to "Business Documents" — gradient from #2563EB to #7C3AED.
+- Subheading: "Invoices, Quotations & Receipts — bilingual Arabic & English, 170+ currencies, instant PDF export." — text-lg text-gray-500.
+- Two CTA buttons: Primary "Create Invoice Free →" (gradient from-blue-500 to-violet-500, large rounded-full, shadow-lg, shimmer on hover). Secondary "Browse Templates" (white, border, rounded-full).
+- Below buttons: three trust badges inline: "✓ No signup required  ✓ Free PDF export  ✓ Arabic & English".
+- Animate entire left column: fade-up on page load.
+
+**Right column — animated document mockup:**
+- Build a floating document card mockup using pure HTML/CSS (no images needed).
+- The card should look like a mini invoice: company logo placeholder (colored circle), "INVOICE #1042", a small table with 3 line items, a total row.
+- Apply rotate-2 tilt and a soft drop shadow.
+- Behind it, place a second slightly rotated card (representing a quotation) as a stack effect.
+- Animate: cards gently float up and down using a slow CSS keyframe (translateY -8px to 0px, 3s loop).
+- Add small floating badge chips: "PDF Ready ✓", "Arabic RTL ✓", "170 Currencies" — each animates in with a delay.
+
+---
+
+## PART 3 — TOOL CARDS REDESIGN
+
+The current cards show: Invoice Generator, Quotation Generator, Receipt Generator, Business Calculators in a plain 2x2 grid.
+
+Redesign them:
+
+**Card grid:**
+- Change to: 4 columns on desktop, 2 on tablet, 1 on mobile.
+- Section heading: "Everything You Need to Run Your Business" with a subtitle.
+
+**Individual card design:**
+- Height: fixed 260px.
+- Background: white with subtle gradient overlay on hover (from-white to-blue-50).
+- Left border: 4px solid with each tool's unique accent color (Invoice = blue, Quotation = violet, Receipt = green, Calculators = amber).
+- Icon container: gradient background circle (60px), icon centered in white.
+- Title: text-xl font-bold.
+- Description: text-sm text-gray-500, max 2 lines.
+- Bottom: "Open →" link appears on hover with slide-in animation.
+- Badge ("Most Popular", "14 tools"): rounded pill top-right, gradient background.
+- On hover: card lifts with translateY(-6px), shadow deepens, left border glows slightly.
+- Add subtle dot/grid background pattern visible on hover only.
+
+**Add two more tool cards:**
+- "Document Templates" — icon: layout grid, accent: rose. Description: "Choose from 12 professional templates for invoices, quotes, and receipts."
+- "Currency Converter" — icon: arrows-exchange, accent: teal. Description: "Live exchange rates for 170+ currencies. Perfect for cross-border invoicing."
+
+---
+
+## PART 4 — TEMPLATE PICKER SYSTEM
+
+When a user clicks "Invoice Generator", "Quotation Generator", or "Receipt Generator", they must first see a Template Picker page before the form.
+
+### Template Picker Page — Layout:
+- Heading: "Choose your [Invoice / Quotation / Receipt] Template"
+- Subtitle: "All templates support Arabic & English and export to PDF"
+- Filter pills: All | Minimal | Corporate | Arabic-First | Compact
+- Template cards in a 3-column grid (2 tablet, 1 mobile).
+
+### Each Template Card shows:
+- A visual thumbnail preview built using HTML/CSS — a mini scaled-down document with placeholder company header, line items table, total. Scale using CSS transform: scale(0.35) inside an overflow-hidden container sized 200px x 280px.
+- Template name below the thumbnail.
+- Tags e.g. "Minimal"  "PDF Ready"  "RTL".
+- "Use This Template →" button.
+- Hover: card border highlights in accent color, "Preview" overlay appears on thumbnail.
+
+### Invoice Templates — 5 options:
+
+1. **Classic** — white background, simple table, logo top-left, client info top-right. Black header text, no colors. Clean and printer-friendly.
+2. **Modern Blue** — dark navy header band (#0F172A), white text in header, blue accent on table headers (#2563EB), bold invoice number.
+3. **Minimal** — ultra-clean, zero color, hairline borders only, generous whitespace. High-end feel.
+4. **Bold Corporate** — deep navy full-width header, company name very large in white, amber accent (#F59E0B) for total row.
+5. **Arabic First (عربي)** — RTL layout by default, Arabic heading dominant, Hijri date field, Arabic table headers. Use Cairo font.
+
+### Quotation Templates — 4 options:
+
+1. **Standard Quote** — same structure as Classic Invoice but with validity date, quote number, and acceptance block at bottom.
+2. **Proposal Style** — adds a "Project Overview" section at the top before the items table. Wider layout.
+3. **Compact Quote** — dense layout, small font, 2-column item table. Good for traders with many items.
+4. **Formal Tender** — structured for NGO/government. Fields for Tender Reference, Issuing Authority, Submission Deadline. Formal typography.
+
+### Receipt Templates — 3 options:
+
+1. **Full A4 Receipt** — full-page, company branding, payer details, payment method, reference number, stamp placeholder, signature line.
+2. **Thermal POS** — narrow column (320px wide), monospace-style font, minimalist. Looks like a till receipt.
+3. **Digital Receipt** — modern card-style, QR code placeholder, colorful header strip, "Payment Confirmed ✓" badge.
+
+### After Template Selection:
+- Store selected template in app state (Zustand or React Context).
+- Navigate to the form page.
+- The form page shows the document preview panel on the right using the selected template — updates live as user fills the form.
+- User can click "Change Template" at any point — opens a modal with the template picker without losing form data.
+
+---
+
+## PART 5 — GENERAL UI POLISH
+
+Apply these globally:
+
+- **Fonts**: Import Cairo (Arabic) and Inter (English) from Google Fonts. Add both to Tailwind config. Apply font-cairo to Arabic content, font-inter to English.
+- **Color tokens** — add to Tailwind config:
+  primary: { DEFAULT: '#2563EB', dark: '#1D4ED8' }
+  accent: { violet: '#7C3AED', amber: '#F59E0B', green: '#059669', rose: '#E11D48', teal: '#0D9488' }
+  surface: { DEFAULT: '#FFFFFF', secondary: '#F8FAFC', tertiary: '#F1F5F9' }
+- **Transitions**: Add transition-all duration-200 ease-out to all interactive elements globally.
+- **Focus states**: Custom ring-2 ring-blue-500 ring-offset-2 on all inputs and buttons.
+- **Scrollbar**: Custom thin scrollbar for WebKit (4px wide, blue thumb, transparent track).
+- **Page load animation**: Subtle fade-in on body using a CSS class applied on mount.
+- **Section spacing**: Standardize all homepage sections to py-20.
+
+---
+
+## IMPLEMENTATION ORDER
+
+Build in this exact order and confirm each step before moving on:
+
+1. Install/configure Cairo + Inter fonts in Tailwind
+2. Update Tailwind color tokens
+3. Rebuild Navbar (announcement bar, then navbar itself)
+4. Rebuild Hero section (text column first, then animated card mockup)
+5. Rebuild Tool Cards section (redesign existing 4, add 2 new)
+6. Build Template Picker page (UI and routing)
+7. Build all 12 template thumbnail previews (CSS only, no images)
+8. Connect template picker to form pages
+9. Apply global polish (transitions, focus, scrollbar, fonts)
+10. Test Arabic (RTL) and English (LTR) modes on all upgraded components
+11. Test dark mode on all upgraded components
+12. Test mobile (375px) and desktop (1280px)
+
+---
+
+**Do not rebuild the backend, Supabase schema, or PDF export logic. Only upgrade the frontend UI and add the template picker system. All existing functionality must continue working.**

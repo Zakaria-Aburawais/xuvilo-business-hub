@@ -1,0 +1,229 @@
+Please proceed with Step 4 for Xuvilo.
+
+Goal:
+Allow logged-in users to save, view, edit, duplicate, delete, print, and export their invoices, quotations, and receipts from their SaaS workspace.
+
+Important instructions:
+- Do not break authentication, dashboard, role support, rate limiting, company profile, clients, auto-fill, AI Writer, calculators, templates, pricing, blog, or country pages.
+- Do not integrate Stripe or live payments yet.
+- Do not rebuild the existing invoice, quotation, or receipt tools from scratch.
+- Improve existing tools incrementally.
+- Keep anonymous/public users able to use the document tools manually if they currently can.
+- All saved documents must be scoped to the logged-in user.
+- Do not expose one user's documents to another user.
+
+Part 1: Database models
+Create or verify database tables for saved documents.
+
+Option A: one unified documents table:
+- id
+- user_id
+- document_type: invoice | quotation | receipt
+- document_number
+- title
+- client_id nullable
+- client_snapshot JSON
+- company_snapshot JSON
+- items JSON
+- totals JSON
+- currency
+- language
+- status
+- notes
+- terms
+- issue_date
+- due_date nullable
+- valid_until nullable
+- paid_date nullable
+- created_at
+- updated_at
+
+Option B: separate tables:
+- invoices
+- quotations
+- receipts
+
+Choose the option that best fits the current codebase, but avoid unnecessary complexity.
+
+Important:
+Use snapshots for company/client data so old saved documents do not change unexpectedly if the user later edits company profile or client details.
+
+Part 2: Backend API routes
+Add authenticated API routes for saved documents.
+
+Recommended routes:
+- GET /api/documents
+- POST /api/documents
+- GET /api/documents/:id
+- PUT /api/documents/:id
+- DELETE /api/documents/:id
+- POST /api/documents/:id/duplicate
+
+Support filters:
+- type=invoice|quotation|receipt
+- status
+- client_id
+- search
+- date_from
+- date_to
+
+Requirements:
+- All routes require authentication.
+- All records must be scoped to the logged-in user.
+- Validate document_type.
+- Validate required fields.
+- Return consistent JSON envelopes.
+- Do not allow users to access, edit, duplicate, or delete another user's documents.
+
+Success response:
+{
+  "success": true,
+  "data": { ... }
+}
+
+List response:
+{
+  "success": true,
+  "data": [...],
+  "pagination": { ... }
+}
+
+Error response:
+{
+  "success": false,
+  "error": "Invalid request",
+  "message": "Please provide a document type and document number."
+}
+
+Part 3: Save from document tools
+Update invoice, quotation, and receipt tools.
+
+For logged-in users:
+- Add “Save document” button.
+- Add “Save & export PDF” if practical.
+- Show save status:
+  - Unsaved changes
+  - Saving...
+  - Saved
+  - Error saving
+- If editing an existing saved document, update it instead of creating a duplicate unless the user chooses Duplicate.
+- Preserve existing PDF export and print features.
+- Preserve public manual use for logged-out visitors.
+
+For logged-out users:
+Show a small prompt:
+“Create a free account to save this document and access it later.”
+
+Part 4: Document list UI
+Create or improve:
+
+/documents
+
+The page should show saved invoices, quotations, and receipts.
+
+Features:
+- Tabs or filter for All / Invoices / Quotations / Receipts
+- Search by document number, client name, or title
+- Filter by status
+- Sort by newest/oldest
+- View document
+- Edit document
+- Duplicate document
+- Delete document with confirmation
+- Export PDF if possible
+- Print
+
+Empty state:
+“No saved documents yet. Create your first invoice, quotation, or receipt.”
+
+Part 5: Dashboard integration
+Update dashboard to show:
+- Total saved documents this month
+- Recent invoices
+- Recent quotations
+- Recent receipts
+- Recent saved documents
+- Quick link to /documents
+
+Part 6: Edit flow
+When opening a saved document for editing:
+- Load document data into the existing invoice/quotation/receipt form.
+- Keep company_snapshot and client_snapshot visible/editable.
+- Allow user to update and save.
+- Do not overwrite old document snapshots just because company profile changed, unless the user manually refreshes from current profile/client.
+
+Suggested routes:
+- /invoice/:id/edit
+- /quotation/:id/edit
+- /receipt/:id/edit
+
+Or use query params if that matches current routing better:
+- /invoice?documentId=...
+- /quotation?documentId=...
+- /receipt?documentId=...
+
+Choose the least disruptive approach.
+
+Part 7: Status handling
+Add simple statuses:
+
+Invoice:
+- draft
+- sent
+- paid
+- overdue
+- cancelled
+
+Quotation:
+- draft
+- sent
+- accepted
+- rejected
+- expired
+
+Receipt:
+- issued
+- void
+
+If full status UI is too much, store status and show a simple dropdown.
+
+Part 8: Security
+Verify:
+- User A cannot list, view, edit, duplicate, or delete User B's documents.
+- All document APIs require auth.
+- No private saved document data appears in public pages.
+- Data validation prevents broken saved documents.
+- JSON snapshots are handled safely.
+
+Part 9: Tests
+Test:
+
+1. Logged-in user can save an invoice.
+2. Saved invoice appears in /documents.
+3. Saved invoice persists after refresh.
+4. Logged-in user can edit saved invoice.
+5. Logged-in user can duplicate saved invoice.
+6. Logged-in user can delete saved invoice.
+7. Same for quotation.
+8. Same for receipt.
+9. User A cannot access User B's document by ID.
+10. Dashboard shows recent saved documents.
+11. Logged-out users can still use tools manually but cannot save.
+12. Company/client auto-fill still works.
+13. AI Writer still shows the correct friendly unavailable message if no OpenAI credits.
+14. Calculators, templates, pricing, blog, and country pages still work.
+
+Part 10: Final report
+When finished, provide:
+
+1. Files changed
+2. Database tables created or updated
+3. API routes added
+4. Document saving behavior
+5. /documents UI features
+6. Dashboard updates
+7. Edit/duplicate/delete behavior
+8. Security checks
+9. Test results
+10. Any limitations
+11. Recommended Step 5

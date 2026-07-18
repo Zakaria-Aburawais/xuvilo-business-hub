@@ -1,0 +1,307 @@
+Please replace the current Gemini-based AI Writer provider with OpenAI / ChatGPT API.
+
+Current issue:
+Gemini integration is unreliable for the AI Writer. I want Xuvilo AI Writer to use OpenAI instead.
+
+Important:
+- Do not rebuild the whole AI Writer UI.
+- Do not break invoice, quotation, receipt, calculators, templates, pricing, navigation, homepage, blog, or country pages.
+- Do not integrate Stripe.
+- Do not expose the OpenAI API key to the frontend.
+- All OpenAI calls must happen only on the backend/API server.
+- Keep the existing frontend response contract:
+  {
+    success: true,
+    subject: string,
+    body: string,
+    provider: "openai"
+  }
+
+Main goal:
+Make /ai-writer generate high-quality professional business messages using OpenAI / ChatGPT API, returning a reliable subject and body.
+
+Part 1: Environment variable
+Use this environment variable:
+
+OPENAI_API_KEY
+
+If OPENAI_API_KEY is missing, return HTTP 503 with:
+
+{
+  "success": false,
+  "error": "AI provider unavailable",
+  "message": "AI generation is not active yet. Please configure the OPENAI_API_KEY."
+}
+
+Do not use:
+- AI_INTEGRATIONS_GEMINI_API_KEY
+- AI_INTEGRATIONS_GEMINI_BASE_URL
+- GEMINI_API_KEY
+- GOOGLE_API_KEY
+- GOOGLE_GENERATIVE_AI_API_KEY
+
+Part 2: Install/use OpenAI SDK
+Use the official OpenAI JavaScript/TypeScript SDK if not already installed.
+
+Suggested backend pattern:
+
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+Use the Responses API.
+
+Part 3: Create OpenAI service module
+Create a clean backend service module, for example:
+
+src/services/openaiWriter.ts
+
+This service should:
+- Accept the AI Writer form payload.
+- Build a strong prompt.
+- Call OpenAI.
+- Return a normalized object:
+  {
+    subject: string,
+    body: string
+  }
+
+Part 4: Model selection
+Use a good, cost-conscious OpenAI model suitable for business writing.
+
+Preferred:
+- gpt-4o-mini if available in the project/account
+
+Fallback:
+- gpt-4o
+- or whichever modern OpenAI text model is available in the environment
+
+Make the model configurable with:
+
+OPENAI_MODEL
+
+Default:
+gpt-4o-mini
+
+Part 5: Use structured JSON output
+The response must always follow this structure:
+
+{
+  "subject": "string",
+  "body": "string"
+}
+
+Use OpenAI Structured Outputs / JSON schema if supported by the SDK version.
+
+The schema should require:
+- subject: string
+- body: string
+
+No extra keys are needed from the model.
+
+If structured output is difficult with the current SDK, use a strong prompt instructing:
+Return ONLY valid JSON.
+Do not wrap the JSON in markdown.
+Do not include explanation.
+Do not include code fences.
+
+Then parse and validate safely.
+
+Part 6: Strong business-writing prompt
+Update the system/developer prompt so OpenAI behaves like a professional business communication assistant for Xuvilo.
+
+The AI must:
+- Write professional business messages.
+- Use the selected language: English or Arabic.
+- Use the selected tone.
+- Use the selected length.
+- Include all user-provided details accurately.
+- Never invent names, dates, invoice numbers, amounts, or company names.
+- Preserve references, invoice numbers, quotation numbers, amounts, and dates exactly.
+- Write natural business English for English outputs.
+- Write clear Modern Standard Arabic for Arabic outputs.
+- Avoid literal weak translation.
+- Avoid robotic or overly dramatic wording.
+- Avoid unnecessary long paragraphs.
+- Include a clear call to action where appropriate.
+- Return only valid JSON with subject and body.
+
+Part 7: Purpose-specific behavior
+For payment reminder:
+- Mention invoice number, amount, and due date if provided.
+- Politely request payment status.
+- Ask for confirmation of expected payment date.
+- Keep the tone professional.
+
+For invoice follow-up:
+- Refer to the invoice and payment status.
+- Ask if any additional documents are needed.
+- Request confirmation.
+
+For quotation submission:
+- Mention the quotation/reference if provided.
+- Invite review.
+- Offer clarification.
+- Ask for feedback or approval.
+
+For supplier request:
+- Clearly list requested items/services.
+- Ask for price, delivery time, payment terms, and validity of the quote.
+- Keep it clear and professional.
+
+For complaint/clarification:
+- Explain the issue clearly.
+- Use firm but respectful wording when selected.
+- Ask for corrective action or clarification.
+
+For improve existing email:
+- Preserve the original meaning.
+- Improve grammar, tone, flow, and professionalism.
+- Do not add fake information.
+- Keep important details unchanged.
+
+For translation Arabic/English:
+- Translate naturally, not word by word.
+- Preserve names, numbers, dates, invoice references, and technical terms.
+- Keep the business tone.
+
+Part 8: Backend route update
+Update the existing AI Writer endpoint so it uses the new OpenAI service.
+
+Keep the same API route if possible:
+POST /api/ai-writer/generate
+
+Expected success response:
+
+HTTP 200
+{
+  "success": true,
+  "subject": "...",
+  "body": "...",
+  "provider": "openai"
+}
+
+Expected errors:
+
+Missing key:
+HTTP 503
+{
+  "success": false,
+  "error": "AI provider unavailable",
+  "message": "AI generation is not active yet. Please configure the OPENAI_API_KEY."
+}
+
+Validation error:
+HTTP 400
+{
+  "success": false,
+  "error": "Invalid request",
+  "message": "Please add a main purpose or some key details before generating."
+}
+
+OpenAI API error:
+HTTP 502
+{
+  "success": false,
+  "error": "AI provider error",
+  "message": "The AI provider could not generate the message. Please try again."
+}
+
+Unexpected error:
+HTTP 500
+{
+  "success": false,
+  "error": "Server error",
+  "message": "Something went wrong while generating the message."
+}
+
+Part 9: Frontend update
+The frontend should not need major changes.
+
+But update labels/messages if needed:
+- Provider should show OpenAI if provider metadata is displayed.
+- Keep subject/body display.
+- Keep copy buttons.
+- Keep regenerate.
+- Keep clear.
+- Keep download.
+
+Never show:
+- Request failed (200)
+- Unexpected response if the backend returned usable subject/body.
+
+Part 10: Safe logging
+Add development-only logs:
+- provider: openai
+- model used
+- response status
+- whether subject/body were extracted
+- subject length
+- body length
+
+Do not log:
+- OPENAI_API_KEY
+- full user messages in production
+
+Part 11: Test with exact cases
+
+Test 1:
+Purpose: Payment reminder
+Language: English
+Tone: Professional
+Sender: John Doe — Sales Manager
+Recipient: Mr. Smith
+Recipient company: Acme Trading Co.
+Main purpose: Friendly nudge for an unpaid invoice.
+Key details: Invoice INV-042 for $1,250 was due 14 days ago. No reply yet from the client. We need confirmation of the payment date.
+Length: Detailed
+
+Expected:
+A professional subject and full email body.
+
+Test 2:
+Purpose: Supplier request
+Language: Arabic
+Tone: Formal
+Sender: Zakaria
+Recipient: المورد
+Main purpose: طلب عرض سعر
+Key details: نحتاج عرض سعر لعدد 10 إطارات سيارات مع توضيح مدة التسليم وطريقة الدفع.
+Length: Medium
+
+Expected:
+Arabic subject and Arabic body, displayed RTL correctly.
+
+Test 3:
+Purpose: Improve existing email
+Language: English
+Existing draft:
+Hi, please send invoice soon. We need it for payment.
+
+Expected:
+A professional improved email with subject and body.
+
+Test 4:
+Missing OPENAI_API_KEY
+Expected:
+HTTP 503 with friendly setup message.
+
+Part 12: Remove or de-prioritize Gemini
+Do not delete Gemini code if it may be useful later, but do not use it as the default provider.
+OpenAI should be the default provider for AI Writer.
+
+Optional:
+Add AI_PROVIDER=openai as a future config option, but default must be OpenAI.
+
+Part 13: Final report
+When finished, provide:
+1. Files changed
+2. OpenAI package installed/used
+3. Exact environment variables required
+4. Model used
+5. Whether structured output / JSON schema was used
+6. Backend response format
+7. Test results for all 4 test cases
+8. Any remaining issues

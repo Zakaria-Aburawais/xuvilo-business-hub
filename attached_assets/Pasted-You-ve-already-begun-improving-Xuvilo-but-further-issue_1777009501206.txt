@@ -1,0 +1,26 @@
+You’ve already begun improving Xuvilo, but further issues remain. Please work through the following tasks, then run another full audit to verify everything functions as intended:
+
+1. **Fix root‑URL stability:** The base route `xuvilo.com` still intermittently returns a 502 error. Ensure that both the bare domain (`/`) and the home page with a trailing slash load correctly and consistently, and add graceful error handling so visitors never see a server error.
+
+2. **Ensure consistent routing and redirects:** 
+   - Make sure that all routes have canonical and friendly slugs; `/invoice`, `/quotation`, `/receipt`, `/document-tracker`, `/company-profile`, etc., should all resolve and redirect appropriately rather than returning 404s. When a new route structure is adopted (e.g., `/tools/tracker`), add redirects so older links remain valid.
+   - Restore the Quotation Generator. The link in the navigation bar now returns 404; map it to the correct component and verify that editing the quotation does not break routing when typing into a field.
+
+3. **Form usability enhancements:**
+   - In the Invoice Generator and Quotation Generator, ensure all client fields (company name, phone, email, address) are focusable via a mouse click without requiring keyboard tabbing. Test each field individually.
+   - Normalize input handling in line‑item forms so that clicking within quantity, price, discount, or tax boxes selects the existing value; avoid intercepting Ctrl+A globally.
+   - Prevent accidental page navigation while typing in any input field.
+
+4. **Calculator improvements:** For all calculators (profit margin, discount, shipping CBM, VAT/tax, etc.), clear placeholder values when the page loads or treat placeholders as zero. Users should not need to manually delete “0” before entering values.
+
+5. **Subscriber-only tools:** Maintain the Invoice/Document Tracker gating page at `/tools/tracker` but add a redirect from `/document-tracker` to avoid confusion. Provide a clear explanation of the feature and a link to pricing/sign‑up rather than an error page.
+
+6. **Error handling and page load optimization:** Standardize error pages across the site to provide helpful navigation back to the home page or related resources. Double-check caching and server settings to prevent intermittent 404s or 502s on routes that should be accessible.
+
+7. **Comprehensive audit:** After implementing these changes, retest each tool and page:
+   - Ensure the root site and all document generators load correctly and allow complete data entry via mouse or keyboard.
+   - Verify that the calculators return correct results after user input and no default values cause incorrect calculations.
+   - Check that all navigation links (including those in the tools bar) point to functional pages.
+   - Confirm that responsive design still works across devices and that keyboard navigation is supported.
+
+Skip any payment gateway implementation for now—keep placeholders or stubs where relevant. Once finished, summarize the fixes applied and note any residual issues discovered during the audit.

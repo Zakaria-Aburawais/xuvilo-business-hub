@@ -1,0 +1,154 @@
+Please debug and fix the AI Writer generation error.
+
+Issue:
+When I click “Generate message” on /ai-writer, the UI shows:
+
+“Couldn't generate message”
+“Request failed (200)”
+
+This is incorrect because HTTP 200 usually means the request succeeded. It seems the frontend is treating a successful response as an error, or the backend is returning an unexpected JSON shape.
+
+Important:
+- Do not rebuild the whole AI Writer.
+- Do not remove existing UI.
+- Do not break invoice, quotation, receipt, calculators, templates, pricing, or navigation.
+- Focus only on fixing AI Writer request/response handling and error reporting.
+
+Tasks:
+
+1. Inspect the AI Writer frontend request logic
+Find the function that calls the AI Writer API endpoint.
+Check:
+- The endpoint URL
+- HTTP method
+- Request body
+- Headers
+- Response parsing
+- Error handling
+- Expected response shape
+
+2. Inspect the backend AI Writer endpoint
+Check what the endpoint actually returns in all cases:
+- Successful generation
+- Missing Gemini API key
+- Gemini API error
+- Invalid input
+- Unexpected server error
+
+The endpoint must return consistent JSON.
+
+3. Standardize the backend response format
+
+For successful AI generation, return:
+
+{
+  "success": true,
+  "subject": "Generated subject here",
+  "body": "Generated message body here",
+  "provider": "gemini"
+}
+
+For missing Gemini API key, return HTTP 503 with:
+
+{
+  "success": false,
+  "error": "AI provider unavailable",
+  "message": "AI generation is not active yet. Please configure the Gemini API key."
+}
+
+For validation errors, return HTTP 400 with:
+
+{
+  "success": false,
+  "error": "Invalid request",
+  "message": "Please complete the required fields before generating."
+}
+
+For AI provider errors, return HTTP 502 with:
+
+{
+  "success": false,
+  "error": "AI provider error",
+  "message": "The AI provider could not generate the message. Please try again."
+}
+
+For unexpected errors, return HTTP 500 with:
+
+{
+  "success": false,
+  "error": "Server error",
+  "message": "Something went wrong while generating the message."
+}
+
+4. Fix frontend handling
+The frontend should:
+- Parse JSON safely.
+- If response.ok is true and data.success === true, display the generated subject and body.
+- If response.ok is false, show data.message if available.
+- If response.ok is true but data.success !== true, show a clear message instead of “Request failed (200)”.
+- Never show “Request failed (200)” to the user.
+- Show a useful error such as:
+  “The AI service returned an unexpected response. Please try again or check the server logs.”
+
+5. Add debugging logs for development
+Add safe console/server logs that show:
+- API endpoint being called
+- Response status
+- Response JSON shape
+- Whether Gemini API key is configured, without exposing the key
+
+Do not log the actual Gemini API key.
+
+6. Check environment variable
+Verify which environment variable the Gemini service expects.
+It may be one of:
+- GEMINI_API_KEY
+- GOOGLE_API_KEY
+- GOOGLE_GENERATIVE_AI_API_KEY
+
+Please document the exact variable name needed.
+
+If no key is set, the system should show the friendly 503 unavailable message, not “Request failed (200)”.
+
+7. Add fallback protection
+If the backend currently returns plain text, HTML, or malformed JSON, fix it so it always returns valid JSON.
+
+8. Test cases
+After fixing, test these cases:
+
+Case A:
+No Gemini API key configured.
+Expected result:
+The Generate button should show a friendly message:
+“AI generation is not active yet. Please configure the Gemini API key.”
+Status should be 503, not 200.
+
+Case B:
+Required fields missing.
+Expected result:
+Clear validation message.
+
+Case C:
+Gemini API key configured.
+Expected result:
+The page displays:
+- Subject line
+- Message body
+- Copy buttons work
+- Regenerate works
+- Clear form works
+
+Case D:
+Gemini returns an unexpected response.
+Expected result:
+The app shows a clear user-friendly error and logs the issue.
+
+9. Final report
+When done, provide:
+- Root cause of “Request failed (200)”
+- Files changed
+- Backend response format
+- Frontend error handling changes
+- Exact Gemini environment variable required
+- Test results
+- Any remaining issue

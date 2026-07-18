@@ -1,0 +1,143 @@
+Please audit the current live Xuvilo website and complete the missing SaaS foundation.
+
+Important:
+Do not remove or break the existing invoice, quotation, receipt, calculator, templates, or pricing pages.
+Keep the existing SEO improvements and canonical domain https://xuvilo.com.
+
+Current issue:
+The website now looks better as a public business tools website, but it still needs to become a proper SaaS with user accounts, saved documents, dashboard, AI Writer, and pricing limits.
+
+Please implement or verify the following:
+
+1. Add visible navigation links for:
+- Login
+- Sign Up
+- Dashboard
+- AI Business Writer
+- Pricing
+- Contact
+
+2. Add authentication:
+- Sign up
+- Login
+- Logout
+- Forgot password if possible
+- Protected dashboard
+
+3. Add user dashboard:
+The dashboard should show:
+- Current plan
+- Documents created this month
+- Recent invoices
+- Recent quotations
+- Recent receipts
+- Saved clients
+- AI credits used/remaining
+- Quick buttons:
+  - Create Invoice
+  - Create Quotation
+  - Create Receipt
+  - Try AI Writer
+  - Upgrade Plan
+
+4. Add saved company profile:
+Users should be able to save:
+- Company name
+- Logo
+- Address
+- Phone
+- Email
+- Tax/VAT number
+- Default currency
+- Default language
+- Default terms
+
+This data should auto-fill invoices, quotations, and receipts.
+
+5. Add client management:
+Users should be able to:
+- Add clients
+- Edit clients
+- Delete clients
+- Select saved clients when creating invoices, quotations, and receipts
+
+6. Add saved documents:
+Invoices, quotations, and receipts should be saved per logged-in user.
+Users should be able to:
+- Create
+- Save
+- Edit
+- Duplicate
+- Delete
+- Export PDF
+- Print
+
+7. Create or complete AI Business Writer page:
+URL: /ai-writer
+
+It should include:
+- Payment reminder email
+- Invoice follow-up email
+- Quotation submission email
+- Supplier request email
+- Complaint/clarification email
+- Formal business message
+- Arabic/English message option
+- Tone selection: formal, polite, firm, friendly
+- Copy button
+
+If the real AI API is not connected yet, create the full UI and backend-ready structure without pretending the AI is live.
+
+8. Enforce pricing limits:
+Create four plans:
+- Free
+- Starter
+- Business
+- Pro
+
+Suggested limits:
+Free:
+- 5 documents/month
+- 5 AI generations/month
+- Xuvilo watermark
+- 3 saved clients
+
+Starter:
+- 50 documents/month
+- 30 AI generations/month
+- No watermark
+- 20 saved clients
+
+Business:
+- Unlimited documents
+- 150 AI generations/month
+- No watermark
+- Unlimited clients
+- Premium templates
+
+Pro:
+- Unlimited documents
+- 500 AI generations/month
+- Reports
+- Premium templates
+- Advanced AI tools
+- Team features placeholder
+
+9. Add or verify trust/legal pages:
+- About
+- Contact
+- Privacy Policy
+- Terms of Use
+- Disclaimer / Affiliate Disclosure if needed
+
+Make sure all are linked clearly in the footer.
+
+10. Final test:
+After implementation, provide a report showing:
+- What pages were added
+- What SaaS features were added
+- Whether login/signup works
+- Whether dashboard works
+- Whether documents save correctly
+- Whether plan limits are enforced
+- Any remaining issues

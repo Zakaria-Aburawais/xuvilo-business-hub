@@ -1,0 +1,166 @@
+I want you to act as a senior SaaS product architect, UX planner, and full-stack technical lead.
+
+Do NOT start coding yet.
+
+First, understand my project and produce a complete implementation plan for it.
+
+## Project name
+Businesses Hub
+
+## Project concept
+Businesses Hub is a bilingual web platform in Arabic and English that offers practical business tools for freelancers, contractors, traders, import/export businesses, and small companies.
+
+The platform should start as a tools-based website, but be structured so it can later grow into a lightweight SaaS platform.
+
+## Core idea
+The website will include:
+1. Invoice Generator
+2. Quotation Generator
+3. Receipt Generator
+4. Business Calculators
+5. PDF export / print-ready documents
+
+## Product goal
+Help users do common business tasks quickly:
+- create invoices
+- create quotations
+- create receipts
+- calculate important financial and operational numbers
+- export clean PDFs
+- use the platform in Arabic and English
+- later save documents and use dashboards
+
+## Target users
+- freelancers
+- contractors
+- traders
+- small business owners
+- import/export businesses
+- Arabic-speaking SMEs
+- English-speaking SMEs in the same markets
+
+## MVP scope
+The first version should include:
+- bilingual support (Arabic / English)
+- RTL for Arabic and LTR for English
+- responsive mobile-first design
+- homepage
+- invoice generator
+- quotation generator
+- receipt generator
+- calculators hub
+- individual calculator pages
+- PDF export
+- print-ready layouts
+- pricing page
+- login / signup
+- basic dashboard structure for saved documents
+
+## Initial calculators
+- Profit Margin Calculator
+- Discount Calculator
+- VAT / Tax Calculator
+- Currency / Exchange Calculator
+- Shipping CBM Calculator
+- Overtime Calculator
+- Leave Balance Calculator
+
+## Invoice generator fields
+- business name
+- business logo
+- business address
+- business phone
+- business email
+- tax/VAT number
+- client name
+- client company
+- client address
+- client phone
+- client email
+- invoice number
+- issue date
+- due date
+- currency
+- line items
+- quantity
+- unit price
+- discount
+- tax
+- subtotal
+- tax total
+- grand total
+- notes
+- payment details
+- signature/footer section
+- PDF download
+- print
+
+## Quotation generator fields
+Use most invoice fields, plus:
+- quotation number
+- validity date
+- acceptance/signature block
+- terms and conditions
+
+## Receipt generator fields
+- receipt number
+- receipt date
+- payer name
+- amount received
+- payment method
+- reference number
+- notes
+- PDF download
+- print
+
+## Future expansion
+The project should be structured to later support:
+- saved clients
+- saved products/services
+- saved document history
+- multiple businesses/workspaces
+- recurring invoices
+- payment reminders
+- premium templates
+- analytics dashboard
+- user subscriptions
+
+## Preferred stack
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Supabase for database and auth
+- pdf-lib or Puppeteer for PDF generation
+
+## What I want from you now
+Before writing code, provide a complete implementation blueprint with these sections:
+
+1. Product summary
+2. User personas
+3. Core business problems solved
+4. MVP scope
+5. Features in MVP vs later phases
+6. Full sitemap
+7. Page-by-page breakdown
+8. User flows
+9. Database schema proposal
+10. API routes/endpoints needed
+11. Recommended component architecture
+12. Suggested folder/file structure
+13. Bilingual/i18n strategy
+14. RTL/LTR handling strategy
+15. PDF generation strategy
+16. Dashboard structure
+17. Pricing model suggestion
+18. SEO strategy for calculators and templates
+19. Validation and security considerations
+20. Best UX decisions for Arabic and English
+21. Risks / complexity notes
+22. Clean recommended implementation plan
+
+Important:
+- Do not code yet.
+- Be specific and practical.
+- Separate MVP from later features clearly.
+- If something is too complex for MVP, move it to later.
+- Use headings and bullet points.

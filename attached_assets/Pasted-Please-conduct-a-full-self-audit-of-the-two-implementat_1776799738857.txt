@@ -1,0 +1,184 @@
+Please conduct a full self-audit of the two implementations 
+just completed (ZATCA QR Code and SEO/SSR) and fix any issues 
+found. Do not assume they are working — actively test each item.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUDIT 1 — ZATCA QR CODE (P1)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Run the following checks and fix anything that fails:
+
+1. ENCODING TEST
+   Run the TLV encoder with this exact test data:
+   {
+     sellerName: "Businesses Hub",
+     vatNumber: "310122393500003",
+     invoiceDate: "2025-01-15T10:00:00Z",
+     totalWithVAT: 1150.00,
+     vatAmount: 150.00
+   }
+   - Confirm the output is a valid Base64 string
+   - Confirm it starts with the correct TLV sequence
+   - Log the output to console for verification
+   - If encoding is broken, rewrite the TLV function from scratch
+
+2. QR CODE RENDER TEST
+   - Confirm the qrcode npm package is installed
+   - Confirm qrcode.toDataURL() returns a valid base64 PNG
+   - Confirm the QR image actually renders in the 
+     invoice preview (not a broken image or blank space)
+   - If not rendering, debug and fix the async flow
+
+3. INVOICE FORM TEST
+   - Confirm the ZATCA toggle switch exists on the invoice form
+   - Confirm toggling it ON shows the VAT number input field
+   - Confirm the VAT number field validates 15-digit 
+     numbers starting with 3
+   - Confirm the QR code updates in real-time as 
+     form fields change
+
+4. PDF EXPORT TEST
+   - Generate a test invoice with ZATCA enabled
+   - Export to PDF
+   - Confirm the QR code appears in the PDF output 
+     (bottom-left, approximately 2cm x 2cm)
+   - Confirm the "Scan to Verify / للتحقق امسح" 
+     label appears below the QR code
+
+5. BADGE TEST
+   - Confirm "ZATCA Compliant ✓" badge appears on 
+     the invoice preview when toggle is ON
+   - Confirm the badge disappears when toggle is OFF
+   - Confirm the homepage hero section shows the 
+     ZATCA trust badge
+
+6. AUTO-DETECTION TEST
+   - Set invoice currency to SAR
+   - Confirm the ZATCA suggestion banner appears
+   - Confirm VAT auto-sets to 15%
+   - Set currency to AED
+   - Confirm VAT auto-sets to 5%
+
+Fix all failures before moving on.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUDIT 2 — SEO & SERVER-SIDE RENDERING (P2)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Run the following checks and fix anything that fails:
+
+1. SSR VERIFICATION — MOST CRITICAL
+   Simulate what Google sees by fetching each page 
+   with JavaScript disabled (server response only).
+   
+   For each of these routes, check that the raw HTML 
+   response (before any JS executes) contains actual 
+   visible text content — NOT just an empty div:
+   
+   / → should contain "Create Professional Business Documents"
+   /invoice → should contain "Invoice Generator"
+   /quotation → should contain "Quotation"
+   /receipt → should contain "Receipt"
+   /templates → should contain "Templates"
+   /pricing → should contain "Pricing"
+
+   If any page returns only <div id="root"></div> or 
+   <div id="app"></div> with no content:
+   - The SSR is NOT working
+   - Fix by ensuring these pages use server-side 
+     rendering or static generation
+   - If using React without Next.js, migrate the 
+     affected pages to Next.js SSG/SSR
+   - If already on Next.js, confirm pages are NOT 
+     using 'use client' without a server wrapper
+
+2. SITEMAP TEST
+   - Confirm /sitemap.xml exists and loads
+   - Confirm it lists ALL main pages including:
+     /, /invoice, /quotation, /receipt, /templates,
+     /calculators, /pricing, /stamp-maker, /tracker,
+     /invoice-generator-saudi-arabia,
+     /invoice-generator-uae,
+     /invoice-generator-egypt,
+     /invoice-generator-libya,
+     /invoice-generator-jordan,
+     /invoice-generator-kuwait
+   - If missing or broken, regenerate it completely
+
+3. ROBOTS.TXT TEST
+   - Confirm /robots.txt exists and loads
+   - Confirm it contains:
+     User-agent: *
+     Allow: /
+     Sitemap: https://[current-domain]/sitemap.xml
+   - If missing, create it
+
+4. META TAGS TEST
+   Check each page's HTML <head> section contains:
+   - A unique <title> tag with keywords
+   - A <meta name="description"> tag
+   - Open Graph tags (og:title, og:description, 
+     og:image, og:url)
+   - Twitter card tags
+   - Canonical URL tag
+   - Correct lang attribute (lang="en" or lang="ar")
+   
+   If any are missing, add them now.
+
+5. COUNTRY LANDING PAGES TEST
+   Verify these 6 pages exist and load with content:
+   /invoice-generator-saudi-arabia
+   /invoice-generator-uae
+   /invoice-generator-egypt
+   /invoice-generator-libya
+   /invoice-generator-jordan
+   /invoice-generator-kuwait
+   
+   Each must have:
+   - A unique H1 heading
+   - At least 400 words of visible crawlable text
+   - The invoice tool pre-loaded with correct 
+     local currency and VAT rate
+   - A working CTA button
+   
+   If any are missing or empty, build them now.
+
+6. STRUCTURED DATA TEST
+   - Confirm JSON-LD WebApplication schema exists 
+     on the homepage
+   - Validate it contains: name, description, 
+     applicationCategory, offers, inLanguage
+   - Confirm FAQPage schema exists on country pages
+   - Fix any malformed JSON
+
+7. HREFLANG TEST
+   - Confirm Arabic pages have hreflang="ar" tags
+   - Confirm English pages have hreflang="en" tags
+   - Confirm x-default hreflang exists on all pages
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL REPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After completing all fixes, provide a summary report 
+in this format:
+
+ZATCA QR CODE:
+✅ or ❌ TLV encoding working
+✅ or ❌ QR renders in preview
+✅ or ❌ QR appears in PDF export
+✅ or ❌ ZATCA toggle and VAT field working
+✅ or ❌ Auto-detection for SAR/AED working
+✅ or ❌ Trust badges showing on homepage
+
+SEO / SSR:
+✅ or ❌ SSR working (content visible without JS)
+✅ or ❌ /sitemap.xml loads with all pages
+✅ or ❌ /robots.txt loads correctly
+✅ or ❌ Meta tags present on all pages
+✅ or ❌ All 6 country landing pages exist
+✅ or ❌ Structured data / JSON-LD valid
+✅ or ❌ hreflang tags present
+
+Only mark ✅ if you have actively confirmed it works.
+Do not mark ✅ based on assumption.

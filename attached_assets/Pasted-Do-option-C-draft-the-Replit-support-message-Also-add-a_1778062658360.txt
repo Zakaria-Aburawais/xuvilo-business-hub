@@ -1,0 +1,55 @@
+Do option C — draft the Replit support message.
+Also add a note to replit.md explaining this is a 
+known Replit edge proxy issue.
+
+Do not change any code. This task is done.
+Move on to the next task immediately:
+
+Fix meta titles and descriptions on all 10 English 
+blog posts. They are too long for SEO.
+Update PAGE_META in server.ts for these 10 posts:
+
+/blog/zatca-invoice-requirements-saudi-arabia
+title: "ZATCA Invoice Requirements Saudi Arabia 2025 | Xuvilo"
+description: "Complete guide to ZATCA e-invoicing in Saudi Arabia. Learn Phase 1 and Phase 2 requirements, QR codes, penalties, and how to create compliant invoices free."
+
+/blog/free-invoice-generator-uae
+title: "Free Invoice Generator for UAE Freelancers | Xuvilo"
+description: "Create professional UAE invoices with 5% VAT, Arabic and English, AED currency, and instant PDF export. Free for UAE freelancers and small businesses."
+
+/blog/invoice-vs-quotation
+title: "Invoice vs Quotation: Key Differences | Xuvilo"
+description: "Learn the difference between an invoice and a quotation, when to use each, and how to convert a quotation to an invoice. Free Arabic-English templates."
+
+/blog/vat-calculator-saudi-arabia
+title: "VAT Calculator Saudi Arabia — How to Calculate | Xuvilo"
+description: "Learn how to calculate 15% VAT in Saudi Arabia with examples. Use Xuvilo's free VAT calculator. Covers VAT-inclusive and exclusive pricing for businesses."
+
+/blog/invoice-generator-egypt
+title: "Free Invoice Generator for Egypt | Xuvilo"
+description: "Create professional Arabic and English invoices for Egypt instantly. Supports EGP currency, e-invoice requirements, and free PDF export. No signup required."
+
+/blog/freelancer-invoice-tips-uae
+title: "Get Paid Faster as a UAE Freelancer | Xuvilo"
+description: "Practical tips for UAE freelancers to get paid faster. Learn invoice timing, payment terms, follow-up strategies, and how to send professional invoices."
+
+/blog/profit-margin-calculator-guide
+title: "Profit Margin Calculator for MENA Traders | Xuvilo"
+description: "Learn how to calculate gross and net profit margin for your MENA business. Includes formulas, benchmarks, and Xuvilo's free profit margin calculator."
+
+/blog/receipt-vs-invoice-difference
+title: "Receipt vs Invoice: Key Differences | Xuvilo"
+description: "Understand the difference between a receipt and an invoice. When to issue each, legal requirements in MENA, and free Arabic-English templates from Xuvilo."
+
+/blog/quotation-guide-mena
+title: "How to Write a Professional Quotation | Xuvilo"
+description: "Step-by-step guide to writing professional quotations for MENA businesses. Includes validity dates, terms, and how to convert a quotation to an invoice."
+
+/blog/invoice-generator-jordan
+title: "Free Invoice Generator for Jordan | Xuvilo"
+description: "Create professional Arabic and English invoices for Jordan. Supports JOD currency, GST requirements, and free PDF export. No signup required."
+
+After updating verify:
+curl -s https://xuvilo.com/blog/zatca-invoice-requirements-saudi-arabia | grep "<title>"
+Must show under 60 characters.
+Deploy and confirm all 10 updated.

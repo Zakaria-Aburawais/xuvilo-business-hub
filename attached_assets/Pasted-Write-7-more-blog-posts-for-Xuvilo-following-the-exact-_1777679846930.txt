@@ -1,0 +1,64 @@
+Write 7 more blog posts for Xuvilo following the 
+exact same quality standard as the ZATCA guide 
+(1,000+ words, H1/H2/H3, FAQ section, internal 
+links to tools, server-rendered HTML).
+
+Post 1: /blog/vat-calculator-saudi-arabia
+Title: "How to Calculate VAT in Saudi Arabia (Free Calculator)"
+Cover: 15% VAT rate, how to add VAT to prices, 
+VAT-inclusive vs exclusive, examples for common 
+business types, how to use Xuvilo's VAT calculator.
+Link to: /calculators, /invoice
+
+Post 2: /blog/invoice-generator-egypt
+Title: "Free Invoice Generator for Egypt — Arabic & English (2025)"
+Cover: Egyptian business invoicing requirements,
+E-invoice system in Egypt, Arabic RTL invoices,
+EGP currency support, how Xuvilo works for Egyptian SMEs.
+Link to: /invoice, /templates
+
+Post 3: /blog/freelancer-invoice-tips-uae
+Title: "How to Get Paid Faster as a Freelancer in UAE (2025)"
+Cover: Common payment delay reasons, invoice timing,
+payment terms best practices, following up professionally,
+using Xuvilo to send professional invoices.
+Link to: /invoice, /quotation
+
+Post 4: /blog/profit-margin-calculator-guide
+Title: "How to Calculate Profit Margin for MENA Traders"
+Cover: Gross vs net margin, formulas with examples,
+what good margins look like by industry, how to 
+use Xuvilo's profit margin calculator.
+Link to: /calculators, /invoice
+
+Post 5: /blog/receipt-vs-invoice-difference
+Title: "Receipt vs Invoice: What's the Difference?"
+Cover: Define both, when to issue each, legal 
+requirements, examples for MENA businesses,
+common mistakes.
+Link to: /invoice, /receipt
+
+Post 6: /blog/quotation-guide-mena
+Title: "How to Write a Professional Quotation (With Free Template)"
+Cover: What a quotation must include, validity dates,
+terms and conditions, how to convert to invoice,
+MENA business etiquette for quotes.
+Link to: /quotation, /templates
+
+Post 7: /blog/invoice-generator-jordan
+Title: "Free Invoice Generator for Jordan — Arabic & English (2025)"
+Cover: Jordanian business invoicing, JOD currency,
+Arabic support, General Sales Tax (GST) in Jordan,
+how Xuvilo supports Jordanian businesses.
+Link to: /invoice, /invoice-generator-jordan
+
+Requirements for all 7:
+- 900+ words each, server-rendered HTML
+- H1, H2, H3 structure
+- FAQ section (4+ questions)
+- Meta title and description
+- Author: Xuvilo Team, date: today
+- Internal links to at least 2 tools each
+- Add all 7 to the /blog index page
+- Verify each with curl wc -w after deploy
+- All must show 800+ words

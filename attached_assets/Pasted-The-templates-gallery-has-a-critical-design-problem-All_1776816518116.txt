@@ -1,0 +1,337 @@
+The templates gallery has a critical design problem.
+All templates within each category look identical 
+— same layout, same structure, only colors differ.
+110 templates is misleading if they're all the same 
+design with different color schemes.
+
+Each template must have a VISUALLY DISTINCT layout.
+Not just different colors — different structure,
+different header styles, different table designs,
+different typography, different information hierarchy.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE STANDARD TO MEET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Look at these real-world template galleries for 
+reference on what "distinct" means:
+- Canva invoice templates
+- Microsoft Word invoice templates
+- FreshBooks invoice templates
+
+Each template must be immediately recognizable 
+as different AT A GLANCE — not just by color.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INVOICE TEMPLATES — 15 TRULY DISTINCT LAYOUTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Build these 15 structurally different invoice 
+layouts. Each must look completely different 
+from the others:
+
+LAYOUT 1 — Classic Clean
+- White background, company name top-left
+- Invoice title top-right in large text
+- Simple horizontal line separator
+- Clean table with alternating row shading
+- Totals bottom-right
+
+LAYOUT 2 — Dark Header
+- Full-width dark navy/black header band
+- White logo + company name in header
+- Invoice number and date in header right side
+- White body, colored table header row
+- Bold grand total box bottom-right
+
+LAYOUT 3 — Left Sidebar
+- Colored left sidebar (20% width)
+- Company info + logo in sidebar
+- Main content in right 80%
+- Sidebar color matches accent throughout
+- Very modern, magazine-style look
+
+LAYOUT 4 — Top Color Band
+- Thin colored band at very top (like a ribbon)
+- Large company logo centered below band
+- Two-column layout: billed-from left, 
+  billed-to right
+- Minimal table, no borders just lines
+- Totals in colored box bottom-right
+
+LAYOUT 5 — Centered Minimal
+- Everything centered
+- Large invoice number as hero element
+- Company and client info in two centered blocks
+- Table full width, borderless
+- Footer with payment terms centered
+
+LAYOUT 6 — Bold Corporate
+- Large colored header 40% of page height
+- Company name in large white text in header
+- Document type "INVOICE" as watermark 
+  behind header
+- Sharp geometric design elements
+- Heavy typography throughout
+
+LAYOUT 7 — Arabic RTL Classic
+- Full RTL layout, right-to-left
+- Arabic header with company name right
+- Invoice number right, date right
+- Table headers in Arabic
+- Totals on left side (RTL standard)
+
+LAYOUT 8 — Arabic Modern
+- RTL layout with colored right sidebar
+- Arabic typography throughout
+- Bilingual labels (Arabic primary, 
+  English secondary smaller)
+- Modern geometric Arabic design
+
+LAYOUT 9 — Bilingual Split
+- Header split 50/50: Arabic right, English left
+- Table with bilingual column headers
+- All labels shown in both languages
+- Suitable for international business
+
+LAYOUT 10 — Freelancer Simple
+- No table — line items as simple rows
+- Large payment amount as hero element
+- Minimal fields: just what's needed
+- "Thank you for your business" 
+  as prominent footer element
+- Warm, personal feel
+
+LAYOUT 11 — Government/Formal
+- Official stamp placeholder top-right
+- Sequential reference numbers
+- Formal border around entire document
+- All caps headings
+- Signature and stamp area at bottom
+- Suitable for Libya/MENA government contracts
+
+LAYOUT 12 — Construction/Engineering
+- Extra columns: Materials, Labor, Equipment
+- Project name and site address fields
+- Phase/milestone breakdown rows
+- Professional dark green or steel blue accent
+- Suitable for contractors
+
+LAYOUT 13 — Consulting/Services
+- Hourly rate column
+- Hours worked column
+- Project name field prominently
+- Professional grey + blue palette
+- Suitable for consultants and agencies
+
+LAYOUT 14 — Elegant Premium
+- Serif typography (Playfair Display or similar)
+- Gold or warm brown accent color
+- Decorative thin border lines
+- Logo centered at top
+- Suitable for luxury services, legal, finance
+
+LAYOUT 15 — Compact Print
+- Designed to fit on half A4
+- Very dense, small font
+- All information visible at once
+- No wasted whitespace
+- Suitable for retail/point of sale
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUOTATION TEMPLATES — 10 DISTINCT LAYOUTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Build these 10 structurally different quotation 
+layouts:
+
+QUO LAYOUT 1 — Standard Quote
+- Similar to invoice but with QUOTATION/OFFER 
+  as title
+- Validity date prominently displayed
+- Terms and conditions section at bottom
+- "This quote is valid for 30 days" footer
+
+QUO LAYOUT 2 — Proposal Style
+- Cover-page feel with large company branding
+- Executive summary text field at top
+- Itemized pricing table
+- Acceptance signature line at bottom
+- More like a mini business proposal
+
+QUO LAYOUT 3 — Price List Style
+- Product/service catalog feel
+- Image placeholder column in table
+- Unit price and bulk price columns
+- "Contact us to order" CTA at bottom
+
+QUO LAYOUT 4 — Arabic Formal Quote
+- Full RTL quotation layout
+- Arabic: "عرض سعر" as title
+- Validity date in Arabic
+- Suitable for Saudi/UAE procurement
+
+QUO LAYOUT 5 — Bilingual Quote
+- Arabic + English side by side
+- All terms shown in both languages
+- Ideal for international deals
+
+QUO LAYOUT 6 — Construction Estimate
+- Project scope section
+- Material + labor breakdown
+- Optional extras section
+- Acceptance block at bottom
+
+QUO LAYOUT 7 — IT/Software Quote
+- Feature list style table
+- Unit/license pricing
+- Implementation timeline row
+- Support terms section
+
+QUO LAYOUT 8 — Event/Catering Quote
+- Per-person pricing option
+- Package tiers (Basic/Standard/Premium)
+- Event date and venue fields
+- Deposit requirement noted
+
+QUO LAYOUT 9 — Minimal Clean Quote
+- Ultra-minimal, no borders
+- Line items as simple text rows
+- Total prominently displayed
+- Single accent color only
+
+QUO LAYOUT 10 — Corporate Formal
+- Company letterhead style
+- "OFFICIAL PRICE QUOTATION" title
+- Reference number and client PO field
+- Formal acceptance clause at bottom
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECEIPT TEMPLATES — 8 DISTINCT LAYOUTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Build these 8 structurally different receipt 
+layouts:
+
+REC LAYOUT 1 — Standard Receipt
+- Classic receipt format
+- RECEIPT title at top
+- From/To/Date/Amount
+- Payment method badge
+- Thank you footer
+
+REC LAYOUT 2 — POS/Thermal Style
+- Narrow format (like a till receipt)
+- Centered text throughout
+- Dashed separator lines
+- Large total amount
+- Barcode placeholder at bottom
+
+REC LAYOUT 3 — Full Page Receipt
+- Full A4 format
+- Company letterhead at top
+- Detailed line items list
+- Signature and stamp area
+- Suitable for formal payments
+
+REC LAYOUT 4 — Arabic Receipt
+- RTL layout
+- "إيصال استلام" as title
+- Arabic payment method terms
+- Official stamp placeholder
+
+REC LAYOUT 5 — Bilingual Receipt
+- Arabic + English receipt
+- Payment confirmation in both languages
+- Suitable for cross-border payments
+
+REC LAYOUT 6 — Rent Receipt
+- Tenant and landlord fields
+- Property address field
+- Rental period (From/To dates)
+- Payment method and reference
+- Suitable for real estate
+
+REC LAYOUT 7 — Donation Receipt
+- NGO/charity style
+- Tax-exempt reference field
+- Donor name and amount
+- Organization registration number
+- "Thank you for your generosity" message
+- Suitable for NGOs (relevant for HALO Trust 
+  and similar organizations)
+
+REC LAYOUT 8 — Service Receipt
+- Services rendered section
+- Technician/staff name field
+- Job completion date
+- Parts + labor breakdown
+- Customer signature line
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMPLEMENTATION REQUIREMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For each template:
+1. Build as a real React component with 
+   completely different JSX structure
+2. Do NOT just change CSS variables/colors —
+   the HTML structure itself must be different
+3. All templates must accept the same props
+   (businessInfo, clientInfo, items, totals)
+   so they're interchangeable
+4. All templates must render correctly in PDF
+5. All templates must support RTL when Arabic
+   language is selected
+6. Thumbnails in the gallery must accurately
+   reflect the actual template layout —
+   not all show the same structure
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GALLERY DISPLAY FIX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The template gallery thumbnails must show the 
+ACTUAL layout of each template.
+
+Currently all thumbnails look identical.
+Fix by rendering a mini live preview of each 
+template at 20% scale using CSS transform:
+
+<div style={{ 
+  transform: 'scale(0.2)', 
+  transformOrigin: 'top left',
+  width: '500%',
+  height: '500%',
+  pointerEvents: 'none'
+}}>
+  <TemplateComponent {...sampleData} />
+</div>
+
+Wrap in a fixed-size container with overflow:hidden
+so it appears as a proper thumbnail.
+
+This way users see the REAL template layout
+not a generic placeholder.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After completing, verify on live site:
+
+✅ or ❌ All 15 invoice templates look 
+         visually distinct from each other
+✅ or ❌ All 10 quotation templates look 
+         visually distinct from each other
+✅ or ❌ All 8 receipt templates look 
+         visually distinct from each other
+✅ or ❌ Gallery thumbnails show real 
+         template previews (not placeholders)
+✅ or ❌ Each template renders correctly 
+         in PDF export
+✅ or ❌ RTL works on Arabic templates
+
+Take a screenshot of the templates gallery 
+showing the visual variety.
+Report from live URL only.

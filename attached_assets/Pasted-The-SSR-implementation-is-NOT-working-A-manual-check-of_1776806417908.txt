@@ -1,0 +1,223 @@
+The SSR implementation is NOT working. A manual check 
+of the page source confirms the body contains only:
+<div id="root"></div>
+
+Google sees zero content. All meta tags, country pages, 
+and structured data are invisible to search engines.
+
+This must be properly fixed. Here are the two valid 
+approaches — implement whichever fits the current stack:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION A — MIGRATE TO VITE SSR (Preferred)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Implement true Vite SSR using Express + renderToString:
+
+1. Install dependencies:
+   npm install express
+   npm install @types/express --save-dev
+
+2. Create /src/entry-server.tsx:
+   import { renderToString } from 'react-dom/server'
+   import { Router } from 'wouter'
+   import staticLocationHook from 'wouter/static-location'
+   import App from './App'
+
+   export function render(url: string) {
+     const html = renderToString(
+       <Router hook={staticLocationHook(url)}>
+         <App />
+       </Router>
+     )
+     return { html }
+   }
+
+3. Create /src/entry-client.tsx:
+   import { hydrateRoot } from 'react-dom/client'
+   import { Router } from 'wouter'
+   import App from './App'
+
+   hydrateRoot(
+     document.getElementById('root')!,
+     <Router>
+       <App />
+     </Router>
+   )
+
+4. Create /server.ts at project root:
+   import express from 'express'
+   import fs from 'fs'
+   import path from 'path'
+   import { createServer as createViteServer } from 'vite'
+
+   async function createServer() {
+     const app = express()
+     
+     const vite = await createViteServer({
+       server: { middlewareMode: true },
+       appType: 'custom'
+     })
+     
+     app.use(vite.middlewares)
+     
+     app.use('*', async (req, res) => {
+       const url = req.originalUrl
+       
+       try {
+         let template = fs.readFileSync(
+           path.resolve('./index.html'), 'utf-8'
+         )
+         
+         template = await vite.transformIndexHtml(url, template)
+         
+         const { render } = await vite.ssrLoadModule(
+           '/src/entry-server.tsx'
+         )
+         
+         const { html: appHtml } = await render(url)
+         
+         const html = template.replace(
+           '<div id="root"></div>',
+           `<div id="root">${appHtml}</div>`
+         )
+         
+         res.status(200).set({ 
+           'Content-Type': 'text/html' 
+         }).end(html)
+         
+       } catch (e) {
+         vite.ssrFixStacktrace(e as Error)
+         res.status(500).end((e as Error).message)
+       }
+     })
+     
+     app.listen(5000, () => {
+       console.log('SSR server running on port 5000')
+     })
+   }
+   
+   createServer()
+
+5. Update index.html — change the root div to:
+   <div id="root"><!--ssr-outlet--></div>
+   
+   Update /server.ts replace string to match:
+   template.replace('<!--ssr-outlet-->', appHtml)
+
+6. Update package.json scripts:
+   "dev": "node server.ts",
+   "build:client": "vite build --outDir dist/client",
+   "build:server": "vite build --outDir dist/server 
+                    --ssr src/entry-server.tsx",
+   "build": "npm run build:client && npm run build:server"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION B — PRERENDER STATIC HTML (Simpler)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If full SSR migration is too complex, implement 
+pre-rendering using vite-plugin-prerender:
+
+1. Install:
+   npm install vite-plugin-prerender --save-dev
+
+2. Update vite.config.ts:
+   import prerender from 'vite-plugin-prerender'
+   
+   plugins: [
+     react(),
+     prerender({
+       staticDir: path.join(__dirname, 'dist'),
+       routes: [
+         '/',
+         '/invoice',
+         '/quotation', 
+         '/receipt',
+         '/templates',
+         '/calculators',
+         '/pricing',
+         '/countries',
+         '/invoice-generator-saudi-arabia',
+         '/invoice-generator-uae',
+         '/invoice-generator-egypt',
+         '/invoice-generator-libya',
+         '/invoice-generator-jordan',
+         '/invoice-generator-kuwait',
+         '/invoice-generator-qatar',
+         '/invoice-generator-bahrain',
+         '/invoice-generator-oman',
+         '/invoice-generator-iraq',
+         '/invoice-generator-morocco',
+         '/invoice-generator-algeria',
+         '/invoice-generator-tunisia',
+         '/invoice-generator-nigeria',
+         '/invoice-generator-kenya',
+         '/invoice-generator-ghana',
+         '/invoice-generator-south-africa',
+         '/invoice-generator-india',
+         '/invoice-generator-pakistan',
+         '/invoice-generator-turkey',
+         '/invoice-generator-united-kingdom',
+         '/invoice-generator-usa',
+         '/invoice-generator-canada',
+         '/invoice-generator-australia',
+         '/invoice-generator-germany',
+         '/invoice-generator-france',
+         '/invoice-generator-malaysia',
+         '/invoice-generator-indonesia',
+         // add all remaining country slugs
+       ]
+     })
+   ]
+
+3. This generates a real index.html for each route 
+   at build time with actual content pre-rendered.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION — MANDATORY AFTER FIX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After implementing either option, verify by doing 
+the following check IN NODE — not in browser:
+
+Run this script to simulate what Google sees:
+
+// test-ssr.mjs
+import fetch from 'node-fetch'
+
+const pages = [
+  'http://localhost:5000/',
+  'http://localhost:5000/invoice',
+  'http://localhost:5000/invoice-generator-saudi-arabia',
+  'http://localhost:5000/invoice-generator-libya',
+]
+
+for (const url of pages) {
+  const res = await fetch(url)
+  const html = await res.text()
+  const hasContent = html.includes('invoice') || 
+                     html.includes('Invoice')
+  console.log(`${hasContent ? '✅' : '❌'} ${url}`)
+  if (!hasContent) {
+    console.log('First 500 chars:', html.slice(0, 500))
+  }
+}
+
+Only report ✅ if the raw fetch (no JS execution) 
+returns HTML containing actual page content.
+
+This is the only valid SSR test. Internal browser 
+tests do not count.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMPORTANT NOTE TO REPLIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Do NOT report success based on browser rendering.
+Do NOT report success based on React hydration.
+The ONLY valid test is a raw HTTP fetch that 
+returns HTML with visible text content in the 
+response body — before any JavaScript executes.
+
+Report back with the node-fetch test results only.

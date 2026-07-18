@@ -1,0 +1,26 @@
+kind = "web"
+previewPath = "/"
+title = "Xuvilo Business Hub"
+version = "1.0.0"
+id = "artifacts/businesses-hub"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24130
+
+[services.development]
+run = "pnpm --filter @workspace/businesses-hub run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/businesses-hub", "run", "build" ]
+run = "pnpm --filter @workspace/businesses-hub run start"
+
+[services.env]
+PORT = "24130"
+BASE_PATH = "/"

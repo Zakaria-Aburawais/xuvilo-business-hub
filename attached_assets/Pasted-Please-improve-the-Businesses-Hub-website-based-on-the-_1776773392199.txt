@@ -1,0 +1,100 @@
+Please improve the Businesses Hub website based on the following list of changes. 
+Work through each one carefully:
+
+---
+
+## 1. Hero Section – Add audience context
+Below the main headline ("Create Professional Business Documents in Seconds"), 
+add a short subheadline:
+"Built for freelancers and small businesses across the Arab world."
+Place it between the main headline and the existing description paragraph.
+
+---
+
+## 2. Social Proof – Strengthen the trust badge
+Replace the plain text badge "Trusted by 2,000+ businesses in MENA" with a 
+styled component that includes:
+- A row of 4–5 placeholder company logo boxes (grey rounded rectangles)
+- A star rating display: ★★★★★ 4.8/5 from 2,000+ businesses
+- Keep it subtle and positioned above the headline as it is now
+
+---
+
+## 3. Hero CTA Buttons – Fix visibility on load
+The two CTA buttons ("Create Invoice Free" and "Browse Templates") are being 
+cut off below the fold. Fix by:
+- Reducing the hero section top/bottom padding slightly
+- Ensuring both buttons are fully visible without scrolling on a 768px+ viewport
+- Do not reduce the headline font size
+
+---
+
+## 4. Feature Cards – Fix inconsistent borders
+Currently the bottom row of feature cards (Business Calculators, Document 
+Templates, Currency Converter) has colored left/top borders, but the top row 
+does not. Make this consistent:
+- Either remove all colored borders and use a uniform subtle shadow on all cards
+- Or apply a consistent single accent color border to ALL cards
+Pick whichever looks cleaner with the current design.
+
+---
+
+## 5. Feature Cards – Add descriptive badges to all cards
+Currently only the Invoice Generator has a "Most Popular" badge. Add 
+contextual badges to the other cards:
+- Quotation Generator → "Free to Use"
+- Receipt Generator → "Instant PDF"
+- Business Calculators → "14 Tools"  (already there, keep it)
+- Document Templates → "12 Templates"  (already there, keep it)
+- Currency Converter → "176+ Rates"  (already there, keep it)
+Style all badges consistently.
+
+---
+
+## 6. Navigation – Move "Temp Email" out of the main nav
+The main nav order should be: Invoice, Quotation, Receipt, Templates, 
+Calculators, Stamp Maker, Tracker, Pricing.
+Move "Temp Email" into a dropdown under a new "More Tools" nav item 
+(or a secondary utility menu). It disrupts the logical flow of business 
+document tools.
+
+---
+
+## 7. Add a Search Bar
+Add a search input to the homepage (below the nav or in the hero section) 
+with placeholder text: "Search tools, templates, calculators..."
+It doesn't need to be functional yet — just add the UI element with proper 
+styling consistent with the existing design system.
+
+---
+
+## 8. Dark Mode Toggle – Make it more visible
+The moon icon toggle in the nav is too small and easy to miss. Improve it by:
+- Adding a subtle border or pill background around the icon
+- Adding a tooltip on hover that says "Toggle dark mode"
+- Slightly increasing the icon size
+
+---
+
+## 9. Announcement Banner – Improve the copy
+Replace the current banner text:
+"✦ Now supporting 176+ currencies and Arabic RTL — Try it free →"
+With:
+"✦ New: Issue invoices in LYD, SAR, AED and 173 more currencies — Free forever →"
+Keep the same banner styling, just update the text.
+
+---
+
+## 10. Footer – Add or improve the footer
+If the footer is minimal or missing, build a clean footer with:
+- 3 columns: Product (Invoice, Quotation, Receipt, Templates), 
+  Tools (Calculators, Stamp Maker, Tracker, Temp Email), 
+  Company (About, Pricing, Contact, Privacy Policy, Terms of Service)
+- Social media icons row (LinkedIn, Twitter/X, Instagram)
+- Bottom bar with: "© 2025 Businesses Hub. All rights reserved."
+- Match the existing color scheme
+
+---
+
+Please make all changes while preserving the existing design language, 
+color palette, fonts, and component styles. Do not redesign — improve only.

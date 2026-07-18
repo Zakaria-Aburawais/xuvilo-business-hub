@@ -1,0 +1,157 @@
+uploads = []
+
+[[generated]]
+id = "jOTp-jondv8iBIOrDmpyo"
+uri = "file://artifacts/businesses-hub/public/blog/cover-invoices.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "rmNftIr9bcH3s7l_Kb9jH"
+uri = "file://artifacts/businesses-hub/public/blog/cover-taxes.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "vOsPnexqpLuvlPflyQBtz"
+uri = "file://artifacts/businesses-hub/public/blog/cover-business.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "zx4T4wrqIOeXAe6COk-VM"
+uri = "file://artifacts/businesses-hub/public/blog/cover-laws.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "3hA7WPsrfxcpbUA-A6ptT"
+uri = "file://artifacts/businesses-hub/public/blog/cover-tips.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "e-nfVwohZBA78bpBMdkqA"
+uri = "file://artifacts/businesses-hub/public/blog/cover-libya-tax-invoice.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "BTIz9kwfFijEPkQbOlegg"
+uri = "file://artifacts/businesses-hub/public/blog/cover-zatca-ksa.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "F9YJQIOrN1Lx-i7D8kqGi"
+uri = "file://artifacts/businesses-hub/public/blog/cover-quote-writing.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "29FqTXPUc72wvjIJUraW4"
+uri = "file://artifacts/businesses-hub/public/blog/cover-invoice-vs-quote.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "CULtkEvlnS6gtBPndRyJs"
+uri = "file://artifacts/businesses-hub/public/blog/cover-uae-vat.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "yvUMmqpAggNDR5P_zydbl"
+uri = "file://artifacts/businesses-hub/public/blog/cover-free-online-invoice.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "9y62KCU7ULmm6X1wWSxOQ"
+uri = "file://artifacts/businesses-hub/public/blog/cover-bilingual-invoice.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "gXYDZkD57JmG-dhRE756Y"
+uri = "file://artifacts/businesses-hub/public/blog/cover-sme-invoicing-software.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "2_B7YBR3dI120RZXbv4qd"
+uri = "file://artifacts/businesses-hub/public/blog/cover-freelancer-invoice.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "zsBVzyMzILVWeeSDM_QgV"
+uri = "file://artifacts/businesses-hub/public/blog/cover-invoice-mistakes.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "QYnR_v1RUJ9uNMxaJjtvn"
+uri = "file://artifacts/businesses-hub/public/blog/cover-freelancer-income-tax.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "WsX2l80pMtAKaB0VW9K-5"
+uri = "file://artifacts/businesses-hub/public/blog/cover-late-payments.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "7VHLE7CHd9dB8hgiPrvBL"
+uri = "file://artifacts/businesses-hub/public/blog/cover-business-name.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "0aJSzacpUSZ2AgLrqh0-q"
+uri = "file://artifacts/businesses-hub/public/blog/cover-customer-data-protection.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "MPNoKBOWabQwZfr3pEhNU"
+uri = "file://artifacts/businesses-hub/public/blog/cover-uae-company-formation.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "0s1cSHyyVCaJYdOcUSdm2"
+uri = "file://artifacts/businesses-hub/public/blog/cover-online-payments.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "brR6iK87KNZ6BwIceapiM"
+uri = "file://artifacts/businesses-hub/public/blog/cover-cash-flow.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "1Fo5I5Opd0ZVcengPlzp8"
+uri = "file://artifacts/businesses-hub/public/blog/cover-freelancer-pricing.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "4WPJ7Yo0K70EARUfL84xi"
+uri = "file://artifacts/businesses-hub/public/blog/cover-ksa-consumer-law.png"
+type = "image"
+title = "generated_image"
+
+[[outputs]]
+id = "Ew8Hq0u4iumLD9I3Clemk"
+uri = "file://.local/exports/xuvilo-source.zip"
+type = "unspecified"
+title = "Xuvilo Business Hub — Complete Portable Source Package"
+
+[[outputs]]
+id = "BKcZ4xnitE6H_rgK8AY_O"
+uri = "file://.local/email-previews/password-reset-email-previews.zip"
+type = "unspecified"
+title = "Password-reset email previews (English + Arabic)"

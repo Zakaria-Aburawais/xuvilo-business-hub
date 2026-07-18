@@ -1,0 +1,127 @@
+Three things are returning 404 on the live site.
+The React app's own 404 component is showing,
+which means Express is running but missing routes.
+
+Fix all three issues:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROBLEM 1 — /robots.txt and /sitemap.xml return 404
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+These must be handled in Express BEFORE the 
+React catch-all route. 
+
+In server/index.ts, make sure these routes are 
+defined BEFORE the app.get('*') handler:
+
+// ROBOTS.TXT — must be BEFORE app.get('*')
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain')
+  res.send(`User-agent: *\nAllow: /\nSitemap: https://businesses-hub.replit.app/sitemap.xml`)
+})
+
+// SITEMAP.XML — must be BEFORE app.get('*')
+app.get('/sitemap.xml', (req, res) => {
+  const staticRoutes = [
+    '/', '/invoice', '/quotation', '/receipt',
+    '/templates', '/calculators', '/pricing',
+    '/countries', '/stamp-maker', '/tracker'
+  ]
+  const countryRoutes = countries.map(
+    c => `/invoice-generator-${c.slug}`
+  )
+  const allRoutes = [...staticRoutes, ...countryRoutes]
+  const base = 'https://businesses-hub.replit.app'
+
+  const urls = allRoutes.map(route => `
+  <url>
+    <loc>${base}${route}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+  </url>`).join('')
+
+  res.type('application/xml')
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`)
+})
+
+// app.get('*') must come AFTER the above two routes
+app.get('*', async (req, res) => {
+  // existing SSR handler
+})
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROBLEM 2 — /invoice-generator-libya and all
+country pages return 404
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The React router (Wouter) does not have these 
+routes registered. Fix in two places:
+
+FIX A — In App.tsx (or wherever routes are defined)
+Add the country route to the Switch/Router:
+
+import CountryPage from './pages/country/CountryPage'
+
+// Inside your <Switch> or route definitions:
+<Route 
+  path={/^\/invoice-generator-([^/]+)$/} 
+  component={CountryPage} 
+/>
+
+Make sure this is inside the main Switch block
+alongside /invoice, /quotation etc.
+
+FIX B — In server/index.ts SSR handler
+The app.get('*') must inject the correct SSR 
+content for country pages. Make sure the 
+getMetaForUrl() function handles the pattern:
+
+function getMetaForUrl(url: string) {
+  // Handle country pages
+  const countryMatch = url.match(
+    /^\/invoice-generator-([^/?]+)/
+  )
+  if (countryMatch) {
+    const slug = countryMatch[1]
+    const country = countries.find(c => c.slug === slug)
+    if (country) {
+      return {
+        title: `Free Invoice Generator for ${country.nameEn} | Businesses Hub`,
+        description: country.metaDescription,
+        h1: country.h1En,
+        canonical: `https://businesses-hub.replit.app/invoice-generator-${country.slug}`
+      }
+    }
+  }
+  // ... rest of static routes
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION — USE LIVE PUBLIC URL ONLY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After fixing, run these curl commands against 
+the LIVE URL and show me the exact output:
+
+curl -I https://businesses-hub.replit.app/robots.txt
+(should return HTTP 200, content-type: text/plain)
+
+curl -s https://businesses-hub.replit.app/robots.txt
+(should show User-agent: * / Allow: / / Sitemap:...)
+
+curl -s https://businesses-hub.replit.app/sitemap.xml | head -10
+(should show XML with <urlset> tag)
+
+curl -s https://businesses-hub.replit.app/invoice-generator-libya | grep -o '<h1[^>]*>[^<]*</h1>'
+(should show: <h1...>Free Invoice Generator for Libya</h1>)
+
+curl -s https://businesses-hub.replit.app/invoice-generator-saudi-arabia | grep -o '<h1[^>]*>[^<]*</h1>'
+(should show Saudi Arabia h1)
+
+Only report ✅ with the actual curl output shown.
+Do not test against localhost.
+Use https://businesses-hub.replit.app for all tests.

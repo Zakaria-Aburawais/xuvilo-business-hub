@@ -1,0 +1,237 @@
+# Businesses Hub — Replit Improvement Prompt
+
+> Paste this prompt directly into your Replit AI agent to upgrade the existing Businesses Hub codebase.
+
+---
+
+## PROMPT
+
+You are continuing to build **Businesses Hub** — a bilingual Arabic-English business operations platform. The MVP shell exists. Now I need you to significantly upgrade the product in the following areas. Do NOT rebuild from scratch. Improve and extend what exists.
+
+---
+
+### 1. VISUAL REDESIGN — Make the Website Dynamic and Modern
+
+The current design feels static. Upgrade it to feel like a premium SaaS product:
+
+- **Hero section**: Add a live animated document preview that cycles between an invoice, a quotation, and a receipt every few seconds. Use smooth CSS transitions.
+- **Homepage**: Add animated counters (e.g. "10,000+ documents generated", "150+ currencies supported", "3 languages"). Trigger on scroll.
+- **Tool cards**: Add hover lift effects, subtle gradient borders, and micro-animations on the calculator and document generator cards.
+- **Navigation**: Make the top navbar sticky with a blur/glass background on scroll. Add a language switcher (AR / EN) that is always visible.
+- **Color system**: Introduce a polished primary color palette — deep navy `#0F172A`, vibrant blue-green accent `#0EA5E9`, and warm amber `#F59E0B`. Update Tailwind config accordingly.
+- **Typography**: Use a modern Arabic-compatible font pairing — `Cairo` for Arabic headings, `Inter` for English. Load both from Google Fonts.
+- **Section separators**: Replace flat dividers with subtle wave SVG dividers between homepage sections.
+- **CTA buttons**: Add a shimmer animation effect on primary action buttons.
+- **Footer**: Rebuild the footer with four columns: Product, Resources, Company, and Social links. Add the Businesses Hub logo mark.
+- **Dark mode toggle**: Add a working dark/light mode toggle in the navbar that persists via localStorage.
+- **Loading states**: Add skeleton screens for any data-fetching areas and smooth page transitions.
+- **Scroll animations**: Use Framer Motion (or IntersectionObserver if not using React) to fade-in and slide-up sections as the user scrolls.
+
+---
+
+### 2. MULTI-TEMPLATE DOCUMENT SYSTEM — Different Designs for Each Document Type
+
+This is the most critical upgrade. Users must be able to choose from multiple visual templates for each document type before generating. Think of it like choosing a resume theme.
+
+#### Invoice Templates (minimum 5 distinct designs):
+
+| Template Name | Description |
+|---|---|
+| **Classic** | Clean single-column layout, company logo top-left, client info right, line items in a simple table. Black & white, printer-friendly. |
+| **Modern Blue** | Two-column header with accent color band. Logo and company name large at top. Colorful table header row. |
+| **Minimal** | Ultra-clean, lots of whitespace, thin lines only, no color. High-end consultant feel. |
+| **Bold Corporate** | Dark navy header block, white text, prominent invoice number. Professional corporate look. |
+| **Arabic-First** | RTL default layout. Arabic company name dominant, Arabic table headers, Hijri date support alongside Gregorian. |
+
+#### Quotation Templates (minimum 4 distinct designs):
+
+| Template Name | Description |
+|---|---|
+| **Standard Quote** | Clean, professional format with validity date and acceptance block. |
+| **Proposal Style** | More narrative — includes a project summary section and scope-of-work block above the pricing table. |
+| **Compact Quote** | Ideal for traders and short item lists. Tight layout, less whitespace. |
+| **Formal Tender** | Structured for government/NGO submissions. Includes reference number, tender title, and submission date fields. |
+
+#### Receipt Templates (minimum 3 distinct designs):
+
+| Template Name | Description |
+|---|---|
+| **POS Receipt** | Narrow format (80mm width), monospace-style font, ideal for printing on thermal printers. |
+| **A4 Receipt** | Full-page receipt with company branding, full payer details, and signature line. |
+| **Digital Receipt** | Clean digital-first design. QR code placeholder. Mobile-optimized print. |
+
+#### Template Selection UI:
+
+- Add a **Template Picker** step before the form — show thumbnail previews of each template in a visual grid.
+- Allow users to switch templates at any point during form filling — the live preview updates instantly.
+- Store the user's last-used template per document type in localStorage.
+- Each template must support both Arabic (RTL) and English (LTR) rendering.
+- Each template must produce a clean PDF via the existing pdf-lib/Puppeteer setup.
+
+---
+
+### 3. CURRENCY SUPPORT — Maximum Global Coverage
+
+Replace the current limited currency selector with a comprehensive global currency system:
+
+#### Implementation:
+
+- Create a `currencies.ts` file with ALL ISO 4217 currencies — minimum 170 currencies.
+- Include for each currency: `code`, `name`, `nameAr` (Arabic name), `symbol`, `symbolPosition` (before/after amount), `decimals` (0, 2, or 3), `flag` emoji.
+
+#### Must include (priority list):
+- **MENA region**: USD, EUR, LYD (Libyan Dinar), EGP, SAR, AED, KWD, QAR, BHD, OMR, JOD, IQD, SYP, YER, DZD, MAD, TND, SDG, MRU
+- **Global majors**: GBP, JPY, CHF, CAD, AUD, NZD, SEK, NOK, DKK, SGD, HKD, CNY, INR, BRL, MXN, ZAR, NGN, KES, TRY, RUB, PLN, CZK, HUF
+- **All remaining ISO 4217 currencies**
+
+#### Currency selector component:
+- Searchable dropdown — user can type currency name, code, or country.
+- Show flag emoji + currency code + full name in each option.
+- Group currencies: "Recent / Common" at the top, then full alphabetical list.
+- Show formatted live preview of amount as user types (e.g. "1,234.500 KWD").
+- Respect `symbolPosition` — put $ before amount, put some currencies' symbols after.
+- Respect `decimals` — KWD shows 3 decimal places, JPY shows 0.
+
+#### Exchange rate integration (optional but recommended):
+- Add an optional real-time exchange rate fetch from a free API (e.g. `https://open.er-api.com/v6/latest/USD`) so users can see the converted amount in a second currency. Show it as a soft hint below the total, not as a hard value.
+
+---
+
+### 4. FORM ENHANCEMENTS — More Dynamic and Powerful
+
+Upgrade the existing form system:
+
+- **Smart line items table**: 
+  - Add drag-and-drop reordering of line items (use `@hello-pangea/dnd` or similar).
+  - Add a `Unit` column (pcs, kg, hrs, days, m², ft², lot, etc.) — user can type or select.
+  - Add a `Discount per line` option in addition to the existing global discount.
+  - Support both percentage and fixed-amount discounts.
+  - Auto-calculate and show subtotal per line in real time.
+
+- **Tax system**:
+  - Support multiple tax layers: e.g. VAT 15% + Withholding Tax 5%.
+  - Let user add/remove tax rows with a name and rate.
+  - Show each tax amount separately in the totals block.
+
+- **Logo upload**:
+  - Allow uploading company logo.
+  - Show logo preview with size/position controls (small/medium/large, left/center).
+
+- **Custom fields**:
+  - Let user add up to 5 custom fields to the document header (e.g. "Project Name", "PO Number", "Contract Ref").
+
+- **Payment terms quick-select**:
+  - Dropdown with common terms: Net 7, Net 15, Net 30, Net 60, Due on Receipt, 50% Upfront, Custom.
+
+- **Notes and terms**:
+  - Separate "Notes to client" and "Terms & Conditions" text areas.
+  - Add a "Save as default" option for Terms & Conditions so it auto-fills next time.
+
+- **Signature field**:
+  - Add an optional signature placeholder section at the bottom of documents.
+
+---
+
+### 5. LIVE PREVIEW PANEL
+
+- The document form page must have a **split-screen layout** on desktop: form on the left, live document preview on the right.
+- The preview updates in real time as the user types — no button needed.
+- The preview renders exactly as the final PDF will look.
+- Add a toggle between "Edit mode" (full-width form) and "Preview mode" (full-width preview) for mobile.
+- Add a zoom control on the preview panel (50%, 75%, 100%).
+
+---
+
+### 6. SAVED DOCUMENTS DASHBOARD (Enhanced)
+
+Upgrade the basic dashboard shell:
+
+- **Recent documents** table: show last 20 documents with type icon, document number, client name, amount, date, status (Draft / Final / Sent).
+- **Quick actions**: Duplicate, Download PDF, Share link (generate a public read-only link), Delete.
+- **Status management**: Let users mark invoices as Draft, Sent, Paid, Overdue.
+- **Search and filter**: Filter by document type, date range, currency, client name.
+- **Summary cards at the top**: Total invoiced this month, total quotes sent, total receipts issued.
+
+---
+
+### 7. CALCULATOR UPGRADES
+
+Add the following calculators to the existing hub:
+
+| Calculator | Description |
+|---|---|
+| **Import Cost Calculator** | Purchase price + freight + insurance + customs % + local delivery = total landed cost. |
+| **Break-Even Calculator** | Fixed costs, variable cost per unit, price per unit → break-even quantity and revenue. |
+| **Markup vs Margin** | Show the difference clearly — convert between markup % and margin % in real time. |
+| **Loan / Financing Calculator** | Principal, interest rate, term → monthly payment, total payment, total interest (amortization). |
+| **Invoice Aging Calculator** | Due date + today's date → days overdue, suggested late fee at user-defined rate. |
+| **Salary Cost Calculator** | Base salary + employer social contributions + other benefits = total employment cost. |
+| **Freight CBW Calculator** | Combine CBM and gross weight to determine chargeable weight for air/sea freight. |
+
+Each calculator page should:
+- Have a clean, focused UI with real-time calculation as user types.
+- Include a brief explainer paragraph at the top (for SEO).
+- Show a worked example with sample numbers.
+- Be bilingual (AR/EN).
+
+---
+
+### 8. ADDITIONAL POWER FEATURES
+
+The following features will make the product significantly more competitive:
+
+#### a) Document Numbering System
+- Auto-generate sequential document numbers: `INV-2025-001`, `QUO-2025-001`, `REC-2025-001`.
+- Allow user to customize prefix and starting number in settings.
+
+#### b) Client & Product/Service Directory
+- A simple saved contacts list: client name, company, email, phone, address, default currency.
+- A saved items list: item name, description, default unit price, currency, unit type.
+- Auto-suggest from these lists when user starts typing in form fields.
+
+#### c) Multi-Business Support
+- Let users create up to 3 "Business Profiles" (Free = 1, Paid = 3).
+- Each profile has its own name, logo, address, tax ID, banking details.
+- Switch between profiles from the dashboard.
+
+#### d) Email / Share
+- "Send by email" button: compose a simple email with the PDF attached (use mailto: link or a basic SMTP send).
+- "Copy shareable link" — generate a UUID-based public URL showing a read-only HTML version of the document.
+
+#### e) Document Expiry Warning
+- For quotations, show a banner if the validity date has passed.
+- For invoices, show a badge if they are overdue.
+
+#### f) Onboarding Flow
+- Add a 3-step onboarding wizard for new users: (1) Set up your business profile, (2) Choose your default currency and language, (3) Create your first document.
+- Show progress indicator.
+
+#### g) Print Optimization
+- Add a `@media print` stylesheet to all document pages that hides the navbar, form panel, and controls — printing only the document preview.
+- Add a "Print" button that triggers `window.print()`.
+
+---
+
+### 9. SEO & PERFORMANCE
+
+- Add `<meta>` tags, Open Graph, and Twitter Card tags to all pages.
+- Add structured data (JSON-LD) to calculator pages.
+- Lazy-load images and use `next/image` for all images.
+- Add a `sitemap.xml` and `robots.txt`.
+- Each calculator and template page should have a unique `<title>` and `<meta description>` in both Arabic and English.
+
+---
+
+### 10. IMPLEMENTATION INSTRUCTIONS
+
+- Continue using: **Next.js, TypeScript, Tailwind CSS, Supabase, pdf-lib**.
+- Add these new packages as needed: `@hello-pangea/dnd` (drag-drop), `framer-motion` (animations), `react-select` (currency dropdown), `date-fns` (date handling), `react-to-print` (print), `zustand` (state management for form/template).
+- Keep the bilingual Arabic/English system intact and extend it to all new features.
+- All new text strings must be added to the i18n translation files in both AR and EN.
+- RTL layout must be tested for every new component.
+- Build and test file by file. After each major component, confirm it works before continuing.
+- Add clear comments in the code explaining the template system architecture so it is easy to add new templates later.
+
+---
+
+**Start with**: The visual redesign and the multi-template system. These are the highest-impact changes. Then proceed to currency, then the form enhancements, then the rest in order.

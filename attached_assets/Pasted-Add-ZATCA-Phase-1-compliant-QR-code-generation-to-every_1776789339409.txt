@@ -1,0 +1,144 @@
+Add ZATCA Phase 1 compliant QR code generation to every invoice 
+created on Businesses Hub. This is a legal requirement for Saudi 
+Arabian businesses and a major feature differentiator.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 1 — QR CODE GENERATION ENGINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ZATCA Phase 1 requires a QR code embedded in every simplified 
+tax invoice. The QR code must encode the following 5 fields 
+in TLV (Tag-Length-Value) Base64 format:
+
+Tag 1 — Seller Name (string)
+Tag 2 — VAT Registration Number (string)
+Tag 3 — Invoice Date/Time (ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ)
+Tag 4 — Invoice Total (with VAT, 2 decimal places as string)
+Tag 5 — VAT Amount (2 decimal places as string)
+
+Implementation steps:
+
+1. Create a utility function: generateZATCAQRCode(invoiceData)
+   Input object:
+   {
+     sellerName: string,
+     vatNumber: string,
+     invoiceDate: string,       // ISO 8601
+     totalWithVAT: number,
+     vatAmount: number
+   }
+
+2. Encode each field using TLV encoding:
+   - Tag: 1 byte (field number)
+   - Length: 1 byte (byte length of value)
+   - Value: UTF-8 encoded string bytes
+
+3. Concatenate all TLV fields into a single byte array
+
+4. Base64 encode the full byte array
+
+5. Generate a scannable QR code image from the Base64 string
+   using the 'qrcode' npm package (qrcode.toDataURL())
+
+6. Return the QR code as a base64 PNG data URL for embedding
+
+---
+
+PART 2 — INVOICE FORM INTEGRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Add these fields to the invoice creation form:
+
+1. VAT Registration Number field (optional, shown when 
+   country = Saudi Arabia or user enables VAT)
+   - Label in English: "VAT Registration Number"
+   - Label in Arabic: "الرقم الضريبي"
+   - Placeholder: "3XXXXXXXXXXXXXXXXX" (15 digits starting with 3)
+   - Add inline validation: must be exactly 15 digits starting with 3
+
+2. Add a "ZATCA Compliant Invoice" toggle switch in the 
+   invoice settings panel. When enabled:
+   - VAT Registration Number field becomes required
+   - QR code is automatically generated and shown in preview
+   - Invoice gets a "ZATCA ✓" badge in the top-right corner
+
+3. The QR code should:
+   - Appear in the bottom-left of the invoice PDF
+   - Be 2cm x 2cm in print size
+   - Have the label "Scan to Verify / للتحقق امسح" below it
+   - Update in real-time as invoice fields are filled
+
+---
+
+PART 3 — VISUAL COMPLIANCE BADGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Add a "ZATCA Compliant ✓" green badge to:
+   - The invoice preview when ZATCA mode is on
+   - The invoice card in the templates gallery
+   - The homepage hero section (small trust badge)
+
+2. Add a dedicated ZATCA info tooltip/modal:
+   - Trigger: clicking a "?" icon next to the ZATCA toggle
+   - Content: "This invoice meets Saudi Arabia's ZATCA Phase 1 
+     e-invoicing requirements. The QR code contains your seller 
+     details, VAT number, invoice total, and VAT amount as 
+     required by law."
+   - Show in both English and Arabic
+
+---
+
+PART 4 — COUNTRY AUTO-DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+When the user selects Saudi Arabia (SAR) as their currency 
+or country:
+- Automatically suggest enabling ZATCA mode with a banner:
+  "🇸🇦 Invoicing in Saudi Arabia? Enable ZATCA compliance 
+  to meet legal requirements."
+- Auto-set VAT rate to 15% (Saudi standard VAT)
+- Auto-enable East Arabic numerals (٠١٢٣٤٥٦٧٨٩) option
+
+Similarly for UAE (AED):
+- Auto-set VAT rate to 5%
+- Show "UAE VAT Compliant" label
+
+---
+
+PART 5 — HOMEPAGE TRUST SIGNALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Add these trust badges to the homepage hero section 
+alongside the existing "Trusted by 2,000+ businesses" badge:
+
+- ✅ ZATCA Phase 1 Compliant
+- ✅ 176+ Currencies
+- ✅ Arabic RTL Native
+- ✅ Instant PDF Export
+
+Style them as a horizontal row of small pill badges 
+below the headline, matching the existing design system.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DEPENDENCIES TO INSTALL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+npm install qrcode
+npm install @types/qrcode   (if TypeScript)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TESTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Test with this sample data:
+{
+  sellerName: "Businesses Hub",
+  vatNumber: "310122393500003",
+  invoiceDate: "2025-01-15T10:00:00Z",
+  totalWithVAT: 1150.00,
+  vatAmount: 150.00
+}
+
+Verify the generated QR code by scanning it with any 
+ZATCA QR scanner app (available on iOS and Android). 
+The decoded output should show all 5 fields correctly.

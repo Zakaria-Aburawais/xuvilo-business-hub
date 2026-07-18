@@ -1,0 +1,88 @@
+The sitemap at https://xuvilo.com/sitemap.xml is currently opening, but it is not formatted as valid XML.
+
+It appears as plain text like:
+https://xuvilo.com/ weekly 1.0 2026-04-27
+https://xuvilo.com/invoice weekly 0.8 2026-04-27
+
+Please fix sitemap.xml so it is a valid XML sitemap according to the standard sitemap protocol.
+
+Requirements:
+
+1. The sitemap must start with:
+<?xml version="1.0" encoding="UTF-8"?>
+
+2. It must use:
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+3. Each URL must be inside a proper <url> block:
+<url>
+  <loc>https://xuvilo.com/</loc>
+  <lastmod>2026-04-27</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
+</url>
+
+4. Do not output plain text lines.
+
+5. Set the response header correctly:
+Content-Type: application/xml; charset=utf-8
+
+6. Make sure all sitemap URLs are final canonical URLs only:
+- use https://xuvilo.com
+- do not use www.xuvilo.com
+- do not use old Replit URLs
+- do not include redirected URLs
+- do not include 404 URLs
+- do not include login, signup, dashboard, billing, clients, documents, account, or API routes
+
+7. Keep all valid public pages that are currently listed, including:
+/
+/invoice
+/quotation
+/receipt
+/templates
+/calculators
+/pricing
+/about
+/contact
+/how-it-works
+/faq
+/privacy
+/terms
+/disclaimer
+/blog
+/invoice-guide
+/quotation-guide
+/receipt-guide
+/business-calculators-guide
+/tools/stamp-maker
+/tools/tracker
+/tools/temp-email
+/tools/business-card
+/tools/company-profile
+/tools/ai-writer
+and all valid country invoice generator pages that return 200.
+
+8. After fixing, test:
+https://xuvilo.com/sitemap.xml
+
+Expected result:
+The browser should show proper XML tags such as:
+<urlset>
+<url>
+<loc>
+<lastmod>
+<changefreq>
+<priority>
+
+9. Also validate the sitemap using an XML sitemap validator or by confirming it parses as XML without errors.
+
+10. Do not change the website design or existing features.
+
+Final response:
+Tell me:
+- what caused the sitemap to output as plain text
+- what files were changed
+- confirmation that sitemap.xml now returns valid XML
+- confirmation that the content-type is application/xml
+- total number of URLs included

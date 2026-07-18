@@ -1,0 +1,191 @@
+Please proceed with Step 2 for Xuvilo.
+
+Goal:
+Start converting Xuvilo from a public tools website into a SaaS-ready platform by adding authentication, protected dashboard routes, user account structure, and a clean dashboard shell.
+
+Important instructions:
+- Do not change or break the OpenAI AI Writer integration completed in the previous task.
+- Do not change or break invoice, quotation, receipt, calculators, templates, pricing, blog, or country pages.
+- Do not integrate Stripe or live payments yet.
+- Do not fake paid subscriptions.
+- Keep the current brand: Xuvilo — AI Business Tools Hub.
+- Work incrementally and safely.
+
+Part 1: API JSON error middleware
+Add safe global Express/API error middleware so API routes return JSON for:
+- Malformed JSON
+- Payload too large
+- Unexpected body parser errors
+- General API errors
+
+Expected response shape:
+
+{
+  "success": false,
+  "error": "Invalid request",
+  "message": "The request body is invalid or too large."
+}
+
+Do not expose stack traces to users in production.
+
+Part 2: Authentication foundation
+Add or verify authentication support for:
+
+- Sign up
+- Login
+- Logout
+- Forgot password placeholder if full email reset is not ready
+- Protected dashboard route
+- Current user/session check endpoint
+
+If authentication already exists, improve it instead of rebuilding it.
+
+Required public routes:
+- /login
+- /signup
+- /forgot-password
+
+Required protected route:
+- /dashboard
+
+Part 3: User data model
+Create or verify database support for users.
+
+User fields should include:
+- id
+- full_name
+- email
+- password_hash or external auth ID depending on current stack
+- role: user/admin
+- plan: free/starter/business/pro
+- created_at
+- updated_at
+
+Default new users should be:
+role = user
+plan = free
+
+Do not store plain-text passwords.
+
+Part 4: Auth UI
+Create clean, mobile-friendly pages for:
+
+Login page:
+- Email
+- Password
+- Login button
+- Link to Sign Up
+- Link to Forgot Password
+
+Sign Up page:
+- Full name
+- Email
+- Password
+- Confirm password
+- Create account button
+- Link to Login
+
+Forgot Password page:
+- Email field
+- Friendly placeholder message if email reset is not fully implemented yet
+
+Use the same Xuvilo design style:
+- Clean
+- Soft
+- Professional
+- Mobile responsive
+- Arabic/English ready where possible
+
+Part 5: Dashboard shell
+Create a protected dashboard page at:
+
+/dashboard
+
+Only logged-in users should access it.
+
+Dashboard should show:
+
+Header:
+- Welcome message with user name
+- Current plan: Free
+- Upgrade button placeholder
+
+Cards:
+- Documents created this month: 0
+- AI generations used: 0
+- Saved clients: 0
+- Current plan: Free
+
+Quick actions:
+- Create Invoice
+- Create Quotation
+- Create Receipt
+- Try AI Writer
+- View Pricing
+
+Sections:
+- Recent invoices placeholder
+- Recent quotations placeholder
+- Recent receipts placeholder
+- Saved clients placeholder
+- Company profile placeholder
+
+If real saved document data is not implemented yet, show empty states such as:
+“No invoices saved yet. Create your first invoice.”
+
+Part 6: Navigation update
+Update navigation based on user state:
+
+If logged out:
+- Login
+- Sign Up
+
+If logged in:
+- Dashboard
+- Account/Profile dropdown
+- Logout
+
+Do not remove existing public navigation items:
+- Documents
+- Design Tools
+- Utilities
+- AI Writer
+- Pricing
+- Contact
+
+Part 7: Security and UX
+Please include:
+- Form validation
+- Clear error messages
+- Loading states
+- Protected route redirect to /login
+- No exposure of sensitive data
+- Safe password handling
+- No fake login success
+
+Part 8: Tests
+Test the following:
+
+1. User can open /signup.
+2. User can create an account.
+3. User can log out.
+4. User can log back in.
+5. Logged-out user cannot access /dashboard.
+6. Logged-in user can access /dashboard.
+7. Navigation changes based on login state.
+8. Existing OpenAI AI Writer still works or shows the correct “temporarily unavailable” message if there are no credits.
+9. Existing invoice/quotation/receipt/calculator/template/pricing pages still work.
+10. API errors return JSON, not HTML.
+
+Part 9: Final report
+When finished, provide a clear report including:
+
+1. Files changed
+2. Auth system used or created
+3. Database tables/models created or updated
+4. New routes added
+5. Dashboard features added
+6. How protected routes work
+7. Test results
+8. Any errors or limitations
+9. What should be done in Step 3

@@ -1,0 +1,64 @@
+Redesign the Xuvilo page-loading screen shown in the attached screenshot.
+
+Current problem:
+
+The Xuvilo logo remains stationary in the centre of a mostly empty screen while the website loads. This makes the website appear frozen.
+
+Required animation:
+
+Make the Xuvilo logo move smoothly around the loading screen like the classic bouncing screensaver effect—similar to a potato peel/skin moving around a surface:
+
+1. The logo should travel diagonally across the visible screen.
+2. When it reaches any edge, it should bounce and change direction.
+3. It must remain fully visible and never move partly outside the viewport.
+4. The movement should be smooth, gentle, and professional—not excessively fast or distracting.
+5. Add a subtle floating, tilting, or rotating effect to make the movement feel natural.
+6. Preserve the current soft Xuvilo background gradient.
+7. Use the official transparent, high-resolution Xuvilo logo. Do not use the screenshot itself or a low-quality logo with a visible white box.
+8. Make the logo appropriately sized:
+   - Mobile: approximately 64–80 px wide.
+   - Desktop: approximately 85–110 px wide.
+9. Add a subtle blue/purple glow or soft shadow that matches Xuvilo’s branding.
+10. Optionally show a small localized loading message beneath or near the moving logo:
+    - English: “Preparing your business tools…”
+    - Arabic: “جارٍ تجهيز أدوات أعمالك…”
+11. Ensure the Arabic message is correctly displayed in RTL.
+
+Technical requirements:
+
+- The animation must run only while the application is genuinely initializing.
+- Do not add an artificial fixed delay merely to display the animation.
+- Remove the loading screen immediately when the essential page content is ready.
+- If an API or optional service fails, the user must not remain trapped on the loading screen.
+- Use efficient CSS transforms or requestAnimationFrame; do not continuously update layout properties such as top and left if that causes poor performance.
+- Prevent horizontal or vertical page overflow.
+- Recalculate movement boundaries when the browser is resized or the phone orientation changes.
+- The animation must work on mobile, tablet, and desktop.
+- Respect prefers-reduced-motion. When reduced motion is enabled, keep the logo centred with only a subtle opacity pulse.
+- The loader must not block server-rendered content from search engines.
+- Give the loading component appropriate accessibility behavior without causing screen readers to repeatedly announce the loading message.
+- Do not change or damage the existing homepage design after loading finishes.
+
+Test at these viewport sizes:
+
+- 320 × 568
+- 375 × 667
+- 390 × 844
+- 768 × 1024
+- 1366 × 768
+- 1440 × 900
+
+Test both Arabic RTL and English LTR modes.
+
+Do not report completion until you provide:
+
+1. The modified file names.
+2. A preview or recording showing the moving logo bouncing at the screen edges.
+3. Confirmation that the logo never leaves the visible viewport.
+4. Confirmation that no horizontal or vertical overflow is introduced.
+5. Confirmation that prefers-reduced-motion works.
+6. Confirmation that the loader disappears as soon as essential content is ready.
+7. Production-build and test results.
+8. Verification on the deployed production website.
+
+Important: complete the functionality first but do not deploy to production until I review and approve the preview.

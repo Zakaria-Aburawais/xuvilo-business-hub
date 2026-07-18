@@ -1,0 +1,1056 @@
+I have an existing Node.js web application called Xuvilo Business Hub. Here is the codebase: [paste your Xuvilo code here or share the Replit project link before submitting].
+Read the entire existing Xuvilo codebase completely and understand it fully before writing a single line of new code. Map every existing pattern — auth, database, routes, services, frontend, design system, navigation, settings, dashboard widgets, file storage, task system, email service, CRM, and activity feed. Everything you build must follow those existing patterns exactly.
+Now build the following module into it:
+
+Add a new module called "RFQ Intelligence" to the Xuvilo Business Hub platform. This is not a standalone app. It must integrate natively into Xuvilo's existing architecture — sharing its database, authentication, navigation, design system, CRM, document storage, task system, communications layer, and organization settings. Every integration point must follow Xuvilo's existing conventions exactly. No duplicate systems. No separate databases. No new auth. No new design language.
+
+PART 1 — UNDERSTAND XUVILO FIRST
+Before building anything, read and map the following in the existing Xuvilo codebase:
+
+Auth system — existing sessions/JWT middleware. Do not create new auth.
+Database — existing SQLite or PostgreSQL instance and migration pattern. Add new tables via a new migration file only. Do not create a separate database connection.
+CRM — existing clients/companies/contacts tables and their API routes.
+Documents module — existing file storage service, folder structure, and DB records for uploaded files.
+Tasks module — existing tasks table with fields: title, due_date, status, priority, linked_entity_type, linked_entity_id, assigned_to, notes.
+Communications module — existing Nodemailer instance and email logging table.
+Organization settings — existing table storing company name, logo path, address, bank details, brand color, signatory name/title.
+Navigation — existing sidebar structure, nav-item component, icon pattern, badge pattern.
+Design system — existing CSS variables for colors, spacing, typography, border radius, shadows. Do not introduce new design tokens.
+API conventions — existing route file pattern, middleware stack, and response format { success: bool, data: {}, message: "" }.
+Widget/dashboard system — existing pattern for registering a widget on the main dashboard.
+Settings page — existing pattern for adding a new settings section.
+
+The RFQ Intelligence module must follow all of the above conventions without exception.
+
+PART 2 — DATABASE MIGRATION
+Create a new migration file following Xuvilo's existing migration naming convention. Add the following tables:
+sql-- RFQ source documents
+CREATE TABLE IF NOT EXISTS rfq_documents (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  rfq_number TEXT,
+  pr_number TEXT,
+  client_id INTEGER REFERENCES clients(id) ON DELETE SET NULL,
+  detected_client_name TEXT,
+  enquiry_date TEXT,
+  closing_date TEXT,
+  submission_email TEXT,
+  submission_instructions TEXT,
+  payment_terms TEXT,
+  delivery_terms TEXT,
+  validity_days INTEGER,
+  currency TEXT,
+  item_count INTEGER,
+  parsed_data TEXT,
+  research_data TEXT,
+  status TEXT DEFAULT 'pending',
+  task_id INTEGER REFERENCES tasks(id) ON DELETE SET NULL,
+  created_by INTEGER REFERENCES users(id),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Quote documents
+CREATE TABLE IF NOT EXISTS rfq_quotes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  quote_number TEXT UNIQUE NOT NULL,
+  rfq_document_id INTEGER REFERENCES rfq_documents(id) ON DELETE SET NULL,
+  company_id INTEGER REFERENCES organizations(id),
+  client_id INTEGER REFERENCES clients(id),
+  rfq_reference TEXT,
+  quote_date TEXT,
+  valid_until TEXT,
+  currency TEXT DEFAULT 'USD',
+  subtotal REAL DEFAULT 0,
+  discount REAL DEFAULT 0,
+  total REAL DEFAULT 0,
+  status TEXT DEFAULT 'draft',
+  line_items TEXT,
+  commercial_terms TEXT,
+  signature_data TEXT,
+  signatory_name TEXT,
+  signatory_title TEXT,
+  pdf_path TEXT,
+  email_sent_at DATETIME,
+  email_sent_to TEXT,
+  notes TEXT,
+  created_by INTEGER REFERENCES users(id),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Supplier knowledge base
+CREATE TABLE IF NOT EXISTS rfq_suppliers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  country TEXT,
+  city TEXT,
+  address TEXT,
+  contact_name TEXT,
+  email TEXT,
+  phone TEXT,
+  website TEXT,
+  specialties TEXT,
+  is_local INTEGER DEFAULT 0,
+  notes TEXT,
+  active INTEGER DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Extend existing clients table
+ALTER TABLE clients ADD COLUMN IF NOT EXISTS short_code TEXT;
+ALTER TABLE clients ADD COLUMN IF NOT EXISTS rfq_format_notes TEXT;
+ALTER TABLE clients ADD COLUMN IF NOT EXISTS submission_email TEXT;
+ALTER TABLE clients ADD COLUMN IF NOT EXISTS special_requirements TEXT;
+ALTER TABLE clients ADD COLUMN IF NOT EXISTS industry TEXT;
+All RFQ module settings are stored in Xuvilo's existing settings table with the prefix rfq_:
+rfq_anthropic_key, rfq_quote_prefix, rfq_default_validity_days, rfq_default_currency, rfq_default_payment_terms, rfq_default_delivery_terms, rfq_default_warranty, rfq_libya_context, rfq_auto_create_task, rfq_default_task_deadline_days
+
+PART 3 — FILE STRUCTURE
+Add the following to the existing Xuvilo project following its exact folder conventions:
+/modules/rfq/
+├── routes/
+│   ├── rfq.routes.js
+│   ├── quotes.routes.js
+│   └── suppliers.routes.js
+├── services/
+│   ├── pdfParser.js
+│   ├── rfqParser.js
+│   ├── itemClassifier.js
+│   ├── aiResearch.js
+│   ├── imageFetcher.js
+│   ├── quoteGenerator.js
+│   └── clientDetector.js
+├── migrations/
+│   └── 001_rfq_tables.sql
+└── public/
+    ├── rfq.html
+    ├── rfq.css
+    └── rfq.js
+Register routes in Xuvilo's main router. Register the nav item in Xuvilo's sidebar. Register the dashboard widget in Xuvilo's widget system. All using existing patterns found in the codebase.
+
+PART 4 — XUVILO INTEGRATION POINTS
+4.1 CRM Integration
+
+The Client dropdown in the RFQ analyzer pulls from Xuvilo's existing clients table via existing CRM API routes.
+On PDF upload, clientDetector.js fuzzy-matches the RFQ buyer name text against existing client records using their name, short_code, and aliases fields.
+If matched: auto-link RFQ to that client.
+If not matched: show "Unknown Client" with a search-and-select dropdown.
+"Add New Client" opens Xuvilo's existing client creation modal. Do not build a duplicate form.
+
+4.2 Task Integration
+When an RFQ is uploaded and analyzed, automatically create a task using Xuvilo's existing task creation service:
+Title:    "Respond to RFQ [rfq_number] — [client_name]"
+Due date: closing_date if found, else today + rfq_default_task_deadline_days
+Priority: high if deadline within 5 days, else normal
+Linked:   rfq_documents.id
+Assigned: current user
+Notes:    "Items: [n] | Submit to: [email] | Validity: [days] days"
+When a quote is sent, auto-update the linked task status to completed using Xuvilo's existing task update service.
+4.3 Document Storage Integration
+All generated quote PDFs are saved using Xuvilo's existing file storage service. Follow the same folder structure, naming convention, and DB record creation used elsewhere in Xuvilo. The PDF appears automatically in the client's document list in Xuvilo's Documents module.
+4.4 Communications Integration
+Quote emails are sent via Xuvilo's existing Nodemailer instance using the SMTP settings already stored in Xuvilo settings. Log sent emails in Xuvilo's existing communications/activity log table so they appear in the client's conversation timeline.
+4.5 Organization Settings Integration
+Company logo, brand color, signatory name/title, bank details, and default terms are read from Xuvilo's existing organization settings table. The quote builder header auto-populates from these. "Manage company details" links to Xuvilo's existing Organization Settings page.
+4.6 Navigation Integration
+Add "RFQ Intelligence" to Xuvilo's existing sidebar using the same nav-item structure and icon pattern. Show an amber badge on the nav item displaying the count of RFQs with deadlines within 7 days.
+4.7 Dashboard Widget
+Add a widget to Xuvilo's existing dashboard using the same widget component pattern:
+📋 RFQ Intelligence
+─────────────────────────
+[N]  Pending analysis
+[N]  Quotes in draft
+[N]  ⚠ Deadlines this week
+[N]  Quotes sent this month
+─────────────────────────
+[ Open RFQ Module → ]
+Each stat is a clickable link to the relevant filtered view in the module.
+4.8 Activity Feed Integration
+Log these events to Xuvilo's existing activity/audit log using the same format as other modules:
+
+RFQ uploaded and analyzed
+Quote created
+Quote sent by email
+Quote status changed (accepted / rejected)
+
+4.9 Global Search Integration
+If Xuvilo has global search, include rfq_documents and rfq_quotes in search results:
+
+RFQ: show rfq_number, client name, date → link to RFQ detail
+Quote: show quote_number, client name, total, status → link to quote detail
+
+
+PART 5 — RFQ ANALYZER
+5.1 Upload Queue UI
+
+Multi-file PDF drag-and-drop or file picker
+Each file becomes a pill in a horizontal scrollable queue bar
+Pill shows: detected client name or filename, status badge, ✕ delete button
+Status badges: Queued (gray) → Extracting (amber) → Researching items (amber animated) → Done (green ✓) → Error (red ⚠)
+"▶ Analyze All" — processes queue sequentially to respect API rate limits
+"Analyze" button per individual pill for single item processing
+"✕" per pill to remove from queue
+"Clear All" with confirmation dialog
+"+ Add More" appends files to existing queue
+Queue persists during the session
+
+5.2 PDF Text Extraction — pdfParser.js
+Use pdf-parse npm package:
+
+Extract raw text from all pages and concatenate
+Handle text-based PDFs, multi-page documents, mixed Arabic/English text
+Strip excessive whitespace and normalize line breaks
+Return extracted text string to rfqParser
+
+5.3 Generic RFQ Parser — rfqParser.js
+This parser must work on RFQs from any company worldwide. It uses pattern matching and heuristics only. It must never be hardcoded for a specific client format.
+Reference number detection:
+Search near keywords "RFQ", "Enquiry No", "Enquiry Number", "Reference", "Requisition No", "PR No", "Purchase Request", "Tender No", "Bid No", "ITT No", "RFP No":
+Patterns to match:
+ZOC-XXXXXX-XX    Zueitina format
+RFQ-XXXX         generic RFQ
+ENQ-XXXX         enquiry format
+PR-XXXX          purchase request
+NOC-XXXX         NOC format
+XXXX/XXXX/XXXX   slash-separated
+Any UPPERCASE-digits or UPPERCASE-digits-UPPERCASE 
+pattern near the keywords above
+Date detection:
+
+Issue/enquiry date: near keywords "date", "issued", "dated", "enquiry date"
+Deadline: near keywords "closing", "deadline", "submission date", "due date", "respond by", "valid until", "closing date"
+Parse all common formats: DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD, "15 May 2026", "15-May-26", "May 15, 2026"
+
+Contact and submission detection:
+
+Extract all email addresses via regex
+Capture submission email from phrases: "submit to", "send to", "email your offer to", "quotation to be sent to"
+Extract phone numbers
+Extract portal URLs for online submission
+
+Item table detection:
+Identify the items table by locating a header row containing any combination of: ITEM, NO., DESCRIPTION, QTY, QUANTITY, UNIT, PART NO, PART NUMBER, STOCK ITEM, MANUFACTURER, MAKE, ORIGIN, C OF ORIGIN.
+Parse each subsequent non-header row as a line item. Extract:
+
+Item number (leading digit or number)
+Full description text
+Part/stock/catalog code (formats like 2023-014936, 122-487, ZUE-PR-67758)
+Manufacturer or brand name if in a dedicated column or embedded in description
+Unit of measure: EA, NO, PCS, BAG, KG, MTR, M, L, GAL, SET, LOT, BOX, DRUM, ROLL, CN, TON, MT, EACH, NOS
+Quantity (numeric value)
+
+Requirements clause detection:
+Scan full text and flag presence of these as requirement tags:
+
+Validity period required (extract number of days)
+Payment terms specified
+Delivery/Incoterms specified
+Certificate of Origin required
+MSDS / Safety Data Sheets required
+Warranty requirement
+Bank guarantee required
+Liquidated damages clause
+Sealed envelope submission threshold
+Inspection rights reserved
+OEM only / new materials only
+Alternative quotes welcome
+
+5.4 Item Classification — itemClassifier.js
+Classify each parsed line item into one of four types before AI research:
+javascriptfunction classifyItem(item) {
+
+  const KNOWN_BRANDS = [
+    'OSRAM','PHILIPS','SIEMENS','ABB','SCHNEIDER','RICOH','LEGRAND',
+    'EATON','3M','BOSCH','SKF','FAG','NSK','PARKER','GATES','YOKOGAWA',
+    'EMERSON','HONEYWELL','ENDRESS','GRUNDFOS','FLOWSERVE','CRANE',
+    'SPIRAX','HABONIM','ROTORK','BIFFI','BETTIS','ASCO','IMI',
+    'DANFOSS','ALFA LAVAL','GEA','SPX','SULZER','KSB','WILO','EBARA',
+    'GRACO','LINCOLN','TIMKEN','INA','NTN','KOYO','NACHI',
+    'CATERPILLAR','CAT','CUMMINS','PERKINS','DETROIT','VOLVO','KOMATSU',
+    'ATLAS COPCO','INGERSOLL RAND','GARDNER DENVER','ELGI',
+    'FLUKE','MEGGER','HIOKI','KYORITSU','TESTO','FLIR',
+    'PALL','HYDAC','STAUFF','FESTO','SMC','PHOENIX CONTACT',
+    'WAGO','MURR','PEPPERL FUCHS','TURCK','BALLUFF',
+    'OMRON','KEYENCE','SICK','BANNER','COGNEX',
+    'HENKEL','LOCTITE','CHESTERTON','MOLYKOTE',
+    'CASTROL','SHELL','MOBIL','TOTAL','FUCHS','KLUBER',
+    'SIKA','FOSROC','MAPEI','HILTI','FISCHER',
+    'SULTAN','LAHLOUB'
+  ];
+
+  const hasBrandInDesc = KNOWN_BRANDS.some(b =>
+    item.description.toUpperCase().includes(b)
+  );
+
+  // TYPE 1: Manufacturer + part number — highest confidence
+  if ((item.manufacturer || hasBrandInDesc) && item.part_no) {
+    return {
+      type: 'branded_with_part',
+      confidence: 'high',
+      strategy: 'manufacturer_part_lookup'
+    };
+  }
+
+  // TYPE 2: Brand/model in description, no part number
+  if (item.manufacturer || hasBrandInDesc) {
+    return {
+      type: 'branded_no_part',
+      confidence: 'medium',
+      strategy: 'brand_model_lookup'
+    };
+  }
+
+  // TYPE 3: Part/stock number only, no manufacturer
+  if (item.part_no) {
+    return {
+      type: 'part_number_only',
+      confidence: 'medium',
+      strategy: 'part_number_lookup'
+    };
+  }
+
+  // TYPE 4: Description only
+  return {
+    type: 'description_only',
+    confidence: 'low',
+    strategy: 'generic_search'
+  };
+}
+
+function getCategoryIcon(description) {
+  const d = description.toLowerCase();
+  if (d.match(/lamp|light|bulb|luminaire/))  return '💡';
+  if (d.match(/pump/))                        return '⚙️';
+  if (d.match(/valve/))                       return '🔧';
+  if (d.match(/cable|wire|conduit/))          return '🔌';
+  if (d.match(/cement|concrete|mortar/))      return '🏗️';
+  if (d.match(/paint|coating|primer/))        return '🪣';
+  if (d.match(/filter|strainer/))             return '🔩';
+  if (d.match(/printer|copier|scanner/))      return '🖨️';
+  if (d.match(/water|drinking/))              return '💧';
+  if (d.match(/strap|rope|chain|sling/))      return '⛓️';
+  if (d.match(/sensor|detector|transmitter/)) return '📡';
+  if (d.match(/motor|engine|generator/))      return '⚙️';
+  if (d.match(/bearing/))                     return '🔩';
+  if (d.match(/gasket|seal|o.ring/))          return '🔧';
+  if (d.match(/chemical|fluid|lubricant/))    return '🧪';
+  if (d.match(/safety|ppe|helmet|glove/))     return '🦺';
+  if (d.match(/computer|laptop|server/))      return '💻';
+  if (d.match(/pipe|fitting|flange/))         return '🔩';
+  if (d.match(/instrument|gauge|meter/))      return '📊';
+  return '📦';
+}
+5.5 AI Supplier Research — aiResearch.js
+Use @anthropic-ai/sdk with web search tool enabled. Process items sequentially with a 500ms delay between calls to respect API rate limits.
+Read the rfq_libya_context setting from Xuvilo's settings table before building prompts. If true, append this block to every prompt:
+DESTINATION CONTEXT — READ CAREFULLY:
+- End destination: Tripoli, Libya
+- Oil & gas facilities in Libya commonly operate on 60 Hz electrical 
+  systems, NOT the national 50 Hz grid. If this item is electrical 
+  or mechanical equipment this is critical — verify and flag the 
+  frequency specification clearly in technical_notes
+- Preferred international sourcing regions: UAE, Turkey, Italy, 
+  Malta, Tunisia (shortest lead times and freight routes to Libya)
+- All suppliers must be able to provide Certificate of Origin
+Before every AI call, query the supplier knowledge base and include matched results in the prompt:
+sqlSELECT * FROM rfq_suppliers
+WHERE active = 1
+AND (
+  LOWER(specialties) LIKE '%' || LOWER(:keyword) || '%'
+  OR LOWER(name) LIKE '%' || LOWER(:brand) || '%'
+)
+ORDER BY is_local DESC
+LIMIT 10
+Include matched suppliers in the prompt as:
+"These suppliers are already in our database — include them in your results if appropriate: [list name, country, email, phone per supplier]"
+IMAGE SEARCH INSTRUCTIONS — include in every prompt regardless of item type:
+IMAGE SEARCH — THIS IS MANDATORY — attempt for every item:
+1. If manufacturer AND part number are given:
+   → Search "[manufacturer] [part_number]" on the manufacturer's 
+     official website first, then rs-components.com, farnell.com,
+     grainger.com, mouser.com
+   → image_url MUST show this exact part only — not a similar one
+2. If only brand/model is given:
+   → Search the manufacturer's official product catalogue
+   → Find the official product image from the manufacturer's site
+3. If description only:
+   → Search directindustry.com, grainger.com, alibaba.com for 
+     a representative image of this product type
+4. image_url must be a direct image file URL ending in 
+   .jpg .jpeg .png .webp or .gif — NOT a webpage URL
+5. Also return product_page_url — the page where the image was found
+6. Return datasheet_url if a PDF spec sheet is found
+7. Return image_source — the name of the website
+8. If no image is found after all attempts return null —
+   do not guess or return a broken URL
+JSON schema returned by every AI call — no markdown, no explanation:
+json{
+  "product_name": "exact official product name",
+  "product_description": "2-3 sentence technical description",
+  "manufacturer": "manufacturer name or null",
+  "part_number_confirmed": "confirmed part number or null",
+  "part_number_notes": "active / superseded by [X] / discontinued",
+  "image_url": "direct image file URL or null",
+  "image_source": "website name the image came from",
+  "image_confidence": "exact / brand_match / distributor / representative",
+  "product_page_url": "direct URL to product page or null",
+  "datasheet_url": "PDF datasheet URL or null",
+  "hs_code": "HS tariff code or null",
+  "estimated_price_usd": "unit price range",
+  "price_source": "where price was found",
+  "lead_time": "typical delivery lead time",
+  "technical_notes": "voltage, frequency — flag 60Hz if relevant, certifications, standards, key specs",
+  "available_locally": true,
+  "local_confidence": "high/medium/low",
+  "local_suppliers": [
+    {
+      "name": "",
+      "location": "",
+      "contact": "",
+      "website": "",
+      "notes": ""
+    }
+  ],
+  "international_suppliers": [
+    {
+      "name": "",
+      "type": "manufacturer / authorized distributor / regional dealer",
+      "country": "",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "notes": ""
+    }
+  ],
+  "alternatives": [
+    {
+      "manufacturer": "",
+      "part_number": "",
+      "name": "",
+      "notes": "equivalent / replacement / supersedes original"
+    }
+  ]
+}
+Build a tailored user prompt per item type:
+
+TYPE 1 (branded_with_part): "Search [manufacturer] [part_number] on the manufacturer's official website first. Then check authorized distributors. Find the exact product image — not a similar product."
+TYPE 2 (branded_no_part): "Search the manufacturer's official website for this product model. Find the official product image from the manufacturer's site."
+TYPE 3 (part_number_only): "Search the part number [part_no] on partsnap.com, findchips.com, octopart.com, rs-components.com, farnell.com, mouser.com, and via Google with the part number in quotes. Identify the manufacturer from results."
+TYPE 4 (description_only): "Search for this product category from reputable industrial suppliers. Find a representative image from directindustry.com, grainger.com, or alibaba.com."
+
+5.6 Image Fetcher — imageFetcher.js
+Waterfall image search — try each level in order, stop at first success:
+javascriptasync function fetchItemImage(item, researchResult) {
+
+  function isDirectImageUrl(url) {
+    if (!url) return false;
+    return /\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i.test(url);
+  }
+
+  // Level 1: Exact part on manufacturer site
+  if (item.manufacturer && item.part_no &&
+      researchResult.image_url &&
+      isDirectImageUrl(researchResult.image_url)) {
+    return {
+      url: researchResult.image_url,
+      confidence: 'exact',
+      badge: '🟢 Exact match',
+      source: researchResult.image_source
+    };
+  }
+
+  // Level 2: Brand match from official site
+  if (item.manufacturer &&
+      researchResult.image_url &&
+      isDirectImageUrl(researchResult.image_url)) {
+    return {
+      url: researchResult.image_url,
+      confidence: 'brand_match',
+      badge: '🟡 Brand match',
+      source: researchResult.image_source
+    };
+  }
+
+  // Level 3: Distributor image
+  if (researchResult.image_url &&
+      isDirectImageUrl(researchResult.image_url)) {
+    return {
+      url: researchResult.image_url,
+      confidence: 'distributor',
+      badge: '🟡 Distributor image',
+      source: researchResult.image_source
+    };
+  }
+
+  // Level 4: Representative image
+  if (researchResult.image_url) {
+    return {
+      url: researchResult.image_url,
+      confidence: 'representative',
+      badge: '🟠 Representative',
+      source: researchResult.image_source || 'web'
+    };
+  }
+
+  // Level 5: No image — category icon fallback
+  return {
+    url: null,
+    confidence: 'none',
+    badge: '🔴 No image found',
+    source: null,
+    icon: getCategoryIcon(item.description)
+  };
+}
+5.7 Processing Progress Display
+Show real-time per-item progress during multi-item RFQ analysis:
+Analyzing RFQ ZOC-264029-D — 3 items
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Item 1: Portland Cement Type 2
+   🟡 Image found — LafargeHolcim product page
+   2 local Libya suppliers · 2 international suppliers
+
+✅ Item 2: Black Bitumen Paint 20L
+   🟡 Image found — Sika.com
+   3 local suppliers · 3 international suppliers
+
+⏳ Item 3: Ratchet Strap 3000kg 6m
+   Searching image sources...
+
+████████████░░░░░░░░  2 of 3 complete
+5.8 Results Display — Per Item Card
+Each item in the results view renders as a card:
+┌──────────────────────────────────────────────────────────────┐
+│              │                                               │
+│  [PRODUCT    │  Item 1 · Stock: 2026-022294                 │
+│   IMAGE      │  Portland Cement Type 2                      │
+│   120×120]   │  Category: Construction Materials            │
+│              │                                               │
+│  🟡 Brand    │  Qty: 300 BAG   ~$8–12/bag   ✅ Local        │
+│  Lafarge     │  HS: 2523.29                                 │
+│  🔗 Page     │  ⚠ Lead time: 2–4 weeks                     │
+│  📄 Spec     │                                               │
+├──────────────────────────────────────────────────────────────┤
+│  [Local (Libya)]  [International]  [Alternatives]            │
+│                                                              │
+│  🏢 Libya Cement Company (LCC)                              │
+│     📍 Tripoli · +218 21 3611 000                           │
+│                                                              │
+│  🏢 Al Wahat Cement                                         │
+│     📍 Tripoli · +218 21 477 8900                           │
+└──────────────────────────────────────────────────────────────┘
+Image confidence badge colors:
+
+🟢 Exact match — green — manufacturer and part number confirmed on official site
+🟡 Brand match — yellow — official brand image from manufacturer site
+🟡 Distributor — blue — distributor product photo
+🟠 Representative — orange — generic category image, may not be exact
+🔴 No image — red — category icon shown instead
+
+Below each image always show:
+
+🔗 Product page link (if found)
+📄 Datasheet link (if found)
+🔍 "Search on Google" fallback link (always present)
+
+Image error handling in frontend:
+javascriptfunction renderItemImage(item) {
+  const res = item.research;
+  if (!res.image_url) {
+    return `<div class="item-img no-photo">
+      <span class="cat-icon">${res.icon || '📦'}</span>
+      <span class="no-img-label">No image</span>
+    </div>`;
+  }
+  return `<div class="item-img">
+    <img
+      src="${res.image_url}"
+      alt="${item.description}"
+      loading="lazy"
+      onerror="this.style.display='none';
+               this.nextElementSibling.style.display='flex';"
+    />
+    <div class="img-fallback" style="display:none">
+      <span class="cat-icon">${res.icon || '📦'}</span>
+    </div>
+    <div class="img-badge ${res.image_confidence}">
+      ${res.badge}
+    </div>
+  </div>
+  <div class="img-links">
+    ${res.product_page_url ?
+      `<a href="${res.product_page_url}" target="_blank">🔗 Page</a>` : ''}
+    ${res.datasheet_url ?
+      `<a href="${res.datasheet_url}" target="_blank">📄 Spec</a>` : ''}
+    <a href="https://www.google.com/search?q=${encodeURIComponent(item.description+' supplier')}"
+       target="_blank">🔍 Search</a>
+  </div>`;
+}
+
+PART 6 — QUOTE BUILDER
+Full-page workspace within the Xuvilo layout.
+6.1 Quote Header
+
+Quote number: auto-generated [prefix]-[YYYY]-[seq], editable. Prefix from rfq_quote_prefix setting.
+Status badge: Draft / Sent / Accepted / Rejected / Expired
+Action buttons: "Save Draft", "Preview", "Generate PDF", "Send by Email"
+"← Back to RFQ" link if opened from the analyzer
+Issuing company: dropdown from Xuvilo organization settings. Selecting a company auto-fills logo, address, bank details, signatory info, and brand color.
+Client: dropdown from Xuvilo CRM. Auto-fills name, address, contact.
+Quote date: default today
+Valid until: default today + rfq_default_validity_days
+Currency: USD, EUR, LYD, GBP, AED, TRY
+Client RFQ reference: pre-filled from linked RFQ document
+Subject: editable, pre-filled as "Re: [rfq_number]"
+
+6.2 Line Items Table
+Columns: # | Description | Part No. | Manufacturer | Origin | Unit | Qty | Unit Price | Total | Notes | 🗑
+
+All cells fully editable inline
+Drag-to-reorder rows using SortableJS
+"+ Add Row" button at bottom
+Auto-calculate line total = qty × unit price on every keystroke
+Optional discount column toggle per line
+Grand total section: Subtotal → Discount → TOTAL
+"Import from RFQ" button: if opened from an analyzed RFQ, pre-populate all line items from parsed data
+Currency symbol applied to all price cells throughout
+
+6.3 Commercial Terms
+All editable textareas, pre-filled from Xuvilo organization settings defaults:
+
+Payment Terms
+Delivery Terms / Incoterms
+Lead Time / Delivery Period
+Validity Period
+Warranty
+Country of Origin
+Special Conditions / Notes
+Bank Details block (pre-filled: bank name, account name, account number, IBAN, SWIFT, bank address)
+
+6.4 Signature Section
+Three tabs:
+Tab 1 — Draw:
+
+Canvas using signature_pad library
+"Clear" button to reset
+Instruction text: "Sign above using mouse or touchscreen"
+
+Tab 2 — Upload:
+
+PNG/JPG file upload input
+Preview of uploaded image
+"Remove" button
+
+Tab 3 — Saved:
+
+Displays signature image stored in Xuvilo organization settings
+"Update in Settings" link to manage it
+
+All three tabs also show:
+
+Signatory name field (pre-filled from org settings, editable)
+Signatory title field (pre-filled from org settings, editable)
+Date field (pre-filled today, editable)
+
+6.5 Quote PDF Generation — quoteGenerator.js
+Use Puppeteer to render an HTML template to a professional A4 PDF.
+PDF layout:
+┌──────────────────────────────────────────────────────────┐
+│ [Company Logo]              [Company Name]               │
+│                             [Address Line 1]             │
+│                             [Address Line 2]             │
+│                             [Phone] [Email] [Website]    │
+│▓▓▓▓▓▓▓▓▓▓▓▓▓ brand color header bar ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ │
+│                                                          │
+│              Q U O T A T I O N                          │
+│                                                          │
+│  Quote No:    [number]         Date:        [date]       │
+│  Valid Until: [date]           Currency:    [curr]       │
+│                                                          │
+│  To:                                                     │
+│  [Client Company Name]                                   │
+│  [Client Address]                                        │
+│  Attn: [Contact Name]                                    │
+│  Email: [contact email]                                  │
+│                                                          │
+│  Re: [rfq_reference] — [subject]                        │
+│ ──────────────────────────────────────────────────────   │
+│  # │ DESCRIPTION       │QTY│UNIT│ UNIT PRICE │  TOTAL   │
+│ ───┼───────────────────┼───┼────┼────────────┼───────   │
+│  1 │ [description]     │ 3 │ EA │  $6,500.00 │$19,500   │
+│    │ Part: [part_no]   │   │    │            │          │
+│    │ Mfr:  [mfr name]  │   │    │            │          │
+│  2 │ [description]     │40 │ CN │    $35.00  │ $1,400   │
+│ ──────────────────────────────────────────────────────   │
+│                              SUBTOTAL:  $20,900.00       │
+│                              DISCOUNT:       $0.00       │
+│                              TOTAL:     $20,900.00       │
+│ ──────────────────────────────────────────────────────   │
+│  TERMS & CONDITIONS                                      │
+│  Payment Terms:     [...]                                │
+│  Delivery Terms:    [...]                                │
+│  Lead Time:         [...]                                │
+│  Warranty:          [...]                                │
+│  Country of Origin: [...]                                │
+│  Special Notes:     [...]                                │
+│                                                          │
+│  BANK DETAILS                                            │
+│  Bank:          [bank name]                              │
+│  Account Name:  [name]                                   │
+│  Account No:    [number]                                 │
+│  IBAN:          [iban]                                   │
+│  SWIFT/BIC:     [swift]                                  │
+│ ──────────────────────────────────────────────────────   │
+│                                                          │
+│  [Signature Image]                                       │
+│  _________________________                               │
+│  [Signatory Name]                                        │
+│  [Signatory Title]                                       │
+│  [Company Name]                                          │
+│  Date: [date]                                            │
+│                                              Page 1 of N │
+└──────────────────────────────────────────────────────────┘
+
+Company brand color used for header bar and table header row
+Company logo top-left, max height 80px, proportional
+Automatic page breaks for many items
+Page numbers bottom-right: "Page N of N"
+Save PDF using Xuvilo's existing file storage service
+Record path in rfq_quotes.pdf_path
+Automatically link PDF to client's document folder in Xuvilo Documents module
+PDF filename: Quote_[QuoteNumber]_[ClientName]_[Date].pdf
+
+6.6 Send Quote by Email
+Email compose modal using Xuvilo's existing email service:
+
+To: pre-filled from client submission email or primary contact email. Editable.
+CC: optional field
+Subject: pre-filled: Quotation [quote_number] — Re: [rfq_reference]
+Body: professional editable template:
+
+Dear [Contact Name],
+
+Please find attached our quotation [quote_number] dated [quote_date]
+in response to your RFQ [rfq_reference].
+
+Quote Summary:
+- Items:          [count]
+- Total Value:    [currency] [total]
+- Valid Until:    [valid_until]
+- Delivery Terms: [delivery_terms]
+- Payment Terms:  [payment_terms]
+
+Please do not hesitate to contact us should you require
+any clarification or further information.
+
+Best regards,
+[Signatory Name]
+[Signatory Title]
+[Company Name]
+[Phone] | [Email]
+
+Attachment: generated PDF auto-attached
+On send success:
+
+Update rfq_quotes.status to 'sent'
+Record email_sent_at and email_sent_to
+Log in Xuvilo's activity feed
+Log in client's communication timeline
+Auto-complete the linked task in Xuvilo's task system
+
+
+
+
+PART 7 — CLIENT MODULE EXTENSION
+Do NOT build a separate clients section. Extend Xuvilo's existing CRM client records only.
+Add an "RFQ & Procurement" tab to the existing Xuvilo client detail page showing:
+
+Short code (used for auto-detection in uploaded PDFs)
+Submission email (where quotes should be sent for this client)
+RFQ format notes (free text — e.g. "ZOC-XXXXXX format, sealed envelope above $120k")
+Special requirements (free text — e.g. "MSDS mandatory, COO always required")
+Industry / sector
+List of all RFQs received from this client: rfq_number, date, items, status, link
+List of all quotes sent to this client: quote_number, date, total, status, link
+Stats: total RFQs received, total quotes sent, accepted, rejected
+
+
+PART 8 — SUPPLIER KNOWLEDGE BASE
+Sub-section within the RFQ Intelligence module navigation.
+List View
+Table: Name | Country | Local? | Specialties | Email | Phone | Website | Active | Edit | Delete
+
+Search by name, country, specialty keyword
+Filter: All / Local only / International only / Active only
+"+ Add Supplier" button → modal form
+Edit button per row → same modal pre-filled
+Delete per row with confirmation
+Import from CSV: columns name, country, city, contact_name, email, phone, website, specialties, is_local, notes
+Export to CSV button
+
+Supplier Form Fields
+
+Company name (required)
+Country, City
+Local supplier toggle (if ON, shows Libyan city field)
+Full address
+Contact name, Email, Phone, Website
+Specialties (tag/chip input — keywords matched against item descriptions during AI research)
+Notes
+Active toggle
+
+Auto-match Logic
+Before every AI call in aiResearch.js:
+sqlSELECT * FROM rfq_suppliers
+WHERE active = 1
+AND (
+  LOWER(specialties) LIKE '%' || LOWER(:keyword) || '%'
+  OR LOWER(name) LIKE '%' || LOWER(:brand) || '%'
+)
+ORDER BY is_local DESC
+LIMIT 10
+Pass matched results into the AI prompt as pre-known suppliers.
+
+PART 9 — HISTORY
+RFQ History Tab
+Table: RFQ No. | Client | Date | Items | Deadline | Status | Analyzed | Actions
+
+Search by RFQ number, client name, date range
+Filter by status and client
+Click row to view full analysis results
+Delete individual entry with confirmation
+Export to CSV
+
+Quote History Tab
+Table: Quote No. | Client | RFQ Ref | Total | Currency | Status | Created | Sent | Actions
+
+Click row to open and edit quote
+Re-send email option per row
+Download PDF again per row
+Status update dropdown: Draft / Sent / Accepted / Rejected / Expired
+Delete with confirmation
+Export to CSV
+
+
+PART 10 — SETTINGS EXTENSION
+Add an "RFQ Intelligence" section to Xuvilo's existing Settings page following its existing section pattern exactly.
+AI Configuration:
+
+Anthropic API Key — password input + "Test Connection" button
+Enable Libya procurement context — toggle with explanation tooltip
+
+Quote Defaults:
+
+Quote number prefix — text input (default "QT")
+Default validity period in days — number input
+Default currency — dropdown (USD, EUR, LYD, GBP, AED, TRY)
+Default payment terms — textarea
+Default delivery terms — textarea
+Default warranty text — textarea
+
+Automation:
+
+Auto-create task on RFQ upload — toggle
+Default task deadline days from upload if no closing date found — number input
+Auto-link quote PDF to client documents — toggle
+
+All values saved to Xuvilo's existing settings table with rfq_ key prefix.
+
+PART 11 — DASHBOARD WIDGET
+Register using Xuvilo's existing widget system:
+📋 RFQ Intelligence
+────────────────────────────
+[N]  Pending analysis
+[N]  Drafts waiting
+[N]  ⚠ Deadlines this week
+[N]  Quotes sent this month
+────────────────────────────
+[ Open RFQ Module → ]
+Each number stat is a clickable link to the relevant filtered view. Widget respects Xuvilo's existing widget sizing and reorder system.
+
+PART 12 — DEPENDENCIES
+Add only what Xuvilo does not already have.
+npm:
+json{
+  "pdf-parse": "^1.1.1",
+  "puppeteer": "^21.0.0",
+  "@anthropic-ai/sdk": "^0.20.0"
+}
+Frontend CDN — add to Xuvilo's existing CDN list:
+html<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+PART 13 — SEED DATA
+On first migration run, insert this seed data:
+sqlINSERT INTO rfq_suppliers
+(name, country, city, email, phone, website, specialties, is_local, notes)
+VALUES
+('Rexel Gulf FZE', 'UAE', 'Dubai',
+ 'gulf@rexel.com', '+971 4 299 5000', 'https://www.rexel.com',
+ '["electrical","lighting","OSRAM","Philips","cables","switchgear"]',
+ 0, 'Major electrical distributor, ships to Libya'),
+
+('Sonepar Middle East', 'UAE', 'Dubai',
+ 'me@sonepar.com', '+971 4 885 1000', 'https://www.sonepar.com',
+ '["electrical","industrial","automation","cables","instrumentation"]',
+ 0, 'Global electrical distributor'),
+
+('RS Components Gulf', 'UAE', 'Dubai',
+ 'gulf@rs-components.com', '+971 4 370 3700', 'https://ae.rs-online.com',
+ '["electronic","electrical","mechanical","tools","instrumentation","bearings"]',
+ 0, 'Wide range industrial components, fast delivery'),
+
+('Imerys Aluminates', 'France', 'Paris',
+ 'aluminates@imerys.com', '+33 1 49 55 63 00', 'https://www.imerys.com',
+ '["cement fondu","aluminate cement","refractory","castable"]',
+ 0, 'Leading manufacturer of calcium aluminate cement'),
+
+('Calderys Group', 'France', 'Lyon',
+ 'info@calderys.com', '+33 4 72 28 73 00', 'https://www.calderys.com',
+ '["refractory","insulating aggregate","castable","cement fondu","1800F"]',
+ 0, 'Global refractory solutions'),
+
+('OSRAM Middle East', 'UAE', 'Dubai',
+ 'me@osram.com', '+971 4 422 2440', 'https://www.osram.com/me',
+ '["lamp","mercury lamp","MBFT","blended lamp","lighting","bulb","OSRAM"]',
+ 0, 'OSRAM official regional office'),
+
+('Ricoh Middle East FZE', 'UAE', 'Dubai',
+ 'info@ricoh-me.com', '+971 4 601 9000', 'https://www.ricoh-me.com',
+ '["ricoh","printer","MFP","IMC","copier","multifunction"]',
+ 0, 'Ricoh official regional distributor'),
+
+('Sika AG Middle East', 'UAE', 'Dubai',
+ 'info@me.sika.com', '+971 4 884 0828', 'https://www.sika.com',
+ '["bitumen paint","waterproofing","coating","sealant","adhesive","construction chemicals"]',
+ 0, 'Construction chemicals leader'),
+
+('Tripoli Technical Supplies', 'Libya', 'Tripoli',
+ '', '+218 21 333 0000', '',
+ '["hardware","tools","safety","PPE","electrical","plumbing","industrial"]',
+ 1, 'General technical and industrial supplier Tripoli'),
+
+('Al Amal Industrial Supplies', 'Libya', 'Tripoli',
+ '', '+218 91 333 4455', '',
+ '["safety","cargo","rigging","ratchet strap","tools","lifting equipment"]',
+ 1, 'Safety and cargo equipment Tripoli'),
+
+('Libya Cement Company LCC', 'Libya', 'Tripoli',
+ '', '+218 21 3611 000', '',
+ '["portland cement","cement","OPC","construction","concrete"]',
+ 1, 'National cement producer Libya'),
+
+('Almadina Electrical Supplies', 'Libya', 'Tripoli',
+ '', '+218 21 444 5678', '',
+ '["electrical","lighting","lamps","cables","switches","sockets","OSRAM","Philips"]',
+ 1, 'Electrical supplies Tripoli, verify specific stock availability'),
+
+('Sultan Water Company', 'Libya', 'Tripoli',
+ '', '+218 21 700 0000', '',
+ '["drinking water","water","bottled water","15 liter","mineral water"]',
+ 1, 'Named Sultan brand drinking water supplier'),
+
+('Al Jazeera Building Materials', 'Libya', 'Tripoli',
+ '', '+218 21 488 1122', '',
+ '["bitumen","paint","cement","building materials","construction","waterproofing"]',
+ 1, 'Building materials and construction chemicals Tripoli');
+
+INSERT OR IGNORE INTO settings (key, value) VALUES
+('rfq_quote_prefix',               'QT'),
+('rfq_default_validity_days',      '30'),
+('rfq_default_currency',           'USD'),
+('rfq_libya_context',              'true'),
+('rfq_auto_create_task',           'true'),
+('rfq_default_task_deadline_days', '7'),
+('rfq_default_payment_terms',
+ 'Net 45 days from Bill of Lading via BACB or LFB'),
+('rfq_default_delivery_terms',     'DAP Destination Warehouse'),
+('rfq_default_warranty',           '12 months from date of delivery');
+
+PART 14 — CSS FOR IMAGE CARDS
+Add to rfq.css using Xuvilo's existing CSS variable names:
+css.item-img {
+  width: 120px;
+  min-height: 120px;
+  position: relative;
+  background: var(--color-background-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-right: 0.5px solid var(--color-border-tertiary);
+  flex-direction: column;
+}
+.item-img img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  padding: 8px;
+}
+.img-badge {
+  position: absolute;
+  bottom: 4px;
+  left: 3px;
+  right: 3px;
+  font-size: 9px;
+  text-align: center;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1.3;
+  pointer-events: none;
+}
+.img-badge.exact        { background:#EAF3DE; color:#3B6D11; }
+.img-badge.brand_match  { background:#FFF8E1; color:#854F0B; }
+.img-badge.distributor  { background:#E6F1FB; color:#185FA5; }
+.img-badge.representative{ background:#FFF3E0; color:#E65100; }
+.img-badge.none         { background:#FCEBEB; color:#A32D2D; }
+.img-links {
+  display: flex;
+  gap: 6px;
+  padding: 5px 6px;
+  justify-content: center;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  flex-wrap: wrap;
+  width: 100%;
+}
+.img-links a {
+  font-size: 10px;
+  color: #185FA5;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.img-links a:hover { text-decoration: underline; }
+.no-photo {
+  flex-direction: column;
+  gap: 6px;
+}
+.cat-icon    { font-size: 30px; opacity: .35; }
+.no-img-label{ font-size: 9px; color: var(--color-text-tertiary); }
+.img-fallback{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+PART 15 — CODE QUALITY REQUIREMENTS
+
+Read the entire existing Xuvilo codebase before writing any new code
+Follow Xuvilo's exact code style: indentation, naming conventions, error handling patterns
+Use the same middleware already in Xuvilo: auth guards, error handlers, request validators
+Use the same API response format used everywhere else in Xuvilo: { success: bool, data: {}, message: "" }
+All file uploads go through Xuvilo's existing multer configuration
+No hardcoded file paths — use Xuvilo's existing path resolution utilities
+The module must be fully self-contained — removing /modules/rfq/ should not break any other part of Xuvilo
+Add JSDoc comments to all service functions
+Add 500ms delay between sequential Claude API calls to handle rate limits
+All database queries use parameterized statements — no string concatenation ever
+Validate all file uploads: PDF only for RFQs max 10MB, PNG/JPG for images max 2MB
+Every section of the UI must have a meaningful empty state with a clear call-to-action
+Every user-facing action must have a loading state and a success/error toast notification
+The module registers itself cleanly — it hooks into Xuvilo via its existing registration patterns only
+
+
+Build all files completely. Every feature described above must be fully functional end-to-end. The RFQ Intelligence module must feel like it was always a native part of Xuvilo — not a separate tool added on top.

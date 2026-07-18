@@ -1,0 +1,228 @@
+Implement three new features for Businesses Hub:
+WhatsApp sharing, East Arabic numeral support, 
+and payment link integration.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURE 1 — WHATSAPP INVOICE SHARING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. BUTTON PLACEMENT
+   Add a WhatsApp share button in these locations:
+   - Invoice preview sidebar (next to Download PDF)
+   - Quotation preview sidebar
+   - Receipt preview sidebar
+   - Post-generation success screen
+
+   Button style:
+   - Background: #25D366 (WhatsApp green)
+   - White WhatsApp SVG icon on the left
+   - Label: "Send via WhatsApp / إرسال عبر واتساب"
+   - Same height and border-radius as existing buttons
+   - Full width on mobile, auto width on desktop
+
+2. WHATSAPP MESSAGE FORMAT
+   When clicked, construct this message and open
+   via: window.open(`https://wa.me/?text=${encoded}`, '_blank')
+
+   Message template (use actual invoice values):
+   ┌─────────────────────────────────┐
+   🧾 [Invoice / Quotation / Receipt]
+   من / From: [Company Name]
+
+   📋 رقم المستند / Document #: [Number]
+   📅 التاريخ / Date: [Date]
+   💰 الإجمالي / Total: [Currency] [Amount]
+   
+   [If ZATCA enabled]:
+   ✅ ZATCA Compliant Invoice
+   
+   Powered by Businesses Hub
+   businesseshub.com
+   └─────────────────────────────────┘
+
+   Encode with: encodeURIComponent(message)
+   Open in new tab: window.open(url, '_blank')
+
+3. DOCUMENT TYPE DETECTION
+   Detect whether current document is invoice,
+   quotation, or receipt and use correct Arabic:
+   - Invoice → "فاتورة"
+   - Quotation → "عرض سعر"  
+   - Receipt → "إيصال"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURE 2 — EAST ARABIC NUMERAL SUPPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. CREATE UTILITY FILE
+   Create /src/utils/numerals.ts:
+
+   export type NumeralStyle = 
+     'western' | 'eastern' | 'perso'
+
+   const EASTERN = ['٠','١','٢','٣','٤',
+                    '٥','٦','٧','٨','٩']
+   const PERSO =   ['۰','۱','۲','۳','۴',
+                    '۵','۶','۷','۸','۹']
+
+   export function convertNumerals(
+     value: string | number,
+     style: NumeralStyle
+   ): string {
+     const str = String(value)
+     if (style === 'western') return str
+     const map = style === 'eastern' ? EASTERN : PERSO
+     return str.replace(/[0-9]/g, d => map[parseInt(d)])
+   }
+
+   export function formatCurrency(
+     amount: number,
+     currency: string,
+     style: NumeralStyle
+   ): string {
+     const formatted = amount.toFixed(2)
+     return convertNumerals(formatted, style)
+   }
+
+2. ADD TOGGLE TO INVOICE FORM
+   Add under "Language & Region" settings section:
+
+   Label EN: "Number Format"
+   Label AR: "صيغة الأرقام"
+   
+   Three pill buttons side by side:
+   ┌──────┐ ┌──────┐ ┌──────┐
+   │ 123  │ │ ١٢٣  │ │ ۱۲۳  │
+   └──────┘ └──────┘ └──────┘
+   Western  Eastern  Perso-Arabic
+
+   Default: Western (123)
+   
+   When Arabic language is active on the invoice,
+   show a dismissable tip banner below the toggle:
+   "💡 Eastern Arabic numerals (١٢٣) are standard 
+   in formal Arabic business documents across 
+   KSA, UAE, and Egypt."
+
+3. APPLY NUMERALS ACROSS THE INVOICE
+   When Eastern or Perso is selected, convert ALL
+   numeric values in both preview and PDF:
+   - Line item quantities (١، ٢، ٣)
+   - Unit prices (١٢٥٫٠٠)
+   - Line totals
+   - Subtotal, VAT amount, Grand total
+   - Invoice number (#INV-٠٠١)
+   - Date numbers (٢٠٢٥-٠١-١٥)
+
+4. APPLY TO PDF EXPORT
+   Pass numeralStyle setting into InvoicePDF.tsx
+   Apply convertNumerals() to all rendered numbers
+   Ensure Arabic fonts support Eastern numerals
+   (Amiri or Cairo font from Google Fonts)
+
+5. AUTO-SUGGEST PER COUNTRY
+   When these currencies are selected, 
+   auto-suggest Eastern Arabic:
+   SAR, AED, EGP, LYD, JOD, KWD, QAR, BHD, OMR, IQD
+   
+   When IQD or IRR is selected, suggest Perso-Arabic
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURE 3 — PAYMENT LINKS & BANK DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ADD PAYMENT SECTION TO INVOICE FORM
+   Add a collapsible "Payment Details" section
+   after the notes/terms field:
+
+   PART A — Payment Link:
+   Label EN: "Payment Link (optional)"
+   Label AR: "رابط الدفع (اختياري)"
+   Input placeholder: "https://paypal.me/username"
+   
+   Below the input, show quick-add provider buttons:
+   [PayPal] [Tap] [Stripe] [HyperPay] [Other]
+   
+   Each button auto-fills the URL prefix:
+   - PayPal → "https://paypal.me/"
+   - Tap → "https://tap.company/pay/"
+   - Stripe → "https://buy.stripe.com/"
+   - HyperPay → "https://www.hyperpay.com/"
+   - Other → clears field, lets user type freely
+   
+   PART B — Bank Transfer Details:
+   Toggle: "Add bank transfer details"
+   
+   When enabled show these fields:
+   - Bank Name / اسم البنك
+   - Account Name / اسم الحساب
+   - Account Number / رقم الحساب
+   - IBAN (optional) / آيبان
+   - SWIFT/BIC (optional) / سويفت
+
+2. DISPLAY ON INVOICE PREVIEW
+   When payment link is added:
+   
+   A) Digital view — show a styled "Pay Now" button:
+      Background: #2563eb (blue)
+      Label: "Pay Now / ادفع الآن →"
+      Full width, centered, below the totals section
+      Clicking opens the payment URL in new tab
+   
+   B) PDF view — show a payment QR code:
+      Generate QR from the payment URL
+      Place in invoice footer, right side
+      Size: 2cm × 2cm
+      Label below: "Scan to Pay / امسح للدفع"
+      
+      If ZATCA QR also present, place them side by side:
+      [ZATCA QR]  [Payment QR]
+      Verify/ZATCA  Scan to Pay
+
+3. DISPLAY BANK TRANSFER BOX ON INVOICE
+   When bank details are filled, render a styled
+   box at the bottom of the invoice:
+   
+   ┌─────────────────────────────────────┐
+   │  Payment Details / تفاصيل الدفع    │
+   │  Bank: [Bank Name]                  │
+   │  Account: [Account Name]            │
+   │  IBAN: [IBAN Number]                │
+   │  SWIFT: [SWIFT Code]                │
+   └─────────────────────────────────────┘
+   
+   Style: light grey background, subtle border,
+   same font as rest of invoice
+   Show in both preview and PDF export
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-AUDIT — USE LIVE URL ONLY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After completing all three features, verify 
+on the LIVE site and report with screenshots:
+
+WHATSAPP:
+✅ or ❌ Green WhatsApp button visible on invoice
+✅ or ❌ Clicking opens wa.me with correct message
+✅ or ❌ Message contains document number, 
+         date, total, company name
+✅ or ❌ Works on quotation and receipt too
+
+EAST ARABIC NUMERALS:
+✅ or ❌ /src/utils/numerals.ts created
+✅ or ❌ Three-option toggle visible on form
+✅ or ❌ Numbers convert in live preview
+✅ or ❌ Numbers convert in PDF export
+✅ or ❌ Auto-suggestion shows for Arab currencies
+
+PAYMENT LINKS:
+✅ or ❌ Payment section visible on invoice form
+✅ or ❌ Provider quick-add buttons work
+✅ or ❌ "Pay Now" button shows on digital invoice
+✅ or ❌ Payment QR code appears in PDF
+✅ or ❌ Bank transfer box renders on invoice
+
+Report the LIVE URL test results only.
+Do not test localhost.
+Take screenshots of each feature working.

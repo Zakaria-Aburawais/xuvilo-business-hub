@@ -1,0 +1,79 @@
+Write 10 more English blog posts for Xuvilo.
+Same quality standard as existing posts.
+Each must be 1,000+ words, server-rendered,
+with H1/H2/H3, FAQ, internal links to tools.
+
+Post 1: /blog/purchase-order-guide
+Title: "What Is a Purchase Order? Guide for MENA Businesses"
+Cover: PO definition, when to use, difference 
+from invoice, how to create one, MENA examples.
+Link to: /invoice, /quotation
+
+Post 2: /blog/invoice-generator-kuwait
+Title: "Free Invoice Generator for Kuwait | Xuvilo"
+Cover: Kuwait invoicing requirements, KWD currency,
+Arabic support, VAT in Kuwait, how Xuvilo helps.
+Link to: /invoice, /templates
+
+Post 3: /blog/invoice-generator-libya
+Title: "Free Invoice Generator for Libya | Xuvilo"
+Cover: Libyan business invoicing, LYD currency,
+Arabic invoices, how Xuvilo supports Libyan SMEs.
+Link to: /invoice, /templates
+
+Post 4: /blog/business-calculator-guide
+Title: "14 Free Business Calculators for MENA Businesses"
+Cover: List all 14 calculators, explain each one,
+who needs them, how to use them.
+Link to: /calculators and each calculator page
+
+Post 5: /blog/stamp-maker-guide
+Title: "Free Online Stamp Maker for Business Documents"
+Cover: Why businesses need stamps, digital vs 
+physical stamps, how to use Xuvilo stamp maker.
+Link to: /invoice
+
+Post 6: /blog/how-to-send-invoice-email
+Title: "How to Send a Professional Invoice by Email"
+Cover: Invoice email best practices, subject lines,
+payment terms, follow-up sequence, templates.
+Link to: /invoice, /quotation
+
+Post 7: /blog/small-business-invoicing-guide
+Title: "Complete Invoicing Guide for Small Businesses in MENA"
+Cover: When to invoice, what to include, payment 
+terms, late payments, tax compliance KSA and UAE.
+Link to: /invoice, /receipt, /calculators
+
+Post 8: /blog/delivery-note-guide
+Title: "What Is a Delivery Note? Guide for MENA Businesses"
+Cover: Delivery note definition, difference from 
+invoice, when to use, what to include, free template.
+Link to: /invoice, /quotation, /templates
+
+Post 9: /blog/expense-report-guide
+Title: "How to Write an Expense Report (Free Template)"
+Cover: What is expense report, when needed,
+what to include, approval process, free template.
+Link to: /calculators, /invoice
+
+Post 10: /blog/ai-writer-business-guide
+Title: "How AI Writing Tools Help MENA Businesses"
+Cover: AI writer use cases, business emails,
+invoice descriptions, quotation letters,
+follow-up messages, how Xuvilo AI Writer helps.
+Link to: /ai-writer, /invoice
+
+Requirements for all 10:
+- 1,000+ words each, server-rendered HTML
+- H1, H2, H3 structure
+- FAQ section (4+ questions)
+- Meta title under 60 chars
+- Meta description 150-160 chars
+- Author: Xuvilo Team, date: today
+- Internal links to at least 2 tools
+- Add all 10 to /blog index page
+- Same SSR pattern as existing blog posts
+- Verify each with curl wc -w after deploy
+- All must show 900+ words on production
+- Deploy and confirm all 10 live

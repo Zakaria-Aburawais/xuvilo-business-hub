@@ -1,0 +1,296 @@
+Implement a complete Xuvilo silk-ribbon animation system for:
+
+1. The full-screen loading logo.
+2. The normal Xuvilo header logo.
+
+Use the existing official Xuvilo logo as the exact reference.
+
+IMPORTANT DESIGN RULE
+
+Do not move the complete logo as one object.
+
+Do not animate the rectangular logo image.
+
+The Xuvilo symbol consists of separate blue, purple, and cyan ribbon-like pieces. These pieces must be available as independent transparent SVG paths so they can move separately.
+
+Preserve exactly:
+
+- The original Xuvilo symbol
+- The word “Xuvilo”
+- The words “BUSINESS HUB”
+- Original colours and gradients
+- Original proportions
+- Original spacing
+- Final assembled appearance
+
+Do not redesign the brand.
+
+PART 1 — FULL-SCREEN LOADING ANIMATION
+
+The current loading screen shows the complete Xuvilo logo sitting motionless in the centre. Replace this with an elegant animation involving the individual silk-ribbon pieces.
+
+Required loading sequence:
+
+1. Begin with the complete Xuvilo symbol assembled in the centre of the loading screen.
+2. The individual blue, purple, and cyan ribbon pieces gently separate from the symbol.
+3. Each ribbon moves independently around the loading screen.
+4. Each piece follows a different smooth, curved flight path.
+5. The ribbons must look like flexible silk strips floating in a gentle current.
+6. Use subtle bending, rotation, tilt, perspective, and changes in apparent width.
+7. Do not use only straight diagonal movement.
+8. Keep every ribbon fully inside the visible viewport.
+9. Do not let the movement appear chaotic or like confetti.
+10. After moving around the screen, all ribbons return smoothly to the centre.
+11. They reconnect precisely and rebuild the original Xuvilo symbol.
+12. When the symbol is complete, add a brief, subtle branded glow or pulse.
+13. Display the complete “Xuvilo Business Hub” wordmark after the ribbons reconnect.
+14. If the page is still loading, repeat the separate–fly–return–reassemble sequence naturally.
+15. When essential content is ready, complete the current return movement where reasonably possible, show the assembled logo briefly, and fade smoothly into the website.
+
+The complete loading-animation cycle should last approximately 2.5–4 seconds.
+
+Loading behavior requirements:
+
+- Animate only while the application is genuinely initializing.
+- Do not introduce an artificial loading delay.
+- Do not use a fixed timer as the condition for making the website available.
+- Remove the loader immediately after essential content is ready, following only a very short finishing transition.
+- Optional services such as analytics, carousels, user statistics, or noncritical APIs must not block the homepage.
+- An API failure must never leave users trapped on the loading screen.
+- The loader must not hide server-rendered content from search engines.
+- Ensure the animation starts immediately enough to be visible during real loading.
+- Modify the actual initial loader that renders before the React application is ready—not only a later loading component.
+
+PART 2 — RECURRING HEADER-LOGO ANIMATION
+
+Add a separate recurring silk-ribbon animation to the normal Xuvilo logo displayed in the website header.
+
+The normal header logo must remain stationary.
+
+Do not move:
+
+- The complete logo
+- The main Xuvilo symbol
+- The word “Xuvilo”
+- The words “BUSINESS HUB”
+- The header or navigation
+
+Only one blue/cyan silk stripe should move during each animation cycle.
+
+Required header sequence:
+
+1. The complete header logo remains static in its normal position.
+2. Play the first animation approximately 2–3 seconds after the homepage finishes loading.
+3. One existing blue/cyan ribbon gently separates from the symbol on the left.
+4. The ribbon flies smoothly around the word “Xuvilo.”
+5. The intended curved path is:
+   - Leave the symbol from the left.
+   - Sweep elegantly above the word “Xuvilo.”
+   - Curve around the right side of the word.
+   - Travel gently below or partially behind the lettering.
+   - Return to the original symbol.
+6. Create depth by allowing the stripe to pass behind selected letters and in front of others, where technically practical.
+7. Keep the complete word readable throughout.
+8. The moving piece must look like flexible silk—not a rigid line, rectangular picture, snake, spinner, or circle.
+9. Use subtle bending, rotation, perspective, and controlled changes in apparent width.
+10. The stripe must reconnect perfectly with its original position.
+11. After reconnection, the entire logo remains completely static.
+12. Repeat the animation once every 45 seconds.
+13. Each header-animation sequence should last approximately 3–4 seconds.
+14. Do not play the header animation continuously.
+
+Header timing requirements:
+
+- Play once 2–3 seconds after initial page loading.
+- Repeat every 45 seconds after that.
+- Do not restart the timer unnecessarily when the component rerenders.
+- Do not create duplicate timers after client-side navigation.
+- Pause the timer and animation when the browser tab is hidden.
+- Resume appropriately when the tab becomes visible.
+- Clean up timers and animation objects when the component unmounts.
+
+ASSET REQUIREMENTS
+
+Do not animate the current flat rectangular WEBP or PNG logo as a single image.
+
+Create or use a proper transparent SVG version divided into logical layers:
+
+- Static Xuvilo wordmark group
+- Static “BUSINESS HUB” group
+- Static symbol group
+- Separate individual ribbon paths for the loading animation
+- One independently animated ribbon path for the header animation
+
+Requirements:
+
+- Preserve the exact official logo geometry.
+- Preserve the existing blue, purple, and cyan gradients.
+- Do not approximate the logo with unrelated shapes.
+- Do not show a white rectangle or image background.
+- Keep the result sharp at every screen size.
+- Do not include the words “Xuvilo Business Hub” in the flying ribbon assets.
+- Ensure every moving ribbon returns to the exact correct assembled position.
+
+ANIMATION QUALITY
+
+Both animations must feel:
+
+- Premium
+- Smooth
+- Lightweight
+- Calm
+- Modern
+- Professional
+- Branded
+
+The silk ribbons should behave as though they are moving through a gentle air current.
+
+Avoid:
+
+- DVD-style bouncing
+- Confetti behavior
+- Chaotic movement
+- Excessively fast motion
+- Constant movement
+- Cartoon-like effects
+- Heavy glow
+- Sudden jumps
+- Rigid rectangular movement
+- Distracting navigation interference
+- Sound effects
+
+TECHNICAL REQUIREMENTS
+
+1. Prefer SVG motion paths, CSS transforms, the Web Animations API, or requestAnimationFrame.
+2. Avoid adding a heavy animation library unless the project already depends on it.
+3. Use GPU-friendly transform and opacity animations.
+4. Do not repeatedly update layout properties such as top and left if that causes layout recalculation.
+5. Do not run continuous JavaScript while the header logo is static.
+6. Maintain the same logo-container width and height throughout the animation.
+7. Do not cause Cumulative Layout Shift.
+8. Moving ribbons may extend beyond the logo container through a controlled overlay.
+9. The animation must not create document-level horizontal or vertical scrolling.
+10. Use pointer-events: none on all decorative animated layers.
+11. Do not allow the animation to block navigation, search, language, theme, login, signup, or mobile-menu controls.
+12. Recalculate safe animation boundaries after viewport resizing or device-orientation changes.
+13. Do not let moving pieces leave the visible viewport.
+14. Prevent memory leaks and duplicate animation instances.
+15. Ensure the header ribbon is not clipped incorrectly by the navigation container.
+16. Keep the footer logo static.
+17. Do not animate every logo instance simultaneously.
+18. The animation must not negatively affect SEO, page loading, or Core Web Vitals.
+
+ACCESSIBILITY
+
+Respect prefers-reduced-motion.
+
+When reduced motion is enabled:
+
+- Do not make ribbons fly around the page.
+- Keep the complete logo assembled and centred during loading.
+- Use only a gentle opacity pulse if a loading indication is necessary.
+- Keep the header logo completely static.
+- Do not repeatedly announce decorative animation to screen readers.
+- Mark decorative moving elements appropriately, such as aria-hidden="true".
+- Provide meaningful accessible text for the complete logo.
+
+RESPONSIVE BEHAVIOR
+
+Test both Arabic RTL and English LTR.
+
+Loading animation:
+
+- Scale the movement paths to the viewport.
+- Keep all ribbons within safe screen boundaries.
+- Use shorter and calmer paths on small phones.
+
+Header animation:
+
+- Desktop: the ribbon may travel around the complete word “Xuvilo.”
+- Tablet: reduce the size of the flight path while preserving the same sequence.
+- Mobile: use a compact path around the visible logo.
+- If the mobile header displays only the symbol, animate the ribbon around the symbol instead.
+- Never overlap the mobile-menu button or other controls.
+
+Test at these viewport sizes:
+
+- 320 × 568
+- 375 × 667
+- 390 × 844
+- 430 × 932
+- 768 × 1024
+- 1024 × 768
+- 1366 × 768
+- 1440 × 900
+
+TESTING REQUIREMENTS
+
+Test:
+
+- Initial direct homepage visit
+- Hard refresh
+- Slow network simulation
+- Fast/cached loading
+- Arabic RTL
+- English LTR
+- Mobile navigation
+- Desktop navigation
+- Client-side route changes
+- Returning to the homepage
+- Switching browser tabs
+- Resizing the browser
+- Changing phone orientation
+- prefers-reduced-motion
+- Failed optional API request
+- Multiple component rerenders
+
+Confirm:
+
+1. The loading ribbons move independently.
+2. The complete rectangular logo does not move as one object.
+3. The pieces reassemble accurately.
+4. The loader disappears when essential content is ready.
+5. No artificial loading delay exists.
+6. The header logo remains stationary.
+7. Only one header ribbon moves.
+8. The first header animation plays approximately 2–3 seconds after loading.
+9. The header animation repeats once every 45 seconds.
+10. No duplicate timers or animation cycles are created.
+11. No horizontal or vertical overflow is introduced.
+12. No layout shift occurs.
+13. No console errors occur.
+14. Navigation remains usable.
+15. Reduced-motion behavior works.
+16. Mobile and desktop layouts remain correct.
+
+DELIVERY REQUIREMENTS
+
+Before deployment, provide:
+
+1. A visual preview or recording of the full loading animation.
+2. A visual preview or recording of the recurring header animation.
+3. The separated SVG layers and ribbon paths.
+4. The exact files modified.
+5. The initial-loader code before and after modification.
+6. Proof that the loading ribbons move independently.
+7. Proof that the header wordmark remains stationary.
+8. Proof that only one header stripe flies around “Xuvilo.”
+9. Timer behavior demonstrating the 45-second interval.
+10. Confirmation that timers are cleaned up properly.
+11. Before-and-after overflow measurements.
+12. Accessibility and reduced-motion test results.
+13. Production-build results.
+14. Automated test results.
+15. Confirmation that the footer logo remains static.
+
+Do not deploy to production until I review and approve both animation previews.
+
+After I approve deployment:
+
+- Deploy the production build.
+- Verify the animations on https://xuvilo.com rather than only in the development preview.
+- Capture multiple production frames proving that the loading pieces change position.
+- Verify that the header animation plays at the correct interval.
+- Confirm that the deployed site contains the updated loader and SVG animation code.
+
+Do not report completion based only on successful coding or building. Completion requires visual proof in the appropriate preview and, after approval, verification on the live production website.

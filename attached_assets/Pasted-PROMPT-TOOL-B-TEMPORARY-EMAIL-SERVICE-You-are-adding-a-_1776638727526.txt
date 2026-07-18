@@ -1,0 +1,150 @@
+PROMPT — TOOL B: TEMPORARY EMAIL SERVICE
+You are adding a Temporary Email Service to the existing Businesses Hub website. Do NOT touch or break any existing tools. Add this as a new standalone page.
+
+Page Route: /tools/temp-email
+SEO Title (EN): "Free Temporary Email Address — Instant Disposable Inbox | Businesses Hub"
+SEO Title (AR): "بريد إلكتروني مؤقت مجاني — صندوق وارد مؤقت فوري"
+
+STEP 1 — BACKEND API PROXY (Next.js API Routes)
+Create proxy routes at /api/tempmail/ to avoid CORS issues with the mail.tm API:
+/api/tempmail/domains        → proxies GET    https://api.mail.tm/domains
+/api/tempmail/accounts       → proxies POST   https://api.mail.tm/accounts
+/api/tempmail/token          → proxies POST   https://api.mail.tm/token
+/api/tempmail/messages       → proxies GET    https://api.mail.tm/messages  (requires Authorization header)
+/api/tempmail/message/[id]   → proxies GET    https://api.mail.tm/messages/{id}
+/api/tempmail/delete/[id]    → proxies DELETE https://api.mail.tm/messages/{id}
+Add basic rate limiting: max 30 requests per minute per IP using an in-memory counter in the API route.
+
+STEP 2 — AUTO GENERATION ON PAGE LOAD
+The moment the user visits /tools/temp-email, automatically and instantly:
+
+GET /api/tempmail/domains → pick the first available domain
+Generate random username: [adjective]-[noun]-[4 digits] (e.g. swift-trader-4821)
+Generate a random password (UUID v4)
+POST /api/tempmail/accounts with { address, password }
+POST /api/tempmail/token → receive JWT token
+Store in sessionStorage: { address, password, token, accountId, createdAt }
+Display the email address immediately — show a skeleton loader while generating (takes under 2 seconds)
+
+If sessionStorage already has valid credentials from the same browser session, restore them instead of generating a new address.
+
+STEP 3 — UI LAYOUT
+Top Card — Email Address Display
+Large prominent card at the top of the page:
+
+Left: inbox icon + label "Your temporary email address"
+Center: large monospace-style display of the full email address (e.g. swift-trader-4821@mail.tm)
+Right side buttons:
+
+Copy button — copies address to clipboard, shows "✓ Copied" for 2 seconds
+New Address button (refresh icon) — shows a confirmation dialog first: "This will delete your current inbox. Are you sure?"
+
+
+Below the address:
+
+Circular SVG countdown ring (10 minutes) — green (10–5 min) → amber (5–2 min) → red (2–0 min). Time displayed as MM:SS inside the ring.
+Extend button — resets timer back to 10:00
+Domain selector dropdown — fetches all available mail.tm domains, lets user choose which domain their address uses
+
+
+Small note: "Inbox auto-refreshes every 10 seconds"
+
+
+Main Section — Inbox + Reader (two columns on desktop)
+LEFT COLUMN — Inbox List (35% width)
+
+Header: "Inbox" label + unread count badge + manual refresh icon button
+Poll GET /api/tempmail/messages every 10 seconds using SWR with refreshInterval: 10000
+Show a subtle spinner at top of list on each poll (not a full-page loader)
+Each email row shows:
+
+Sender name (bold) and email address (smaller, muted)
+Subject line
+First 100 characters of body as preview
+Relative time ("just now", "3 min ago", "1 hour ago")
+Unread indicator: blue left border + small blue dot
+Mark as read (remove dot) when clicked
+Delete (×) button visible on hover
+Click the row to open in the reader panel
+
+
+Empty state: animated SVG envelope illustration + text: "Waiting for emails... Copy the address above and use it on any website."
+New email toast: when a new email is detected on poll, show a slide-in toast notification from top-right: "📬 New email from [sender name]"
+
+RIGHT COLUMN — Email Reader (65% width)
+
+Default (no email selected): centered placeholder with inbox icon + "Select an email to read it"
+When email selected:
+
+Header row: From, To, Subject, Date & time
+Full email body rendered inside a sandboxed iframe (sandbox="allow-same-origin") — this is the safest way to render HTML emails and prevent XSS. Set iframe srcdoc to the sanitized HTML body.
+Plain text fallback if no HTML version exists
+If attachments exist: show filename list with a note that downloads may not be supported
+Delete button (top right of reader)
+"← Back" button (mobile only)
+
+
+
+On mobile: single column layout. Email address card at top, inbox list below. Tapping an email opens a full-screen reader overlay with a back button.
+
+STEP 4 — COUNTDOWN TIMER LOGIC
+
+10-minute countdown displayed as a circular SVG progress ring
+Timer resets to 10:00 whenever the user: reads an email, clicks manual refresh, copies the address, or extends
+At 1 minute remaining: show a dismissable banner warning: "⚠️ Your inbox expires in 1 minute — click Extend to keep it"
+At 0:00: show a full-page overlay (not an alert): "Your inbox has expired" with a prominent "Generate New Inbox" button
+
+
+STEP 5 — EXTRA FEATURES
+
+"Use this email to sign up on Businesses Hub" shortcut button below the address card — pre-fills the sign-up form's email field with the current temp address. Smooth scroll or navigate to the signup page.
+Print button inside the email reader — lets users print a received email if needed.
+Full dark mode support on all components.
+
+
+STEP 6 — PRIVACY NOTICE
+Display this clearly below the address card:
+EN: "This is a temporary inbox. Do not use it for important accounts or private communications. Emails are automatically deleted after 10 minutes of inactivity."
+AR: "هذا صندوق بريد مؤقت. لا تستخدمه للحسابات المهمة أو الاتصالات الخاصة. يتم حذف الرسائل تلقائياً بعد 10 دقائق من عدم النشاط."
+
+STEP 7 — SEO CONTENT BLOCK
+Add a bilingual article section below the tool:
+EN heading: "What is a Temporary Email and When Should You Use One?"
+AR heading: "ما هو البريد الإلكتروني المؤقت ومتى يجب استخدامه؟"
+4 short paragraphs: what it is, use cases (signup walls, spam prevention, testing), how it works, limitations.
+FAQ section — 5 questions (structured data markup for Google featured snippets):
+
+"What is a temporary email address?"
+"Is temporary email safe to use?"
+"How long does a temporary email last?"
+"Can I receive any email on a temporary address?"
+"What is the difference between temporary email and anonymous email?"
+
+
+STEP 8 — NAVIGATION UPDATES
+
+Add to the navbar mega menu under a "Utilities" category: Temp Email with a 🔴 NEW badge
+Add a new card to the homepage tools grid: violet accent color, inbox icon, description: "Instant disposable email address. No signup required. Auto-refreshing inbox." — with a NEW badge
+
+
+PACKAGES TO INSTALL
+bashnpm install swr dompurify
+npm install --save-dev @types/dompurify
+SWR handles the auto-polling. DOMPurify sanitizes HTML email bodies as a backup layer even though you're using a sandboxed iframe.
+
+IMPLEMENTATION ORDER
+
+Create all /api/tempmail/ proxy routes with rate limiting
+Build the page component at /tools/temp-email
+Implement auto-generation on page load with sessionStorage restore logic
+Build the address display card (copy, refresh, domain selector, countdown ring)
+Build the inbox list with SWR polling + empty state + toast notification
+Build the email reader panel (sandboxed iframe rendering)
+Add countdown timer logic + expiry overlay
+Add the "Use this email on Businesses Hub" shortcut button
+Add privacy notice (bilingual)
+Add SEO article + FAQ block
+Update navbar and homepage
+Test in Arabic (RTL) and English (LTR)
+Test dark mode
+Test on mobile (375px) and desktop (1280px)

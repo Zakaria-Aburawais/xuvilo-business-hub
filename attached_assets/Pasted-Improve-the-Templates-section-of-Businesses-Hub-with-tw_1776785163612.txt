@@ -1,0 +1,138 @@
+Improve the Templates section of Businesses Hub with two major upgrades:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 1 — IMPROVE THE TEMPLATE PREVIEW UI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The current template cards are too plain. Improve the template gallery page:
+
+1. **Card Design Upgrade**
+   - Each template card should have a proper thumbnail preview (not a small 
+     shrunken document — use a zoomed top-portion crop showing the header area)
+   - Add a hover effect: on hover, show an overlay with two buttons:
+     "Preview" (opens full-screen modal) and "Use This Template" (CTA)
+   - Add a template name label below each card (e.g., "Corporate Blue", 
+     "Minimal Clean", "Arabic Classic")
+   - Add a small badge on each card indicating type: INVOICE / QUOTATION / RECEIPT
+
+2. **Full-Screen Preview Modal**
+   - When "Preview" is clicked, open a modal showing the full document at 
+     readable size
+   - Modal should have: Close (X) button, "Use Template" CTA, left/right 
+     arrows to browse next/previous template without closing
+   - Show template name and category in the modal header
+
+3. **Filter Bar Improvements**
+   - Current filters: All, Minimal, Corporate, Arabic-First, Compact
+   - Add document type filters as a second row: All Types | Invoices | 
+     Quotations | Receipts
+   - Add a sort dropdown: "Newest", "Most Popular", "A-Z"
+   - Add a search input: "Search templates..."
+
+4. **Grid Layout**
+   - Switch from 2-column to a responsive 3-column grid on desktop 
+     (2-column on tablet, 1-column on mobile)
+   - Add consistent spacing, card border-radius of 12px, and a soft 
+     drop shadow on each card
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 2 — BUILD 100+ TEMPLATES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create at least 100 professional document templates distributed as follows:
+- 40 Invoice templates
+- 35 Quotation templates  
+- 25 Receipt templates
+
+Each template must:
+- Be built as an HTML/CSS component that renders cleanly in the browser
+- Support dynamic field injection (Company Name, Client Name, Items, 
+  Total, Date, Currency, Logo)
+- Be PDF-exportable via the existing export function
+- Support both LTR (English) and RTL (Arabic) layouts
+- Use real professional data as placeholder content (not just "Lorem Ipsum")
+
+---
+
+SOURCE AND ADAPT templates from the following free/open resources and 
+redesign them to fit the Businesses Hub design system:
+
+- https://invoice-generator.com (study layout patterns)
+- https://www.invoicesimple.com/invoice-templates
+- https://www.freshbooks.com/invoice-templates  
+- https://www.zoho.com/invoice/free-invoice-templates/
+- https://www.smartsheet.com/free-invoice-templates
+- https://hloom.com/invoices/
+- https://invoiceberry.com/invoice-templates
+- https://www.vertex42.com/ExcelTemplates/invoice.html
+
+Scrape or study layout patterns from these sites and recreate 
+the designs natively in HTML/CSS. Do NOT copy code — rebuild each 
+template from scratch inspired by those layouts, adapted to 
+Businesses Hub branding.
+
+---
+
+TEMPLATE CATEGORIES TO COVER (spread across invoices/quotations/receipts):
+
+Design Styles:
+1. Minimal / Clean (white, light grey, simple typography)
+2. Corporate / Professional (dark header, structured table layout)
+3. Arabic-First RTL (right-to-left, Arabic fonts, Arabic number formatting)
+4. Colorful / Modern (bold accent colors, gradient headers)
+5. Compact (fits all info tightly, good for printing)
+6. Elegant / Premium (serif fonts, gold or navy accents)
+7. Creative / Agency (asymmetric layout, accent sidebar)
+8. Government / Formal (structured, stamp-ready, official look)
+9. Construction / Engineering (material/labor table columns)
+10. Consulting / Services (hourly rate columns, project breakdown)
+
+Industry-Specific Variants (add relevant column headers per type):
+- Freelance / Design Agency
+- IT & Software Services
+- Construction & Contracting
+- Medical / Healthcare
+- Retail / Product Sales
+- Oil & Gas / Industrial
+- NGO / Nonprofit (with donor/project reference fields)
+- Real Estate
+- Food & Catering
+- Transportation & Logistics
+
+Language Variants:
+- English only
+- Arabic only (RTL)
+- Bilingual English + Arabic (side by side or dual header)
+
+---
+
+NAMING CONVENTION for each template:
+Use this format: [Type]-[Style]-[Number]
+Examples: INV-Corporate-01, QUO-Minimal-03, REC-Arabic-02
+
+Store all templates in: /src/templates/ or equivalent directory
+Each template = one self-contained HTML/CSS file + a JSON metadata file with:
+{
+  "id": "INV-Corporate-01",
+  "name": "Corporate Blue",
+  "type": "invoice",       // invoice | quotation | receipt
+  "style": "corporate",
+  "language": "en",        // en | ar | bilingual
+  "industry": "general",
+  "tags": ["professional", "dark-header", "pdf-ready"],
+  "thumbnail": "/thumbnails/INV-Corporate-01.png"
+}
+
+---
+
+FINAL CHECKLIST:
+✅ Minimum 100 templates total (40 invoices, 35 quotations, 25 receipts)
+✅ All templates render correctly in the browser preview modal
+✅ All templates are PDF-exportable
+✅ All templates support Arabic RTL switching
+✅ Gallery page shows 3-column grid with hover preview
+✅ Filter by type (Invoice/Quotation/Receipt) works correctly
+✅ Filter by style (Minimal/Corporate/Arabic-First/Compact/etc.) works
+✅ Search by template name works
+✅ Template metadata JSON created for each template
+✅ Preserve existing Businesses Hub design system and color palette

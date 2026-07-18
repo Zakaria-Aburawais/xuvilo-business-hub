@@ -1,0 +1,123 @@
+CRITICAL FIX — SERVER-SIDE RENDERING FOR SEO
+
+CONFIRMED PROBLEM:
+curl -s https://xuvilo.com/invoice | wc -w returns only 241 words.
+Google cannot index this site. Zero pages are in Google's index.
+The fix must increase the raw HTML word count to 800+ words per page.
+
+THIS IS THE HIGHEST PRIORITY TASK. Do not work on anything else first.
+
+STEP 1 — IDENTIFY THE FRAMEWORK
+Check package.json and tell me:
+- Is this Next.js, Vite, Create React App, or something else?
+- What version?
+- Is it App Router or Pages Router (if Next.js)?
+- Is there any existing SSR config?
+
+STEP 2 — IMPLEMENT THE FIX BASED ON FRAMEWORK
+
+=== IF NEXT.JS APP ROUTER ===
+
+For every page file in /app that contains tool content 
+(invoice, quotation, receipt, calculators, pricing, about, 
+contact, blog, templates, guides):
+
+a) Split each page into TWO parts:
+   - page.tsx = SERVER component (no 'use client' at top)
+     Contains: H1, description, features section, 
+     how-it-works, FAQ, static content
+   - [ToolName]Client.tsx = CLIENT component 
+     (has 'use client' at top)
+     Contains: only the interactive form/tool itself
+
+b) Example structure for /app/invoice/page.tsx:
+   
+   import InvoiceClient from './InvoiceClient'
+   
+   export const metadata = {
+     title: 'Free Invoice Generator — Arabic & English | Xuvilo',
+     description: 'Create professional invoices with PDF export...'
+   }
+   
+   export default function InvoicePage() {
+     return (
+       <main>
+         <h1>Free Invoice Generator</h1>
+         <p>Create professional invoices instantly...</p>
+         <InvoiceClient />  {/* interactive tool here */}
+         <section>
+           <h2>Why Use Xuvilo Invoice Generator?</h2>
+           <p>Feature 1 description...</p>
+           <p>Feature 2 description...</p>
+         </section>
+         <section>
+           <h2>How to Create an Invoice in 3 Steps</h2>
+           <p>Step 1: Enter your business details...</p>
+           <p>Step 2: Add your items and prices...</p>
+           <p>Step 3: Download your PDF instantly...</p>
+         </section>
+         <section>
+           <h2>Frequently Asked Questions</h2>
+           <p>Q: Is it free? A: Yes, completely free...</p>
+           <p>Q: Does it support Arabic? A: Yes, full RTL...</p>
+           <p>Q: What is ZATCA? A: Saudi Arabia tax authority...</p>
+         </section>
+       </main>
+     )
+   }
+
+=== IF VITE / CREATE REACT APP (not Next.js) ===
+
+Option A — Add SSR with Vite SSR:
+npm install express
+Configure vite.config.ts for SSR mode
+Create server.js entry point
+Pre-render all routes to static HTML
+
+Option B — Migrate to Next.js (recommended):
+npx create-next-app@latest xuvilo-next
+Move all React components into the new Next.js project
+Use App Router with server components for all pages
+Keep all existing tool logic in client components
+
+Option C — Add Prerendering (quickest fix):
+npm install -D vite-plugin-prerender
+In vite.config.ts add PrerenderPlugin with all routes listed
+
+STEP 3 — ADD THESE FILES
+
+Create /public/robots.txt:
+User-agent: *
+Allow: /
+Sitemap: https://xuvilo.com/sitemap.xml
+
+Create sitemap at /app/sitemap.ts (Next.js) 
+or /public/sitemap.xml (static):
+Include all URLs:
+https://xuvilo.com/
+https://xuvilo.com/invoice
+https://xuvilo.com/quotation
+https://xuvilo.com/receipt
+https://xuvilo.com/calculators
+https://xuvilo.com/pricing
+https://xuvilo.com/about
+https://xuvilo.com/contact
+https://xuvilo.com/blog
+https://xuvilo.com/templates/invoice
+https://xuvilo.com/privacy-policy
+https://xuvilo.com/terms
+
+STEP 4 — VERIFY THE FIX
+After implementing, run:
+curl -s https://xuvilo.com/invoice | wc -w
+
+TARGET: 800+ words returned in raw HTML
+If still under 300, the SSR is not working yet.
+
+STEP 5 — REPORT BACK
+Tell me:
+1. What framework this is
+2. What approach you used to fix it
+3. The new word count from curl test
+4. Confirm robots.txt is live at xuvilo.com/robots.txt
+5. Confirm sitemap is live at xuvilo.com/sitemap.xml

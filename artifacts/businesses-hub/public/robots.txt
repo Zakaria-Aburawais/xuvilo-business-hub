@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /clients
+Disallow: /account
+Disallow: /billing
+Disallow: /documents
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /api/
+
+Sitemap: https://xuvilo.com/sitemap.xml

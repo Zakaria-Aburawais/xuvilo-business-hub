@@ -1,0 +1,46 @@
+Diagnose and improve Xuvilo’s initial loading experience and homepage performance.
+
+Observed problem:
+
+The live homepage initially displays only a centered Xuvilo logo/loading screen, while the actual interface appears several seconds later. Determine whether this is caused by the application bundle, authentication initialization, language detection, API calls, font loading, hydration, splash-screen timing, or another dependency.
+
+Requirements:
+
+1. Measure the current production performance before changing anything.
+2. Record:
+   - Time to First Byte
+   - First Contentful Paint
+   - Largest Contentful Paint
+   - Interaction to Next Paint or Total Blocking Time
+   - Cumulative Layout Shift
+   - JavaScript bundle sizes
+   - Long-running requests
+3. Identify the exact condition controlling removal of the splash screen.
+4. Do not use a fixed timeout to hide it.
+5. Render meaningful homepage content as early as possible.
+6. Authentication, analytics, optional API calls, carousels, localization, and user-specific data must not block the public homepage.
+7. Lazy-load noncritical sections and heavy components.
+8. Optimize the logo, hero images, fonts, flag images, animations, and large JavaScript dependencies.
+9. Avoid loading all template previews or tools before the hero becomes visible.
+10. Prevent layout shifts when fonts, images, and counters load.
+11. Respect prefers-reduced-motion.
+12. Preserve SEO-visible server-rendered content.
+13. Ensure failure of an optional API does not leave visitors trapped on the splash screen.
+14. Review whether no-cache/no-store is necessary for all public pages; do not cache private or user-specific data publicly.
+
+Target mobile performance:
+
+- LCP ≤ 2.5 seconds
+- CLS ≤ 0.1
+- INP ≤ 200 milliseconds where measurable
+- No indefinite or fixed-delay splash screen
+
+Do not report completion until you provide:
+
+- Before-and-after Lighthouse results.
+- The identified root cause.
+- Modified files.
+- Bundle-size comparison.
+- Network-request comparison.
+- Production-build results.
+- Live production measurements after deployment.

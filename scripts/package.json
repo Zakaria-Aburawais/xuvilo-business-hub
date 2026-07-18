@@ -1,0 +1,22 @@
+{
+  "name": "@workspace/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hello": "tsx ./src/hello.ts",
+    "seed-stripe": "tsx ./src/seed-stripe-products.ts",
+    "seed-testimonials": "tsx ./src/seed-testimonials.ts",
+    "validate-sendgrid-domain": "tsx ./src/sendgrid-validate-domain.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "sharp": "^0.34.5",
+    "tsx": "catalog:"
+  },
+  "dependencies": {
+    "@workspace/db": "workspace:*",
+    "drizzle-orm": "catalog:"
+  }
+}

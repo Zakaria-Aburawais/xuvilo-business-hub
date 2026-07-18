@@ -1,0 +1,125 @@
+The template problem is still NOT fixed.
+"Ink Black" and "Nordic Blue" are completely 
+identical layouts — same structure, same 
+information hierarchy, just different colors.
+This is the same issue across many templates.
+
+The requirement is simple:
+If two templates look the same when you 
+remove all color — they are the same template.
+That is not acceptable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DO THIS AUDIT FIRST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Go through ALL 110 templates and group them 
+by their actual JSX/HTML structure.
+
+I suspect you will find only 8-10 unique 
+structures being reused with different colors.
+
+List the groups here:
+Group A: [list all templates sharing layout A]
+Group B: [list all templates sharing layout B]
+etc.
+
+Show me this grouping before making any changes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THEN FIX IT THIS WAY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For every group that has more than 3 templates 
+sharing the same structure:
+
+Keep maximum 3 color variants of each layout.
+Replace the rest with genuinely new structures.
+
+The minimum required unique structures are:
+
+INVOICES — need at least 10 unique layouts:
+□ Classic (logo left, title right, standard table)
+□ Dark full header (white text on dark background)
+□ Left sidebar (colored sidebar with company info)
+□ Centered minimal (everything centered, no borders)
+□ Arabic RTL (right-to-left, Arabic typography)
+□ Bilingual split (Arabic right + English left)
+□ Two-column header (from/to side by side)
+□ Bold number hero (large invoice number centered)
+□ Government formal (border frame, stamp area)
+□ Construction (extra columns: materials/labor)
+
+QUOTATIONS — need at least 6 unique layouts:
+□ Standard quote (validity date prominent)
+□ Proposal style (executive summary field)
+□ Arabic formal quote (RTL, عرض سعر title)
+□ Bilingual quote (both languages)
+□ Price list style (product catalog feel)
+□ Construction estimate (project scope)
+
+RECEIPTS — need at least 5 unique layouts:
+□ Standard receipt (classic)
+□ POS/Thermal (narrow, centered, dashed lines)
+□ Full page formal (signature + stamp area)
+□ Arabic receipt (RTL, إيصال title)
+□ Donation/NGO receipt (donor fields)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT "DIFFERENT STRUCTURE" MEANS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A different structure means the JSX is 
+fundamentally different. Examples:
+
+Classic layout JSX pattern:
+<div class="header">
+  <Logo/> <InvoiceTitle/>
+</div>
+<table>...</table>
+
+Left sidebar JSX pattern:
+<div class="layout-with-sidebar">
+  <aside class="sidebar">
+    <Logo/> <CompanyInfo/>
+  </aside>
+  <main>
+    <InvoiceTitle/>
+    <table>...</table>
+  </main>
+</div>
+
+These two look COMPLETELY different even with 
+the same colors. THAT is what we need.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THUMBNAIL RENDERING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After creating truly distinct structures,
+make sure each template thumbnail renders 
+its OWN component — not a shared placeholder.
+
+The thumbnail must show the actual layout
+at small scale so users can distinguish them
+visually in the gallery at a glance.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After fixing, take a screenshot of the 
+templates gallery.
+
+I will personally verify by checking:
+- Can I tell the templates apart WITHOUT 
+  reading their names?
+- Do at least 10 invoice templates look 
+  structurally different from each other?
+- Do sidebar, dark-header, centered, RTL,
+  and bilingual layouts all exist?
+
+If the answer to any of these is NO,
+the fix is not complete.
+
+Report with a screenshot of the live gallery.

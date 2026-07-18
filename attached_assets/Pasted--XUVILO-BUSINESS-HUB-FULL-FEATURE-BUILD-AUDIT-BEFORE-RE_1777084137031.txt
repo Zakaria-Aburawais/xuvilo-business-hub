@@ -1,0 +1,205 @@
+# XUVILO BUSINESS HUB — FULL FEATURE BUILD + AUDIT BEFORE REPUBLISH
+
+> Do NOT republish or deploy anything until every section below is built, tested, and passes the audit checklist at the end. Work section by section. Confirm completion of each before moving to the next.
+
+---
+
+## CONTEXT
+Xuvilo Business Hub is a bilingual (Arabic/English) business document generator targeting freelancers and small businesses in the MENA region. It already has: Invoice Generator, Quotation Generator, Receipt Generator, Document Templates, Stamp Maker, Business Card Maker, Company Profile, Temp Email, Document Tracker, VAT Calculator, Currency Exchange. It is ZATCA Phase 1 compliant and supports 176+ currencies with Arabic RTL native support.
+
+---
+
+## FEATURE 1 — SAVED DOCUMENTS DASHBOARD
+
+Build a personal dashboard for logged-in users:
+- Show all previously created documents (invoices, quotes, receipts) in a sortable list
+- Each document card shows: document type, client name, amount, currency, date, and status badge (Draft / Sent / Paid / Overdue)
+- Add a one-click Duplicate button on each document card
+- Add a status toggle so users can manually mark a document as Paid or Overdue
+- Add a search bar and filter by document type and status
+- Dashboard must work in both Arabic (RTL) and English (LTR) layouts
+- For guest/non-logged-in users: show a banner prompting sign-up with the message "Save and track all your documents — sign up free"
+
+---
+
+## FEATURE 2 — WHATSAPP & EMAIL SEND BUTTON
+
+On every completed document (after generation/preview):
+- Add a green "Send via WhatsApp" button that opens: `https://wa.me/?text=` with the document PDF link or a preview link pre-filled
+- Add a "Send via Email" button that opens the user's mail client with a pre-filled subject line and body containing the document link
+- Both buttons must appear on the document preview screen and on the dashboard document card
+- Buttons must be visible in both RTL and LTR layouts
+- WhatsApp button must use the official WhatsApp green color (#25D366)
+
+---
+
+## FEATURE 3 — CLIENT ADDRESS BOOK
+
+Build a reusable client contacts system:
+- Users can save client name, company name, email, phone, address, and country
+- When filling any document form, a "Select saved client" dropdown auto-fills all client fields
+- Add a dedicated "Clients" page accessible from the main nav
+- Users can add, edit, and delete saved clients
+- On the client list, show a count of total documents created for each client
+- Must persist data per user account (not just localStorage session)
+- Full Arabic/English bilingual support including RTL field layout
+
+---
+
+## FEATURE 4 — ARABIC-FIRST LANDING PAGE VARIANT
+
+- Detect user browser language or IP region (GCC/MENA countries: SA, AE, KW, QA, BH, OM, LY, EG, IQ, YE, SY, JO, LB)
+- If MENA region detected, default the homepage to Arabic RTL layout
+- The Arabic homepage headline should read: "أنشئ مستنداتك التجارية الاحترافية في ثوانٍ"
+- Arabic subheadline: "فواتير، عروض أسعار، وإيصالات — بالعربية والإنجليزية، بأكثر من 176 عملة"
+- Ensure all buttons, nav items, and hero section are fully translated and RTL-aligned
+- Add a visible language toggle (EN | عربي) in the top navbar for all pages
+- The switch must be persistent (saved in user preferences or localStorage)
+
+---
+
+## FEATURE 5 — INDUSTRY-SPECIFIC TEMPLATE PACKS
+
+Create labeled template categories accessible from the Document Templates page:
+- Freelancers & Consultants
+- Construction & Contracting
+- Oil & Gas
+- NGO / Humanitarian Organizations
+- Retail & Trading
+- IT & Technology Services
+
+Each category must have at least 2 pre-filled example templates with realistic sample data. Templates must:
+- Be available in both Arabic and English
+- Pre-fill relevant line items typical for that industry (e.g., Oil & Gas: "Drilling Services", "Equipment Rental", "Site Survey")
+- Be accessible via direct SEO-friendly URLs (e.g., /templates/oil-gas-invoice, /templates/ngo-invoice-arabic)
+
+---
+
+## FEATURE 6 — "POWERED BY XUVILO" WATERMARK ON FREE PLAN
+
+- On all PDFs exported by free plan users, add a small footer watermark: "Created with Xuvilo Business Hub — xuvilo.com" (or the actual domain)
+- Watermark must be subtle: small font, light gray, bottom center of each page
+- Paid plan users get watermark-free exports
+- Add a visible upgrade prompt on the export screen for free users: "Remove watermark — Upgrade to Pro"
+- Watermark must render correctly on both Arabic and English documents
+
+---
+
+## FEATURE 7 — USAGE PROGRESS BAR (FREE PLAN LIMIT)
+
+- Track each free user's document creation count per calendar month
+- Display a progress bar in the dashboard and on the document creation pages: "You've created X of 10 free documents this month"
+- When user reaches 8/10, show a soft warning banner in amber: "2 documents remaining this month — upgrade for unlimited"
+- When limit is reached, block creation and show an upgrade modal (not just a redirect)
+- Reset count on the 1st of each month
+- Do not apply this limit to logged-in paid users
+
+---
+
+## FEATURE 8 — AUTO VAT/TAX DETECTION BY COUNTRY
+
+- When user selects a currency or country on any document form, automatically pre-fill the VAT/tax rate field with the correct standard rate
+- Use this rate reference as a starting point (user must be able to override it):
+  - Saudi Arabia (SAR): 15%
+  - UAE (AED): 5%
+  - Egypt (EGP): 14%
+  - Libya (LYD): 0% (currently no standard VAT)
+  - Kuwait (KWD): 0%
+  - Qatar (QAR): 0%
+  - Bahrain (BHD): 10%
+  - Oman (OMR): 5%
+  - Jordan (JOD): 16%
+  - UK (GBP): 20%
+  - EU countries (EUR): 20% default (user can override)
+- Show a small info tooltip next to the tax field: "Auto-detected based on your selected country. You can change this."
+- This must work in both Arabic and English form layouts
+
+---
+
+## FEATURE 9 — HOMEPAGE TRUST SIGNALS UPGRADE
+
+Replace or enhance the current "Trusted by 2,000+ businesses" section with:
+- A live-style counter showing total documents created (can be a static number that updates periodically, e.g., "47,382 documents created")
+- A row of country flag icons showing top user countries (suggest: 🇸🇦 🇦🇪 🇱🇾 🇪🇬 🇮🇶 🇾🇪 🇬🇧 🇺🇸)
+- 3 testimonial cards with realistic names, company names, and star ratings — written in Arabic for MENA users, English for others (use language detection)
+- A "Used by businesses in 40+ countries" badge near the hero section
+- Star rating display should show 4.8/5 with filled star icons (already exists — keep and enhance)
+
+---
+
+## FEATURE 10 — SEO LANDING PAGES
+
+Create the following dedicated SEO-optimized landing pages with unique meta titles, meta descriptions, and H1 tags. Each page should load the relevant tool directly with language pre-set:
+
+| URL | Target Keyword | Language |
+|-----|---------------|----------|
+| /arabic-invoice-generator | free Arabic invoice generator | Arabic |
+| /zatca-invoice-saudi | ZATCA compliant invoice Saudi Arabia | English + Arabic |
+| /invoice-generator-libya | free invoice generator Libya | English + Arabic |
+| /ngo-invoice-template | NGO invoice template free | English |
+| /oil-gas-invoice-arabic | oil gas invoice Arabic | Arabic |
+| /فاتورة-ضريبية | فاتورة ضريبية مجانية | Arabic |
+| /quotation-generator-arabic | Arabic quotation generator free | Arabic |
+
+Each page must:
+- Have a unique <title> tag and <meta name="description"> with the target keyword
+- Include an H1 that matches the keyword naturally
+- Load the relevant document tool below the hero section so users can start immediately
+- Have an Arabic version that is full RTL
+
+---
+
+## PRE-REPUBLISH AUDIT CHECKLIST
+
+Before deploying, run through every item below and confirm PASS or FAIL in your response:
+
+### Functionality Tests
+- [ ] Dashboard loads correctly for logged-in users and shows guest banner for visitors
+- [ ] Documents can be duplicated from the dashboard without errors
+- [ ] Status badges (Draft/Sent/Paid/Overdue) update correctly and persist on reload
+- [ ] WhatsApp share button generates a correct wa.me link with document URL
+- [ ] Email send button opens mail client with correct pre-filled subject and body
+- [ ] Client address book saves, edits, and deletes contacts without data loss
+- [ ] Selecting a saved client auto-fills all form fields correctly
+- [ ] Language auto-detection correctly identifies MENA users and defaults to Arabic
+- [ ] Language toggle (EN | عربي) switches the full page including nav, buttons, and forms
+- [ ] Language preference persists after page refresh
+- [ ] Industry templates load with correct pre-filled sample data
+- [ ] Industry template URLs are accessible and return 200 status
+- [ ] Watermark appears on free plan PDF exports, bottom center, correct text
+- [ ] Watermark does NOT appear on paid plan PDF exports
+- [ ] Free plan document counter increments correctly with each creation
+- [ ] Progress bar displays accurate count (X of 10)
+- [ ] Amber warning appears at 8/10 documents
+- [ ] Creation is blocked at 10/10 and upgrade modal appears (not a redirect)
+- [ ] VAT auto-fills correctly for all 10 listed countries when currency/country is selected
+- [ ] User can manually override the auto-filled VAT rate
+- [ ] VAT tooltip appears on hover/tap in both Arabic and English
+- [ ] All 7 SEO landing pages are accessible and return 200 status
+- [ ] Each SEO page has correct unique <title> and <meta description> tags
+- [ ] Document tool loads and functions correctly on each SEO landing page
+
+### RTL / Bilingual Tests
+- [ ] All new features render correctly in Arabic RTL layout (no broken alignment)
+- [ ] All new features render correctly in English LTR layout
+- [ ] No Arabic text appears in English mode; no English text appears in Arabic mode
+- [ ] All buttons, labels, form fields, and error messages are translated in both languages
+- [ ] PDF exports from Arabic mode are RTL-formatted with Arabic text
+
+### Performance & Mobile Tests
+- [ ] Homepage loads in under 3 seconds (Lighthouse or equivalent check)
+- [ ] All new pages are mobile responsive on 375px viewport
+- [ ] WhatsApp and Email buttons are tap-friendly (minimum 44x44px touch target)
+- [ ] Dashboard is usable on mobile without horizontal scroll
+- [ ] No console errors on any new page or feature
+
+### SEO & Meta Tests
+- [ ] All 7 new SEO pages have unique meta titles (under 60 characters)
+- [ ] All 7 new SEO pages have unique meta descriptions (under 160 characters)
+- [ ] Arabic SEO pages use correct lang="ar" and dir="rtl" HTML attributes
+- [ ] Sitemap.xml is updated to include all new URLs
+- [ ] robots.txt allows crawling of all new landing pages
+
+---
+
+Report back with a completion summary listing each feature as DONE or IN PROGRESS, and the full audit checklist results before any deployment step.

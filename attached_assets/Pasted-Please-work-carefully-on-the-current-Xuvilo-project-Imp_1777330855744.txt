@@ -1,0 +1,205 @@
+Please work carefully on the current Xuvilo project.
+
+Important instructions:
+- Do not delete or break any existing working features.
+- Do not change the domain settings.
+- Do not integrate Stripe or live payments now.
+- Before making changes, inspect the current structure and understand how the existing invoice, quotation, receipt, calculator, templates, pricing, and AI writer features work.
+- If a feature already exists, improve it instead of rebuilding it from scratch unless absolutely necessary.
+
+Main goal of this step:
+Improve the AI Business Writer quality because the current output is poor, inconsistent, and does not write properly as requested. Also fix brand consistency and make the AI Writer clearly visible in the navigation.
+
+Part 1: Fix brand consistency
+Use this brand consistently across the whole website:
+
+Xuvilo — AI Business Tools Hub
+
+Please replace inconsistent references such as “Businesses Hub” in:
+- Page titles
+- Metadata
+- Headers
+- Footers
+- Open Graph tags
+- Tool pages
+- Pricing page
+- Template pages
+
+However, do not remove useful text. Just make the brand consistent.
+
+Part 2: Improve navigation
+Make sure the main navigation clearly includes:
+- Home
+- Invoice
+- Quotation
+- Receipt
+- Calculators
+- Templates
+- AI Writer
+- Pricing
+- Login
+- Sign Up
+
+If Login and Sign Up are not fully functional yet, create visible placeholder pages or UI routes for now, but do not fake a working backend if it does not exist yet.
+
+Part 3: Create or improve the AI Writer page
+The AI Writer page should be available at:
+
+/ai-writer
+
+It should be clearly linked from the homepage and main navigation.
+
+The page should include these writing tools:
+- Payment reminder email
+- Invoice follow-up email
+- Quotation submission email
+- Supplier request email
+- Complaint or clarification email
+- Formal business message
+- Improve existing email
+- Translate business message Arabic to English
+- Translate business message English to Arabic
+
+Part 4: Improve the AI Writer form
+The AI Writer form must collect enough details to produce good output.
+
+Required fields:
+- Message type
+- Language: English or Arabic
+- Tone: formal, polite, firm, friendly, concise, professional
+- Recipient name
+- Recipient company
+- Sender/company name
+- Main purpose
+- Key details to include
+- Important dates, amounts, invoice numbers, quotation numbers, or reference numbers
+- Desired length: short, medium, detailed
+- Additional instructions
+- Existing draft text, only for “Improve existing email” or translation tools
+
+Part 5: Improve AI output quality
+The AI Writer must not produce generic, weak, or random text.
+
+It should generate:
+- Clear subject line
+- Professional greeting
+- Well-structured body
+- Clear purpose
+- Polite and natural wording
+- Specific details from the user input
+- Clear call to action
+- Professional closing
+- No exaggerated language
+- No fake facts
+- No invented names, dates, invoice numbers, or amounts
+- No unnecessary long paragraphs
+- No robotic wording
+
+For English outputs:
+- Use professional business English.
+- Keep it natural, clear, and concise.
+- Avoid overly dramatic or complicated words.
+- Use correct grammar and punctuation.
+
+For Arabic outputs:
+- Use clear Modern Standard Arabic suitable for business communication.
+- Avoid weak literal translation.
+- Make the tone polite and professional.
+- Support RTL display correctly.
+
+Part 6: Add strong internal prompt templates
+Create proper prompt templates behind each AI tool.
+
+For example:
+
+Payment reminder email should instruct the AI to:
+- Mention the unpaid invoice or amount if provided
+- Politely request payment status
+- Include invoice number and due date if provided
+- Ask the recipient to confirm payment timeline
+- Keep tone professional and respectful
+
+Quotation submission email should instruct the AI to:
+- Mention the quotation reference if provided
+- Briefly explain what is attached or submitted
+- Invite the recipient to review
+- Ask them to contact the sender for clarification
+- Close professionally
+
+Complaint/clarification email should instruct the AI to:
+- Explain the issue clearly
+- Avoid aggressive wording
+- Ask for clarification or corrective action
+- Keep the tone firm but respectful if selected
+
+Improve existing email should instruct the AI to:
+- Preserve the original meaning
+- Correct grammar and structure
+- Improve tone and flow
+- Make it more professional
+- Not add fake information
+- Keep important details unchanged
+
+Translation tools should instruct the AI to:
+- Translate meaning naturally, not word by word
+- Preserve names, dates, numbers, invoice references, and technical terms
+- Keep the business tone professional
+- For Arabic, use proper RTL formatting
+
+Part 7: Add preview and copy features
+After generation, show:
+- Subject line
+- Final message body
+- Copy subject button
+- Copy body button
+- Copy full email button
+- Regenerate button
+- Clear form button
+
+Part 8: Add fallback if real AI API is not connected
+If there is no real AI API connected, do not pretend the result is AI-generated.
+
+Instead:
+- Build the full UI and backend-ready structure.
+- Add clear placeholder output that says AI integration is not active yet.
+- Prepare a clean function/service file where the AI API can be connected later.
+
+If an AI API is already connected:
+- Improve the prompt engineering and output parsing.
+- Add error handling.
+- Add loading state.
+- Add clear user messages if generation fails.
+
+Part 9: Homepage updates
+Add a clear AI Writer section on the homepage:
+
+Title:
+AI Business Writer
+
+Text:
+Write payment reminders, invoice follow-ups, quotation emails, supplier messages, and formal business communication in Arabic or English.
+
+Button:
+Try AI Writer
+
+Part 10: Testing
+After making changes, test:
+- Homepage loads
+- Navigation links work
+- /ai-writer loads
+- AI Writer form accepts inputs
+- Output quality is improved
+- English generation works
+- Arabic generation works or displays correctly
+- Copy buttons work
+- Existing invoice, quotation, receipt, calculators, templates, and pricing pages still work
+
+Final report required:
+When finished, provide a clear report with:
+1. Files changed
+2. Brand consistency fixes completed
+3. Navigation updates completed
+4. AI Writer improvements completed
+5. Whether real AI API is connected or only placeholder structure exists
+6. Test results
+7. Any errors or remaining issues

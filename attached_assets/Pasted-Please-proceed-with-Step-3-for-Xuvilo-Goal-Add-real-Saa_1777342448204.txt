@@ -1,0 +1,231 @@
+Please proceed with Step 3 for Xuvilo.
+
+Goal:
+Add real SaaS workspace value by allowing logged-in users to save their company profile and manage clients, then use those saved details to auto-fill invoices, quotations, and receipts.
+
+Important instructions:
+- Do not break authentication, dashboard, role support, rate limiting, AI Writer, invoice, quotation, receipt, calculators, templates, pricing, blog, or country pages.
+- Do not integrate Stripe or live payments yet.
+- Do not rebuild existing invoice/quotation/receipt tools from scratch.
+- Improve existing features incrementally.
+- Keep all user data isolated per logged-in user.
+- Public users should still be able to use basic tools without login if that already works.
+
+Part 1: Database models
+Create or verify database tables for:
+
+1. company_profiles
+Fields:
+- id
+- user_id
+- company_name
+- logo_url or logo_data if current app uses local/base64 uploads
+- address
+- city
+- country
+- phone
+- email
+- website
+- tax_or_vat_number
+- registration_number
+- default_currency
+- default_language
+- default_payment_terms
+- default_notes
+- created_at
+- updated_at
+
+One user should have one main company profile for now.
+
+2. clients
+Fields:
+- id
+- user_id
+- name
+- company_name
+- email
+- phone
+- address
+- city
+- country
+- tax_or_vat_number
+- notes
+- created_at
+- updated_at
+
+A user can have many clients.
+
+Use foreign keys to users where compatible with the current database setup.
+Do not expose one user's data to another user.
+
+Part 2: Backend API routes
+Add authenticated API routes:
+
+Company profile:
+- GET /api/company-profile
+- POST /api/company-profile
+- PUT /api/company-profile
+
+Clients:
+- GET /api/clients
+- POST /api/clients
+- GET /api/clients/:id
+- PUT /api/clients/:id
+- DELETE /api/clients/:id
+
+Requirements:
+- All routes require authentication.
+- All records must be scoped to the logged-in user.
+- Return consistent JSON envelopes.
+- Validate inputs.
+- Do not allow users to access, edit, or delete another user's records.
+
+Example success response:
+
+{
+  "success": true,
+  "data": { ... }
+}
+
+Example validation error:
+
+{
+  "success": false,
+  "error": "Invalid request",
+  "message": "Please provide a company name."
+}
+
+Part 3: Company Profile UI
+Create or improve a page:
+
+/settings/company
+
+Users should be able to add and edit:
+- Company name
+- Logo
+- Address
+- City
+- Country
+- Phone
+- Email
+- Website
+- Tax/VAT number
+- Registration number
+- Default currency
+- Default language
+- Default payment terms
+- Default notes
+
+UI requirements:
+- Clean Xuvilo SaaS design
+- Mobile friendly
+- Save button with loading state
+- Success message after saving
+- Validation messages
+- Empty state if no profile exists yet
+
+Part 4: Client Management UI
+Create or improve page:
+
+/clients
+
+Users should be able to:
+- See client list
+- Search clients
+- Add client
+- Edit client
+- Delete client
+- View client details
+- Save notes
+
+Fields:
+- Client/contact name
+- Company name
+- Email
+- Phone
+- Address
+- City
+- Country
+- Tax/VAT number
+- Notes
+
+UI requirements:
+- Clean table or cards
+- Mobile friendly
+- Empty state:
+  “No clients saved yet. Add your first client.”
+- Confirm before delete
+- Do not show clients from other users
+
+Part 5: Dashboard integration
+Update dashboard to show:
+- Company profile completion status
+- Saved clients count
+- Recent clients if available
+- Quick action buttons:
+  - Add company profile
+  - Add client
+  - Create invoice
+  - Create quotation
+  - Create receipt
+
+If the user has no company profile, show a helpful prompt:
+“Save your company profile to auto-fill future invoices, quotations, and receipts.”
+
+Part 6: Auto-fill document tools
+Update invoice, quotation, and receipt tools carefully.
+
+When a logged-in user opens these tools:
+- Load saved company profile if available.
+- Auto-fill seller/company fields.
+- Allow the user to select a saved client.
+- Auto-fill client fields after selection.
+- Allow manual editing after auto-fill.
+- Do not force login for basic use if public use currently works.
+- If user is logged out, keep current manual form behavior.
+
+Add a small prompt for logged-out users:
+“Create a free account to save your company profile and clients for faster document creation.”
+
+Part 7: Security
+Verify:
+- Company profile is only accessible by its owner.
+- Clients are only accessible by their owner.
+- APIs require auth.
+- No private user data appears in public pages.
+- Validation prevents empty or malformed required data.
+- Delete operations are scoped by user_id.
+
+Part 8: Tests
+Test:
+
+1. Logged-in user can create company profile.
+2. Company profile persists after refresh.
+3. Logged-in user can edit company profile.
+4. Logged-in user can add a client.
+5. Client persists after refresh.
+6. Logged-in user can edit and delete client.
+7. User A cannot access User B's client or company profile.
+8. Dashboard shows company/profile and client counts correctly.
+9. Invoice tool auto-fills company profile.
+10. Invoice tool can select saved client and auto-fill buyer/client fields.
+11. Quotation tool auto-fills company profile and saved client.
+12. Receipt tool auto-fills company profile and saved client.
+13. Logged-out users can still use the tools manually.
+14. AI Writer still shows the correct friendly unavailable message if no OpenAI credits.
+15. Existing calculators, templates, pricing, blog, and country pages still work.
+
+Part 9: Final report
+When finished, provide:
+
+1. Files changed
+2. Database tables created
+3. API routes added
+4. Company profile UI added
+5. Client management UI added
+6. Dashboard updates
+7. Auto-fill integration details
+8. Security checks
+9. Test results
+10. Any limitations
+11. Recommended Step 4

@@ -1,0 +1,62 @@
+Add JSON-LD schema markup to all pages.
+
+For every blog post, add inside <head>:
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "[PAGE_META title for this slug]",
+  "author": {"@type": "Organization", "name": "Xuvilo Team"},
+  "publisher": {"@type": "Organization", "name": "Xuvilo", "url": "https://xuvilo.com"},
+  "datePublished": "2026-05-01",
+  "url": "https://xuvilo.com/blog/[slug]",
+  "description": "[PAGE_META description for this slug]"
+}
+</script>
+
+For homepage add:
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Xuvilo Business Hub",
+  "url": "https://xuvilo.com",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Free invoice generator, quotation maker, receipt creator and business calculators for MENA freelancers and SMEs."
+}
+</script>
+
+For every calculator landing page add:
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "[Calculator H1 name]",
+  "url": "https://xuvilo.com/calculators/[slug]",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "[PAGE_META description for this calculator]"
+}
+</script>
+
+For /invoice, /quotation, /receipt add:
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "[tool name]",
+  "url": "https://xuvilo.com/[tool]",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+After deploying verify:
+curl -s https://xuvilo.com/blog/zatca-invoice-requirements-saudi-arabia | grep "application/ld+json"
+curl -s https://xuvilo.com/ | grep "application/ld+json"
+curl -s https://xuvilo.com/calculators/vat-calculator | grep "application/ld+json"
+All 3 must return results. Deploy and confirm.

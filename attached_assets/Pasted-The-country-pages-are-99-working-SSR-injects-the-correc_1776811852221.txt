@@ -1,0 +1,100 @@
+The country pages are 99% working. SSR injects the 
+correct title server-side (tab shows "Free Invoice 
+Generator for Libya") but when React hydrates, 
+Wouter replaces the page with its own 404 component.
+
+This is ONLY a client-side routing issue in Wouter.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SHOW ME FIRST — DO NOT FIX BLINDLY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before making any changes, show me the EXACT 
+contents of App.tsx — specifically:
+
+1. The full import list at the top
+2. The complete <Switch> or router block
+3. How CountryPage is imported
+4. The exact route pattern used for country pages
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE FIX — AFTER SHOWING ME THE CODE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The issue is that Wouter v2/v3 does NOT support 
+RegExp routes or partial segment matching like 
+/invoice-generator-:slug properly.
+
+Replace the country route with this approach:
+
+OPTION A — Use a wrapper route (most reliable):
+
+In App.tsx, add this route inside your Switch,
+BEFORE the 404 catch-all:
+
+<Route path="/invoice-generator-:slug" 
+       component={CountryPage} />
+
+Then in CountryPage.tsx, get the slug like this:
+
+import { useRoute } from 'wouter'
+
+export default function CountryPage() {
+  const [match, params] = useRoute(
+    '/invoice-generator-:slug'
+  )
+  const slug = params?.slug
+  
+  if (!slug) return <NotFound />
+  
+  const country = countries.find(c => c.slug === slug)
+  if (!country) return <NotFound />
+  
+  return <CountryPageContent country={country} />
+}
+
+OPTION B — Read slug from window.location directly
+(use this if useRoute still fails):
+
+export default function CountryPage() {
+  const slug = window.location.pathname
+    .split('/invoice-generator-')[1]
+    ?.split('/')[0]
+    ?.split('?')[0]
+  
+  const country = countries.find(c => c.slug === slug)
+  if (!country) return <NotFound />
+  
+  return <CountryPageContent country={country} />
+}
+
+And in App.tsx the route becomes:
+
+// Match ANY path starting with /invoice-generator-
+<Route path="/invoice-generator-:slug">
+  <CountryPage />
+</Route>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALSO FIX — robots.txt wrong domain
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+robots.txt currently shows:
+Sitemap: https://businesses-hub.replit.app/sitemap.xml
+
+Change to:
+Sitemap: https://attached-assets-zakaburawais.replit.app/sitemap.xml
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After fixing, open these in browser and confirm 
+they show actual country page content NOT 404:
+
+https://attached-assets-zakaburawais.replit.app/invoice-generator-libya
+https://attached-assets-zakaburawais.replit.app/invoice-generator-saudi-arabia
+https://attached-assets-zakaburawais.replit.app/invoice-generator-uae
+
+Show screenshots of actual working pages.
+Do not report success without screenshots.

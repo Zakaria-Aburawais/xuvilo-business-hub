@@ -1,0 +1,40 @@
+Please update the company logo size, positioning, and visibility across ALL document templates.
+
+Context:
+I created an invoice and the company logo appears too tiny at the top of the document. It is not clearly visible and does not look professional. I need the logo to be larger, clearer, and nicely positioned.
+
+Scope:
+Apply this improvement to all templates across all categories, including but not limited to:
+- Invoice templates
+- Quotation templates
+- Receipt templates
+- Any other document/PDF preview/export templates where the company logo appears
+
+Requirements:
+1. Increase the logo size so it is clearly visible and professional.
+2. Keep the logo proportional — do not stretch or distort it.
+3. Position the logo neatly in the document header.
+4. Make sure the logo aligns well with the company name, address, phone number, and email.
+5. Use consistent logo sizing and spacing across Invoice, Quotation, Receipt, and any other templates.
+6. Check both the live preview and the exported PDF version.
+7. Ensure the logo still looks good on:
+   - Desktop preview
+   - Mobile preview
+   - PDF export
+   - Print layout
+8. If the logo file is small, still display it at a reasonable size without making it blurry.
+9. Add proper fallback behavior:
+   - If no logo is uploaded, the layout should still look clean.
+   - If a logo is uploaded, it should appear clearly in the header.
+10. Do not remove or change any existing document fields, calculations, styling, or functions.
+11. If there are existing template components already controlling logo size, update them instead of creating duplicate logic.
+12. After making the change, audit all templates to confirm the fix applies everywhere.
+
+Suggested design:
+- Logo width: around 80–120px depending on the template layout.
+- Logo height: auto.
+- Header spacing: balanced and professional.
+- Logo position: preferably top-left or aligned neatly above/next to company details, depending on the existing template design.
+
+Important:
+Please only update the logo display size, positioning, and consistency across templates. Do not redesign the full templates unless necessary to make the logo look professional.

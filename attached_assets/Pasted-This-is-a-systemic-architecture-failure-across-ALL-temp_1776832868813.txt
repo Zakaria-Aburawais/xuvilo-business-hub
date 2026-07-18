@@ -1,0 +1,480 @@
+This is a systemic architecture failure across 
+ALL templates in ALL categories (Invoice, 
+Quotation, Receipt).
+
+Every template has this problem:
+- Thumbnail in gallery shows Layout X
+- Opening the template shows Layout Y
+- They are completely different components
+- Users are being deceived on every single template
+
+This is NOT a bug to patch. 
+The entire templates system needs to be rebuilt 
+from scratch with the correct architecture.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STOP AND ANSWER THESE QUESTIONS FIRST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before writing a single line of code, show me:
+
+Q1: How many unique React components exist 
+    for invoice rendering?
+    List them by filename.
+
+Q2: How many unique React components exist 
+    for quotation rendering?
+    List them by filename.
+
+Q3: How many unique React components exist 
+    for receipt rendering?
+    List them by filename.
+
+Q4: How many unique React components exist 
+    for gallery THUMBNAILS?
+    List them by filename.
+
+Q5: Show me the exact code that maps a 
+    template ID to a rendering component 
+    in the invoice tool.
+    (the switch/if/map that decides which 
+    component renders when template changes)
+
+Q6: Show me the exact code that maps a 
+    template ID to a thumbnail component 
+    in the gallery.
+
+Q7: Are Q5 and Q6 using the same components?
+    Yes or No?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE REBUILD PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After answering the questions above, 
+rebuild using this architecture:
+
+PHASE 1 — BUILD REAL TEMPLATE COMPONENTS
+
+Create these files in /src/templates/invoice/:
+- ClassicTemplate.tsx
+- DarkHeaderTemplate.tsx
+- SidebarTemplate.tsx
+- CenteredMinimalTemplate.tsx
+- TwoColumnTemplate.tsx
+- BoldHeroTemplate.tsx
+- ArabicRTLTemplate.tsx
+- BilingualTemplate.tsx
+- GovernmentFormalTemplate.tsx
+- DiagonalAccentTemplate.tsx
+
+Create these files in /src/templates/quotation/:
+- StandardQuoteTemplate.tsx
+- ProposalTemplate.tsx
+- ArabicQuoteTemplate.tsx
+- BilingualQuoteTemplate.tsx
+- PriceListTemplate.tsx
+- ConstructionEstimateTemplate.tsx
+
+Create these files in /src/templates/receipt/:
+- StandardReceiptTemplate.tsx
+- POSThermalTemplate.tsx
+- FormalFullPageTemplate.tsx
+- ArabicReceiptTemplate.tsx
+- DonationReceiptTemplate.tsx
+
+Each component:
+- Accepts props: { data: InvoiceData, 
+                  scale?: number,
+                  forPDF?: boolean }
+- Has completely unique JSX structure
+- NOT just color changes from other templates
+- Renders correctly at full size AND thumbnail
+
+PHASE 2 — BUILD THE SINGLE REGISTRY
+
+Create /src/templates/registry.ts:
+
+import { ClassicTemplate } from './invoice/ClassicTemplate'
+import { DarkHeaderTemplate } from './invoice/DarkHeaderTemplate'
+// ... all imports
+
+export interface TemplateDefinition {
+  id: string
+  name: string
+  nameAr: string
+  type: 'invoice' | 'quotation' | 'receipt'
+  component: React.ComponentType<any>
+  style: string
+  language: 'en' | 'ar' | 'bilingual'
+  tags: string[]
+  industry?: string
+}
+
+export const TEMPLATE_REGISTRY: 
+  Record<string, TemplateDefinition> = {
+
+  // ── INVOICE TEMPLATES ──
+  'inv-classic': {
+    id: 'inv-classic',
+    name: 'Classic White',
+    nameAr: 'كلاسيك أبيض',
+    type: 'invoice',
+    component: ClassicTemplate,
+    style: 'minimal',
+    language: 'en',
+    tags: ['Clean', 'Simple']
+  },
+  'inv-dark-header': {
+    id: 'inv-dark-header',
+    name: 'Corporate Dark',
+    nameAr: 'كوربوريت داكن',
+    type: 'invoice',
+    component: DarkHeaderTemplate,
+    style: 'corporate',
+    language: 'en',
+    tags: ['Dark', 'Bold']
+  },
+  'inv-sidebar': {
+    id: 'inv-sidebar',
+    name: 'Modern Sidebar',
+    nameAr: 'سايدبار حديث',
+    type: 'invoice',
+    component: SidebarTemplate,
+    style: 'modern',
+    language: 'en',
+    tags: ['Sidebar', 'Modern']
+  },
+  'inv-centered': {
+    id: 'inv-centered',
+    name: 'Centered Minimal',
+    nameAr: 'مينيمال وسط',
+    type: 'invoice',
+    component: CenteredMinimalTemplate,
+    style: 'minimal',
+    language: 'en',
+    tags: ['Minimal', 'Clean']
+  },
+  'inv-two-col': {
+    id: 'inv-two-col',
+    name: 'Two Column',
+    nameAr: 'عمودين',
+    type: 'invoice',
+    component: TwoColumnTemplate,
+    style: 'modern',
+    language: 'en',
+    tags: ['Professional']
+  },
+  'inv-bold-hero': {
+    id: 'inv-bold-hero',
+    name: 'Bold Hero',
+    nameAr: 'رقم بارز',
+    type: 'invoice',
+    component: BoldHeroTemplate,
+    style: 'modern',
+    language: 'en',
+    tags: ['Bold', 'Creative']
+  },
+  'inv-arabic-rtl': {
+    id: 'inv-arabic-rtl',
+    name: 'Arabic Classic',
+    nameAr: 'عربي كلاسيك',
+    type: 'invoice',
+    component: ArabicRTLTemplate,
+    style: 'arabic-first',
+    language: 'ar',
+    tags: ['Arabic', 'RTL']
+  },
+  'inv-bilingual': {
+    id: 'inv-bilingual',
+    name: 'Bilingual',
+    nameAr: 'ثنائي اللغة',
+    type: 'invoice',
+    component: BilingualTemplate,
+    style: 'arabic-first',
+    language: 'bilingual',
+    tags: ['Arabic', 'English', 'Bilingual']
+  },
+  'inv-government': {
+    id: 'inv-government',
+    name: 'Government Formal',
+    nameAr: 'حكومي رسمي',
+    type: 'invoice',
+    component: GovernmentFormalTemplate,
+    style: 'government',
+    language: 'en',
+    tags: ['Formal', 'Official', 'Stamp']
+  },
+  'inv-diagonal': {
+    id: 'inv-diagonal',
+    name: 'Diagonal Accent',
+    nameAr: 'قطري عصري',
+    type: 'invoice',
+    component: DiagonalAccentTemplate,
+    style: 'modern',
+    language: 'en',
+    tags: ['Creative', 'Modern']
+  },
+
+  // ── QUOTATION TEMPLATES ──
+  'quo-standard': {
+    id: 'quo-standard',
+    name: 'Standard Quote',
+    nameAr: 'عرض سعر قياسي',
+    type: 'quotation',
+    component: StandardQuoteTemplate,
+    style: 'minimal',
+    language: 'en',
+    tags: ['Clean', 'Professional']
+  },
+  'quo-proposal': {
+    id: 'quo-proposal',
+    name: 'Proposal Style',
+    nameAr: 'عرض تقديمي',
+    type: 'quotation',
+    component: ProposalTemplate,
+    style: 'corporate',
+    language: 'en',
+    tags: ['Proposal', 'Detailed']
+  },
+  'quo-arabic': {
+    id: 'quo-arabic',
+    name: 'Arabic Quote',
+    nameAr: 'عرض سعر عربي',
+    type: 'quotation',
+    component: ArabicQuoteTemplate,
+    style: 'arabic-first',
+    language: 'ar',
+    tags: ['Arabic', 'RTL']
+  },
+  'quo-bilingual': {
+    id: 'quo-bilingual',
+    name: 'Bilingual Quote',
+    nameAr: 'عرض سعر ثنائي',
+    type: 'quotation',
+    component: BilingualQuoteTemplate,
+    style: 'arabic-first',
+    language: 'bilingual',
+    tags: ['Arabic', 'English']
+  },
+  'quo-price-list': {
+    id: 'quo-price-list',
+    name: 'Price List',
+    nameAr: 'قائمة أسعار',
+    type: 'quotation',
+    component: PriceListTemplate,
+    style: 'modern',
+    language: 'en',
+    tags: ['Catalog', 'Products']
+  },
+  'quo-construction': {
+    id: 'quo-construction',
+    name: 'Construction Estimate',
+    nameAr: 'تقدير مقاولات',
+    type: 'quotation',
+    component: ConstructionEstimateTemplate,
+    style: 'government',
+    language: 'en',
+    tags: ['Construction', 'Engineering']
+  },
+
+  // ── RECEIPT TEMPLATES ──
+  'rec-standard': {
+    id: 'rec-standard',
+    name: 'Standard Receipt',
+    nameAr: 'إيصال قياسي',
+    type: 'receipt',
+    component: StandardReceiptTemplate,
+    style: 'minimal',
+    language: 'en',
+    tags: ['Clean', 'Simple']
+  },
+  'rec-pos': {
+    id: 'rec-pos',
+    name: 'POS Thermal',
+    nameAr: 'إيصال نقطة بيع',
+    type: 'receipt',
+    component: POSThermalTemplate,
+    style: 'compact',
+    language: 'en',
+    tags: ['POS', 'Thermal', 'Retail']
+  },
+  'rec-formal': {
+    id: 'rec-formal',
+    name: 'Formal Full Page',
+    nameAr: 'إيصال رسمي',
+    type: 'receipt',
+    component: FormalFullPageTemplate,
+    style: 'government',
+    language: 'en',
+    tags: ['Formal', 'Stamp', 'Signature']
+  },
+  'rec-arabic': {
+    id: 'rec-arabic',
+    name: 'Arabic Receipt',
+    nameAr: 'إيصال عربي',
+    type: 'receipt',
+    component: ArabicReceiptTemplate,
+    style: 'arabic-first',
+    language: 'ar',
+    tags: ['Arabic', 'RTL']
+  },
+  'rec-donation': {
+    id: 'rec-donation',
+    name: 'Donation Receipt',
+    nameAr: 'إيصال تبرع',
+    type: 'receipt',
+    component: DonationReceiptTemplate,
+    style: 'minimal',
+    language: 'en',
+    tags: ['NGO', 'Charity', 'Donation']
+  },
+}
+
+// Helper to get all templates of a type:
+export const getTemplatesByType = (
+  type: 'invoice' | 'quotation' | 'receipt'
+) => Object.values(TEMPLATE_REGISTRY)
+     .filter(t => t.type === type)
+
+// Helper to get a single template:
+export const getTemplate = (id: string) => 
+  TEMPLATE_REGISTRY[id]
+
+PHASE 3 — USE REGISTRY EVERYWHERE
+
+In the gallery (TemplatePicker.tsx):
+Replace ALL existing thumbnail logic with:
+
+{Object.values(TEMPLATE_REGISTRY)
+  .filter(t => t.type === currentFilter)
+  .map(template => {
+    const TemplateComp = template.component
+    return (
+      <div key={template.id} 
+           className="template-card"
+           onClick={() => selectTemplate(template.id)}>
+        
+        {/* THUMBNAIL — same component, scaled */}
+        <div className="thumbnail-container">
+          <div className="thumbnail-scaler">
+            <TemplateComp 
+              data={SAMPLE_DATA[template.type]} 
+              isThumbnail={true}
+            />
+          </div>
+        </div>
+        
+        <div className="template-info">
+          <h3>{template.name}</h3>
+          <div className="tags">
+            {template.tags.map(tag => 
+              <span key={tag}>{tag}</span>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  })
+}
+
+In the invoice tool (Invoice.tsx):
+Replace template rendering with:
+
+const template = getTemplate(selectedTemplateId 
+                 || 'inv-classic')
+const TemplateComp = template.component
+
+// In preview:
+<TemplateComp data={liveFormData} />
+
+// In PDF generation:
+<TemplateComp data={invoiceData} forPDF={true} />
+
+In the quotation tool (Quotation.tsx):
+Same pattern using quo-* template IDs
+
+In the receipt tool (Receipt.tsx):
+Same pattern using rec-* template IDs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SAMPLE DATA FOR THUMBNAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const SAMPLE_DATA = {
+  invoice: {
+    businessName: "شركة الأعمال / Business Co",
+    businessAddress: "123 Business St, Dubai, UAE",
+    businessEmail: "info@company.com",
+    businessPhone: "+971 50 000 0000",
+    clientName: "Client Name",
+    clientAddress: "456 Client Ave, Dubai, UAE",
+    invoiceNumber: "INV-2025-001",
+    date: "2025-01-15",
+    dueDate: "2025-02-15",
+    currency: "USD",
+    items: [
+      { description: "Consulting Services", 
+        qty: 3, price: 500, total: 1500 },
+      { description: "UI/UX Design", 
+        qty: 1, price: 800, total: 800 },
+      { description: "Development", 
+        qty: 5, price: 200, total: 1000 },
+    ],
+    subtotal: 3300,
+    tax: 495,
+    total: 3795,
+    notes: "Payment due within 30 days"
+  },
+  quotation: {
+    businessName: "Business Co",
+    clientName: "Client Name",
+    quoteNumber: "QUO-2025-001",
+    date: "2025-01-15",
+    validUntil: "2025-02-15",
+    currency: "USD",
+    items: [
+      { description: "Main Service", 
+        qty: 1, price: 2500, total: 2500 },
+      { description: "Add-on", 
+        qty: 2, price: 500, total: 1000 },
+    ],
+    subtotal: 3500,
+    total: 3500,
+    terms: "Valid for 30 days from issue date"
+  },
+  receipt: {
+    businessName: "Business Co",
+    receivedFrom: "Client Name",
+    receiptNumber: "REC-2025-001",
+    date: "2025-01-15",
+    currency: "USD",
+    amount: 3795,
+    paymentMethod: "Bank Transfer",
+    description: "Payment for Invoice INV-2025-001"
+  }
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION — MANDATORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After completing the rebuild, test EVERY 
+template by taking side-by-side screenshots:
+
+For each template:
+LEFT: Gallery thumbnail
+RIGHT: Opened invoice preview
+
+They must be identical layouts.
+
+Test and report all 21 templates:
+10 invoice + 6 quotation + 5 receipt
+
+Format:
+inv-classic: thumbnail ✅ matches preview ✅
+inv-dark-header: thumbnail ✅ matches preview ✅
+inv-sidebar: thumbnail ✅ matches preview ✅
+... etc for all 21
+
+Do NOT report complete until all 21 pass.

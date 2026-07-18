@@ -1,0 +1,169 @@
+PROMPT
+You are adding two high-value tools to Businesses Hub: a professional Company Stamp / Seal Maker and a Temporary Email Service. Both must be bilingual (Arabic + English), mobile-responsive, and dark-mode compatible.
+
+TOOL A — COMPANY STAMP / SEAL MAKER
+Why This Tool Matters
+Company stamps (اختام الشركات) are legally and culturally essential across all Arab countries. Every invoice, contract, quotation, letter, and official document requires a company stamp. This tool is a major traffic driver because businesses constantly search for "stamp maker online Arabic". No competitor does this well in Arabic.
+
+Page Route: /tools/stamp-maker
+SEO Title (EN): "Free Company Stamp Maker — Arabic & English | Businesses Hub"
+SEO Title (AR): "صانع أختام الشركات مجاناً — عربي وإنجليزي"
+
+LAYOUT
+Split into two panels on desktop:
+
+Left panel (40%): All controls organized in collapsible accordion sections
+Right panel (60%): Live stamp preview centered on a white card with shadow. Below: export buttons.
+
+On mobile: controls on top, sticky preview at bottom, export buttons fixed to bottom of screen.
+
+STAMP CANVAS
+Use HTML5 Canvas (600x600px, displayed at 100% of container). Re-render everything on canvas each time any setting changes.
+Layer 1 — Outer border shape
+
+Shape options: Circle | Oval (wider) | Rounded Square | Rounded Rectangle
+Border rings: Single | Double (two concentric) | Triple
+Border thickness slider: 2 / 4 / 6 / 8px
+Color: global stamp color
+
+Layer 2 — Outer arc text (top)
+
+Text curves along top arc of stamp
+Input: company name (supports Arabic and English)
+Font: Cairo for Arabic, Montserrat or Playfair for English — detect based on character set
+Font size slider, letter spacing slider
+Optional star dividers at start/end of text (toggle)
+For Arabic: use opentype.js for correct glyph shaping on canvas (ctx.fillText breaks Arabic)
+
+Layer 3 — Inner arc text (bottom)
+
+Text curves along bottom arc (mirrored)
+Input: city / country / registration number / website
+Same font and size controls
+Optional star or diamond dividers
+
+Layer 4 — Center content (user picks ONE)
+
+Company initials — 1-3 letters, auto-generated from company name if left blank
+Logo upload — user uploads PNG/JPG, rendered clipped to circle
+Built-in icon — grid of 12 options: star, crescent-and-star, eagle, palm tree, anchor, globe, shield, wheat, handshake, building, diamond, crown (drawn as canvas paths)
+Center text — second line of text (department, year founded, tagline)
+Blank center
+
+Layer 5 — Decorative elements (toggles)
+
+Inner decorative ring (thin circle just inside the text arc)
+Short horizontal divider lines left and right of center
+Dot pattern ring between inner and outer border
+
+Layer 6 — Ink / Texture effect
+
+Clean (default): solid crisp lines
+Ink stamp: apply canvas pixel manipulation — randomly set ~3% of non-transparent pixels to transparent using getImageData(), simulating ink gaps and pressed-stamp texture
+Worn / Vintage: heavier version of ink effect, faded edges
+
+
+CONTROL PANEL — Accordion Sections
+Section 1: Shape & Size
+
+Shape: Circle | Oval | Rounded Square | Rounded Rectangle (icon buttons)
+Size: Small (200px) | Medium (300px) | Large (400px)
+Border rings: Single | Double | Triple
+Border thickness slider
+
+Section 2: Colors
+
+Stamp color presets (swatches): Classic Red #CC0000, Navy #003087, Forest Green #1B5E20, Black #1A1A1A, Purple #4A0080, Gold #C9A94A, Teal #006666, Burgundy #800020
+Full color picker below swatches
+Background: Transparent | White | Custom
+Text color: Match stamp | White | Black | Custom
+
+Section 3: Outer Text (Top Arc)
+
+Text input (Arabic and English)
+Font selector: 5 options as visual previews (Cairo Bold, Montserrat Bold, Playfair, Oswald, Rajdhani)
+Font size slider
+Letter spacing slider
+Star dividers toggle
+
+Section 4: Inner Text (Bottom Arc)
+
+Text input (Arabic and English)
+Same font, size, spacing controls
+Divider toggle
+
+Section 5: Center Content
+
+Radio: Initials | Logo | Icon | Text | Blank
+If Initials: text input + font size slider
+If Logo: file upload + preview + remove button
+If Icon: 12-icon visual grid
+If Text: text input + font size slider
+
+Section 6: Effects
+
+Clean | Ink Stamp | Worn Vintage (visual buttons with sample thumbnails)
+Intensity slider when ink/worn selected: Light / Medium / Heavy
+
+Section 7: Presets
+8 ready-made preset cards — click to load all settings at once:
+
+Classic Arabic — double ring, red, Arabic text, crescent-star icon, worn ink
+Modern Corporate — single ring, navy, English text, initials, clean
+Government Official — triple ring, navy, Arabic+English text, eagle, clean
+Logistics & Trade — single ring, teal, anchor icon, clean
+Legal & Law — double ring, black, minimal
+NGO / Organization — single ring, green, globe icon, clean
+Vintage Trader — double ring, burgundy, Arabic text, star dividers, worn ink
+Gold Executive — double ring, gold, crown icon, initials, clean
+
+
+LIVE PREVIEW PANEL
+
+Stamp centered on a white card (simulating paper)
+Second preview below: stamp shown overlaid on a mock invoice document in the bottom-right corner
+Toggle: "Show on document" — displays the stamp placed on a greyed-out A4 document preview
+Show stamp dimensions in mm below preview
+"Randomize" button: randomizes color + icon + effect for inspiration
+
+
+EXPORT OPTIONS
+Four export buttons:
+
+Download PNG (transparent background, 1000x1000px high-res)
+Download PNG (white background, 1000x1000px)
+Download SVG (vector, scalable)
+Download PDF (stamp centered on A4 page)
+
+Plus:
+
+Copy to clipboard button (PNG)
+"Use in my documents" button — saves stamp to localStorage/account, makes it available as an overlay on Invoice, Quotation, Receipt, PO, and Delivery Note generators
+
+
+ARABIC TEXT ON CANVAS — TECHNICAL REQUIREMENT
+DO NOT use ctx.fillText() for Arabic — it breaks letter joining and produces incorrect glyph shapes.
+Use this approach:
+
+Load opentype.js: https://cdn.jsdelivr.net/npm/opentype.js/dist/opentype.min.js
+Fetch Cairo font as ArrayBuffer from Google Fonts static CDN
+Parse font with opentype.load()
+Use font.getPath(text, x, y, fontSize) to get an SVG path object
+Draw the path on canvas using path2D.draw(ctx)
+For arc text: calculate character positions manually along the arc circumference, render each glyph rotated to follow the arc angle
+
+This is the ONLY correct way to render Arabic on HTML Canvas. Implement it fully.
+
+SEO CONTENT BLOCK
+Add below the tool (important for search traffic):
+EN heading: "Why Every Business in the Arab World Needs an Official Company Stamp"
+AR heading: "لماذا تحتاج كل شركة في العالم العربي إلى ختم رسمي"
+Content: 4 short paragraphs on the cultural and legal importance of stamps in Arab business, what information goes on a stamp, countries where stamps are required on official documents.
+Internal links to: Invoice Generator, Letterhead Builder, Purchase Order Generator.
+FAQ section: 5 questions optimized for Google featured snippets:
+
+"What information should be on a company stamp in Arabic?"
+"Is a company stamp required on invoices in Arab countries?"
+"How do I make a company stamp online for free?"
+"Can I use a digital stamp on official documents?"
+"What is the difference between a stamp and a seal?"

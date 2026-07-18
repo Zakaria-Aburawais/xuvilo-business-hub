@@ -1,0 +1,54 @@
+Diagnose and fix all horizontal-overflow and header-overlap problems on Xuvilo, with particular attention to the Arabic RTL interface.
+
+Known symptoms:
+
+- The live homepage document becomes approximately 11,000 pixels wide at a viewport around 1,359 pixels.
+- The scrolling tools strip appears to duplicate content and may be expanding the document width.
+- The Arabic search, dark-mode, language, login, and account controls have previously overlapped navigation items on smaller screens.
+- Fixed-position or absolutely positioned elements may be escaping their containers.
+
+Requirements:
+
+1. Identify the exact elements causing document-level horizontal overflow.
+2. Do not simply apply overflow-x:hidden to the entire body as a blind workaround.
+3. Correct the component generating the excessive width.
+4. The scrolling tools strip may animate internally, but it must remain clipped inside its own container.
+5. Ensure menus, buttons, icons, banners, cookie consent, hero content, carousels, pricing cards, and footer remain within the viewport.
+6. Use RTL-aware CSS, including logical properties such as margin-inline, padding-inline, inset-inline, and text alignment where appropriate.
+7. At mobile widths, use a proper menu/drawer instead of compressing all desktop navigation controls into one line.
+8. Ensure search, language selection, dark mode, login, and signup remain accessible.
+9. Do not remove navigation features just to make the layout fit.
+10. Avoid fixed widths that fail with longer Arabic text.
+11. Verify that no page has unintended horizontal scrolling.
+
+Test both Arabic RTL and English LTR at:
+
+- 320 × 568
+- 375 × 667
+- 390 × 844
+- 430 × 932
+- 768 × 1024
+- 1024 × 768
+- 1366 × 768
+- 1440 × 900
+
+Test at least:
+
+- Homepage
+- Invoice generator
+- Templates
+- Pricing
+- AI Writer
+- Blog/article page
+- Login and signup
+- Contact page
+
+Do not report completion until you provide:
+
+- The root cause.
+- Modified files.
+- Before-and-after document scrollWidth/clientWidth results.
+- Screenshots for Arabic and English at mobile and desktop sizes.
+- Confirmation that every tested page has no unintended horizontal scroll.
+- Production-build and automated test results.
+- Live production verification after deployment.

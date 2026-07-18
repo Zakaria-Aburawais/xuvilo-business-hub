@@ -1,0 +1,59 @@
+Audit and strengthen the HTTP security headers for xuvilo.com without breaking existing functionality.
+
+Current positive protections include HTTPS, HSTS, X-Content-Type-Options, X-Frame-Options, and a referrer policy. However, the homepage response does not appear to include a Content-Security-Policy or Permissions-Policy, and it exposes X-Powered-By: Express.
+
+Requirements:
+
+1. Inspect the actual production response headers for:
+   - Homepage and public pages
+   - Login and signup
+   - Dashboard
+   - API responses
+   - Static assets
+   - PDF and image downloads
+2. Disable X-Powered-By in Express.
+3. Create an accurate Content Security Policy based on resources Xuvilo genuinely uses.
+4. Do not use unsafe-inline or unsafe-eval unless technically unavoidable and fully justified.
+5. Prefer nonces or hashes for required inline scripts.
+6. Include only necessary origins for:
+   - Xuvilo
+   - Google Analytics/Tag Manager
+   - Authentication
+   - Fonts
+   - Images
+   - AI/API connections
+   - PDF generation
+   - Payment provider, if used
+7. Add an appropriate Permissions-Policy disabling capabilities the site does not use, such as camera, microphone, geolocation, and browsing topics.
+8. Review:
+   - frame-ancestors
+   - object-src
+   - base-uri
+   - form-action
+   - script-src
+   - connect-src
+   - img-src
+   - font-src
+   - upgrade-insecure-requests
+9. Review cookie attributes:
+   - Secure
+   - HttpOnly where appropriate
+   - SameSite
+   - Domain and path scope
+10. Do not mark client-readable preference cookies HttpOnly if the application genuinely needs JavaScript access.
+11. Confirm there is no mixed content.
+12. First test the CSP in report-only mode, review violations, then enforce it only after required services work.
+13. Ensure headers are applied consistently through Express, the deployment platform, or Cloudflare without conflicting duplicates.
+
+Do not perform intrusive penetration testing or attack third-party services.
+
+Do not report completion until you provide:
+
+- Before-and-after header results.
+- The final CSP and Permissions-Policy.
+- Every allowed external origin and why it is required.
+- Cookie-security findings.
+- Confirmation that login, signup, analytics consent, AI Writer, PDF export, QR generation, payments, and downloads still work.
+- Modified files.
+- Production-build and test results.
+- Live production header verification.

@@ -1,0 +1,21 @@
+You are tasked with improving Xuvilo’s Business Hub based on the recent audit report. Carefully review the report and address the following:
+
+1. **Stability and performance:** Fix the intermittent “502 Bad Gateway” issue on the root page. Optimize page load speed (image compression, code minification, CDN usage) to meet the industry benchmark that users expect pages to load within three seconds.
+
+2. **Invoice, quotation and receipt tools:** Refactor the line‑item editor to ensure descriptions, quantities and prices can be entered and saved intuitively. Add clear tooltips for fields like “Tax %” and “Discount %,” and allow users to tab between fields without resetting inputs.
+
+3. **Document Tracker:** Create a functioning document‑tracking module that’s clearly marked as a subscriber‑only feature. It should record when invoices are viewed or paid and allow scheduling of reminders. If visitors without a subscription click it, show a friendly “for subscribers” page rather than a 404 error.
+
+4. **Navigation and UX:** Redesign the top navigation bar. Group related tools under drop‑down menus (e.g., Documents, Design Tools, Utilities) and implement a search bar. Ensure all controls have accessible sizes for mobile users and support keyboard navigation.
+
+5. **Data export/import:** Add options to export invoice, client and product data as CSV/Excel and to import data from files. Plan an API endpoint for future integrations.
+
+6. **Security and privacy:** Publish a clear privacy policy and data‑ownership statement. Confirm that all forms and uploads are served over TLS and that sensitive data (e.g., logos) is stored securely.
+
+7. **Calculators and miscellaneous tools:** Audit each calculator to verify the formulas and user inputs work correctly; fix any broken logic. Add instructions or examples where necessary. Do the same for the stamp maker, business card maker, company‑profile generator and temp email tools.
+
+8. **Mobile and PWA:** Test all pages on various screen sizes. Adjust layouts, touch targets and forms to be mobile‑friendly. Begin planning a Progressive Web App (PWA) to allow offline usage and installation.
+
+After implementing these changes, run a comprehensive audit: test every tool end to end, verify accessibility (contrast ratios, ARIA labels), check for broken links, and confirm that subscribers and non‑subscribers see appropriate pages. Skip payment gateway integration until we have credentials; you can stub out payment functionality for future use.
+
+Output a summary of the fixes and the audit results, highlighting any remaining gaps. Ensure everything functions as expected.

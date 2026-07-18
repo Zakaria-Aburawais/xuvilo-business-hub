@@ -1,0 +1,115 @@
+Please expand the 6 thin Arabic blog posts identified in the Arabic Blog Sitemap Audit.
+
+Goal:
+Improve AdSense readiness and content quality by expanding each thin post with useful, original, non-duplicated content.
+
+Posts to expand:
+1. /blog/الفرق-بين-الفاتورة-وعرض-السعر
+2. /blog/انشاء-فاتورة-مجانية-اونلاين
+3. /blog/ضريبة-الدخل-للمستقلين
+4. /blog/كيف-تتبع-المدفوعات-المتأخرة
+5. /blog/اختيار-اسم-تجاري-للشركة
+6. /blog/حماية-بيانات-العملاء
+
+Important:
+- Do not change the sitemap structure unless automatically updated by the existing system.
+- Do not remove any posts.
+- Do not redesign the website.
+- Do not change tools, dashboard, auth, SaaS features, or pricing.
+- Keep the current tone and layout.
+- Keep the pages bilingual if they are currently bilingual.
+- Do not create AI-spam content.
+- Do not repeat the same paragraphs across posts.
+
+Content requirements for each post:
+1. Add 250–400 more original Arabic words.
+2. If the post has English content too, add 250–400 more original English words as well.
+3. Add 1–2 useful new sections per post.
+4. Add a short FAQ section with 3–5 relevant questions and answers.
+5. Add practical examples relevant to small businesses, freelancers, traders, contractors, and MENA users.
+6. Add internal links where natural:
+   - /invoice
+   - /quotation
+   - /receipt
+   - /templates
+   - /calculators
+   - /pricing
+7. Make sure each post remains unique and focused on its topic.
+8. Make sure the content is helpful, practical, and suitable for Google AdSense review.
+9. Avoid keyword stuffing.
+10. Avoid exaggerated claims.
+11. Avoid legal/tax advice wording. For tax-related content, clearly state that users should verify local rules or consult a qualified professional.
+
+Specific improvement guidance:
+
+1. الفرق بين الفاتورة وعرض السعر
+Add:
+- a practical comparison table
+- when to use each document
+- example for contractor/trader/freelancer
+- FAQ explaining whether a quotation becomes an invoice
+
+2. انشاء فاتورة مجانية اونلاين
+Add:
+- step-by-step invoice creation process
+- common invoice mistakes
+- how saving client details helps later
+- FAQ about PDF export and Arabic/English invoices
+
+3. ضريبة الدخل للمستقلين
+Add:
+- general explanation for freelancers without giving legal/tax advice
+- why keeping records matters
+- examples of income and expense records
+- FAQ reminding users to check local tax rules
+
+4. كيف تتبع المدفوعات المتأخرة
+Add:
+- simple payment tracking workflow
+- polite reminder message examples
+- invoice status examples: sent, due, overdue, paid
+- FAQ about when to send reminders
+
+5. اختيار اسم تجاري للشركة
+Add:
+- checklist for choosing a business name
+- examples of strong and weak names
+- domain/social media availability reminder
+- FAQ about registering business names
+
+6. حماية بيانات العملاء
+Add:
+- practical data protection checklist
+- examples of sensitive customer data
+- safe storage and access control tips
+- FAQ about customer privacy and document sharing
+
+SEO requirements:
+For each updated post:
+- keep or improve the title
+- keep or improve meta description if needed
+- keep canonical URL unchanged
+- keep page indexable
+- ensure no duplicate text blocks across posts
+- ensure internal links are relevant
+- ensure mobile layout remains clean
+
+Testing:
+After updates, verify:
+- all 6 posts return 200 OK
+- no page is blank
+- no broken internal links
+- no duplicate content introduced
+- sitemap remains valid
+- Search Console-ready canonicals remain correct
+
+Final response:
+Give me a clear summary with:
+1. Which 6 posts were expanded
+2. Approximate new Arabic word count for each
+3. Approximate new English word count for each, if applicable
+4. New sections added to each post
+5. Internal links added
+6. SEO metadata changes, if any
+7. Confirmation that sitemap remains valid
+8. Any remaining recommendations before applying to AdSense

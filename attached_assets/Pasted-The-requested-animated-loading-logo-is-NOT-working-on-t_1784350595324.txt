@@ -1,0 +1,48 @@
+The requested animated loading logo is NOT working on the live production website.
+
+I tested https://xuvilo.com directly. The loader still displays the Xuvilo logo fixed in the centre of the screen.
+
+The live loader currently renders:
+
+- /xuvilo-loading.webp
+- Width: 128px
+- Height: 128px
+- Fixed full-screen parent
+- No CSS animation
+- No transform
+- No movement
+- No bouncing behavior
+
+Inspect the development code and the currently deployed production version.
+
+Required repair:
+
+1. Find the exact initial loader that renders /xuvilo-loading.webp.
+2. Apply the bouncing movement to this actual loader—not to a different React loading component that appears later.
+3. The logo must move diagonally across the entire visible loading screen.
+4. It must bounce naturally when reaching every edge.
+5. Keep the complete logo inside the viewport at all times.
+6. Add a subtle tilt while moving.
+7. Use smooth, professional movement.
+8. Do not add artificial loading time.
+9. Stop and remove the loader immediately when essential content is ready.
+10. Respect prefers-reduced-motion.
+11. Prevent horizontal and vertical overflow.
+12. Test on desktop and mobile.
+
+Important:
+
+The initial loader may exist directly in the HTML entry file or server-rendered shell before the React application starts. Inspect that loader specifically. Do not modify only a later application loading component.
+
+After implementing:
+
+- Show me the exact modified file.
+- Show me the loader code before and after.
+- Run the production build.
+- Deploy the corrected build.
+- Open the actual production URL—not only the development preview.
+- Capture multiple frames proving the logo changes position while loading.
+- Verify through computed styles that the loader has active movement.
+- Confirm that the production deployment contains the new loader code.
+
+Do not report completion merely because the build succeeds. Do not report completion until https://xuvilo.com visibly shows the moving, edge-bouncing Xuvilo logo during initial loading.

@@ -1,0 +1,39 @@
+Audit and fix every pricing, usage-limit, and feature-count contradiction across the entire Xuvilo production codebase and database.
+
+The live website currently contains conflicting claims, including:
+
+1. The announcement bar says the Free plan is free forever.
+2. Some homepage and FAQ content says invoices, quotations, receipts, calculators, the AI Writer, and templates are completely free or unlimited.
+3. The homepage pricing section limits the Free plan to five invoices, five quotations, and five receipts per month.
+4. Some pages say there are 100+ templates, while others say 320+ templates.
+5. Some sections say there are 14 calculators, while one description says seven calculators.
+6. Search-engine descriptions may contain older or conflicting claims.
+
+Before changing anything:
+
+1. Locate the authoritative subscription-plan configuration in the code and database.
+2. Show me the actual enforced limits for Free, Pro, and Business accounts.
+3. Check whether unauthenticated users and Free users are technically limited.
+4. Do not invent limits or features.
+5. If the existing implementation does not clearly establish the intended limits, stop and show me the conflict before changing customer-facing claims.
+
+After identifying the real enforced plan:
+
+- Make the homepage, pricing page, FAQ, About page, How It Works page, tool pages, structured data, metadata, Arabic content, English content, announcement bar, and database-managed content consistent.
+- Use one exact number for templates.
+- Use one exact number for calculators.
+- Clearly distinguish “free forever” from “unlimited” if the Free plan has monthly limits.
+- Do not advertise premium features as free.
+- Ensure the Arabic text communicates exactly the same limits as the English text.
+- Search the entire repository and database for obsolete claims such as “completely free,” “unlimited invoices,” “100+,” “320+,” “7 calculators,” and “14 calculators.”
+
+Run the production build and relevant tests.
+
+Do not report completion until you provide:
+
+1. The authoritative plan configuration and enforced limits.
+2. A list of every modified file and database record.
+3. Before-and-after wording for the major claims.
+4. Search results proving contradictory wording no longer exists.
+5. Production-build results.
+6. The deployed production URLs where the corrected information can be verified.

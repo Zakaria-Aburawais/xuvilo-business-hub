@@ -1,0 +1,342 @@
+Implement three new features for Businesses Hub:
+Invoice tracking, no sign-up free trial flow,
+and an Arabic SEO blog.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURE 1 — INVOICE TRACKING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Allow users to track the status of sent invoices
+without requiring an account.
+
+1. SHAREABLE INVOICE LINK
+   After generating an invoice, show a 
+   "Share & Track" button next to Download PDF.
+   
+   When clicked:
+   - Generate a unique 8-character ID for the invoice
+     e.g. "INV-X7K2M9P4"
+   - Store the invoice data in localStorage with this ID
+   - Create a shareable URL:
+     /invoice/track/[ID]
+   - Show the URL in a modal with:
+     - Copy link button
+     - WhatsApp share button
+     - "Your client can view and confirm this invoice 
+       at the link above"
+
+2. CLIENT VIEW PAGE
+   Create route: /invoice/track/:id
+   
+   This page shows the invoice to the client:
+   - Full invoice preview (read-only)
+   - Three action buttons at the top:
+     ✅ "Confirm Receipt / تأكيد الاستلام"
+     💬 "Send Message / إرسال رسالة"  
+     ⬇️ "Download PDF / تحميل PDF"
+   
+   When client clicks "Confirm Receipt":
+   - Show a confirmation modal:
+     "Confirm you have received this invoice?"
+     [Confirm] [Cancel]
+   - On confirm: update invoice status to "Seen ✅"
+   - Store status update in localStorage
+   - Show thank you message:
+     "Thank you! The sender has been notified."
+
+3. INVOICE STATUS TRACKING
+   On the sender's invoice form, add a 
+   "My Invoices" section or link that shows:
+   
+   A simple list of recent invoices stored locally:
+   
+   ┌─────────────────────────────────────────┐
+   │ #INV-001  |  Client Name  |  $1,250  │
+   │ Status: 👁 Seen ✅  |  2026-04-21      │
+   ├─────────────────────────────────────────┤
+   │ #INV-002  |  Client Name  |  $800    │
+   │ Status: 📤 Sent  |  2026-04-20         │
+   └─────────────────────────────────────────┘
+   
+   Status options:
+   - 📤 Sent (default when link is shared)
+   - 👁 Seen (client opened the link)
+   - ✅ Confirmed (client clicked confirm)
+   - 💰 Paid (sender manually marks as paid)
+   - ❌ Overdue (past due date, auto-detected)
+   
+   Add a "Mark as Paid" button on each invoice row.
+   
+   Store all data in localStorage under key:
+   "businesseshub_invoices"
+
+4. TRACKER PAGE
+   The existing /tracker route should become
+   this invoice tracking dashboard.
+   
+   Show all locally stored invoices in a clean table:
+   - Invoice number
+   - Client name
+   - Amount + currency
+   - Issue date / Due date
+   - Status badge (color coded)
+   - Actions: View | Share Link | Mark Paid | Delete
+   
+   Add filter tabs at top:
+   All | Sent | Seen | Confirmed | Paid | Overdue
+   
+   Add summary cards at top:
+   ┌──────────┐ ┌──────────┐ ┌──────────┐
+   │ Total    │ │  Paid    │ │ Pending  │
+   │ $12,450  │ │  $8,200  │ │  $4,250  │
+   └──────────┘ └──────────┘ └──────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURE 2 — NO SIGN-UP FREE TRIAL FLOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Remove ALL friction from first use. Users should
+be able to create and download a complete invoice
+without any account, email, or sign-up.
+
+1. REMOVE SIGN-UP GATES
+   Audit every point where the app asks for 
+   sign-up or login before allowing action.
+   
+   The following must work WITHOUT any account:
+   - Creating an invoice ✓ (already works)
+   - Downloading as PDF ✓ (already works)
+   - Changing templates
+   - Using calculators
+   - Browsing all templates
+   - Using stamp maker
+   - Using temp email tool
+   - Sharing invoice tracking link
+   
+   If any of these currently require login,
+   remove that requirement immediately.
+
+2. SOFT SIGN-UP PROMPT (not a gate)
+   After a user downloads their SECOND invoice:
+   Show a non-blocking banner at the top:
+   
+   "💾 Save your invoices across devices — 
+   Create a free account to never lose your work.
+   [Create Free Account]  [Maybe Later]"
+   
+   - "Maybe Later" dismisses for the session
+   - Never show this before the second download
+   - Never block the download to show this
+   - Store dismissal in localStorage
+
+3. GUEST MODE INDICATOR
+   In the top nav, where Login/Sign Up buttons are,
+   add a subtle indicator for guest users:
+   
+   Show a small pill: "👤 Guest Mode"
+   On hover/click show tooltip:
+     "You're using Businesses Hub as a guest.
+      Your invoices are saved locally on this device.
+      Create a free account to sync across devices."
+   
+   This replaces feeling like a stranger with
+   feeling like a valued guest.
+
+4. LOCAL STORAGE AUTO-SAVE
+   Every invoice the user creates should be 
+   auto-saved to localStorage immediately:
+   - Save on every form change (debounced 2s)
+   - On page load, restore last invoice state
+   - Show subtle "Auto-saved ✓" indicator
+   - Allow user to see "Recent Invoices" 
+     without signing in
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURE 3 — ARABIC SEO BLOG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create a blog section targeting Arabic-language
+search terms that competitors are ignoring.
+
+1. BLOG ROUTE STRUCTURE
+   Create these routes:
+   /blog — Blog index page
+   /blog/:slug — Individual article page
+   
+   Both must be SSR rendered (visible to Google
+   without JavaScript — same as country pages)
+
+2. BLOG INDEX PAGE (/blog)
+   Header: "مدونة Businesses Hub — نصائح الأعمال"
+   Subheader: "دليلك للفواتير والأعمال في المنطقة العربية"
+   
+   Show article cards in a 3-column grid:
+   Each card has: thumbnail, title (AR+EN), 
+   excerpt, date, read time, category tag
+   
+   Category filter tabs:
+   الكل | الفواتير | الضرائب | الأعمال | قوانين | نصائح
+
+3. CREATE 10 LAUNCH ARTICLES
+   Write full articles (800-1200 words each)
+   in Arabic with English subheadings.
+   
+   Article 1:
+   Slug: /blog/كيف-تصدر-فاتورة-ضريبية-في-ليبيا
+   Title AR: كيف تصدر فاتورة ضريبية في ليبيا؟
+   Title EN: How to Issue a Tax Invoice in Libya
+   Target keyword: فاتورة ضريبية ليبيا
+   Content: Libya invoicing requirements, LYD 
+   currency, what fields are required, templates
+   
+   Article 2:
+   Slug: /blog/فاتورة-ضريبية-zatca-السعودية
+   Title AR: كل ما تحتاج معرفته عن فاتورة زاتكا
+   Title EN: Complete Guide to ZATCA Invoicing KSA
+   Target keyword: فاتورة زاتكا, zatca فاتورة
+   Content: ZATCA phases, QR code requirements,
+   penalties, how Businesses Hub helps comply
+   
+   Article 3:
+   Slug: /blog/كيف-تكتب-عرض-سعر-احترافي
+   Title AR: كيف تكتب عرض سعر احترافي؟
+   Title EN: How to Write a Professional Quotation
+   Target keyword: عرض سعر احترافي
+   Content: What to include in a quotation,
+   validity dates, terms, Arabic templates
+   
+   Article 4:
+   Slug: /blog/الفرق-بين-الفاتورة-وعرض-السعر
+   Title AR: ما الفرق بين الفاتورة وعرض السعر؟
+   Title EN: Invoice vs Quotation — What's the Difference?
+   Target keyword: الفرق بين الفاتورة وعرض السعر
+   Content: Clear explanation with examples,
+   when to use each, Arabic business context
+   
+   Article 5:
+   Slug: /blog/ضريبة-القيمة-المضافة-الامارات
+   Title AR: دليل ضريبة القيمة المضافة في الإمارات
+   Title EN: UAE VAT Guide for Small Businesses
+   Target keyword: ضريبة القيمة المضافة الإمارات
+   Content: 5% VAT, TRN number, FTA requirements,
+   how to add VAT to invoices
+   
+   Article 6:
+   Slug: /blog/انشاء-فاتورة-مجانية-اونلاين
+   Title AR: كيف تنشئ فاتورة مجانية أونلاين؟
+   Title EN: How to Create a Free Invoice Online
+   Target keyword: انشاء فاتورة مجانية
+   Content: Step by step guide using Businesses Hub,
+   screenshots described in text, PDF export steps
+   
+   Article 7:
+   Slug: /blog/نموذج-فاتورة-عربي-انجليزي
+   Title AR: نموذج فاتورة عربي إنجليزي جاهز للتحميل
+   Title EN: Arabic-English Invoice Template Download
+   Target keyword: نموذج فاتورة عربي انجليزي
+   Content: Why bilingual invoices matter,
+   link to templates page, free download CTA
+   
+   Article 8:
+   Slug: /blog/برنامج-فواتير-للشركات-الصغيرة
+   Title AR: أفضل برامج الفواتير للشركات الصغيرة
+   Title EN: Best Invoice Software for Small Businesses
+   Target keyword: برنامج فواتير مجاني
+   Content: Comparison of tools, why Businesses Hub
+   is best for MENA, free vs paid features
+   
+   Article 9:
+   Slug: /blog/فاتورة-المقاولين-والمستقلين
+   Title AR: دليل الفواتير للمقاولين والمستقلين
+   Title EN: Invoice Guide for Freelancers & Contractors
+   Target keyword: فاتورة مستقل, فاتورة مقاول
+   Content: How freelancers should invoice clients,
+   what to include, payment terms, follow-up tips
+   
+   Article 10:
+   Slug: /blog/اخطاء-الفواتير-الشائعة
+   Title AR: 10 أخطاء شائعة في الفواتير يجب تجنبها
+   Title EN: 10 Common Invoicing Mistakes to Avoid
+   Target keyword: اخطاء الفواتير
+   Content: Missing fields, wrong VAT rates,
+   no due date, unclear payment terms, etc.
+
+4. ARTICLE PAGE STRUCTURE
+   Each article must have:
+   - Arabic H1 title (RTL)
+   - English subtitle (LTR)
+   - Published date + read time
+   - Category badge
+   - Author: "فريق Businesses Hub"
+   - Full article body (800-1200 words Arabic)
+   - Internal links to relevant tool 
+     (e.g. invoice article → links to /invoice)
+   - CTA box at end:
+     "جرب Businesses Hub مجاناً ←
+      أنشئ فاتورتك الأولى في أقل من دقيقة"
+   - Related articles section (3 cards)
+   - Breadcrumb: Home > Blog > Article Title
+
+5. SEO FOR EACH ARTICLE
+   Every article page must have in raw HTML:
+   - Unique <title> tag in Arabic + English
+   - <meta name="description"> in Arabic
+   - <link rel="canonical">
+   - og:title, og:description, og:image
+   - lang="ar" on Arabic content sections
+   - Article schema JSON-LD:
+     {
+       "@type": "Article",
+       "headline": "[Arabic title]",
+       "datePublished": "[date]",
+       "author": { 
+         "@type": "Organization",
+         "name": "Businesses Hub" 
+       },
+       "publisher": {
+         "@type": "Organization", 
+         "name": "Businesses Hub",
+         "url": "https://attached-assets-zakaburawais.replit.app"
+       }
+     }
+
+6. ADD BLOG TO SITEMAP
+   Add all 10 article URLs to /sitemap.xml
+   with priority: 0.7 and changefreq: monthly
+
+7. ADD BLOG LINK TO NAVIGATION
+   Add "Blog / مدونة" to the "More" dropdown
+   in the main navigation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-AUDIT — LIVE URL ONLY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After completing all features test on LIVE site:
+
+INVOICE TRACKING:
+✅ or ❌ Share & Track button on invoice
+✅ or ❌ Shareable link generates correctly
+✅ or ❌ /invoice/track/[id] loads client view
+✅ or ❌ Confirm Receipt button works
+✅ or ❌ /tracker dashboard shows invoice list
+✅ or ❌ Status badges display correctly
+
+NO SIGN-UP FLOW:
+✅ or ❌ Full invoice creation works without login
+✅ or ❌ PDF download works without login
+✅ or ❌ Auto-save working (check localStorage)
+✅ or ❌ Guest Mode indicator in nav
+✅ or ❌ Soft prompt shows after 2nd download
+
+ARABIC BLOG:
+✅ or ❌ /blog loads with article index
+✅ or ❌ All 10 articles load at their slugs
+✅ or ❌ Arabic text renders correctly RTL
+✅ or ❌ View page source shows Arabic content
+✅ or ❌ Blog added to sitemap.xml
+✅ or ❌ Blog link in More dropdown
+
+Run all tests against:
+https://attached-assets-zakaburawais.replit.app
+Not localhost. Show curl output for blog SSR test.

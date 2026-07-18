@@ -1,0 +1,149 @@
+Please audit the current Xuvilo website at xuvilo.com and improve it into a professional AI Business Tools Hub SaaS.
+
+Important:
+Do not delete or break any existing working features.
+If a feature already exists, improve it only where needed.
+Keep the domain/canonical URL as https://xuvilo.com.
+Do not activate live Stripe payments yet.
+
+Main goals:
+1. Make the branding consistent across the whole site.
+Use the brand name:
+Xuvilo — AI Business Tools Hub
+
+Remove confusing inconsistent branding such as “Businesses Hub” unless it is used only as a subtitle. The main visible brand should be Xuvilo.
+
+2. Improve the homepage positioning.
+The homepage should clearly explain that Xuvilo helps freelancers, SMEs, logistics companies, and business owners create documents, calculate business values, and write professional business communication.
+
+Suggested hero message:
+“Create invoices, quotations, receipts, and business documents in minutes.”
+Sub-message:
+“Xuvilo is an AI-powered business tools hub for freelancers and SMEs. Generate documents, export PDFs, calculate VAT/profit, and write professional business emails in Arabic and English.”
+
+3. Add or improve main navigation:
+- Home
+- Invoice Generator
+- Quotation Generator
+- Receipt Generator
+- Calculators
+- AI Business Writer
+- Templates
+- Pricing
+- Blog
+- Contact
+
+4. Add AI Business Writer module.
+Create a new page /ai-writer with tools for:
+- Payment reminder email
+- Invoice follow-up email
+- Quotation submission email
+- Supplier request email
+- Complaint/clarification email
+- Formal business message
+- Arabic business email
+- English business email
+
+The form should include:
+- Message purpose
+- Language: English or Arabic
+- Tone: formal, polite, firm, friendly
+- Recipient name/company
+- Key details
+- Generate button
+- Copy button
+- Save/export option if possible
+
+If real AI API is not connected yet, create the UI and safe placeholder logic, but clearly structure it for future API integration.
+
+5. Improve Pricing page.
+Create clear pricing tiers:
+- Free
+- Starter
+- Business
+- Pro
+
+Example structure:
+Free:
+Limited documents, basic templates, Xuvilo watermark.
+
+Starter:
+More documents, PDF export, no watermark.
+
+Business:
+Unlimited documents, saved clients, saved company profile, premium templates.
+
+Pro:
+AI Business Writer, reports, advanced templates, team features.
+
+Add “Coming soon” or “Payment not active yet” if Stripe is not connected.
+
+6. Add or verify trust/legal pages:
+- About
+- Contact
+- Privacy Policy
+- Terms of Use
+- Disclaimer / Affiliate Disclosure if needed
+
+Make sure these pages are linked in the footer and easy to find.
+
+7. Add Blog/Resources section.
+Create a blog index page and add initial article pages with original helpful content:
+- How to create a professional invoice
+- Invoice vs quotation vs receipt
+- How to calculate VAT correctly
+- How to write a payment reminder email
+- Best business document templates for small businesses
+
+These pages should be original, useful, and SEO-friendly.
+
+8. SEO improvements:
+For each main page, add:
+- Unique title tag
+- Meta description
+- Canonical URL using https://xuvilo.com
+- Open Graph title and description
+- Clean URL
+- Internal links to related tools
+
+Make sure the homepage and tool pages contain enough useful text, not only a short heading.
+
+9. Improve SaaS conversion:
+Add clear CTA buttons:
+- Create Free Invoice
+- Create Quotation
+- Try AI Writer
+- View Pricing
+- Upgrade
+
+Add feature cards explaining:
+- Arabic and English support
+- PDF export
+- 176+ currencies
+- VAT/tax support
+- Saved business profile
+- AI business writing
+- Templates
+
+10. Improve mobile responsiveness:
+Test all main pages on mobile sizes.
+Make sure forms, buttons, navigation, PDF preview, and templates are usable on phones.
+
+11. Add dashboard preparation:
+If user accounts already exist, improve the dashboard.
+If not, prepare the structure for future accounts:
+- Recent documents
+- Saved company profile
+- Saved clients
+- AI credits used
+- Subscription plan
+- Quick actions
+
+12. Final testing:
+After changes, run a full test and provide a report showing:
+- Pages updated
+- Features added
+- SEO improvements made
+- Mobile issues fixed
+- Any remaining manual setup
+- Any errors or warnings

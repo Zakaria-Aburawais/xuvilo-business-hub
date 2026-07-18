@@ -1,0 +1,305 @@
+# Businesses Hub — New Tools Expansion Prompt
+
+> Paste this into Replit. Add all new tools to the existing Businesses Hub codebase. Do NOT break existing features.
+
+---
+
+## PROMPT
+
+You are expanding **Businesses Hub** with a powerful set of new business tools. These tools are specifically chosen for freelancers, traders, import/export businesses, contractors, and small companies operating in the MENA region. Each tool must be bilingual (Arabic RTL + English LTR), export-ready, and consistent with the existing design system.
+
+Add all of the following tools to the platform.
+
+---
+
+## TOOL 1 — COMPANY STAMP / SEAL CREATOR ⭐ (Priority)
+
+This is the most culturally important tool for Arabic-speaking markets. Every business in MENA uses an official round company stamp on documents, contracts, and invoices.
+
+### Features:
+- **Canvas-based stamp builder** using HTML5 Canvas or SVG.
+- **Shape options**: Round (default), Oval, Square with rounded corners, Rectangle.
+- **Stamp layers the user can configure**:
+  - Outer ring text (top arc): Company name in Arabic and/or English
+  - Inner ring text (bottom arc): City / Country / Registration number
+  - Center content: Choose from — Company logo upload, Company initials (auto-styled), Star/emblem icon, or leave blank
+  - Optional inner decorative ring (double-ring border style)
+  - Optional small star dividers between outer ring text segments
+- **Styling controls**:
+  - Stamp color: preset palette (classic red, navy blue, green, black, purple, gold) + custom color picker
+  - Font size for outer text and inner text (slider)
+  - Border width (thin / medium / thick)
+  - Ink effect toggle: "Clean" (solid) vs "Ink Stamp" (slightly distressed texture using canvas noise)
+- **Live preview**: Full-size preview updates in real time as user changes any setting.
+- **Export options**:
+  - Download as PNG (transparent background, 500x500px)
+  - Download as SVG (vector, scalable)
+  - Download as PDF (stamp centered on A4 page)
+  - "Copy to clipboard" button
+- **Arabic text input**: Must support Arabic font rendering correctly. Use Cairo font for Arabic text in the stamp. Ensure proper letter joining and RTL character rendering on the canvas.
+- **Preset stamp styles**: Offer 6 ready-made stamp presets the user can click and customize:
+  - Government style (formal, double ring, navy)
+  - Modern Corporate (clean single ring, dark blue)
+  - Classic Trader (red, bold font, star dividers)
+  - Minimalist (thin border, black, no inner ring)
+  - Arabic Seal (Arabic text dominant, ornamental center)
+  - NGO / Organization (green, oval shape)
+
+### Page layout:
+- Left panel: all controls (shape, text inputs, styling)
+- Right panel: large live stamp preview on a white card
+- Bottom: export buttons
+
+---
+
+## TOOL 2 — OFFICIAL LETTERHEAD BUILDER
+
+Every professional business needs a branded letterhead. This tool lets users create a reusable company letterhead template.
+
+### Features:
+- **A4 page preview** that updates live.
+- **Header section** (user configures):
+  - Company logo upload (left, center, or right aligned)
+  - Company name (large, styled)
+  - Tagline / slogan
+  - Address block (multi-line)
+  - Contact details: phone, email, website
+  - Optional: Trade/Commercial Registration number, VAT number
+- **Footer section** (user configures):
+  - Footer bar color (matches brand color picker)
+  - Footer text: address, phone, website in smaller text
+  - Optional: social media icons (LinkedIn, Twitter, Instagram, WhatsApp)
+- **Design controls**:
+  - Primary brand color (updates header bar, footer bar, and accent lines)
+  - Header layout style: choose from 3 layouts (logo left + text right | centered logo + centered text | text left + logo right)
+  - Divider line style: solid / dashed / double / none
+  - Font pairing: Modern (Inter/Cairo) | Classic (serif style) | Bold (heavy heading)
+- **Bilingual**: Toggle to show company name in both Arabic and English, stacked.
+- **Export**:
+  - Download as PDF (blank A4 letterhead ready to print or use as background)
+  - Download as PNG
+  - "Use as document header" button — saves the letterhead config and applies it as the default header on Invoice, Quotation, and Receipt generators
+
+---
+
+## TOOL 3 — PURCHASE ORDER (PO) GENERATOR
+
+Critical for procurement, logistics, Oil & Gas, and NGO supply chains.
+
+### Features:
+- Same form structure as Invoice Generator but with PO-specific fields:
+  - PO Number (auto-generated: PO-2025-001)
+  - PO Date + Required Delivery Date
+  - Buyer details (your company)
+  - Supplier/Vendor details
+  - Delivery address (can differ from billing)
+  - Line items table: Item code, description, quantity, unit, unit price, total
+  - Payment terms
+  - Delivery terms (EXW, FOB, CIF, DDP, DAP — dropdown)
+  - Special instructions / notes
+  - Authorized signature block (name + title)
+- **3 PO Templates**:
+  1. Standard PO — clean professional format
+  2. Formal Government/NGO PO — includes reference fields, department, budget code
+  3. Logistics/Freight PO — adds fields for shipment mode (Air/Sea/Road), port of loading, port of discharge, HS code
+- PDF export, bilingual, RTL/LTR support.
+
+---
+
+## TOOL 4 — DELIVERY NOTE GENERATOR
+
+Essential for traders, importers, exporters, and logistics companies.
+
+### Features:
+- Fields: Delivery Note number, date, order reference (links to a PO or invoice number), sender details, recipient details, delivery address.
+- Items table: item description, quantity delivered, unit, condition (Good / Damaged / Partial).
+- Notes field.
+- Signature blocks: Delivered by + Received by (name, date, signature line).
+- Status stamp: DELIVERED / PARTIAL / PENDING — shown as a colored stamp-style badge.
+- **2 Templates**:
+  1. Standard Delivery Note
+  2. Warehouse Release Note (for warehouse-to-client handover)
+- PDF export, bilingual.
+
+---
+
+## TOOL 5 — PACKING LIST GENERATOR
+
+For import/export businesses and freight forwarders.
+
+### Features:
+- Fields: Packing List number, date, shipper, consignee, vessel/flight/truck reference, bill of lading/airway bill number, port of loading, port of discharge.
+- Items table: package number, description, quantity, net weight (kg), gross weight (kg), dimensions (L×W×H cm), CBM (auto-calculated).
+- Totals row: total packages, total net weight, total gross weight, total CBM.
+- **Auto-CBM calculation**: multiply L×W×H for each row, show running total.
+- Notes field.
+- **2 Templates**:
+  1. Standard Packing List
+  2. Detailed Cargo Manifest (adds HS code, country of origin, declared value columns)
+- PDF export, bilingual.
+
+---
+
+## TOOL 6 — E-SIGNATURE PAD
+
+Allow users to create a reusable digital signature to insert into their documents.
+
+### Features:
+- **3 input methods**:
+  1. Draw: canvas-based freehand drawing pad with smooth pressure-simulated stroke
+  2. Type: type your name and choose from 6 signature font styles (cursive/script styles)
+  3. Upload: upload an existing signature image
+- **Controls**: pen color (black, navy, dark blue), stroke thickness (thin/medium/thick), clear button, undo last stroke.
+- **Live preview**: show signature on a mock document line.
+- **Export**:
+  - Download as PNG (transparent background)
+  - Download as SVG
+  - "Save as my signature" — stores in localStorage and auto-inserts into Invoice, PO, Receipt, and Delivery Note documents at the signature line.
+- Bilingual: label the pad in Arabic and English.
+
+---
+
+## TOOL 7 — QR CODE GENERATOR
+
+High-demand utility tool — great for SEO traffic too.
+
+### Features:
+- Input: URL, plain text, phone number (tel:), email (mailto:), WhatsApp link (wa.me/), vCard contact, WiFi credentials, payment link.
+- **Smart type detection**: auto-detect input type and suggest the format.
+- Customization:
+  - QR color: foreground and background color pickers
+  - Size: Small (200px) / Medium (400px) / Large (800px)
+  - Error correction level: L / M / Q / H
+  - Corner style: Sharp / Rounded / Dots
+  - Center logo: option to upload a small logo to embed in the center of the QR code
+- Live preview updates as user types.
+- Export: PNG, SVG, PDF.
+- Use the `qrcode` npm library for generation.
+- Add a "QR code for this invoice" shortcut button inside the Invoice, Quotation, and Receipt generators — generates a QR pointing to the document's shareable link.
+
+---
+
+## TOOL 8 — BUSINESS CARD CREATOR
+
+A digital business card maker — high traffic potential and useful for MENA freelancers.
+
+### Features:
+- Standard card dimensions: 85mm × 54mm (standard business card size). Preview at 2× scale.
+- Two sides: Front and Back (toggle to edit each side).
+- **Front side fields**: Name, Job Title, Company Name, Phone, Email, Website, Address.
+- **Back side**: Company logo centered, tagline, optional QR code (links to website or LinkedIn).
+- **6 card design templates**:
+  1. Classic White — clean minimal, black text, colored strip at bottom
+  2. Dark Executive — dark navy background, white text, gold accent line
+  3. Modern Gradient — subtle gradient background, bold name
+  4. Arabic Professional — bilingual name (Arabic + English), RTL-first layout
+  5. Creative Color — full color background, white text, logo prominent
+  6. Minimal Line — white, single accent color line, typography-focused
+- Bilingual: fields accept both Arabic and English; Arabic fields render RTL automatically.
+- Export: PNG (front + back as separate files), PDF (both sides on one A4 page, print-ready with crop marks).
+
+---
+
+## TOOL 9 — EXPENSE REPORT GENERATOR
+
+For employees, contractors, and project managers submitting expenses.
+
+### Features:
+- Report header: employee name, department, report period (date range), project/cost center, currency.
+- Expense table: date, category (Travel / Meals / Accommodation / Office Supplies / Fuel / Telecom / Other), description, receipt reference, amount.
+- Category totals: auto-group and subtotal by category.
+- Grand total.
+- Approval block: Prepared by + Approved by (name, date, signature line).
+- Notes / justification field.
+- Export as PDF, bilingual.
+
+---
+
+## TOOL 10 — CERTIFICATE OF COMPLETION / SERVICE
+
+Very useful for contractors, consultants, and freelancers who need to certify project completion.
+
+### Features:
+- Fields: Certificate number, date, client company, service/project title, start date, end date, brief description, value of work (optional), issuing company details.
+- **3 certificate designs**:
+  1. Formal Corporate — bordered frame, company logo, official look
+  2. Modern Minimal — clean with a color band header
+  3. Ornate / Classic — decorative border frame, seal placeholder, gold accents (popular in MENA)
+- Seal/stamp placeholder: show a circle where the company stamp goes (integrates with Tool 1 — Company Stamp Creator).
+- Signature block.
+- Export as PDF, bilingual.
+
+---
+
+## TOOL 11 — WATERMARK TOOL
+
+Add a professional watermark to any PDF or image document.
+
+### Features:
+- Upload a PDF or image (PNG, JPG).
+- Watermark options:
+  - Text watermark: type custom text (e.g. "CONFIDENTIAL", "DRAFT", "PAID", "COPY", or custom text in Arabic or English)
+  - Image watermark: upload a logo
+- Controls: opacity slider (10%–80%), rotation (-45° to 45°), position (diagonal / centered / tiled), font size, color.
+- Preset quick-stamps: DRAFT, CONFIDENTIAL, PAID, VOID, SAMPLE, COPY — one-click apply.
+- Preview: show the document with watermark overlay before downloading.
+- Export: download as PDF or PNG with watermark applied.
+- Use pdf-lib for PDF processing.
+
+---
+
+## NAVIGATION & HOMEPAGE UPDATES
+
+Update the site to incorporate all new tools:
+
+### Navbar:
+- Replace single nav links with a **mega menu** for "Tools". On hover, show a dropdown panel with all tools organized in categories:
+  - **Documents**: Invoice, Quotation, Receipt, Purchase Order, Delivery Note, Packing List, Expense Report, Certificate
+  - **Design Tools**: Stamp Creator, Letterhead Builder, Business Card Creator
+  - **Utilities**: E-Signature, QR Code Generator, Watermark Tool
+  - **Calculators**: link to Calculators Hub
+
+### Homepage — "All Tools" section:
+- After the existing 4+2 tool cards, add a new section: "More Powerful Tools"
+- Display the 11 new tools in a 3-column grid with smaller cards (icon, name, short description, "Open →" link).
+- Group them visually: Documents | Design Tools | Utilities.
+
+### Tools Hub page (/tools):
+- Create a dedicated full-page tools directory.
+- All tools listed with icon, name, description, tag badges.
+- Search bar to filter tools by name or keyword.
+- Show "New" badge on recently added tools.
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+- All tools must be bilingual (AR + EN) — add all new text strings to the i18n translation files.
+- All tools must support RTL and LTR layout switching.
+- All tools must work in dark mode.
+- All tools must be responsive (mobile-first).
+- New npm packages allowed: `qrcode` (QR generation), `signature_pad` (e-signature canvas), `fabric` or native Canvas API (stamp builder), `pdf-lib` (already installed — use for watermark and PDF export).
+- Each tool lives on its own route: /tools/stamp, /tools/letterhead, /tools/purchase-order, /tools/delivery-note, /tools/packing-list, /tools/esignature, /tools/qr-code, /tools/business-card, /tools/expense-report, /tools/certificate, /tools/watermark.
+- Each tool page must have a unique SEO title, meta description, and Open Graph tags in both Arabic and English.
+- Export buttons must always be visible — never hidden behind a scroll.
+
+---
+
+## IMPLEMENTATION ORDER
+
+1. Company Stamp / Seal Creator (highest priority — most unique tool)
+2. QR Code Generator (fastest to build, high SEO value)
+3. E-Signature Pad (connects to existing document generators)
+4. Purchase Order Generator (reuse invoice form components)
+5. Delivery Note Generator
+6. Letterhead Builder
+7. Business Card Creator
+8. Packing List Generator
+9. Watermark Tool
+10. Expense Report Generator
+11. Certificate of Completion
+12. Update Navbar mega menu
+13. Build /tools hub page
+14. Add new tool cards to homepage
+
+Build and test each tool fully before starting the next one.

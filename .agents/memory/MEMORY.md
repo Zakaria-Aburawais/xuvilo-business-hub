@@ -1,0 +1,12 @@
+- [businesses-hub initial JS splitting](initial-js-splitting.md) — App.tsx routes are React.lazy by design; never static-import @react-pdf/blogPosts/jspdf into the app shell.
+- [GA/AdSense loaded in index.html](analytics-index-html.md) — index.html loads gtag.js + AdSense unconditionally on purpose (SSR-only pages have no React); don't "consent-gate" or delete it.
+- [businesses-hub env & git-guard quirks](businesses-hub-env-quirks.md) — web restart re-encodes public/opengraph.jpg; main-agent git guard blocks .git/index.lock removal + redirect-writes to tracked files.
+- [SEO/AEO/E-E-A-T sweep July 2026](seo-aeo-eeeat-sweep.md) — Consent Mode v2 default-denied pattern; AUTHOR_JSONLD Person constant; Article returns [Article+BreadcrumbList]; AdSlot null-on-no-consent.
+- [api-server typecheck baseline & drizzle-zod pitfall](api-server-typecheck-baseline.md) — baseline now GREEN; Express 5 req.params/augmentation quirks; drizzle-zod 0.8 clashes with zod v3; admin-token recipe.
+- [SVG export XML strictness](svg-export-xml-strictness.md) — SVG loaded via blob→<img> is strict XML; raw "&" breaks canvas exports even when inline preview renders fine.
+- [SendGrid connector quirks](sendgrid-connector-quirks.md) — connectors API name filter broken (fetch unfiltered, select by name); 401 "Maximum credits exceeded" = account quota, not auth; use @sink.sendgrid.net for tests.
+- [i18n silent-failure pattern](i18n-silent-failure.md) — t() returns the raw key string when a key is missing (truthy); never caught by || fallbacks; only visible by grep audit or visual inspection.
+- [ToolsTicker flex overflow](ticker-flex-overflow.md) — flex-1 without min-w-0 caused 11,000px doc width; fix: min-w-0 + overflow-hidden on flex item, contain:layout on ticker.
+- [Performance — bundle splitting & loading waterfall](perf-bundle-splitting.md) — main bundle 471→176 kB via manualChunks + route prefetch; critical-path gzip 147→60 kB (−59%).
+- [Security headers — CSP, HSTS, CORS](security-headers.md) — CSP report-only (hashes for 2 inline scripts); style-src unsafe-inline justified; CORS locked to xuvilo.com; no server-set cookies.
+- [Sitemap SEO fixes July 2026](sitemap-seo-fixes.md) — lastmod=CONTENT_LAST_REVIEWED_ISO (not today); hreflang only for post's real language; encLoc() for Arabic URLs; dev/prod STATIC_ROUTES must stay synced.

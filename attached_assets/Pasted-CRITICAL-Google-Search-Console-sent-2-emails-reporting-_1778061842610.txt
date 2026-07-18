@@ -1,0 +1,62 @@
+CRITICAL — Google Search Console sent 2 emails reporting
+"Redirect Error" blocking indexation of xuvilo.com pages.
+
+This is the #1 priority. Nothing else matters until fixed.
+
+STEP 1 — DIAGNOSE ALL REDIRECTS
+Run these curl commands and show me EVERY output:
+
+curl -I https://xuvilo.com/
+curl -I https://xuvilo.com/invoice
+curl -I https://xuvilo.com/blog/zatca-invoice-requirements-saudi-arabia
+curl -I https://xuvilo.com/calculators/vat-calculator
+curl -I http://xuvilo.com/
+curl -I http://xuvilo.com/invoice
+
+For each one, look for:
+- HTTP status code (must be 200, not 301/302/307/308)
+- Location header (shows where it redirects to)
+- Any redirect chains (301 → 302 → 200 is a chain)
+
+STEP 2 — CHECK FOR THESE COMMON CAUSES:
+
+A) HTTP to HTTPS redirect loop:
+   http://xuvilo.com → https://xuvilo.com (301) = OK
+   https://xuvilo.com → https://xuvilo.com (301 again) = LOOP
+
+B) www to non-www redirect loop:
+   www.xuvilo.com → xuvilo.com (301) = OK
+   xuvilo.com → www.xuvilo.com (301 again) = LOOP
+
+C) Trailing slash redirect loop:
+   /invoice → /invoice/ → /invoice = LOOP
+
+D) The new calculator pages or blog SSR pages
+   causing redirect chains
+
+STEP 3 — CHECK SITEMAP FOR BAD URLS
+curl -s https://xuvilo.com/sitemap.xml | grep "<loc>"
+Look for any URLs that:
+- Start with http:// instead of https://
+- Have www. prefix inconsistently
+- Have double slashes (//)
+- Have trailing slashes that redirect
+
+STEP 4 — FIX WHATEVER YOU FIND
+Common fixes:
+- Ensure sitemap only has https:// URLs
+- Ensure canonical tags match exact URL format
+- Remove any redirect chains (max 1 redirect allowed)
+- Ensure all internal links use https:// consistently
+
+STEP 5 — VERIFY FIX
+After fixing, run:
+curl -IL https://xuvilo.com/blog/zatca-invoice-requirements-saudi-arabia
+
+The -IL flag follows ALL redirects and shows each hop.
+Output must show only ONE hop maximum:
+HTTP/1.1 301 → HTTP/2 200 (http to https is acceptable)
+OR just:
+HTTP/2 200 (ideal — no redirect at all)
+
+Report all findings before making any changes.

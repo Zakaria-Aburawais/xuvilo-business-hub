@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) + AdSense are loaded AFTER first paint (window
+         load) so they neither block rendering nor compete for bandwidth during
+         the initial load. The gtag stub + config run immediately, so any early
+         events queue into dataLayer and fire as soon as the script attaches —
+         analytics and ad behavior are unchanged, only the network fetch is
+         deferred. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2 — deny all signals by default before any measurement.
+      // This is required for Google-certified consent compliance (GDPR/TCF).
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      // Restore prior consent decision from localStorage so returning visitors
+      // are not re-asked and measurement resumes immediately on page load.
+      (function() {
+        var c = '';
+        try { c = localStorage.getItem('bh_cookie_consent') || ''; } catch(e) {}
+        if (c === 'accepted') {
+          gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted'
+          });
+        }
+      })();
+      gtag('js', new Date());
+      gtag('config', 'G-74GSK3Y02C');
+      (function () {
+        function loadDeferred() {
+          var g = document.createElement('script');
+          g.async = true;
+          g.src = 'https://www.googletagmanager.com/gtag/js?id=G-74GSK3Y02C';
+          document.head.appendChild(g);
+          var a = document.createElement('script');
+          a.async = true;
+          a.crossOrigin = 'anonymous';
+          a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2841581935998314';
+          document.head.appendChild(a);
+        }
+        if (document.readyState === 'complete') { setTimeout(loadDeferred, 0); }
+        else { window.addEventListener('load', function () { setTimeout(loadDeferred, 0); }); }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="msvalidate.01" content="5C4A782C6BF9CAD747E0E6E288A4AE8C" />
+    <script>
+      // Mark the document as JS-enabled BEFORE the body parses, so the CSS
+      // below can synchronously hide the unstyled SEO fallback markup before
+      // first paint. Crawlers and no-JS clients never get the `js` class, so
+      // they still see the full fallback content in the DOM.
+      document.documentElement.className += " js";
+      // Fail-safe: if the app bundle never executes (network failure, JS
+      // error during boot, etc.) drop the loading overlay and reveal the
+      // SEO fallback so visitors aren't stuck staring at a spinner. The
+      // happy path removes #js-loading from src/main.tsx well before this.
+      setTimeout(function () {
+        var el = document.getElementById("js-loading");
+        if (el && el.parentNode) {
+          el.parentNode.removeChild(el);
+          document.documentElement.classList.remove("js");
+        }
+      }, 8000);
+    </script>
+    <title>Xuvilo — AI Business Tools Hub | Free Invoices, Quotes & AI Writer</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter loaded non-render-blocking: swap media to 'all' once it arrives.
+         display=swap keeps text visible with the system fallback meanwhile.
+         AdSense is loaded after first paint by the deferred loader above. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <style>
+      /* Hide the SEO fallback (and any SSR chrome inside #root) from real
+         browsers before first paint. Crawlers and no-JS clients don't get the
+         `js` class on <html>, so they still receive the full fallback markup
+         in the DOM exactly as before — no SEO regression.
+
+         Scoped to #root so the SSR-only blog routes (where article HTML lives
+         OUTSIDE #root and React deliberately skips mounting) keep showing
+         their content as the actual rendered page. */
+      html.js #root .seo-fallback { display: none !important; }
+
+      /* ── Page-loading screen ──────────────────────────────────────────────
+         Shown only to JS-enabled visitors while the React bundle parses and
+         mounts. Removed by src/main.tsx on first React paint (or immediately
+         on SSR-only routes). Not visible to crawlers (no `js` class). */
+      #js-loading { display: none; overflow: hidden; }
+      html.js #js-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #ffffff 0%, #eff6ff 55%, #e0e7ff 100%);
+        z-index: 2147483646;
+        overflow: hidden;
+      }
+      #jsl-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      #jsl-msg {
+        margin-top: 32px;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: #6366f1;
+        white-space: nowrap;
+        user-select: none;
+        opacity: 0.85;
+        letter-spacing: 0.01em;
+      }
+
+      /* ── Floating-silk keyframes ──
+         Each ribbon hangs from its top edge and sways gently like a strip of
+         silk in a light breeze: small rotations, skews and lifts with
+         different periods so the three strips never move in unison. The SVG
+         turbulence filter (#jsl-silk) adds a slow cloth-like ripple. */
+      .jsl-r { transform-box: fill-box; transform-origin: 50% 6%; will-change: transform; }
+      @keyframes jsl-sway1 {
+        0%,100% { transform: rotate(-2.6deg) skewX(-1.8deg) translateY(0); }
+        33%     { transform: rotate(2deg)    skewX(2.4deg)  translateY(-1.8px); }
+        66%     { transform: rotate(-.9deg)  skewX(-2.6deg) translateY(-.7px); }
+      }
+      @keyframes jsl-sway2 {
+        0%,100% { transform: rotate(2.3deg)  skewX(1.9deg)  translateY(-.9px); }
+        33%     { transform: rotate(-2.1deg) skewX(-2.4deg) translateY(0); }
+        66%     { transform: rotate(1.1deg)  skewX(2.6deg)  translateY(-2px); }
+      }
+      @keyframes jsl-sway3 {
+        0%,100% { transform: rotate(-1.9deg) skewX(2.2deg)  translateY(-1.4px); }
+        33%     { transform: rotate(2.5deg)  skewX(-2deg)   translateY(-.4px); }
+        66%     { transform: rotate(-1.2deg) skewX(1.6deg)  translateY(-2.2px); }
+      }
+      /* Whole symbol drifts up and down slowly, like cloth floating on air. */
+      @keyframes jsl-float {
+        0%,100% { transform: translateY(0) rotate(-1.2deg); }
+        50%     { transform: translateY(-7px) rotate(1.4deg); }
+      }
+      #jsl-r1 { animation: jsl-sway1 4.6s ease-in-out infinite; }
+      #jsl-r2 { animation: jsl-sway2 5.6s ease-in-out -1.3s infinite; }
+      #jsl-r3 { animation: jsl-sway3 4.1s ease-in-out -2.2s infinite; }
+      #jsl-svg { animation: jsl-float 6.5s ease-in-out infinite; }
+
+      /* ── Wordmark ── */
+      #jsl-wordmark {
+        margin-top: 20px;
+        text-align: center;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      #jsl-brand { font-size: 36px; font-weight: 700; color: #1e40af; letter-spacing: -.02em; line-height: 1.1; }
+      #jsl-sub   { font-size: 9.5px; font-weight: 500; letter-spacing: .26em; color: #6b7280; margin-top: 4px; text-transform: uppercase; }
+
+      /* Reduced-motion: centred symbol with gentle pulse — no flight */
+      @keyframes jsl-pulse { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) {
+        #jsl-r1, #jsl-r2, #jsl-r3 { animation: none; }
+        #jsl-cloth { filter: none; }
+        #jsl-svg { animation: jsl-pulse 2.4s ease-in-out infinite; }
+      }
+
+      /* SSR fallback content: rendered for crawlers and visible during the
+         brief pre-hydration flash. React replaces #root contents on hydration,
+         so this only affects the initial paint and search engine view. */
+      .seo-fallback {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+        color: #1f2937;
+        line-height: 1.65;
+        font-size: 16px;
+      }
+      .seo-fallback h1 {
+        font-size: 2em;
+        font-weight: 800;
+        line-height: 1.25;
+        margin: 0 0 16px;
+        color: #0f172a;
+      }
+      .seo-fallback h2 {
+        font-size: 1.35em;
+        font-weight: 700;
+        line-height: 1.3;
+        margin: 28px 0 10px;
+        color: #0f172a;
+      }
+      .seo-fallback p {
+        margin: 0 0 14px;
+        color: #374151;
+      }
+      .seo-fallback ul {
+        margin: 0 0 16px;
+        padding-left: 1.25em;
+        color: #374151;
+      }
+      .seo-fallback li {
+        margin-bottom: 6px;
+      }
+      .seo-fallback a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .seo-fallback a:hover {
+        text-decoration: underline;
+      }
+      .seo-fallback[dir="rtl"] {
+        text-align: right;
+      }
+      .seo-fallback[dir="rtl"] ul {
+        padding-left: 0;
+        padding-right: 1.25em;
+      }
+      /* Static (non-React) chrome for SSR-only blog post routes.
+         Server injects these around the article when react does not mount,
+         so users still get a visible top nav and footer. */
+      .ssr-blog-nav {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      .ssr-blog-nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .ssr-blog-brand {
+        font-weight: 800;
+        font-size: 20px;
+        color: #0f172a;
+        text-decoration: none;
+        letter-spacing: -0.01em;
+      }
+      .ssr-blog-nav-links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .ssr-blog-nav-links a {
+        color: #374151;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .ssr-blog-nav-links a:hover {
+        color: #2563eb;
+        text-decoration: underline;
+      }
+      .ssr-blog-foot {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 20px 60px;
+        border-top: 1px solid #e5e7eb;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 13px;
+        color: #6b7280;
+        text-align: center;
+      }
+      .ssr-blog-foot a {
+        color: #6b7280;
+        text-decoration: none;
+      }
+      .ssr-blog-foot a:hover {
+        color: #2563eb;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="js-loading" aria-hidden="true" role="presentation">
+      <div id="jsl-wrap">
+        <svg id="jsl-svg" width="110" height="110" viewBox="0 0 100 100"
+             style="overflow:visible;display:block" aria-hidden="true">
+          <defs>
+            <linearGradient id="jsl-g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1e1b4b"/>
+              <stop offset="55%" stop-color="#1e40af"/>
+              <stop offset="100%" stop-color="#2563eb"/>
+            </linearGradient>
+            <linearGradient id="jsl-g2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2563eb"/>
+              <stop offset="100%" stop-color="#60a5fa"/>
+            </linearGradient>
+            <linearGradient id="jsl-g3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7dd3fc"/>
+              <stop offset="100%" stop-color="#bae6fd"/>
+            </linearGradient>
+            <filter id="jsl-silk" x="-30%" y="-30%" width="160%" height="160%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="4" result="n">
+                <animate attributeName="baseFrequency" dur="8s"
+                         values="0.012 0.05;0.018 0.072;0.012 0.05" repeatCount="indefinite"/>
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="5"
+                                 xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g id="jsl-cloth" filter="url(#jsl-silk)" transform="translate(50 50) scale(1.389) translate(-35.5 -37)">
+            <g id="jsl-r1" class="jsl-r"><path d="M16 10 Q14 8 17 8 L23 8 Q26 8 26 11 L29 50 Q29 58 22 60 Q14 60 14 53 Q14 50 17 50 Q20 50 20 52 L20 53 L19 13 Q19 11 17 11 Z" fill="url(#jsl-g1)"/></g>
+            <g id="jsl-r2" class="jsl-r"><path d="M30 10 Q28 8 31 8 L37 8 Q40 8 40 11 L43 56 Q43 65 35 66 Q26 66 26 58 Q26 55 29 55 Q32 55 32 57 L32 58 L33 13 Q33 11 31 11 Z" fill="url(#jsl-g2)"/></g>
+            <g id="jsl-r3" class="jsl-r"><path d="M44 10 Q42 8 45 8 L51 8 Q54 8 54 11 L57 48 Q57 56 50 58 Q42 58 42 51 Q42 48 45 48 Q48 48 48 50 L48 51 L47 13 Q47 11 45 11 Z" fill="url(#jsl-g3)"/></g>
+          </g>
+        </svg>
+        <div id="jsl-wordmark">
+          <div id="jsl-brand">Xuvilo</div>
+          <div id="jsl-sub">Business Hub</div>
+        </div>
+        <p id="jsl-msg"></p>
+      </div>
+    </div>
+    <script>
+    /* Ribbon loading screen — CSS handles the animation; JS only sets caption. */
+    (function () {
+      'use strict';
+      var msg = document.getElementById('jsl-msg');
+      if (!msg) return;
+      var isAr = false;
+      try {
+        var stored = localStorage.getItem('bh_lang');
+        isAr = stored === 'ar'
+            || (!stored && (navigator.language || '').toLowerCase().startsWith('ar'));
+      } catch (e) {}
+      if (isAr) {
+        msg.textContent = '\u062C\u0627\u0631\u064D \u062A\u062C\u0647\u064A\u0632 \u0623\u062F\u0648\u0627\u062A \u0623\u0639\u0645\u0627\u0644\u0643\u2026';
+        msg.setAttribute('dir', 'rtl');
+      } else {
+        msg.textContent = 'Preparing your business tools\u2026';
+      }
+    })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

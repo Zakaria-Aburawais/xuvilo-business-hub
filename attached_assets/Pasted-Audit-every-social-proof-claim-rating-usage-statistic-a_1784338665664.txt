@@ -1,0 +1,44 @@
+Audit every social-proof claim, rating, usage statistic, and testimonial displayed on Xuvilo.
+
+Potentially unsupported claims currently include:
+
+- “Trusted by 2,000+ businesses”
+- “Thousands of companies and freelancers trust our platform”
+- A 4.8/5 rating
+- “Join thousands of users”
+- Document-created counters
+- Named customer testimonials
+- Claims that users use Xuvilo daily
+
+Do not assume these claims are genuine.
+
+For every claim:
+
+1. Identify its source in the code or database.
+2. Identify the underlying evidence or analytics calculation.
+3. Determine whether it represents verified real users, registered accounts, generated documents, businesses, sessions, or placeholder marketing text.
+4. Do not count test accounts, seed data, bots, internal usage, or fabricated examples.
+5. Check whether testimonial names, job titles, countries, and quotations belong to real customers who consented to publication.
+
+Required action:
+
+- Retain a numerical claim only if it can be calculated from reliable production data.
+- Clearly label the basis of ratings, such as the platform from which the rating originates.
+- Remove ratings that have no verifiable source.
+- Remove fictional testimonials or replace that section with factual product benefits.
+- Never present sample personas as real customers.
+- If real testimonials exist, store and display only approved testimonials with documented consent.
+- Ensure structured data does not contain fabricated AggregateRating, Review, user-count, or testimonial information.
+- Ensure Arabic and English versions use the same verified facts.
+
+Do not expose personal customer information while completing this audit.
+
+Do not report completion until you provide:
+
+- An inventory of every trust claim found.
+- The evidence source for each retained claim.
+- A list of every removed or rewritten claim.
+- Structured-data validation results.
+- Modified files and database records.
+- Production-build results.
+- Live production verification.

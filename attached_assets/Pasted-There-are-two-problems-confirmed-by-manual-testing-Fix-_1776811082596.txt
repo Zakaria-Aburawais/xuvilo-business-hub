@@ -1,0 +1,98 @@
+There are two problems confirmed by manual testing.
+Fix both immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROBLEM 1 — WRONG CANONICAL DOMAIN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The canonical URL and all meta tags are pointing to:
+https://businesses-hub.replit.app
+
+That domain is NOT deployed and shows 
+"This app isn't live yet" to visitors.
+
+The correct live domain is:
+https://attached-assets-zakaburawais.replit.app
+
+Fix everywhere in the codebase:
+- All canonical <link> tags
+- All og:url meta tags
+- All sitemap.xml <loc> entries
+- All robots.txt Sitemap: references
+- Any hardcoded domain in server/index.ts
+- Any hardcoded domain in vite.config.ts
+- Any hardcoded domain in SEOHead component
+
+Search the entire codebase for 
+"businesses-hub.replit.app" and replace ALL 
+instances with "attached-assets-zakaburawais.replit.app"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROBLEM 2 — SUBPAGES RETURN 404 ON LIVE SITE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+On the live URL attached-assets-zakaburawais.replit.app:
+- /invoice-generator-libya → 404
+- /sitemap.xml → 404
+- /robots.txt → 404
+
+The Express server catch-all is not working.
+
+Check server/index.ts and confirm:
+
+1. The server listens on 0.0.0.0 not 127.0.0.1:
+   app.listen(PORT, '0.0.0.0', () => { ... })
+
+2. robots.txt and sitemap.xml routes are defined
+   BEFORE the catch-all app.get('*') handler
+
+3. The catch-all app.get('*') exists and serves
+   the index.html for ALL unmatched routes:
+   
+   app.get('*', (req, res) => {
+     res.sendFile(
+       path.join(__dirname, '../dist/public/index.html')
+     )
+   })
+
+   OR in dev mode:
+   
+   app.get('*', async (req, res) => {
+     let template = fs.readFileSync('./index.html', 'utf-8')
+     template = await vite.transformIndexHtml(req.url, template)
+     res.status(200)
+        .set({ 'Content-Type': 'text/html' })
+        .end(template)
+   })
+
+4. Check .replit file — confirm the run command
+   is pointing to the Express server:
+   run = "npm run dev"
+   
+   NOT:
+   run = "vite"
+   run = "npx vite"
+
+5. Show me the exact contents of:
+   - .replit file
+   - The server listen() call in server/index.ts
+   - The app.get('*') handler in server/index.ts
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERIFICATION — LIVE URL ONLY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After fixing, run these curl commands and show 
+the EXACT output from the LIVE URL:
+
+curl -s https://attached-assets-zakaburawais.replit.app/robots.txt
+
+curl -s https://attached-assets-zakaburawais.replit.app/sitemap.xml | head -5
+
+curl -s https://attached-assets-zakaburawais.replit.app/invoice-generator-libya | grep "<title"
+
+curl -s https://attached-assets-zakaburawais.replit.app/invoice-generator-saudi-arabia | grep "<h1"
+
+Show the raw output of each command.
+Do not test localhost.
+Do not mark ✅ without showing actual output.

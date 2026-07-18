@@ -1,0 +1,916 @@
+Create dedicated SEO landing pages for 55 countries 
+on Businesses Hub. Each page must be unique, 
+crawlable, and pre-load the invoice tool with 
+correct local settings.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ARCHITECTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use a dynamic route pattern to avoid repeating 
+code 55 times:
+
+Route: /invoice-generator-[country-slug]
+Example: /invoice-generator-saudi-arabia
+
+Create one shared page template component:
+/src/pages/country/[slug].tsx (or equivalent)
+
+Create one data file containing all 55 countries:
+/src/data/countries.ts
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COUNTRY DATA FILE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create /src/data/countries.ts with this structure 
+for all 55 countries:
+
+export const countries = [
+
+  // ── TIER 1: ARAB WORLD ──
+  {
+    slug: "saudi-arabia",
+    nameEn: "Saudi Arabia",
+    nameAr: "المملكة العربية السعودية",
+    flag: "🇸🇦",
+    currency: "SAR",
+    currencySymbol: "ر.س",
+    vatRate: 15,
+    vatName: "VAT (ZATCA)",
+    zatcaCompliant: true,
+    tier: 1,
+    h1En: "Free Invoice Generator for Saudi Arabia",
+    h1Ar: "مولد الفواتير المجاني للمملكة العربية السعودية",
+    metaDescription: "Create ZATCA-compliant invoices 
+      for Saudi Arabia. Arabic & English, 15% VAT 
+      auto-calculated, QR code included. Free PDF export.",
+    complianceNote: "ZATCA Phase 1 compliant. Includes 
+      QR code and 15% VAT calculation required by Saudi 
+      tax law.",
+    faqItems: [
+      {
+        q: "What is ZATCA and do I need to comply?",
+        a: "ZATCA is Saudi Arabia's tax authority. 
+           All VAT-registered businesses must issue 
+           compliant e-invoices with QR codes."
+      },
+      {
+        q: "What is the VAT rate in Saudi Arabia?",
+        a: "The standard VAT rate in Saudi Arabia 
+           is 15% as of July 2020."
+      }
+    ]
+  },
+
+  {
+    slug: "uae",
+    nameEn: "UAE",
+    nameAr: "الإمارات العربية المتحدة",
+    flag: "🇦🇪",
+    currency: "AED",
+    currencySymbol: "د.إ",
+    vatRate: 5,
+    vatName: "VAT (FTA)",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for UAE",
+    h1Ar: "مولد الفواتير المجاني للإمارات",
+    metaDescription: "Generate professional UAE invoices 
+      with 5% VAT, TRN support, Arabic & English. 
+      FTA-compliant. Free PDF download.",
+    complianceNote: "Supports UAE FTA 5% VAT and 
+      Tax Registration Number (TRN) fields.",
+    faqItems: [
+      {
+        q: "What is the VAT rate in the UAE?",
+        a: "The UAE VAT rate is 5%, introduced 
+           in January 2018 by the FTA."
+      },
+      {
+        q: "Do I need a TRN on my invoice?",
+        a: "Yes, if your business is VAT-registered, 
+           your Tax Registration Number must appear 
+           on all tax invoices."
+      }
+    ]
+  },
+
+  {
+    slug: "egypt",
+    nameEn: "Egypt",
+    nameAr: "مصر",
+    flag: "🇪🇬",
+    currency: "EGP",
+    currencySymbol: "ج.م",
+    vatRate: 14,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Egypt",
+    h1Ar: "مولد الفواتير المجاني لمصر",
+    metaDescription: "Create professional invoices 
+      for Egypt in Arabic and English. 14% VAT, 
+      free PDF export, bilingual support.",
+    complianceNote: "Supports Egyptian 14% VAT rate 
+      with Arabic RTL layout.",
+    faqItems: [
+      {
+        q: "What is the VAT rate in Egypt?",
+        a: "Egypt's standard VAT rate is 14%."
+      }
+    ]
+  },
+
+  {
+    slug: "libya",
+    nameEn: "Libya",
+    nameAr: "ليبيا",
+    flag: "🇱🇾",
+    currency: "LYD",
+    currencySymbol: "د.ل",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Libya",
+    h1Ar: "مولد الفواتير المجاني لليبيا",
+    metaDescription: "Create professional Arabic and 
+      English invoices for Libya in LYD currency. 
+      Free, instant PDF export. No sign-up required.",
+    complianceNote: "Libya currently has no federal 
+      VAT system. Invoices are issued without VAT.",
+    faqItems: [
+      {
+        q: "Is there VAT in Libya?",
+        a: "Libya does not currently have a VAT 
+           system. Invoices are issued without tax."
+      },
+      {
+        q: "Can I create an invoice in Libyan Dinar?",
+        a: "Yes, Businesses Hub fully supports LYD 
+           with correct Arabic formatting."
+      }
+    ]
+  },
+
+  {
+    slug: "jordan",
+    nameEn: "Jordan",
+    nameAr: "الأردن",
+    flag: "🇯🇴",
+    currency: "JOD",
+    currencySymbol: "د.أ",
+    vatRate: 16,
+    vatName: "GST",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Jordan",
+    h1Ar: "مولد الفواتير المجاني للأردن",
+    metaDescription: "Generate professional invoices 
+      for Jordan with 16% GST, Arabic & English 
+      support. Free PDF export.",
+    complianceNote: "Supports Jordan's 16% General 
+      Sales Tax (GST) rate.",
+    faqItems: [
+      {
+        q: "What is the tax rate in Jordan?",
+        a: "Jordan uses a General Sales Tax (GST) 
+           with a standard rate of 16%."
+      }
+    ]
+  },
+
+  {
+    slug: "kuwait",
+    nameEn: "Kuwait",
+    nameAr: "الكويت",
+    flag: "🇰🇼",
+    currency: "KWD",
+    currencySymbol: "د.ك",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Kuwait",
+    h1Ar: "مولد الفواتير المجاني للكويت",
+    metaDescription: "Create professional invoices 
+      for Kuwait in KWD. Arabic & English, free PDF. 
+      No VAT required.",
+    complianceNote: "Kuwait has no VAT system. 
+      Professional invoices without tax.",
+    faqItems: []
+  },
+
+  {
+    slug: "qatar",
+    nameEn: "Qatar",
+    nameAr: "قطر",
+    flag: "🇶🇦",
+    currency: "QAR",
+    currencySymbol: "ر.ق",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Qatar",
+    h1Ar: "مولد الفواتير المجاني لقطر",
+    metaDescription: "Generate professional invoices 
+      for Qatar in QAR. Arabic & English, free PDF.",
+    complianceNote: "Qatar currently has no VAT.",
+    faqItems: []
+  },
+
+  {
+    slug: "bahrain",
+    nameEn: "Bahrain",
+    nameAr: "البحرين",
+    flag: "🇧🇭",
+    currency: "BHD",
+    currencySymbol: "د.ب",
+    vatRate: 10,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Bahrain",
+    h1Ar: "مولد الفواتير المجاني للبحرين",
+    metaDescription: "Create professional invoices 
+      for Bahrain with 10% VAT. Arabic & English 
+      support, free PDF export.",
+    complianceNote: "Supports Bahrain's 10% VAT rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "oman",
+    nameEn: "Oman",
+    nameAr: "عُمان",
+    flag: "🇴🇲",
+    currency: "OMR",
+    currencySymbol: "ر.ع",
+    vatRate: 5,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Oman",
+    h1Ar: "مولد الفواتير المجاني لعُمان",
+    metaDescription: "Generate professional invoices 
+      for Oman with 5% VAT. Bilingual Arabic & 
+      English. Free PDF download.",
+    complianceNote: "Supports Oman's 5% VAT rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "iraq",
+    nameEn: "Iraq",
+    nameAr: "العراق",
+    flag: "🇮🇶",
+    currency: "IQD",
+    currencySymbol: "د.ع",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Iraq",
+    h1Ar: "مولد الفواتير المجاني للعراق",
+    metaDescription: "Create professional Arabic and 
+      English invoices for Iraq in IQD. Free, 
+      instant PDF. No sign-up needed.",
+    complianceNote: "Supports Iraqi Dinar (IQD) 
+      with Perso-Arabic numeral option.",
+    faqItems: []
+  },
+
+  {
+    slug: "syria",
+    nameEn: "Syria",
+    nameAr: "سوريا",
+    flag: "🇸🇾",
+    currency: "SYP",
+    currencySymbol: "ل.س",
+    vatRate: 11,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Syria",
+    h1Ar: "مولد الفواتير المجاني لسوريا",
+    metaDescription: "Generate Arabic and English 
+      invoices for Syria in SYP. Free PDF export.",
+    complianceNote: "Supports Syrian Pound (SYP).",
+    faqItems: []
+  },
+
+  {
+    slug: "lebanon",
+    nameEn: "Lebanon",
+    nameAr: "لبنان",
+    flag: "🇱🇧",
+    currency: "LBP",
+    currencySymbol: "ل.ل",
+    vatRate: 11,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Lebanon",
+    h1Ar: "مولد الفواتير المجاني للبنان",
+    metaDescription: "Create professional invoices 
+      for Lebanon in LBP or USD. Arabic & English, 
+      11% VAT, free PDF.",
+    complianceNote: "Supports Lebanese Pound (LBP) 
+      and USD dual-currency invoicing.",
+    faqItems: []
+  },
+
+  {
+    slug: "morocco",
+    nameEn: "Morocco",
+    nameAr: "المغرب",
+    flag: "🇲🇦",
+    currency: "MAD",
+    currencySymbol: "د.م",
+    vatRate: 20,
+    vatName: "TVA",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Morocco",
+    h1Ar: "مولد الفواتير المجاني للمغرب",
+    metaDescription: "Generate professional invoices 
+      for Morocco in MAD. Arabic, French & English 
+      support. 20% TVA. Free PDF.",
+    complianceNote: "Supports Moroccan 20% TVA rate. 
+      French language option available.",
+    faqItems: []
+  },
+
+  {
+    slug: "algeria",
+    nameEn: "Algeria",
+    nameAr: "الجزائر",
+    flag: "🇩🇿",
+    currency: "DZD",
+    currencySymbol: "د.ج",
+    vatRate: 19,
+    vatName: "TVA",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Algeria",
+    h1Ar: "مولد الفواتير المجاني للجزائر",
+    metaDescription: "Create invoices for Algeria 
+      in DZD. Arabic & French support, 19% TVA, 
+      free PDF export.",
+    complianceNote: "Supports Algerian 19% TVA.",
+    faqItems: []
+  },
+
+  {
+    slug: "tunisia",
+    nameEn: "Tunisia",
+    nameAr: "تونس",
+    flag: "🇹🇳",
+    currency: "TND",
+    currencySymbol: "د.ت",
+    vatRate: 19,
+    vatName: "TVA",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Tunisia",
+    h1Ar: "مولد الفواتير المجاني لتونس",
+    metaDescription: "Generate professional invoices 
+      for Tunisia in TND. Arabic & French, 19% TVA, 
+      instant PDF.",
+    complianceNote: "Supports Tunisian 19% TVA rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "sudan",
+    nameEn: "Sudan",
+    nameAr: "السودان",
+    flag: "🇸🇩",
+    currency: "SDG",
+    currencySymbol: "ج.س",
+    vatRate: 17,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Sudan",
+    h1Ar: "مولد الفواتير المجاني للسودان",
+    metaDescription: "Create professional Arabic 
+      invoices for Sudan in SDG. Free PDF export.",
+    complianceNote: "Supports Sudanese Pound (SDG).",
+    faqItems: []
+  },
+
+  {
+    slug: "yemen",
+    nameEn: "Yemen",
+    nameAr: "اليمن",
+    flag: "🇾🇪",
+    currency: "YER",
+    currencySymbol: "ر.ي",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Yemen",
+    h1Ar: "مولد الفواتير المجاني لليمن",
+    metaDescription: "Generate Arabic invoices for 
+      Yemen in YER. Free PDF, no sign-up required.",
+    complianceNote: "Supports Yemeni Rial (YER).",
+    faqItems: []
+  },
+
+  {
+    slug: "palestine",
+    nameEn: "Palestine",
+    nameAr: "فلسطين",
+    flag: "🇵🇸",
+    currency: "USD",
+    currencySymbol: "$",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Palestine",
+    h1Ar: "مولد الفواتير المجاني لفلسطين",
+    metaDescription: "Create professional Arabic 
+      invoices for Palestine in USD or ILS. 
+      Free PDF export.",
+    complianceNote: "Supports USD and ILS currencies.",
+    faqItems: []
+  },
+
+  {
+    slug: "somalia",
+    nameEn: "Somalia",
+    nameAr: "الصومال",
+    flag: "🇸🇴",
+    currency: "SOS",
+    currencySymbol: "Sh",
+    vatRate: 0,
+    vatName: "No VAT",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Somalia",
+    h1Ar: "مولد الفواتير المجاني للصومال",
+    metaDescription: "Generate professional invoices 
+      for Somalia in USD or SOS. Arabic & English, 
+      free PDF.",
+    complianceNote: "Supports Somali Shilling and USD.",
+    faqItems: []
+  },
+
+  {
+    slug: "mauritania",
+    nameEn: "Mauritania",
+    nameAr: "موريتانيا",
+    flag: "🇲🇷",
+    currency: "MRU",
+    currencySymbol: "أ.م",
+    vatRate: 16,
+    vatName: "TVA",
+    zatcaCompliant: false,
+    tier: 1,
+    h1En: "Free Invoice Generator for Mauritania",
+    h1Ar: "مولد الفواتير المجاني لموريتانيا",
+    metaDescription: "Create invoices for Mauritania 
+      in MRU. Arabic & French, 16% TVA, free PDF.",
+    complianceNote: "Supports Mauritanian Ouguiya.",
+    faqItems: []
+  },
+
+  // ── TIER 2: AFRICAN MARKETS ──
+  {
+    slug: "nigeria",
+    nameEn: "Nigeria",
+    nameAr: null,
+    flag: "🇳🇬",
+    currency: "NGN",
+    currencySymbol: "₦",
+    vatRate: 7.5,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for Nigeria",
+    h1Ar: null,
+    metaDescription: "Create professional invoices 
+      for Nigeria in NGN. 7.5% VAT, instant PDF, 
+      no sign-up required.",
+    complianceNote: "Supports Nigeria's 7.5% VAT.",
+    faqItems: []
+  },
+
+  {
+    slug: "ghana",
+    nameEn: "Ghana",
+    nameAr: null,
+    flag: "🇬🇭",
+    currency: "GHS",
+    currencySymbol: "₵",
+    vatRate: 15,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for Ghana",
+    h1Ar: null,
+    metaDescription: "Generate professional invoices 
+      for Ghana in GHS. 15% VAT, instant PDF export.",
+    complianceNote: "Supports Ghana's 15% VAT rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "kenya",
+    nameEn: "Kenya",
+    nameAr: null,
+    flag: "🇰🇪",
+    currency: "KES",
+    currencySymbol: "KSh",
+    vatRate: 16,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for Kenya",
+    h1Ar: null,
+    metaDescription: "Create professional invoices 
+      for Kenya in KES. 16% VAT, free PDF download.",
+    complianceNote: "Supports Kenya's 16% VAT rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "south-africa",
+    nameEn: "South Africa",
+    nameAr: null,
+    flag: "🇿🇦",
+    currency: "ZAR",
+    currencySymbol: "R",
+    vatRate: 15,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for South Africa",
+    h1Ar: null,
+    metaDescription: "Generate professional invoices 
+      for South Africa in ZAR. 15% VAT, instant PDF.",
+    complianceNote: "Supports South Africa's 15% VAT.",
+    faqItems: []
+  },
+
+  {
+    slug: "ethiopia",
+    nameEn: "Ethiopia",
+    nameAr: null,
+    flag: "🇪🇹",
+    currency: "ETB",
+    currencySymbol: "Br",
+    vatRate: 15,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for Ethiopia",
+    h1Ar: null,
+    metaDescription: "Create invoices for Ethiopia 
+      in ETB. 15% VAT, free PDF export.",
+    complianceNote: "Supports Ethiopian Birr (ETB).",
+    faqItems: []
+  },
+
+  {
+    slug: "tanzania",
+    nameEn: "Tanzania",
+    nameAr: null,
+    flag: "🇹🇿",
+    currency: "TZS",
+    currencySymbol: "TSh",
+    vatRate: 18,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for Tanzania",
+    h1Ar: null,
+    metaDescription: "Generate professional invoices 
+      for Tanzania in TZS. 18% VAT, instant PDF.",
+    complianceNote: "Supports Tanzania's 18% VAT.",
+    faqItems: []
+  },
+
+  {
+    slug: "senegal",
+    nameEn: "Senegal",
+    nameAr: null,
+    flag: "🇸🇳",
+    currency: "XOF",
+    currencySymbol: "CFA",
+    vatRate: 18,
+    vatName: "TVA",
+    zatcaCompliant: false,
+    tier: 2,
+    h1En: "Free Invoice Generator for Senegal",
+    h1Ar: null,
+    metaDescription: "Create professional invoices 
+      for Senegal in XOF. French support, 18% TVA.",
+    complianceNote: "Supports CFA Franc (XOF) and French.",
+    faqItems: []
+  },
+
+  // ── TIER 3: GLOBAL MARKETS ──
+  {
+    slug: "united-kingdom",
+    nameEn: "United Kingdom",
+    nameAr: null,
+    flag: "🇬🇧",
+    currency: "GBP",
+    currencySymbol: "£",
+    vatRate: 20,
+    vatName: "VAT",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for UK",
+    h1Ar: null,
+    metaDescription: "Generate professional UK invoices 
+      in GBP. 20% VAT, instant PDF. HMRC-ready format.",
+    complianceNote: "Supports UK 20% VAT and GBP.",
+    faqItems: []
+  },
+
+  {
+    slug: "usa",
+    nameEn: "United States",
+    nameAr: null,
+    flag: "🇺🇸",
+    currency: "USD",
+    currencySymbol: "$",
+    vatRate: 0,
+    vatName: "No Federal VAT",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for USA",
+    h1Ar: null,
+    metaDescription: "Create professional US invoices 
+      in USD. No VAT required, instant PDF, free.",
+    complianceNote: "USA has no federal VAT. 
+      State sales tax fields available.",
+    faqItems: []
+  },
+
+  {
+    slug: "canada",
+    nameEn: "Canada",
+    nameAr: null,
+    flag: "🇨🇦",
+    currency: "CAD",
+    currencySymbol: "CA$",
+    vatRate: 5,
+    vatName: "GST",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Canada",
+    h1Ar: null,
+    metaDescription: "Generate Canadian invoices in 
+      CAD. GST/HST support, instant PDF, free.",
+    complianceNote: "Supports Canadian GST (5%) 
+      and HST rates by province.",
+    faqItems: []
+  },
+
+  {
+    slug: "australia",
+    nameEn: "Australia",
+    nameAr: null,
+    flag: "🇦🇺",
+    currency: "AUD",
+    currencySymbol: "A$",
+    vatRate: 10,
+    vatName: "GST",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Australia",
+    h1Ar: null,
+    metaDescription: "Create professional Australian 
+      invoices in AUD. 10% GST, instant PDF.",
+    complianceNote: "Supports Australian 10% GST.",
+    faqItems: []
+  },
+
+  {
+    slug: "germany",
+    nameEn: "Germany",
+    nameAr: null,
+    flag: "🇩🇪",
+    currency: "EUR",
+    currencySymbol: "€",
+    vatRate: 19,
+    vatName: "MwSt",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Germany",
+    h1Ar: null,
+    metaDescription: "Generate professional German 
+      invoices in EUR. 19% MwSt, instant PDF.",
+    complianceNote: "Supports German 19% MwSt (VAT).",
+    faqItems: []
+  },
+
+  {
+    slug: "france",
+    nameEn: "France",
+    nameAr: null,
+    flag: "🇫🇷",
+    currency: "EUR",
+    currencySymbol: "€",
+    vatRate: 20,
+    vatName: "TVA",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for France",
+    h1Ar: null,
+    metaDescription: "Create professional French 
+      invoices in EUR. 20% TVA, instant PDF.",
+    complianceNote: "Supports French 20% TVA rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "india",
+    nameEn: "India",
+    nameAr: null,
+    flag: "🇮🇳",
+    currency: "INR",
+    currencySymbol: "₹",
+    vatRate: 18,
+    vatName: "GST",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for India",
+    h1Ar: null,
+    metaDescription: "Generate professional Indian 
+      invoices in INR. 18% GST, instant PDF export.",
+    complianceNote: "Supports Indian GST at 18% 
+      standard rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "pakistan",
+    nameEn: "Pakistan",
+    nameAr: null,
+    flag: "🇵🇰",
+    currency: "PKR",
+    currencySymbol: "₨",
+    vatRate: 17,
+    vatName: "GST",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Pakistan",
+    h1Ar: null,
+    metaDescription: "Create professional Pakistani 
+      invoices in PKR. 17% GST, free PDF export.",
+    complianceNote: "Supports Pakistani Rupee and 
+      17% GST rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "turkey",
+    nameEn: "Turkey",
+    nameAr: null,
+    flag: "🇹🇷",
+    currency: "TRY",
+    currencySymbol: "₺",
+    vatRate: 20,
+    vatName: "KDV",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Turkey",
+    h1Ar: null,
+    metaDescription: "Generate professional Turkish 
+      invoices in TRY. 20% KDV (VAT), instant PDF.",
+    complianceNote: "Supports Turkish Lira and 
+      20% KDV (VAT) rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "malaysia",
+    nameEn: "Malaysia",
+    nameAr: null,
+    flag: "🇲🇾",
+    currency: "MYR",
+    currencySymbol: "RM",
+    vatRate: 8,
+    vatName: "SST",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Malaysia",
+    h1Ar: null,
+    metaDescription: "Create professional Malaysian 
+      invoices in MYR. 8% SST, instant PDF.",
+    complianceNote: "Supports Malaysian Ringgit 
+      and 8% SST rate.",
+    faqItems: []
+  },
+
+  {
+    slug: "indonesia",
+    nameEn: "Indonesia",
+    nameAr: null,
+    flag: "🇮🇩",
+    currency: "IDR",
+    currencySymbol: "Rp",
+    vatRate: 11,
+    vatName: "PPN",
+    zatcaCompliant: false,
+    tier: 3,
+    h1En: "Free Invoice Generator for Indonesia",
+    h1Ar: null,
+    metaDescription: "Generate professional Indonesian 
+      invoices in IDR. 11% PPN (VAT), instant PDF.",
+    complianceNote: "Supports Indonesian Rupiah 
+      and 11% PPN rate.",
+    faqItems: []
+  },
+
+  // Add remaining countries following same pattern:
+  // Uganda, Cameroon, Cote d'Ivoire, Bangladesh, 
+  // Philippines, Djibouti, Comoros, Yemen already above
+  // Complete all 55 entries following the same structure
+]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PAGE TEMPLATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Build one shared template component that renders 
+all country pages dynamically:
+
+Each country page must include:
+
+HEADER SECTION:
+- Country flag emoji + country name
+- H1 heading (use h1En or h1Ar based on language)
+- Subheadline: "Free • [Currency] • [VAT]% [VATName] 
+  • PDF Export • Arabic & English"
+- CTA button: "Create Free Invoice →"
+
+TOOL SECTION:
+- Embed the invoice generator pre-loaded with:
+  - Default currency set to country currency
+  - Default VAT rate set to country vatRate
+  - ZATCA toggle auto-enabled if zatcaCompliant: true
+
+CONTENT SECTION (400+ words, unique per country):
+- "Invoicing in [Country]" — overview paragraph
+- "[Country] Tax & VAT Guide" — explain local rules
+- "How to use Businesses Hub in [Country]" — steps
+- "Why [Country] businesses choose Businesses Hub"
+
+FAQ SECTION:
+- Render faqItems array as accordion
+- Add 2 generic FAQs to all pages:
+  "Is Businesses Hub free?" → "Yes, core features 
+  are completely free with no sign-up required."
+  "Can I export to PDF?" → "Yes, all documents 
+  export instantly as professional PDFs."
+
+FOOTER CTA:
+- "Start creating free invoices for [Country] →"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NAVIGATION & DISCOVERY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Create a /countries page listing all 55 countries
+   - Organized by tier/region
+   - Each country shows flag, name, currency, VAT rate
+   - Clicking goes to /invoice-generator-[slug]
+   - Add to sitemap and footer nav
+
+2. Add a "Your Country" smart banner on the homepage:
+   - Detect user's locale/timezone
+   - Show: "Invoicing in [Detected Country]? 
+     We support [Currency] and [VAT]% [VATName] →"
+   - Link to that country's landing page
+
+3. Add all 55 country pages to /sitemap.xml
+
+4. Update /robots.txt sitemap reference
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-AUDIT AFTER COMPLETION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Report results in this format:
+
+✅ or ❌ countries.ts data file created (55 entries)
+✅ or ❌ Dynamic route [slug].tsx working
+✅ or ❌ All 55 pages load with correct content
+✅ or ❌ Currency pre-loads correctly per country
+✅ or ❌ VAT rate pre-loads correctly per country
+✅ or ❌ ZATCA auto-enabled for Saudi Arabia
+✅ or ❌ /countries directory page exists
+✅ or ❌ Sitemap updated with all 55 URLs
+✅ or ❌ Country detection banner on homepage
+✅ or ❌ All pages have unique meta titles 
+         and descriptions

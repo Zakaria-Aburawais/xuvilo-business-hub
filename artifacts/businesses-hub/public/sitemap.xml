@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://xuvilo.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://xuvilo.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://xuvilo.com/?lang=ar" />
+  </url>
+
+  <!-- Document generators -->
+  <url><loc>https://xuvilo.com/invoice</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xuvilo.com/quotation</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xuvilo.com/receipt</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Templates -->
+  <url><loc>https://xuvilo.com/templates</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xuvilo.com/templates/invoice</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xuvilo.com/templates/quotation</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xuvilo.com/templates/receipt</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+
+  <!-- Calculators / Tools -->
+  <url><loc>https://xuvilo.com/calculators</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xuvilo.com/tools/stamp-maker</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xuvilo.com/tools/tracker</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xuvilo.com/tools/business-card</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xuvilo.com/ai-writer</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Pricing / Countries -->
+  <url><loc>https://xuvilo.com/pricing</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xuvilo.com/countries</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://xuvilo.com/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- Trust / Company / Legal -->
+  <url><loc>https://xuvilo.com/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xuvilo.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xuvilo.com/how-it-works</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xuvilo.com/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xuvilo.com/privacy</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://xuvilo.com/terms</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://xuvilo.com/disclaimer</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+
+  <!-- Topical guides -->
+  <url><loc>https://xuvilo.com/invoice-guide</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://xuvilo.com/quotation-guide</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://xuvilo.com/receipt-guide</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://xuvilo.com/business-calculators-guide</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+</urlset>

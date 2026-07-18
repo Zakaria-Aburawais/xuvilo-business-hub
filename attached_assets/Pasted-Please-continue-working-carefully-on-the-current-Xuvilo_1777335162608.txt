@@ -1,0 +1,248 @@
+Please continue working carefully on the current Xuvilo project.
+
+Important instructions:
+- Do not delete or break any existing working features.
+- Do not change the domain settings.
+- Do not integrate Stripe or live payments now.
+- Do not remove the AI Writer work completed in the previous step.
+- Keep the Gemini AI service module as it is for now. We will connect the API key later.
+- Before making changes, inspect the existing database/auth structure if any.
+- If authentication or user tables already exist, improve them instead of rebuilding from scratch.
+
+Main goal of this step:
+Convert Xuvilo from a public tools website into a SaaS-ready workspace by adding user accounts, a protected dashboard, company profile, client management, and saved document structure.
+
+Part 1: Authentication
+Add or complete authentication features:
+- Sign up
+- Login
+- Logout
+- Forgot password if already supported by the stack
+- Protected dashboard route
+- Redirect unauthenticated users to login when accessing private pages
+
+Required routes:
+- /login
+- /signup
+- /dashboard
+- /account or /settings if needed
+
+Important:
+If real backend authentication is not currently available, create the correct frontend routes and backend-ready structure, but do not fake a working login. Clearly state in the final report what is functional and what still needs environment setup.
+
+Part 2: User dashboard
+Create a clean dashboard page at:
+
+/dashboard
+
+The dashboard should include:
+- Welcome message with user name or email
+- Current plan: Free by default
+- Documents created this month
+- AI credits used and remaining
+- Recent invoices
+- Recent quotations
+- Recent receipts
+- Saved clients
+- Saved company profile status
+- Quick action buttons:
+  - Create Invoice
+  - Create Quotation
+  - Create Receipt
+  - Try AI Writer
+  - Add Client
+  - Edit Company Profile
+
+The dashboard should look modern, soft, clean, and mobile-friendly.
+
+Part 3: Company profile
+Create a company profile feature where each logged-in user can save:
+
+- Company name
+- Logo
+- Address
+- Phone
+- Email
+- Website
+- Tax/VAT number
+- Registration number if needed
+- Default currency
+- Default language: English or Arabic
+- Default payment terms
+- Default invoice notes
+- Bank/payment details field if appropriate
+
+Required route:
+- /dashboard/company-profile
+
+Functionality:
+- Create company profile
+- Edit company profile
+- Save company profile
+- Display profile completion status on dashboard
+- Auto-fill future invoices, quotations, and receipts from the saved company profile where technically possible
+
+Important:
+If document tools currently work without logged-in users, do not remove that free public flow. Instead:
+- Public users can still create basic documents without saving.
+- Logged-in users can save and reuse company profile.
+
+Part 4: Client management
+Create client management for logged-in users.
+
+Required route:
+- /dashboard/clients
+
+Each client should have:
+- Client name
+- Company name
+- Email
+- Phone
+- Address
+- Tax/VAT number if applicable
+- Notes
+
+Functionality:
+- Add client
+- Edit client
+- Delete client
+- Search/filter clients
+- Select saved client later when creating invoices, quotations, and receipts
+
+Display on dashboard:
+- Total clients
+- Recent clients
+
+Part 5: Saved documents structure
+Prepare or implement saved document records for:
+- Invoices
+- Quotations
+- Receipts
+
+Required routes:
+- /dashboard/documents
+- /dashboard/invoices
+- /dashboard/quotations
+- /dashboard/receipts
+
+Each saved document should store:
+- User ID
+- Document type
+- Document number/reference
+- Client ID or client details
+- Company profile snapshot
+- Items/services
+- Currency
+- Tax/VAT
+- Discount
+- Total amount
+- Notes/terms
+- Status: draft, sent, paid, cancelled where applicable
+- Created date
+- Updated date
+
+Functionality if possible:
+- Save document
+- Edit saved document
+- Duplicate document
+- Delete document
+- Export PDF
+- Print
+
+Important:
+Do not break the existing public invoice, quotation, and receipt generators. Add saving functionality for logged-in users only.
+
+Part 6: Free plan usage counters
+Add SaaS usage tracking logic without Stripe.
+
+Default plan:
+Free
+
+Free plan limits:
+- 5 saved documents per month
+- 5 AI generations per month
+- 3 saved clients
+- Xuvilo watermark on exported PDFs where applicable
+
+For now:
+- Show usage counters on dashboard
+- Warn users when they approach limits
+- Block saving if the free limit is exceeded
+- Show upgrade prompt, but do not connect payment yet
+
+Example message:
+“You have reached your Free plan limit of 5 saved documents this month. Upgrade will be available soon.”
+
+Part 7: AI Writer usage tracking
+Even though Gemini API may not be connected yet, prepare AI usage tracking.
+
+Track:
+- User ID
+- Date/time
+- Message type
+- Language
+- Credits used
+- Success/failure
+- Provider status
+
+Show on dashboard:
+- AI credits used this month
+- AI credits remaining
+
+If AI provider is unavailable, do not deduct credits.
+
+Part 8: Navigation and user state
+Update navigation behavior:
+- If user is logged out, show Login and Sign Up
+- If user is logged in, show Dashboard and Logout
+- Keep AI Writer visible in main navigation
+- Keep public tools accessible
+
+Part 9: Security and privacy basics
+Make sure:
+- Users can only see their own company profile, clients, and saved documents
+- Dashboard routes are protected
+- Private pages are not indexed by search engines
+- Public pages remain indexable
+
+Part 10: Mobile responsiveness
+Test all new pages on mobile:
+- Login
+- Sign up
+- Dashboard
+- Company profile
+- Clients
+- Documents
+
+Forms should be easy to use on phones.
+
+Part 11: Final testing
+Test:
+- Homepage still loads
+- Invoice page still works
+- Quotation page still works
+- Receipt page still works
+- Calculators still work
+- Templates still work
+- AI Writer still loads
+- Login/signup pages load
+- Dashboard route protection works
+- Company profile can be saved
+- Client can be added, edited, and deleted
+- Usage counters display correctly
+- No existing public tool is broken
+
+Final report required:
+When finished, provide a clear report with:
+
+1. Files changed
+2. Auth system status
+3. Database tables/models added or changed
+4. Dashboard features completed
+5. Company profile features completed
+6. Client management features completed
+7. Saved document structure completed
+8. Usage tracking completed
+9. What works now
+10. What still needs manual setup or environment variables
+11. Any errors or remaining issues

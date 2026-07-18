@@ -1,0 +1,228 @@
+Google Search Console is reporting indexing issues for Xuvilo.com:
+1. Not found (404)
+2. Page with redirect
+
+Please run a full SEO/indexing audit and fix these issues carefully.
+
+Important:
+- Do not redesign the website.
+- Do not remove existing working features.
+- Do not break login, signup, dashboard, documents, clients, invoice, quotation, receipt, calculators, pricing, AI Writer, or trust pages.
+- Focus only on crawlability, sitemap, redirects, 404s, canonical URLs, and Search Console readiness.
+
+Tasks:
+
+1. Audit all public routes
+Check that these routes exist and return 200 OK:
+/
+/about
+/contact
+/privacy
+/terms
+/disclaimer
+/faq
+/blog
+/pricing
+/invoice
+/quotation
+/receipt
+/calculators
+/templates
+/invoice-guide
+/quotation-guide
+/receipt-guide
+/business-calculators-guide
+/how-it-works
+
+If any route does not exist but is linked in the navbar, footer, sitemap, or internal links, either:
+- create the page properly, or
+- update the link to the correct existing page.
+
+2. Fix privacy URL consistency
+Check whether the site uses /privacy or /privacy-policy.
+Choose ONE official URL and use it everywhere.
+
+Recommended:
+Use /privacy as the main URL.
+
+If /privacy-policy exists, 301 redirect it to /privacy.
+Update footer, sitemap, internal links, canonical tags, and Open Graph URLs to use /privacy only.
+
+3. Fix Terms URL consistency
+Check whether the site uses /terms or /terms-of-use.
+Choose ONE official URL.
+
+Recommended:
+Use /terms as the main URL.
+
+If /terms-of-use exists, 301 redirect it to /terms.
+Update footer, sitemap, internal links, canonical tags, and Open Graph URLs to use /terms only.
+
+4. Fix www redirects
+Confirm that:
+https://www.xuvilo.com
+https://www.xuvilo.com/pricing
+https://www.xuvilo.com/invoice
+https://www.xuvilo.com/contact
+
+all 301 redirect to:
+https://xuvilo.com
+https://xuvilo.com/pricing
+https://xuvilo.com/invoice
+https://xuvilo.com/contact
+
+Make sure there are no redirect loops and no long redirect chains.
+
+5. Fix old Replit URLs
+Search the whole codebase for:
+replit.app
+repl.co
+attached-assets
+old deployment URLs
+
+Replace old public canonical, Open Graph, sitemap, robots, and metadata references with:
+https://xuvilo.com
+
+Do not replace internal development references unless they are actually used in public SEO output.
+
+6. Fix sitemap.xml
+Generate or update sitemap.xml so it includes only final canonical public URLs.
+
+The sitemap must:
+- use https://xuvilo.com only
+- not use www.xuvilo.com
+- not use old Replit URLs
+- not include login, signup, dashboard, account, billing, API, admin, or protected pages
+- not include redirected URLs
+- not include 404 URLs
+- not include duplicate routes
+- include all public content/tool pages
+
+Recommended sitemap URLs:
+https://xuvilo.com/
+https://xuvilo.com/about
+https://xuvilo.com/contact
+https://xuvilo.com/privacy
+https://xuvilo.com/terms
+https://xuvilo.com/disclaimer
+https://xuvilo.com/faq
+https://xuvilo.com/blog
+https://xuvilo.com/pricing
+https://xuvilo.com/invoice
+https://xuvilo.com/quotation
+https://xuvilo.com/receipt
+https://xuvilo.com/calculators
+https://xuvilo.com/templates
+https://xuvilo.com/invoice-guide
+https://xuvilo.com/quotation-guide
+https://xuvilo.com/receipt-guide
+https://xuvilo.com/business-calculators-guide
+https://xuvilo.com/how-it-works
+
+7. Fix robots.txt
+Create or update robots.txt so it:
+- allows crawling of public pages
+- blocks protected/internal/API areas if appropriate
+- references the sitemap
+
+Recommended robots.txt:
+
+User-agent: *
+Allow: /
+
+Disallow: /dashboard
+Disallow: /account
+Disallow: /billing
+Disallow: /documents
+Disallow: /clients
+Disallow: /api/
+
+Sitemap: https://xuvilo.com/sitemap.xml
+
+8. Fix canonical tags
+Every public page must have a canonical URL using the final clean URL.
+
+Examples:
+Home canonical:
+https://xuvilo.com/
+
+Pricing canonical:
+https://xuvilo.com/pricing
+
+Contact canonical:
+https://xuvilo.com/contact
+
+Do not use:
+- www.xuvilo.com
+- old Replit URLs
+- redirected URLs
+- duplicate alternative URLs
+
+9. Fix Open Graph tags
+Every public page should use:
+og:url = final canonical URL
+og:title = page-specific title
+og:description = page-specific description
+
+No old Replit URLs.
+
+10. Add 301 redirects for old/duplicate routes
+Add safe 301 redirects if these routes exist or were previously used:
+
+/privacy-policy -> /privacy
+/terms-of-use -> /terms
+/home -> /
+/index -> /
+/index.html -> /
+
+If any old guide URLs exist, redirect them to the correct current guide page.
+
+11. Fix broken internal links
+Audit:
+- navbar links
+- footer links
+- buttons
+- blog cards
+- guide page CTAs
+- homepage CTAs
+- pricing CTAs
+
+No internal link should point to a 404 page.
+No internal link should point to www.xuvilo.com.
+No internal link should point to old Replit URLs.
+
+12. Add a proper 404 page
+Create a clean user-friendly 404 page.
+It should:
+- explain the page was not found
+- link back to Home
+- link to Invoice, Quotation, Receipt, Calculators, Contact
+- return correct 404 status
+- not be included in sitemap
+
+13. Validate public page status codes
+After the fix, test each sitemap URL and confirm:
+- final canonical URL returns 200 OK
+- no sitemap URL redirects
+- no sitemap URL returns 404
+- no sitemap URL is noindex
+- no sitemap URL is blocked by robots.txt
+
+14. Search Console readiness
+Prepare final instructions for me:
+- resubmit sitemap in Google Search Console
+- use URL Inspection on https://xuvilo.com/
+- request indexing for important pages
+- validate fix for 404 and redirect issues
+
+Final response required:
+Give me a clear report with:
+1. What 404 URLs were found
+2. What redirect URLs were found
+3. What redirects were added
+4. What sitemap changes were made
+5. What robots.txt changes were made
+6. What canonical/OG changes were made
+7. What internal links were fixed
+8. Which public routes now return 200 OK
+9. Any remaining manual Google Search Console actions I need to do

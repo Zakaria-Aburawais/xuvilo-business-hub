@@ -1,0 +1,374 @@
+# Businesses Hub — Visual Redesign Prompt
+
+I am sharing screenshots of the current Businesses Hub website. The layout and functionality are fine — do NOT change the structure or routing. I only need a deep visual redesign to make it look modern, premium, and conversion-optimised. Here is exactly what to change:
+
+---
+
+## CURRENT STATE (from screenshots)
+
+- Navbar: white bar, flat, basic logo text, standard links
+- Hero: light blue-grey gradient background, plain bold text, two flat buttons
+- Tool cards: white cards on white background, basic icons in colored squares, minimal visual treatment
+
+---
+
+## TARGET LOOK
+
+Think: Linear.app, Vercel, Stripe, or Notion — clean but with strong visual personality, depth, and motion. Premium dark-capable SaaS.
+
+---
+
+## 1. NAVBAR — Glass Morphism Style
+
+Replace the current flat white navbar with a glass morphism sticky navbar:
+
+```css
+/* Navbar base */
+background: rgba(255, 255, 255, 0.72);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+box-shadow: 0 1px 24px rgba(0, 0, 0, 0.04);
+position: sticky;
+top: 0;
+z-index: 50;
+transition: background 0.3s ease, box-shadow 0.3s ease;
+```
+
+- On scroll, deepen the shadow slightly: `box-shadow: 0 4px 32px rgba(0,0,0,0.08)`.
+- Logo "Businesses Hub": make the wordmark bold with a **gradient text** — `background: linear-gradient(135deg, #0F172A 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;`
+- Nav links: `color: #374151`, `font-weight: 500`, `font-size: 14px`. On hover: color shifts to `#0EA5E9` with a smooth `0.2s` transition.
+- The language switcher (العربية) and dark mode toggle: give them a subtle pill background `background: #F1F5F9; border-radius: 999px; padding: 4px 12px;`.
+- **Login button**: outlined with `border: 1.5px solid #E2E8F0`, rounded pill, hover fills with light blue.
+- **Sign Up / primary button**: gradient `background: linear-gradient(135deg, #0EA5E9, #6366F1)`, white text, pill shape, subtle glow on hover: `box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4)`.
+
+---
+
+## 2. HERO SECTION — Bold, Dramatic, Modern
+
+Replace the flat gradient background completely.
+
+### Background:
+```css
+background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F2744 100%);
+/* Add an animated radial glow blob */
+```
+
+Add two animated soft glow orbs using pseudo-elements or absolutely positioned divs:
+```css
+/* Orb 1 — blue */
+position: absolute; width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%);
+top: -100px; left: -100px;
+animation: float 8s ease-in-out infinite;
+
+/* Orb 2 — purple */
+position: absolute; width: 500px; height: 500px;
+background: radial-gradient(circle, rgba(99,102,241,0.14) 0%, transparent 70%);
+bottom: -80px; right: -80px;
+animation: float 10s ease-in-out infinite reverse;
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -20px); }
+}
+```
+
+### Feature tags bar (the "Arabic & English · 170+ Currencies" line):
+Replace the plain text with pill badges:
+```html
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+  <span class="hero-badge">🌐 Arabic & English</span>
+  <span class="hero-badge">💱 170+ Currencies</span>
+  <span class="hero-badge">📄 PDF Export</span>
+  <span class="hero-badge">⚡ Free to use</span>
+</div>
+```
+```css
+.hero-badge {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+```
+
+### Headline:
+Change text color to white. Make "Freelancers & SMEs" (or the key phrase) use the gradient highlight:
+```css
+.hero-highlight {
+  background: linear-gradient(90deg, #38BDF8, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+```
+Font size: `clamp(36px, 5vw, 64px)`, `font-weight: 800`, `line-height: 1.15`, `letter-spacing: -0.02em`.
+
+### Subheading:
+Color: `rgba(255,255,255,0.65)`, `font-size: 18px`, `max-width: 540px`, `line-height: 1.7`.
+
+### CTA Buttons:
+
+**Primary — "Create Invoice":**
+```css
+background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
+color: white;
+padding: 14px 28px;
+border-radius: 12px;
+font-weight: 600;
+font-size: 15px;
+border: none;
+box-shadow: 0 8px 30px rgba(14,165,233,0.35);
+transition: transform 0.2s, box-shadow 0.2s;
+```
+On hover: `transform: translateY(-2px); box-shadow: 0 12px 40px rgba(14,165,233,0.5);`
+
+**Secondary — "Explore Tools":**
+```css
+background: rgba(255,255,255,0.08);
+border: 1.5px solid rgba(255,255,255,0.2);
+color: white;
+padding: 14px 28px;
+border-radius: 12px;
+font-weight: 500;
+backdrop-filter: blur(8px);
+transition: background 0.2s, border-color 0.2s;
+```
+On hover: `background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.35);`
+
+### Add animated number counters below the CTAs:
+```html
+<div class="stats-row">
+  <div class="stat"><span class="stat-num" data-target="10000">0</span>+<p>Documents Created</p></div>
+  <div class="stat"><span class="stat-num" data-target="170">0</span>+<p>Currencies</p></div>
+  <div class="stat"><span class="stat-num" data-target="5000">0</span>+<p>Active Users</p></div>
+</div>
+```
+```css
+.stats-row {
+  display: flex; gap: 40px; margin-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 32px;
+}
+.stat { color: white; }
+.stat-num { font-size: 28px; font-weight: 700; color: #38BDF8; }
+.stat p { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+```
+Use an IntersectionObserver to count up the numbers when the section enters view.
+
+---
+
+## 3. TOOL CARDS — Premium Dark Cards with Glow
+
+Replace the current white-on-white flat cards with premium dark/glass cards:
+
+```css
+.tool-card {
+  background: linear-gradient(145deg, #1E293B, #0F172A);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(14,165,233,0.6), transparent);
+}
+
+.tool-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(14,165,233,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(14,165,233,0.08);
+}
+```
+
+### Card icon containers — replace colored squares with glow circles:
+```css
+.card-icon-wrap {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+/* Invoice icon wrap */
+.card-icon-wrap.blue {
+  background: rgba(14,165,233,0.12);
+  border: 1px solid rgba(14,165,233,0.25);
+  box-shadow: 0 0 20px rgba(14,165,233,0.15);
+}
+/* Calculator icon wrap */
+.card-icon-wrap.purple {
+  background: rgba(99,102,241,0.12);
+  border: 1px solid rgba(99,102,241,0.25);
+  box-shadow: 0 0 20px rgba(99,102,241,0.15);
+}
+/* Receipt icon wrap */
+.card-icon-wrap.green {
+  background: rgba(16,185,129,0.12);
+  border: 1px solid rgba(16,185,129,0.25);
+  box-shadow: 0 0 20px rgba(16,185,129,0.15);
+}
+/* Quotation icon wrap */
+.card-icon-wrap.amber {
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.25);
+  box-shadow: 0 0 20px rgba(245,158,11,0.15);
+}
+```
+
+### Card title and description:
+```css
+.card-title { color: #F1F5F9; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.card-desc  { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.6; }
+```
+
+### "Most Popular" and "14 tools" badges:
+```css
+.badge-popular {
+  background: linear-gradient(135deg, #0EA5E9, #6366F1);
+  color: white;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+.badge-count {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px; font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+```
+
+### Card grid background section:
+Wrap the cards section in a background that transitions from the dark hero:
+```css
+.tools-section {
+  background: linear-gradient(180deg, #0F172A 0%, #F8FAFC 15%);
+  padding: 80px 0;
+}
+```
+
+### Add a shimmer/scan line animation on card hover:
+```css
+.tool-card::after {
+  content: '';
+  position: absolute;
+  top: -100%; left: 0; right: 0;
+  height: 200%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+  transition: top 0.6s ease;
+  pointer-events: none;
+}
+.tool-card:hover::after { top: 100%; }
+```
+
+---
+
+## 4. SECTION BETWEEN HERO AND CARDS — Trust Bar
+
+Add a scrolling trust/feature bar between the hero and the cards section:
+```html
+<div class="trust-bar">
+  <div class="trust-scroll">
+    <span>✓ No signup required</span>
+    <span>✓ Instant PDF export</span>
+    <span>✓ Arabic RTL support</span>
+    <span>✓ 170+ currencies</span>
+    <span>✓ Free forever plan</span>
+    <span>✓ MENA optimised</span>
+    <!-- repeat for infinite loop -->
+  </div>
+</div>
+```
+```css
+.trust-bar {
+  background: #0EA5E9;
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.trust-scroll {
+  display: inline-flex; gap: 48px;
+  animation: marquee 25s linear infinite;
+  color: white; font-size: 13px; font-weight: 500;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+```
+
+---
+
+## 5. TYPOGRAPHY UPGRADE
+
+Install and apply these Google Fonts:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+```
+
+```css
+/* English */
+body { font-family: 'Inter', sans-serif; }
+/* Arabic */
+[lang="ar"], .ar { font-family: 'Cairo', sans-serif; }
+```
+
+Update Tailwind config:
+```js
+fontFamily: {
+  sans: ['Inter', 'Cairo', 'sans-serif'],
+  arabic: ['Cairo', 'sans-serif'],
+}
+```
+
+---
+
+## 6. DARK MODE POLISH
+
+When dark mode is active, the current design barely changes. Ensure:
+- Dark mode uses `#0F172A` as base background (not just a gray tint).
+- Cards in dark mode use the glass card style above (they should already look great).
+- Navbar in dark mode: `background: rgba(15,23,42,0.85); border-bottom: 1px solid rgba(255,255,255,0.06);`
+- All text follows the same color system: primary `#F1F5F9`, secondary `rgba(255,255,255,0.6)`.
+
+---
+
+## 7. MICRO-INTERACTIONS
+
+Add these small details that make the UI feel premium:
+
+- **Cursor**: On all cards and buttons, change cursor to `pointer`.
+- **Focus rings**: Replace browser default with `outline: 2px solid #0EA5E9; outline-offset: 3px` on interactive elements.
+- **Button press**: On `mousedown`, add `transform: scale(0.97)` to buttons.
+- **Card enter animation**: Use `@keyframes fadeSlideUp` triggered by IntersectionObserver — cards animate in from 20px below with opacity 0 → 1 as user scrolls to them.
+```css
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+```
+
+---
+
+## IMPORTANT CONSTRAINTS
+
+- Do NOT change any routing, page structure, or functionality.
+- Do NOT remove any existing features or text content.
+- Do NOT change the Arabic translation system.
+- Apply changes progressively: navbar first, then hero, then cards, then trust bar.
+- Test in both English (LTR) and Arabic (RTL) after each change.
+- Test on mobile — the hero orbs and card grid must stack cleanly on small screens.
+- After all changes, take a screenshot of the homepage and confirm it matches the target look described above.

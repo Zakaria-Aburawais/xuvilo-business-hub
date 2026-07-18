@@ -1,0 +1,195 @@
+Here is the message to paste directly into Replit:
+
+The current implementation has two major problems that need to be fixed completely. Please read carefully and address both issues fully.
+
+PROBLEM 1 — THE UI IS NOT ACCEPTABLE
+The current design looks basic, outdated, and unprofessional. This is a business intelligence tool used by a trading company to respond to oil and gas procurement contracts worth tens of thousands of dollars. The UI must reflect that seriousness and professionalism.
+
+What is wrong right now
+The layout feels like a basic admin panel from 2015
+The RFQ list on the left is just plain cards with no visual hierarchy
+The RFQ detail panel on the right is a wall of raw text — it is unreadable
+The Summary / Items / Raw text tabs show almost nothing useful
+Items count shows "0 items" even after analysis — the parsed items are not rendering
+There is no visual separation, no color coding, no status indicators that mean anything
+The overall feel is cheap and does not inspire confidence
+What it must look like instead
+Redesign the entire RFQ Intelligence UI to match the quality of modern SaaS business tools like Notion, Linear, Pipe, or Ramp. Specifically:
+
+Left panel — RFQ Queue/List:
+
+Each RFQ card must show: colored status badge (Analyzed = green, Error = red, Processing = amber), RFQ number in bold, client name or "Unknown Client" in gray, date received, item count badge, deadline badge in red if within 7 days
+Hover state on cards with subtle shadow lift
+Selected card has a left border accent in the brand color
+Group RFQs by status: Processing first, then recent Analyzed, then Errors at bottom
+Right panel — RFQ Detail: Replace the current tab layout with a clean structured layout:
+
+┌─────────────────────────────────────────────────────────┐
+│  ZOC-231229-S                    [Delete] [Create Quote]│
+│  Zueitina Oil Company · 10 items · Received 04/05/2026  │
+│                                                         │
+│  ┌──────────┬──────────┬──────────┬──────────┐         │
+│  │ DEADLINE │ SUBMIT TO│ VALIDITY │ CURRENCY │         │
+│  │ Not set  │quotes@.. │ 90 days  │  USD     │         │
+│  └──────────┴──────────┴──────────┴──────────┘         │
+│                                                         │
+│  ┌─ Requirements ────────────────────────────────────┐  │
+│  │ ✓ OEM only  ✓ COO required  ✓ Net 45 via BACB    │  │
+│  │ ✓ 90-day validity  ✓ Liquidated damages 1%/week  │  │
+│  └───────────────────────────────────────────────────┘  │
+│                                                         │
+│  ITEMS (10)                                             │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │ [IMG] Item 1 · LG A/C SPLIT UNIT 12000 BTU      │   │
+│  │        Part: 197-701 · Qty: 20 EA               │   │
+│  │        🟡 Brand match · ~$350–500/unit          │   │
+│  │        ✅ Available locally                      │   │
+│  │        [Local suppliers ▾] [International ▾]    │   │
+│  └─────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │ [IMG] Item 2 · ...                              │   │
+│  └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+Item cards must show:
+
+Product image on the left (from AI research) with confidence badge
+Item number and part number
+Full clean description
+Quantity and unit badge (blue)
+Estimated price badge (amber)
+Libya availability badge (green/red)
+Expandable supplier sections — Local and International — that show the suppliers matched specifically to THIS item
+Product page link and datasheet link if found
+If no image found show a relevant category emoji icon (💡 for lamps, ⚙️ for mechanical, 🔌 for electrical, etc.)
+Color language throughout:
+
+Analyzed/success: 
+#3B6D11 green
+Warnings/deadlines: 
+#BA7517 amber
+Errors: 
+#A32D2D red
+Not found / unknown: gray
+Local available: green pill
+Not locally available: red pill
+Availability unclear: amber pill
+Typography:
+
+RFQ numbers: monospace font, bold
+Section labels: small uppercase tracking
+Descriptions: clean readable sans-serif
+Numbers/prices: tabular figures
+General UI rules:
+
+Use cards with subtle borders and soft shadows — not flat boxes with hard borders
+Every section must have proper padding and breathing room
+Empty states must have a helpful icon, a headline, and a sub-text — not just "0 items"
+All buttons must have proper hover and active states
+Loading states must use skeleton loaders — not spinners alone
+The page must be fully responsive
+PROBLEM 2 — SUPPLIERS ARE NOT MATCHED TO RFQ ITEMS
+This is a functional failure. The suppliers page currently shows ALL suppliers from the database as a generic list. This is completely wrong.
+
+What is wrong right now
+The supplier page at /rfq/suppliers just shows every supplier in the database regardless of what items are in the RFQ
+There is no connection between the items parsed from the RFQ and the suppliers shown
+The user sees "Al Jazeera Building Materials", "Sultan Water Company", "Almadina Electrical Supplies" etc. for every single RFQ regardless of what is being requested
+This is useless and misleading
+What must happen instead
+Supplier matching must be per item, not per RFQ, and definitely not a global list.
+
+For every line item extracted from the RFQ, the system must run a matching process and show only the relevant suppliers for that specific item. Here is exactly how it must work:
+
+Step 1 — Extract keywords from each item:
+
+javascript
+function extractKeywords(item) {
+  const keywords = [];
+  
+  // Add manufacturer if present
+  if (item.manufacturer) keywords.push(item.manufacturer.toLowerCase());
+  
+  // Add part number fragments
+  if (item.part_no) keywords.push(item.part_no.toLowerCase());
+  
+  // Extract meaningful words from description
+  // Remove common words, keep product-specific terms
+  const stopWords = ['the','and','for','with','per','from','type',
+                     'unit','each','set','lot','new','original'];
+  const descWords = item.description.toLowerCase()
+    .split(/[\s,\/\(\)]+/)
+    .filter(w => w.length > 2 && !stopWords.includes(w));
+  keywords.push(...descWords);
+  
+  return [...new Set(keywords)]; // deduplicate
+}
+Step 2 — Query the knowledge base for each item's keywords:
+
+sql
+SELECT *, 
+  (
+    CASE WHEN LOWER(specialties) LIKE '%' || :kw1 || '%' THEN 2 ELSE 0 END +
+    CASE WHEN LOWER(specialties) LIKE '%' || :kw2 || '%' THEN 2 ELSE 0 END +
+    CASE WHEN LOWER(name)        LIKE '%' || :kw1 || '%' THEN 1 ELSE 0 END +
+    CASE WHEN is_local = 1 THEN 1 ELSE 0 END
+  ) AS relevance_score
+FROM rfq_suppliers
+WHERE active = 1
+AND relevance_score > 0
+ORDER BY relevance_score DESC, is_local DESC
+LIMIT 5
+Step 3 — Send matched suppliers to the AI prompt: Tell the AI: "These suppliers from our database are relevant to this specific item — include them in your supplier results: [list]"
+
+Step 4 — Display matched suppliers under each item card:
+
+For Item 1 (LG A/C Split Unit):
+
+LOCAL SUPPLIERS FOR THIS ITEM:
+  🏢 Almadina Electrical Supplies
+     📍 Tripoli · +218 21 444 5678
+     Specialties: electrical, lighting, AC units
+
+INTERNATIONAL SUPPLIERS FOR THIS ITEM:
+  🌐 LG Electronics Middle East
+     🇦🇪 UAE · lg.com/me · me@lge.com
+  🌐 RS Components Gulf
+     🇦🇪 UAE · ae.rs-online.com
+  🌐 Rexel Gulf FZE
+     🇦🇪 UAE · rexel.com · gulf@rexel.com
+For Item 2 (Portland Cement Type 2):
+
+LOCAL SUPPLIERS FOR THIS ITEM:
+  🏢 Libya Cement Company LCC
+     📍 Tripoli · +218 21 3611 000
+  🏢 Al Jazeera Building Materials
+     📍 Tripoli · +218 21 488 1122
+
+INTERNATIONAL SUPPLIERS FOR THIS ITEM:
+  🌐 LafargeHolcim
+     🇨🇭 Switzerland · lafargeholcim.com
+  🌐 CEMEX
+     🌍 Global · cemex.com
+The suppliers shown under Item 1 must be DIFFERENT from the suppliers shown under Item 2. They are matched by the item's description, manufacturer, and part number — not shown globally.
+
+The global /rfq/suppliers page is only for managing the supplier database (add, edit, delete, import, export). It must be clearly labeled "Supplier Database — Manage" and must NOT be confused with the per-item supplier results shown during RFQ analysis.
+
+Also fix the "0 items" bug: The RFQ detail panel currently shows "0 items" for analyzed RFQs. This means the item parsing result is not being saved or retrieved correctly. Debug the full flow:
+
+PDF uploaded → text extracted → items parsed → saved to rfq_documents.parsed_data as JSON
+When RFQ detail is opened → read parsed_data → render each item as a card
+When AI research completes → save to rfq_documents.research_data as JSON
+Merge parsed_data items with research_data results by item_no → render full enriched item cards
+Fix this end-to-end so that every analyzed RFQ shows its items with full detail, images, prices, and matched suppliers.
+
+Summary of what needs to be done:
+
+Completely redesign the UI to be modern, professional, and data-rich
+Fix the 0 items bug — items must render after analysis
+Replace global supplier listing with per-item matched suppliers
+Each item card shows only the suppliers relevant to that specific item
+The supplier database management page stays at /rfq/suppliers but is clearly separate from per-item results
+
+
+
+
+

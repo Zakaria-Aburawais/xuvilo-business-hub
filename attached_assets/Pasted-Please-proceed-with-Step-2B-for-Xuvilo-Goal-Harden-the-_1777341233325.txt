@@ -1,0 +1,118 @@
+Please proceed with Step 2B for Xuvilo.
+
+Goal:
+Harden the authentication foundation before we move to company profiles, client management, and saved documents.
+
+Important:
+- Do not rebuild the auth system.
+- Do not change or break the existing OpenAI AI Writer integration.
+- Do not change or break invoice, quotation, receipt, calculators, templates, pricing, dashboard, blog, or country pages.
+- Do not integrate Stripe yet.
+- Keep the existing custom JWT auth system.
+- Work incrementally and safely.
+
+Part 1: Thread role into frontend AuthContext
+The backend already returns role in /register, /login, /me, and /reset-password user payloads.
+The billing API type already supports role?: Role.
+
+Please update the frontend AuthContext/AuthUser shape so the logged-in user object includes:
+
+role: "user" | "admin"
+
+Default to "user" if role is missing.
+
+Make sure:
+- useAuth().user.role is available anywhere in the frontend.
+- Existing login/signup/session restore behavior still works.
+- Existing navbar behavior still works.
+- No existing user session crashes if the cached session does not have role yet.
+
+Part 2: Add admin guard helper on frontend
+Create a simple frontend helper or pattern for future admin-only UI, for example:
+
+isAdmin = user?.role === "admin"
+
+Do not create a full admin panel yet.
+Just prepare the clean role-based foundation.
+
+Part 3: Add backend requireRole middleware
+Add a backend middleware helper such as:
+
+requireRole("admin")
+
+It should:
+- Require authentication first.
+- Load/check the authenticated user's role.
+- Return 401 JSON if not authenticated.
+- Return 403 JSON if authenticated but not authorized.
+- Return consistent JSON responses.
+
+Suggested 403 response:
+
+{
+  "success": false,
+  "error": "Forbidden",
+  "message": "You do not have permission to access this resource."
+}
+
+Do not add admin routes yet unless needed for testing.
+
+Part 4: Rate-limit auth endpoints
+Add safe rate limiting to sensitive auth endpoints:
+
+- POST /api/auth/login
+- POST /api/auth/register
+- POST /api/auth/forgot-password
+- POST /api/auth/reset-password
+
+Use a simple in-memory limiter if no production-grade limiter exists yet.
+
+Suggested limits:
+- Login: 5 attempts per email/IP per 15 minutes
+- Register: 10 attempts per IP per hour
+- Forgot password: 3 attempts per email/IP per hour
+- Reset password: 5 attempts per email/IP per hour
+
+Return HTTP 429 JSON:
+
+{
+  "success": false,
+  "error": "Too many requests",
+  "message": "Too many attempts. Please try again later."
+}
+
+Do not expose whether an email exists.
+
+Part 5: Security cleanup
+Please verify:
+- Passwords are never stored in plain text.
+- JWT secret is read from environment/config and not hardcoded.
+- Auth errors do not reveal whether a specific email exists.
+- API keys and secrets are not logged.
+- The existing forgot-password flow does not expose reset tokens in logs.
+
+Part 6: Tests
+Test:
+
+1. Existing user can log in.
+2. New user can sign up.
+3. User object includes role on login.
+4. Session restore keeps role.
+5. Cached old sessions without role do not crash.
+6. Logged-out user cannot access protected dashboard.
+7. Non-admin user fails requireRole("admin") with 403 in a test route or unit test.
+8. Auth rate limit returns 429 after repeated attempts.
+9. Existing AI Writer still returns the correct friendly unavailable message if no OpenAI credits.
+10. Existing invoice, quotation, receipt, calculators, templates, pricing, and dashboard still work.
+
+Part 7: Final report
+When finished, provide:
+
+1. Files changed
+2. AuthContext role changes
+3. Backend requireRole middleware added
+4. Rate-limit implementation details
+5. Security checks completed
+6. Test results
+7. Any limitations
+8. Recommended Step 3

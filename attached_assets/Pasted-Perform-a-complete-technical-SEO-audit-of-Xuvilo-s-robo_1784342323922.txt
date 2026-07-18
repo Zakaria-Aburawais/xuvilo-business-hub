@@ -1,0 +1,46 @@
+Perform a complete technical SEO audit of Xuvilo’s robots.txt, XML sitemap, canonical URLs, metadata, hreflang implementation, and indexability.
+
+Current positive findings:
+
+- robots.txt is accessible.
+- sitemap.xml is declared.
+- Public pages are appearing in Google.
+- Private account and dashboard routes are disallowed.
+
+Requirements:
+
+1. Parse the full production sitemap and verify every URL.
+2. Check every sitemap URL for:
+   - HTTP 200 response
+   - Correct canonical URL
+   - Indexable robots directive
+   - Unique title
+   - Unique meta description
+   - One appropriate H1
+   - Correct language and direction
+   - No accidental redirect
+   - No soft 404
+3. Remove login, signup, dashboard, account, API, internal search, duplicate, parameterized, and private pages from the sitemap.
+4. Do not include URLs blocked by robots.txt.
+5. Exclude draft, test, placeholder, and low-value generated pages.
+6. Validate all lastmod dates. Do not automatically give every page today’s date unless its content genuinely changed.
+7. Confirm canonical consistency between:
+   - HTTP and HTTPS
+   - www and non-www
+   - Trailing and non-trailing slash
+   - Uppercase and lowercase routes
+   - Query-string variants
+8. Implement correct Arabic/English hreflang only if distinct language URLs genuinely exist. Do not create misleading hreflang tags when language changes only through client-side state.
+9. Validate Organization, WebSite, SoftwareApplication, FAQ, BreadcrumbList, and Article structured data.
+10. Do not use Review or AggregateRating schema without verified ratings.
+11. Ensure robots.txt does not unnecessarily block CSS, JavaScript, images, or resources required for rendering.
+12. Confirm sitemap submission instructions for Google Search Console and Bing Webmaster Tools.
+
+Do not report completion until you provide:
+
+- Total sitemap URL count.
+- All broken, redirected, duplicate, blocked, or noncanonical URLs.
+- Modified files.
+- Structured-data validation results.
+- Production-build results.
+- Final live robots.txt and sitemap verification.

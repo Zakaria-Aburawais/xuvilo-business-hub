@@ -1,0 +1,74 @@
+Run a complete pre-release functional and quality-assurance audit of the live Xuvilo production website.
+
+Do not make cosmetic assumptions and do not report “working” merely because pages load.
+
+Test both Arabic RTL and English LTR, logged out and with appropriate test accounts for Free, Pro, and Business plans if those test accounts are available.
+
+Test:
+
+1. Homepage navigation and every CTA.
+2. Mobile and desktop menus.
+3. Language switching and persistence.
+4. Dark and light modes.
+5. Search.
+6. Cookie consent: accept, reject, reopen settings, and confirm analytics does not load before consent.
+7. Invoice creation, calculations, tax, currency, logo upload, templates, Arabic output, QR code, print, and PDF export.
+8. Quotation creation and PDF export.
+9. Receipt creation and PDF export.
+10. ZATCA Phase 1 QR code decoding against the entered invoice data.
+11. All 14 advertised calculators.
+12. Currency-rate retrieval and failure handling.
+13. AI Writer generation, translation, validation, limits, and error handling.
+14. Stamp Maker exports.
+15. Business Card Maker exports.
+16. Company Profile Maker and multipage PDF export.
+17. Document Tracker.
+18. Temporary Email, including privacy and abuse controls.
+19. Signup, email verification, login, logout, forgotten password, reset password, and session expiry.
+20. Free, Pro, and Business feature enforcement.
+21. Pricing and checkout, if payments are enabled.
+22. Contact form and newsletter form.
+23. Blog listing, articles, structured data, and internal links.
+24. Privacy, Terms, Disclaimer, About, FAQ, and Contact pages.
+25. All sitemap URLs.
+26. Keyboard navigation, visible focus, form labels, color contrast, alt text, and screen-reader names.
+27. Browser console errors, failed network requests, and hydration errors.
+28. Mobile layouts at 320, 375, 390, 430, 768, 1024, 1366, and 1440 pixels.
+29. Chrome, Edge, Firefox, and Safari-compatible behavior where the testing environment supports them.
+30. Security headers, broken links, placeholder links, missing images, redirects, 404 and 500 handling.
+
+Do not use real payment cards, send messages to real customers, or expose production personal information.
+
+Classify every finding as:
+
+- Critical
+- High
+- Medium
+- Low
+
+For each failure, provide:
+
+- Route
+- Language
+- Screen size
+- User/account state
+- Exact reproduction steps
+- Expected result
+- Actual result
+- Console or network evidence
+- Screenshot
+- Root cause, if identified
+- Recommended repair
+
+Fix all Critical and High issues that are safely within the existing application scope. Run regression tests after the fixes.
+
+Do not report completion until you provide:
+
+1. A test matrix showing pass or fail for every tested feature.
+2. The complete defect list.
+3. Every modified file.
+4. Automated-test results.
+5. Production-build results.
+6. Deployment identifier and time.
+7. Post-deployment live verification.
+8. A clear list of any remaining unresolved risks.

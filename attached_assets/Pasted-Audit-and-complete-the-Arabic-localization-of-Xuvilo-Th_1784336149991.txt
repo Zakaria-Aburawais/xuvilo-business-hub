@@ -1,0 +1,43 @@
+Audit and complete the Arabic localization of Xuvilo.
+
+The Arabic interface currently contains untranslated English labels and descriptions, including examples such as:
+
+- Most Popular
+- Free to Use
+- Document Templates
+- Currency Converter
+- Stamp Maker
+- Business Card Maker
+- Company Profile Maker
+- Temp Email
+- Document Tracker
+- Import Cost
+- Break-Even
+- Markup vs Margin
+- Loan Calculator
+- Invoice Aging
+- The English announcement bar
+- English descriptions inside Arabic cards and sections
+
+Requirements:
+
+1. Search the entire application for user-facing hard-coded English text rendered while the active language is Arabic.
+2. Move hard-coded interface text into the existing translation system.
+3. Provide accurate, natural Arabic translations—not literal or machine-like wording.
+4. Preserve English brand names only where genuinely necessary.
+5. Keep numbers, currencies, punctuation, icons, and technical terms properly aligned in RTL.
+6. Ensure Arabic and English pages communicate identical features, prices, limits, and disclaimers.
+7. Check navigation menus, mobile menus, dropdowns, tool cards, calculator cards, pricing cards, footer links, cookie banner, dialogs, validation messages, error messages, loading messages, tooltips, buttons, metadata, and structured data.
+8. Do not translate customer-entered content or alter URLs unless the routing system is specifically designed for localized URLs.
+9. Add a fallback mechanism so missing Arabic translation keys do not silently display unfinished keys or inappropriate English content.
+
+Test at desktop and mobile widths: 320, 375, 390, 768, 1024, and 1366 pixels.
+
+Do not report completion until you provide:
+
+- Every modified translation and component file.
+- A list of all newly translated strings.
+- Screenshots of the Arabic homepage at desktop and mobile widths.
+- Evidence that no unintended English interface text remains.
+- Production-build and test results.
+- Confirmation that the English interface was not damaged.

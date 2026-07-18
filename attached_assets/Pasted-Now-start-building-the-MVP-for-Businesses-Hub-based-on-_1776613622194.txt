@@ -1,0 +1,148 @@
+Now start building the MVP for Businesses Hub based on the approved plan.
+
+Act as a senior full-stack engineer and build this as a clean, modular, production-style MVP.
+
+## Tech stack
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Supabase for authentication and database
+- pdf-lib or Puppeteer for PDF generation
+
+## Main requirements
+Build a bilingual responsive web application in Arabic and English.
+
+The project must support:
+- Arabic RTL layout
+- English LTR layout
+- modern clean UI
+- reusable components
+- modular code structure
+- future scalability
+
+## Pages to build
+1. Homepage
+2. Invoice Generator page
+3. Quotation Generator page
+4. Receipt Generator page
+5. Calculators Hub page
+6. Individual calculator pages
+7. Pricing page
+8. Login page
+9. Sign up page
+10. Dashboard page
+11. Basic legal pages (Privacy Policy, Terms) if needed
+
+## Homepage requirements
+- hero section
+- short explanation of the platform
+- featured tools section
+- tool categories section
+- pricing preview
+- FAQ section
+- call-to-action buttons
+- bilingual support
+
+## Invoice Generator requirements
+Build a fully working invoice generator with:
+- business information fields
+- client information fields
+- invoice metadata
+- dynamic line items table
+- automatic calculations for subtotal, discounts, tax, total
+- notes
+- payment details
+- logo upload
+- PDF export
+- print view
+- Arabic and English support
+- clean document preview
+
+## Quotation Generator requirements
+Build a quotation generator that reuses invoice logic where possible, with:
+- quotation number
+- issue date
+- validity date
+- terms and conditions
+- acceptance/signature area
+- PDF export
+- print view
+
+## Receipt Generator requirements
+Build a receipt generator with:
+- receipt number
+- date
+- payer name
+- amount received
+- payment method
+- reference number
+- notes
+- PDF export
+- print view
+
+## Calculators to build
+1. Profit Margin Calculator
+2. Discount Calculator
+3. VAT / Tax Calculator
+4. Currency / Exchange Calculator
+5. Shipping CBM Calculator
+6. Overtime Calculator
+7. Leave Balance Calculator
+
+## Calculator page requirements
+Each calculator page must include:
+- page title
+- input fields
+- instant result
+- formula explanation
+- sample example
+- short FAQ
+- related tools section
+
+## Auth and dashboard
+- implement sign up and login with Supabase
+- protect dashboard routes
+- create a basic dashboard layout with sections for:
+  - saved invoices
+  - saved quotations
+  - saved receipts
+  - saved clients
+  - saved products/services
+
+It is okay if some dashboard sections are basic placeholders, but structure them properly.
+
+## Database
+Create and integrate schema for:
+- users
+- workspaces
+- clients
+- products_services
+- invoices
+- invoice_items
+- quotations
+- quotation_items
+- receipts
+
+## Code requirements
+- clean reusable TypeScript components
+- modular project structure
+- strong form validation
+- support RTL and LTR properly
+- modern minimal UI
+- prepare the project for future premium features
+- use good naming conventions
+
+## Output format
+Please provide:
+1. Project folder/file tree
+2. All code files
+3. SQL schema for Supabase
+4. Environment variables needed
+5. Setup instructions
+6. What remains after MVP
+
+Important:
+- Build the MVP first.
+- Reuse logic between invoice and quotation where possible.
+- Mark anything mocked or placeholder clearly.
+- Prioritize working features over extra theory.

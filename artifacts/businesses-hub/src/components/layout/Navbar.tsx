@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { getRfqDashboardStats } from "@/lib/rfqApi";
 import { CURRENCY_COUNT_DISPLAY } from "@/lib/site-stats";
 import { Link, useLocation } from "wouter";
@@ -112,6 +113,67 @@ function XuviloNavLogo() {
   );
 }
 
+/**
+ * Renders a desktop nav dropdown panel in a portal on <body>, positioned
+ * under its trigger with fixed coordinates.
+ *
+ * Why a portal: the nav item row and the header row both use `overflow:hidden`
+ * to keep nav items from spilling horizontally. An absolutely-positioned panel
+ * inside them gets clipped vertically too, so the dropdown opened but was
+ * invisible. Portaling to <body> escapes every ancestor's overflow/backdrop-
+ * filter clipping; fixed positioning keeps it glued under the (sticky) trigger.
+ */
+const NAV_DROPDOWN_WIDTH = 288; // matches the old w-72
+
+function NavDropdownPortal({
+  anchorEl,
+  isRTL,
+  panelRef,
+  children,
+}: {
+  anchorEl: HTMLElement;
+  isRTL: boolean;
+  panelRef: React.RefObject<HTMLDivElement | null>;
+  children: React.ReactNode;
+}) {
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
+
+  useLayoutEffect(() => {
+    const place = () => {
+      const r = anchorEl.getBoundingClientRect();
+      // Align the panel's start edge to the trigger's start edge (RTL-aware),
+      // then clamp inside the viewport so it never overflows off-screen.
+      let left = isRTL ? r.right - NAV_DROPDOWN_WIDTH : r.left;
+      left = Math.max(8, Math.min(left, window.innerWidth - NAV_DROPDOWN_WIDTH - 8));
+      const top = r.bottom + 8;
+      setPos((prev) =>
+        prev && prev.top === top && prev.left === left ? prev : { top, left },
+      );
+    };
+    place();
+    window.addEventListener("resize", place);
+    // capture=true so it also fires for scrolls inside nested scroll areas.
+    window.addEventListener("scroll", place, true);
+    return () => {
+      window.removeEventListener("resize", place);
+      window.removeEventListener("scroll", place, true);
+    };
+  }, [anchorEl, isRTL]);
+
+  if (!pos) return null;
+  return createPortal(
+    <div
+      ref={panelRef}
+      style={{ position: "fixed", top: pos.top, left: pos.left, width: NAV_DROPDOWN_WIDTH }}
+      className="z-[60] bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-2xl shadow-gray-300/30 dark:shadow-black/50 py-2"
+      role="menu"
+    >
+      {children}
+    </div>,
+    document.body,
+  );
+}
+
 function RfqDeadlineBadge() {
   const { user } = useAuth();
   const [count, setCount] = useState<{ pending: number; overdue: number } | null>(null);
@@ -188,11 +250,19 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  // The trigger element the open dropdown is anchored to (for the portal).
+  const [openMenuAnchor, setOpenMenuAnchor] = useState<HTMLElement | null>(null);
   const [userOpen, setUserOpen] = useState(false);
   const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const dropdownPanelRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
   const search = useNavSearchToggle();
+
+  // Whenever the dropdown closes, drop the stale anchor reference.
+  useEffect(() => {
+    if (!openMenu) setOpenMenuAnchor(null);
+  }, [openMenu]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -200,11 +270,16 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdowns on outside click
+  // Close dropdowns on outside click. The dropdown panel is portaled to
+  // <body> (outside navRef), so it must be checked separately or clicking a
+  // menu item would count as an "outside click" and close before navigating.
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenMenu(null);
-      if (userRef.current && !userRef.current.contains(e.target as Node)) setUserOpen(false);
+      const target = e.target as Node;
+      const inNav = !!navRef.current?.contains(target);
+      const inPanel = !!dropdownPanelRef.current?.contains(target);
+      if (!inNav && !inPanel) setOpenMenu(null);
+      if (userRef.current && !userRef.current.contains(target)) setUserOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
@@ -329,7 +404,14 @@ export function Navbar() {
                     <button
                       type="button"
                       className={triggerCls(active, isOpen)}
-                      onClick={() => setOpenMenu(isOpen ? null : g.id)}
+                      onClick={(e) => {
+                        if (isOpen) {
+                          setOpenMenu(null);
+                        } else {
+                          setOpenMenuAnchor(e.currentTarget);
+                          setOpenMenu(g.id);
+                        }
+                      }}
                       aria-expanded={isOpen}
                       aria-haspopup="menu"
                       data-testid={`nav-group-${g.id}`}
@@ -338,10 +420,8 @@ export function Navbar() {
                       <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", isOpen && "rotate-180")} />
                     </button>
 
-                    {isOpen && (
-                      <div
-                        className="absolute top-full mt-2 start-0 w-72 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-2xl shadow-gray-300/30 dark:shadow-black/50 py-2 z-50"
-                      >
+                    {isOpen && openMenuAnchor && (
+                      <NavDropdownPortal anchorEl={openMenuAnchor} isRTL={isAR} panelRef={dropdownPanelRef}>
                         {g.items.map((it) => {
                           const Icon = it.icon;
                           const itemActive = isActive(it.href);
@@ -384,7 +464,7 @@ export function Navbar() {
                             </div>
                           );
                         })}
-                      </div>
+                      </NavDropdownPortal>
                     )}
                   </div>
                 );

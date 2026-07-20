@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { useLanguage } from "@/context/LanguageContext";
-import { blogPosts, BLOG_CATEGORY_LABELS, getPostCover, type BlogCategoryKey } from "@/data/blogPosts";
+import { getPublishedPosts, BLOG_CATEGORY_LABELS, getPostCover, type BlogCategoryKey } from "@/data/blogPosts";
 import { Calendar, Clock, Pen } from "lucide-react";
 
 const CATEGORY_COLORS: Record<BlogCategoryKey, string> = {
@@ -44,7 +44,7 @@ export default function AuthorPage() {
   const isAR = lang === "ar";
   const BASE = import.meta.env.BASE_URL?.replace(/\/$/, "") ?? "";
 
-  const recentPosts = [...blogPosts]
+  const recentPosts = getPublishedPosts()
     .sort((a, b) => (b.date > a.date ? 1 : -1))
     .slice(0, 12);
 

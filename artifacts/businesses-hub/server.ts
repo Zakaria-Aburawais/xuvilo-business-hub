@@ -3,7 +3,7 @@ import compression from "compression";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { blogPosts, BLOG_CATEGORY_LABELS, type BlogPost } from "./src/data/blogPosts.ts";
+import { blogPosts, BLOG_CATEGORY_LABELS, isPublishedPost, todayUtcIso, type BlogPost } from "./src/data/blogPosts.ts";
 import { countries as COUNTRIES_DATA } from "./src/data/countries.ts";
 import { FAQ_EN } from "./src/data/faqContent.ts";
 
@@ -1536,71 +1536,34 @@ const ROUTE_ALIASES: Record<string, string> = {
   "/%D9%81%D8%A7%D8%AA%D9%88%D8%B1%D8%A9-%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9": "/فاتورة-ضريبية",
 };
 
-const COUNTRY_SSR: Record<string, { name: string; currency: string; vat: string; zatca?: boolean; ar?: string }> = {
-  "saudi-arabia":   { name: "Saudi Arabia",    currency: "SAR", vat: "15% VAT (ZATCA)", zatca: true, ar: "المملكة العربية السعودية" },
-  "uae":            { name: "UAE",              currency: "AED", vat: "5% VAT (FTA)",   ar: "الإمارات العربية المتحدة" },
-  "egypt":          { name: "Egypt",            currency: "EGP", vat: "14% VAT",        ar: "مصر" },
-  "libya":          { name: "Libya",            currency: "LYD", vat: "No VAT",         ar: "ليبيا" },
-  "jordan":         { name: "Jordan",           currency: "JOD", vat: "16% GST",        ar: "الأردن" },
-  "kuwait":         { name: "Kuwait",           currency: "KWD", vat: "No VAT",         ar: "الكويت" },
-  "qatar":          { name: "Qatar",            currency: "QAR", vat: "No VAT",         ar: "قطر" },
-  "bahrain":        { name: "Bahrain",          currency: "BHD", vat: "10% VAT",        ar: "البحرين" },
-  "oman":           { name: "Oman",             currency: "OMR", vat: "5% VAT",         ar: "عُمان" },
-  "iraq":           { name: "Iraq",             currency: "IQD", vat: "No VAT",         ar: "العراق" },
-  "syria":          { name: "Syria",            currency: "SYP", vat: "11% VAT",        ar: "سوريا" },
-  "lebanon":        { name: "Lebanon",          currency: "LBP", vat: "11% VAT",        ar: "لبنان" },
-  "morocco":        { name: "Morocco",          currency: "MAD", vat: "20% TVA",        ar: "المغرب" },
-  "algeria":        { name: "Algeria",          currency: "DZD", vat: "19% TVA",        ar: "الجزائر" },
-  "tunisia":        { name: "Tunisia",          currency: "TND", vat: "19% TVA",        ar: "تونس" },
-  "sudan":          { name: "Sudan",            currency: "SDG", vat: "17% VAT",        ar: "السودان" },
-  "yemen":          { name: "Yemen",            currency: "YER", vat: "No VAT",         ar: "اليمن" },
-  "palestine":      { name: "Palestine",        currency: "USD", vat: "No VAT",         ar: "فلسطين" },
-  "somalia":        { name: "Somalia",          currency: "SOS", vat: "No VAT",         ar: "الصومال" },
-  "mauritania":     { name: "Mauritania",       currency: "MRU", vat: "16% TVA",        ar: "موريتانيا" },
-  "djibouti":       { name: "Djibouti",         currency: "DJF", vat: "10% TVA",        ar: "جيبوتي" },
-  "comoros":        { name: "Comoros",          currency: "KMF", vat: "10% TVA",        ar: "جزر القمر" },
-  "nigeria":        { name: "Nigeria",          currency: "NGN", vat: "7.5% VAT" },
-  "ghana":          { name: "Ghana",            currency: "GHS", vat: "15% VAT" },
-  "kenya":          { name: "Kenya",            currency: "KES", vat: "16% VAT" },
-  "south-africa":   { name: "South Africa",     currency: "ZAR", vat: "15% VAT" },
-  "ethiopia":       { name: "Ethiopia",         currency: "ETB", vat: "15% VAT" },
-  "tanzania":       { name: "Tanzania",         currency: "TZS", vat: "18% VAT" },
-  "senegal":        { name: "Senegal",          currency: "XOF", vat: "18% TVA" },
-  "uganda":         { name: "Uganda",           currency: "UGX", vat: "18% VAT" },
-  "cameroon":       { name: "Cameroon",         currency: "XAF", vat: "19.25% TVA" },
-  "cote-divoire":   { name: "Côte d'Ivoire",    currency: "XOF", vat: "18% TVA" },
-  "zimbabwe":       { name: "Zimbabwe",         currency: "ZWL", vat: "15% VAT" },
-  "rwanda":         { name: "Rwanda",           currency: "RWF", vat: "18% VAT" },
-  "united-kingdom": { name: "United Kingdom",   currency: "GBP", vat: "20% VAT" },
-  "usa":            { name: "United States",    currency: "USD", vat: "No Federal VAT" },
-  "canada":         { name: "Canada",           currency: "CAD", vat: "5% GST" },
-  "australia":      { name: "Australia",        currency: "AUD", vat: "10% GST" },
-  "germany":        { name: "Germany",          currency: "EUR", vat: "19% MwSt" },
-  "france":         { name: "France",           currency: "EUR", vat: "20% TVA" },
-  "india":          { name: "India",            currency: "INR", vat: "18% GST" },
-  "pakistan":       { name: "Pakistan",         currency: "PKR", vat: "17% GST" },
-  "turkey":         { name: "Turkey",           currency: "TRY", vat: "20% KDV" },
-  "malaysia":       { name: "Malaysia",         currency: "MYR", vat: "8% SST" },
-  "indonesia":      { name: "Indonesia",        currency: "IDR", vat: "11% PPN" },
-  "bangladesh":     { name: "Bangladesh",       currency: "BDT", vat: "15% VAT" },
-  "philippines":    { name: "Philippines",      currency: "PHP", vat: "12% VAT" },
-  "spain":          { name: "Spain",            currency: "EUR", vat: "21% IVA" },
-  "italy":          { name: "Italy",            currency: "EUR", vat: "22% IVA" },
-  "netherlands":    { name: "Netherlands",      currency: "EUR", vat: "21% BTW" },
-  "japan":          { name: "Japan",            currency: "JPY", vat: "10% Consumption Tax" },
-  "singapore":      { name: "Singapore",        currency: "SGD", vat: "9% GST" },
-  "brazil":         { name: "Brazil",           currency: "BRL", vat: "17% ICMS" },
-  "mexico":         { name: "Mexico",           currency: "MXN", vat: "16% IVA" },
-  "china":          { name: "China",            currency: "CNY", vat: "13% VAT" },
-  "sweden":         { name: "Sweden",           currency: "SEK", vat: "25% Moms" },
-  "switzerland":    { name: "Switzerland",      currency: "CHF", vat: "8.1% MWST" },
-};
+// Per-country SSR view DERIVED from the canonical countries.ts data — a
+// single source of truth shared with the client CountryPage. The editorial
+// fields (taxAuthority, eInvoicing, invoicingPractice, vatThreshold, and the
+// 4 per-country faqItems) are what make each country page genuinely unique.
+const COUNTRY_SSR: Record<string, {
+  name: string; currency: string; vat: string; vatRate: number;
+  zatca?: boolean; ar?: string;
+  taxAuthority: string; eInvoicing: string; invoicingPractice: string; vatThreshold: string;
+}> = Object.fromEntries(
+  COUNTRIES_DATA.map((c) => [c.slug, {
+    name: c.nameEn,
+    currency: c.currency,
+    vat: c.vatRate > 0 ? `${c.vatRate}% ${c.vatName}` : c.vatName,
+    vatRate: c.vatRate,
+    ...(c.zatcaCompliant ? { zatca: true } : {}),
+    ...(c.nameAr ? { ar: c.nameAr } : {}),
+    taxAuthority: c.taxAuthority,
+    eInvoicing: c.eInvoicing,
+    invoicingPractice: c.invoicingPractice,
+    vatThreshold: c.vatThreshold,
+  }]),
+);
 
 // Shared "last reviewed" date shown on evergreen SEO pages (country invoice
 // generators + calculator SEO pages) and emitted as dateModified in JSON-LD.
 // Bump this whenever the underlying tax-rate / labour-law data is re-checked.
-const CONTENT_LAST_REVIEWED_ISO = "2026-07-17";
-const CONTENT_LAST_REVIEWED_DISPLAY = "July 17, 2026";
+const CONTENT_LAST_REVIEWED_ISO = "2026-07-20";
+const CONTENT_LAST_REVIEWED_DISPLAY = "July 20, 2026";
 
 // Lookup: country slug → country-specific FAQ items (from countries.ts).
 // Used by getJsonLdForPath to emit server-side FAQPage schema for /invoice-generator-* routes
@@ -1629,15 +1592,21 @@ function slugToCountryHtml(slug: string): string {
     ? `<h2>ZATCA Phase 1 compliance for ${c.name}</h2>
     <p>The Saudi Arabia invoice generator produces invoices that meet ZATCA Phase 1 ("Generation") requirements. Each invoice includes a Base64-encoded TLV QR code carrying the seller's name, VAT registration number, invoice timestamp, total with VAT and the VAT amount, alongside the standard fields the Zakat, Tax and Customs Authority requires: a unique sequential invoice number, the issue and supply dates, the seller's and buyer's tax registration numbers, an itemised line-by-line breakdown, the VAT rate (15%) and amount per line, and the grand total in SAR. Output is bilingual Arabic and English so it is acceptable to ZATCA, your customers and your accountant on the first try.</p>`
     : "";
-  const taxLine = /^0%/i.test(c.vat) || /no\s*vat/i.test(c.vat)
+  const taxLine = c.vatRate === 0
     ? `<p>${c.name} does not currently apply VAT or sales tax to most goods and services, so Xuvilo defaults the tax rate to zero on the ${c.name} invoice. If a specific transaction requires a different rate (for example a regional or municipal levy), you can override the tax rate per line at any time.</p>`
     : `<p>${c.name} applies ${c.vat} on most invoiced goods and services, so Xuvilo defaults the tax rate to ${c.vat} on the ${c.name} invoice. You can override the rate per line, exclude exempt items, or add multiple tax components if your business requires it.</p>`;
+  const countryFaqHtml = (COUNTRY_FAQ_ITEMS[slug] ?? [])
+    .map((f) => `<p><strong>${escapeHtml(f.q)}</strong> ${escapeHtml(f.a)}</p>`)
+    .join("\n    ");
   return `<div class="seo-fallback">
     <h1>Free Invoice Generator for ${c.name}${zatcaBadge}</h1>
     <p><em>By the Xuvilo Editorial Team &middot; Last reviewed: <time datetime="${CONTENT_LAST_REVIEWED_ISO}">${CONTENT_LAST_REVIEWED_DISPLAY}</time></em></p>
     ${arLine}
     <p>Xuvilo's free invoice generator for ${c.name} is a browser-based tool that lets freelancers, traders, contractors and small businesses create a professional, compliant invoice in under sixty seconds. The ${c.name} invoice generator pre-loads the correct currency (${c.currency}) and the local tax rate (${c.vat}), supports both ${langs} with proper layout, runs entirely in your browser so your customer information stays on your device, and exports a clean A4 PDF you can email or print. There is nothing to install, no account is required for the core flow, and you can issue unlimited invoices for free.</p>
     <p><a href="/invoice?currency=${c.currency}">Create your free ${c.name} invoice now →</a></p>
+
+    <h2>How businesses in ${c.name} invoice and get paid</h2>
+    <p>${escapeHtml(c.invoicingPractice)}</p>
 
     <h2>Why ${c.name} businesses choose Xuvilo</h2>
     <ul>
@@ -1668,20 +1637,21 @@ function slugToCountryHtml(slug: string): string {
 
     <h2>Tax in ${c.name}</h2>
     ${taxLine}
+    <p>The tax authority responsible for ${c.name} is ${escapeHtml(c.taxAuthority)}. ${escapeHtml(c.vatThreshold)}</p>
+
+    <h2>E-invoicing rules in ${c.name}</h2>
+    <p>${escapeHtml(c.eInvoicing)}</p>
     ${zatcaSection}
 
     <h2>Beyond invoices — quotations and receipts for ${c.name}</h2>
     <p>Xuvilo isn't only an invoice generator. The same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they're made, and a <a href="/templates/invoice">320+ template library</a> for industry-specific designs. Most ${c.name} businesses go through quote → invoice → receipt for every project, and Xuvilo covers all three.</p>
 
     <h2>Frequently asked questions</h2>
+    ${countryFaqHtml}
     <p><strong>Is the ${c.name} invoice generator really free?</strong> Yes — issue unlimited invoices in ${c.currency} without an account or a payment method. Premium plans (coming soon) will add cloud storage and advanced branding, but you never need them just to issue clean invoices.</p>
-    <p><strong>${c.ar ? "Does it support Arabic?" : "Does it support English-language invoices?"}</strong> ${c.ar ? "Yes — full right-to-left layout, Arabic-friendly fonts, Arabic numerals where appropriate, and a one-click language toggle." : `Yes — Xuvilo issues clean professional invoices in English for ${c.name} businesses and their international customers.`}</p>
     <p><strong>Can I change the currency?</strong> Yes — ${c.currency} is the default for ${c.name}, but you can switch to any of 176+ currencies on a per-invoice basis (for example USD or EUR for foreign clients).</p>
-    <p><strong>Can I add my logo?</strong> Yes — upload a logo and it appears on every ${c.name} invoice you generate.</p>
-    <p><strong>Can I save invoices and reissue them later?</strong> Yes — sign up for a free account to save documents, edit them later, and sync them between devices.</p>
-    ${c.zatca ? "<p><strong>Are the invoices ZATCA compliant?</strong> The Saudi Arabia generator is designed to meet ZATCA Phase 1 requirements, including the QR code, seller details, VAT registration number and itemised tax breakdown. Always confirm compliance with your accountant or a certified tax advisor.</p>" : ""}
 
-    <p>Looking for a different country? See <a href="/countries">all 56 country invoice generators</a>, or jump straight to the popular ones: <a href="/invoice-generator-saudi-arabia">Saudi Arabia</a>, <a href="/invoice-generator-uae">UAE</a>, <a href="/invoice-generator-egypt">Egypt</a>, <a href="/invoice-generator-libya">Libya</a>, <a href="/invoice-generator-jordan">Jordan</a>, <a href="/invoice-generator-kuwait">Kuwait</a>.</p>
+    <p>Looking for a different country? See <a href="/countries">all 57 country invoice generators</a>, or jump straight to the popular ones: <a href="/invoice-generator-saudi-arabia">Saudi Arabia</a>, <a href="/invoice-generator-uae">UAE</a>, <a href="/invoice-generator-egypt">Egypt</a>, <a href="/invoice-generator-libya">Libya</a>, <a href="/invoice-generator-jordan">Jordan</a>, <a href="/invoice-generator-kuwait">Kuwait</a>.</p>
   </div>`;
 }
 
@@ -1697,7 +1667,11 @@ function escapeHtml(s: string): string {
 function findBlogPostBySlug(slug: string) {
   let decoded = slug;
   try { decoded = decodeURIComponent(slug); } catch { /* keep raw */ }
-  return blogPosts.find((p) => p.slug === decoded || p.slug === slug);
+  const post = blogPosts.find((p) => p.slug === decoded || p.slug === slug);
+  // Scheduled publishing: future-dated posts are invisible (404) until
+  // their date arrives. Checked per request, so posts appear on their day
+  // without a restart or redeploy. Mirrors getBlogPost in blogPosts.ts.
+  return post && isPublishedPost(post) ? post : undefined;
 }
 
 // Bilingual blog posts ship as a pair: one Arabic-slug post and one
@@ -1726,6 +1700,9 @@ const BLOG_SIBLING_SLUG: Map<string, string> = (() => {
 function getBlogHreflangAlternates(slug: string): { ar: string; en: string; xDefault: string } | null {
   const sibling = BLOG_SIBLING_SLUG.get(slug);
   if (!sibling) return null;
+  // Never emit an hreflang alternate that points at a not-yet-published
+  // sibling — it would be a link to a 404 until that sibling's date.
+  if (!findBlogPostBySlug(sibling)) return null;
   const slugIsArabic = BLOG_SIBLING_ARABIC_RE.test(slug);
   const arSlug = slugIsArabic ? slug : sibling;
   const enSlug = slugIsArabic ? sibling : slug;
@@ -2509,6 +2486,9 @@ function buildArabicBlogStaticHtml(post: BlogPost): string {
 
 for (const post of blogPosts) {
   if (!ARABIC_SLUG_RE.test(post.slug)) continue;
+  // Scheduled posts are skipped at startup; registerBlogPostArtifacts()
+  // builds them lazily on first request once their date arrives.
+  if (!isPublishedPost(post)) continue;
   const path = `/blog/${post.slug}`;
   if (!PAGE_META[path]) {
     const metaTitle = post.metaTitleAr || `${post.titleAr} | Xuvilo`;
@@ -2625,6 +2605,9 @@ function buildEnglishBlogStaticHtml(post: BlogPost): string {
 
 for (const post of blogPosts) {
   if (ARABIC_SLUG_RE.test(post.slug)) continue;
+  // Scheduled posts are skipped at startup; refreshScheduledBlogArtifacts()
+  // registers them on the first request after their publish date.
+  if (!isPublishedPost(post)) continue;
   const path = `/blog/${post.slug}`;
   // Don't override the hand-written long-form English STATIC_HTML entries
   // that already exist for the original 10 English posts.
@@ -2644,7 +2627,11 @@ for (const post of blogPosts) {
 // the 50+ posts. Crawlers now see the full catalogue without JS.
 // ---------------------------------------------------------------------------
 function buildBlogIndexHtml(): string {
-  const sorted = [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  // Scheduled posts stay out of the index until their date arrives; the
+  // index is rebuilt by refreshScheduledBlogArtifacts() when the day rolls.
+  const sorted = blogPosts
+    .filter((p) => isPublishedPost(p))
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
   const cards = sorted.map((post) => {
     const isAr = ARABIC_SLUG_RE.test(post.slug);
     const title = isAr ? post.titleAr : post.titleEn;
@@ -2687,6 +2674,35 @@ ${cards}
 }
 
 STATIC_HTML["/blog"] = buildBlogIndexHtml();
+
+// ── Scheduled publishing: daily refresh ─────────────────────────────────────
+// Article STATIC_HTML/PAGE_META and the /blog index are built at startup,
+// which would freeze scheduled posts out until a restart. This hook runs at
+// the top of the SSR/sitemap/RSS handlers: on the first request of each new
+// UTC day it registers any posts whose date has arrived and rebuilds the
+// blog index. Cost on every other request is one string comparison.
+let blogArtifactsBuiltFor = todayUtcIso();
+function refreshScheduledBlogArtifacts(): void {
+  const today = todayUtcIso();
+  if (today === blogArtifactsBuiltFor) return;
+  blogArtifactsBuiltFor = today;
+  for (const post of blogPosts) {
+    if (!isPublishedPost(post, today)) continue;
+    const path = `/blog/${post.slug}`;
+    if (STATIC_HTML[path]) continue;
+    const isAr = ARABIC_SLUG_RE.test(post.slug);
+    if (!PAGE_META[path]) {
+      PAGE_META[path] = isAr
+        ? { title: post.metaTitleAr || `${post.titleAr} | Xuvilo`, description: post.excerptAr }
+        : { title: post.metaTitleEn || `${post.titleEn} — Xuvilo`, description: post.excerptEn };
+    }
+    STATIC_HTML[path] = isAr
+      ? buildArabicBlogStaticHtml(post)
+      : buildEnglishBlogStaticHtml(post);
+    SSR_ONLY_BLOG_SLUGS.add(path);
+  }
+  STATIC_HTML["/blog"] = buildBlogIndexHtml();
+}
 
 // Author profile page — server-rendered bio so crawlers see real E-E-A-T
 // content (the React AuthorPage renders the same information client-side).
@@ -2938,7 +2954,7 @@ function getJsonLdForPath(p: string): object | object[] | null {
     return {
       "@context": "https://schema.org", "@type": "Blog",
       url: `${SITE_URL}/blog`, name: "Xuvilo Blog", inLanguage: ["en", "ar"],
-      blogPost: blogPosts.slice(0, 10).map((post) => ({
+      blogPost: blogPosts.filter((p) => isPublishedPost(p)).slice(0, 10).map((post) => ({
         "@type": "BlogPosting",
         headline: post.titleEn,
         url: `${SITE_URL}/blog/${encodeURIComponent(post.slug)}`,
@@ -3655,7 +3671,11 @@ app.get("/ads.txt", (_req, res) => {
 });
 
 app.get("/rss.xml", (_req, res) => {
-  const sorted = [...blogPosts].sort((a, b) => (b.date > a.date ? 1 : -1));
+  refreshScheduledBlogArtifacts();
+  // Scheduled posts join the feed only once their date arrives.
+  const sorted = blogPosts
+    .filter((p) => isPublishedPost(p))
+    .sort((a, b) => (b.date > a.date ? 1 : -1));
   const items = sorted.map((post) => {
     const url = `${SITE_DOMAIN}/blog/${encodeURIComponent(post.slug)}`;
     const pubDate = new Date(post.date).toUTCString();
@@ -3756,6 +3776,7 @@ app.get("/robots.txt", (_req, res) => {
 });
 
 app.get("/sitemap.xml", (_req, res) => {
+  refreshScheduledBlogArtifacts();
   // Use the established content-review date so lastmod reflects genuine
   // content updates — not today's server clock date.
   const sitemapLastmod = CONTENT_LAST_REVIEWED_ISO;
@@ -3888,6 +3909,8 @@ app.get("/sitemap.xml", (_req, res) => {
   // Pointing hreflang="en" at a purely Arabic URL (or vice-versa) misleads
   // crawlers and violates requirement 8 of the SEO spec.
   const blogUrls = blogPosts
+    // Scheduled posts enter the sitemap only on/after their publish date.
+    .filter((post) => isPublishedPost(post))
     .map((post) => {
       const url = `${SITE_DOMAIN}/blog/${encodeURIComponent(post.slug)}`;
       const lastmod = post.date || sitemapLastmod;
@@ -3943,6 +3966,9 @@ app.use(express.static(distPath, {
 app.use(/(.*)/, (_req: express.Request, res: express.Response) => {
   const urlPath = _req.originalUrl || "/";
   try {
+    // First request of a new UTC day registers any scheduled posts whose
+    // date has arrived (and refreshes the /blog index) before path lookup.
+    refreshScheduledBlogArtifacts();
     const template = fs.readFileSync(path.join(distPath, "index.html"), "utf-8");
     const known = isKnownPath(urlPath);
     const html = injectSSR(template, urlPath, !known);

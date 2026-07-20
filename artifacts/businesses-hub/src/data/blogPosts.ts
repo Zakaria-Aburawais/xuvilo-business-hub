@@ -8763,12 +8763,3527 @@ The Jordanian Dinar (JOD) is pegged to the USD at 0.709 JOD = 1 USD. It uses 3 d
 "فاتورة ضريبية"؛ اسم البائع وعنوانه ورقم التسجيل في GST؛ بيانات المشتري؛ تاريخ الفاتورة ورقم تسلسلي؛ وصف السلع؛ مبلغ GST؛ الإجمالي بالدينار الأردني (3 منازل عشرية). أنشئ فواتيرك الأردنية عبر [مولّد الفواتير](/invoice) واحسب الضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية.`,
   },
 
+
+  /* ── Scheduled daily articles (2026-07-21 → 2026-08-19) ─────────────────
+     One article publishes automatically each day via the date gate in
+     isPublishedPost() — see "Scheduled publishing" helpers at the bottom
+     of this file. Future-dated entries are invisible on the site until
+     their date arrives. ── */
+
+  {
+    slug: "how-to-charge-late-payment-fees",
+    titleAr: "كيف تفرض غرامات التأخير على الفواتير في الخليج دون أن تخسر عملاءك",
+    titleEn: "How to Charge Late Payment Fees in the Gulf (Without Losing Clients)",
+    metaTitleAr: "غرامات تأخير سداد الفواتير في الخليج | Xuvilo",
+    metaTitleEn: "Late Payment Fees on Invoices in MENA | Xuvilo",
+    excerptAr: "هل غرامات التأخير قانونية في السعودية والإمارات ومصر؟ ما النسبة المناسبة، وكيف تصيغ البند في عقودك، وما البدائل الأذكى التي تنجح فعلاً؟",
+    excerptEn: "Are late payment fees legal in Saudi Arabia, the UAE, and Egypt? What rate to charge, how to word the clause, and smarter alternatives that actually work.",
+    date: "2026-07-21",
+    readTime: 8,
+    category: "invoices",
+    keywordAr: "غرامات تأخير سداد الفواتير",
+    keywordEn: "late payment fees invoice",
+    relatedSlugs: ["invoice-payment-terms-guide", "handle-late-payments-invoice-disputes", "how-to-write-professional-invoice"],
+    contentAr: `
+التأخر في السداد هو القاتل الصامت للتدفق النقدي لدى المستقلين والشركات الصغيرة في منطقة الشرق الأوسط. تشير الاستطلاعات الإقليمية باستمرار إلى أن فواتير الشركات في الخليج تُسدَّد بعد 60 إلى 90 يوماً من إصدارها في المتوسط، حتى عندما تنص الشروط المتفق عليها على السداد خلال 30 يوماً. غرامة التأخير المصممة جيداً تحقق أمرين: تعوّضك عن تكلفة الانتظار، والأهم أنها تدفع فاتورتك إلى مقدمة قائمة مدفوعات العميل.
+
+## هل غرامات التأخير قانونية في بلدك؟
+
+تختلف الإجابة بين دول المنطقة أكثر من أي مسألة أخرى في الفوترة، لذا تحقق من سوقك قبل إضافة نسبة مئوية إلى تذييل فاتورتك.
+
+| الدولة | الموقف القانوني | التوجيه العملي |
+|---|---|---|
+| الإمارات | الشروط الجزائية التعاقدية نافذة، وللمحكمة تخفيض المبالغ المفرطة، ويجيز قانون المعاملات التجارية الفائدة على الديون التجارية. | نسبة 1%–1.5% شهرياً مقبولة عادةً، وتحكم المحاكم غالباً بـ5%–9% سنوياً عند النزاع. |
+| السعودية | الفائدة (الربا) غير نافذة قضاءً، أما بنود التعويض الثابت المرتبطة بتكلفة فعلية مثبتة فقد يُعتد بها. | تجنّب "الفائدة" بنسبة مئوية، واستخدم رسماً إدارياً ثابتاً أو خصم السداد المبكر أو تعليق الخدمة. |
+| مصر | يحدد القانون المدني فوائد التأخير بنحو 4% في المسائل المدنية و5% في التجارية. | أبقِ أي رسم ضمن السقف القانوني وإلا أصبح غير قابل للتنفيذ. |
+| الأردن | الفائدة التجارية جائزة ضمن الحدود القانونية (حتى نحو 9%). | انصَّ على النسبة بوضوح في العقد لا في الفاتورة فقط. |
+
+القاعدة الذهبية في كل مكان: **غرامة التأخير التي تظهر لأول مرة على الفاتورة نفسها تكاد لا تكون نافذة أبداً.** يجب أن ترد في العقد أو عرض السعر المقبول الذي وقّعه العميل قبل بدء العمل.
+
+## كم ينبغي أن تفرض؟
+
+تنجح في المنطقة ثلاث صيغ شائعة:
+
+1. **نسبة شهرية.** من 1% إلى 1.5% من المبلغ المستحق شهرياً (12%–18% سنوياً) هي العرف الإقليمي حيث تكون الرسوم ذات طابع الفائدة نافذة. على فاتورة بقيمة 20,000 ريال سعودي، يعني ذلك 200–300 ريال عن كل شهر تأخير.
+2. **رسم إداري ثابت.** مبلغ محدد عن كل دورة تذكير — مثلاً 250 درهماً بعد اليوم الخامس عشر، و250 درهماً أخرى بعد اليوم الثلاثين. تناسب هذه الصيغة السوق السعودية لأنها تعوّض تكلفة إدارية حقيقية لا ثمن الوقت.
+3. **تصعيد متدرج.** لا شيء خلال مهلة الأيام السبعة الأولى، ثم 1% عند اليوم الثلاثين، ثم 1.5% شهرياً من اليوم الستين، ثم تعليق العمل عند اليوم التسعين. التدرج يبدو عادلاً ويمنح العميل محطات واضحة.
+
+أياً كانت الصيغة، ضع سقفاً للإجمالي (كثير من الشركات تضع سقف 10% من قيمة الفاتورة). فالغرامة غير المحدودة التي تتضخم حتى تتجاوز قيمة الفاتورة سترفضها معظم محاكم المنطقة، وستدمّر العلاقة التجارية قبل ذلك بكثير.
+
+## صياغة البند بشكل صحيح
+
+ضع البند في ثلاثة مواضع: [عرض السعر](/quotation)، والعقد، وخانة الملاحظات في كل فاتورة. مثال واضح:
+
+- "يستحق السداد خلال 30 يوماً من تاريخ الفاتورة. تخضع المبالغ غير المسددة بعد تاريخ الاستحقاق لرسم تأخير قدره 1% من الرصيد المستحق عن كل شهر أو جزء منه، بحد أقصى 10% من قيمة الفاتورة. ويجوز تعليق العمل على الحسابات المتأخرة أكثر من 60 يوماً."
+
+ثلاث تفاصيل مهمة:
+
+- **حدد تاريخ بدء الاحتساب بدقة** — تاريخ الفاتورة لا تاريخ التسليم، واذكره على الفاتورة نفسها عبر [مولّد الفواتير المجاني](/invoice).
+- **استخدم عبارة "رسم تأخير" أو "تعويض إداري"** لا "فائدة" إذا كنت تتعامل مع عملاء في السعودية.
+- **احتفظ بحق تعليق العمل.** عملياً، التعليق يحرّك المدفوعات أسرع من أي نسبة مئوية.
+
+## البدائل التي تنجح غالباً بشكل أفضل
+
+الغرامات عصا، لكن في ثقافة الأعمال بالمنطقة تتفوق الحوافز والهيكلة على العصا غالباً:
+
+- **خصومات السداد المبكر.** صيغة "2/10 صافي 30" — خصم 2% عند السداد خلال 10 أيام — تكلفك 2% لكنها قد تقدّم موعد السداد أكثر من 50 يوماً. إن كانت هوامشك ضيقة، احسب الأثر أولاً عبر [حاسبة هامش الربح](/calculators/profit-margin).
+- **الدفعات المقدمة والمراحل.** دفعة مقدمة بنسبة 40% تعني أن تأخر الدفعة النهائية يؤلم بنسبة 60% فقط.
+- **شروط أقصر للعملاء الجدد.** سداد خلال 15 يوماً لأول ثلاث فواتير، ثم 30 يوماً بعد بناء الثقة.
+- **ربط التسليم بالسداد.** الملفات النهائية أو الكود المصدري أو النسخة المختومة لا تُسلَّم إلا بعد استلام المبلغ.
+
+## طبّق الغرامات باتساق — أو لا تطبّقها أصلاً
+
+أسوأ سياسة هي غرامة تهدد بها ولا تطبّقها؛ إذ يتعلم العملاء بسرعة أن تاريخ الاستحقاق لديك مجرد زينة. تابع كل فاتورة غير مسددة أسبوعياً عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging)، وأرسل التذكير الأول في اليوم التالي لتاريخ الاستحقاق، وأشِر إلى الرسم التعاقدي في التذكير الثاني. عند هذه النقطة يسدد معظم العملاء — وتكون الغرامة قد أدت دورها دون أن تُحصَّل. وللاطلاع على خطة التصعيد الكاملة راجع دليلنا حول [شروط السداد التي تضمن تحصيل فواتيرك](/blog/invoice-payment-terms-guide).
+`,
+    contentEn: `
+Late payment is the quiet cash-flow killer of MENA freelancers and small businesses. Regional surveys consistently show that B2B invoices in the Gulf are paid 60 to 90 days after issue on average — even when the agreed terms say net 30. A well-designed late payment fee does two things: it compensates you for the cost of waiting, and (more importantly) it moves your invoice up the client's payment queue.
+
+## Are Late Payment Fees Legal in Your Country?
+
+The answer varies more across MENA than almost any other invoicing question, so check your own market before adding a percentage to your invoice footer.
+
+| Country | Legal position | Practical guidance |
+|---|---|---|
+| UAE | Contractual penalties are enforceable; courts may reduce excessive amounts. The Commercial Transactions Law allows interest on commercial debts. | 1%–1.5% per month is commonly upheld; courts often award 5%–9% annually in disputes. |
+| Saudi Arabia | Interest (riba) is not enforceable. Fixed compensation clauses tied to real, provable cost may be considered. | Avoid percentage "interest". Use a fixed administrative fee, early-payment discounts, or service suspension. |
+| Egypt | The Civil Code caps delay interest at roughly 4% for civil and 5% for commercial matters. | Keep any charge within the statutory cap or it becomes unenforceable. |
+| Jordan | Commercial interest is permitted within statutory limits (up to about 9%). | State the rate clearly in the contract, not only on the invoice. |
+
+The golden rule everywhere: **a late fee that appears for the first time on the invoice itself is almost never enforceable.** It must exist in the contract or accepted quotation the client signed before the work started.
+
+## How Much Should You Charge?
+
+Three common structures work in the region:
+
+1. **Monthly percentage.** 1% to 1.5% of the outstanding amount per month (12%–18% annually) is the regional norm where interest-style fees are enforceable. On a SAR 20,000 invoice, that is SAR 200–300 per month of delay.
+2. **Flat administrative fee.** A fixed charge per reminder cycle — for example AED 250 after day 15, and another AED 250 after day 30. This model travels well in Saudi Arabia because it compensates a real administrative cost rather than charging for time.
+3. **Staged escalation.** Nothing for the first 7 days of grace, 1% at day 30, 1.5% per month from day 60, work suspension at day 90. Staging feels fair and gives the client clear checkpoints.
+
+Whichever model you pick, cap the total (many businesses cap at 10% of the invoice value). An uncapped fee that snowballs past the invoice amount will be struck down by most regional courts — and will destroy the relationship long before that.
+
+## Wording the Clause Correctly
+
+Put the clause in three places: your [quotation](/quotation), your contract, and the notes section of every invoice. A clean example:
+
+- "Payment is due within 30 days of the invoice date. Amounts unpaid after the due date incur a late payment charge of 1% of the outstanding balance per month or part thereof, capped at 10% of the invoice value. Work may be suspended on accounts more than 60 days overdue."
+
+Three details matter:
+
+- **Name the trigger date precisely** — invoice date, not delivery date, and state it on the invoice itself using the [free invoice generator](/invoice).
+- **Say "late payment charge" or "administrative compensation"**, not "interest", if you work with Saudi clients.
+- **Reserve the right to suspend work.** In practice, suspension moves payments faster than any percentage.
+
+## The Alternatives That Often Work Better
+
+Fees are a stick. In MENA business culture, carrots and structure usually outperform sticks:
+
+- **Early payment discounts.** "2/10 net 30" — a 2% discount if paid within 10 days — costs you 2% but can pull payment forward by 50+ days. On tight margins, run the numbers first with the [profit margin calculator](/calculators/profit-margin).
+- **Deposits and milestones.** A 40% advance means a late final payment hurts 60% as much.
+- **Shorter terms for new clients.** Net 15 for the first three invoices, then net 30 once trust is built.
+- **Payment-linked deliverables.** Final files, source code, or the signed stamp copy transfer only on receipt of payment.
+
+## Apply Fees Consistently — or Not at All
+
+The worst policy is a fee you threaten but never apply; clients learn quickly that your due date is decorative. Track every unpaid invoice weekly with the [invoice aging calculator](/calculators/invoice-aging), send the first reminder the day after the due date, and reference the contractual fee in the second reminder. Most clients pay at that point — the fee has done its job without ever being collected. For the full escalation playbook, see our guide to [payment terms that get invoices paid](/blog/invoice-payment-terms-guide).
+`,
+  },
+
+  {
+    slug: "invoice-vs-delivery-note-vs-grn",
+    titleAr: "الفاتورة ومذكرة التسليم وإشعار استلام البضائع: كيف تعمل الوثائق الثلاث معاً",
+    titleEn: "Invoice vs Delivery Note vs GRN: How the Three Documents Work Together",
+    metaTitleAr: "الفرق بين الفاتورة ومذكرة التسليم وGRN | Xuvilo",
+    metaTitleEn: "Invoice vs Delivery Note vs GRN Explained | Xuvilo",
+    excerptAr: "الشركات الكبرى لن تسدد فاتورتك دون مذكرة تسليم وإشعار استلام مطابقين. إليك دور كل وثيقة وكيف تعمل المطابقة الثلاثية عملياً.",
+    excerptEn: "Corporate buyers won't pay your invoice without a matching delivery note and GRN. Here is what each document does and how the three-way match works.",
+    date: "2026-07-22",
+    readTime: 7,
+    category: "invoices",
+    keywordAr: "الفرق بين الفاتورة ومذكرة التسليم",
+    keywordEn: "invoice vs delivery note vs GRN",
+    relatedSlugs: ["delivery-note-guide", "purchase-order-guide", "receipt-vs-invoice-difference"],
+    contentAr: `
+إذا كنت تبيع سلعاً مادية للشركات في الخليج — شركة تجارية تورّد لسلسلة أسواق في الرياض، أو ورشة تسلّم قطعاً لمقاول في دبي — فهناك ثلاث وثائق ترافق كل طلبية: مذكرة التسليم، وإشعار استلام البضائع (GRN)، والفاتورة. إن خلطت بينها أو أغفلت إحداها، بقيت مستحقاتك في طابور حسابات الموردين لدى العميل شهوراً. يشرح هذا الدليل دور كل وثيقة بدقة وكيف تترابط معاً.
+
+## ثلاث وثائق وثلاث مهام مختلفة
+
+| الوثيقة | من يصدرها | متى | ماذا تثبت | الأثر المالي |
+|---|---|---|---|---|
+| مذكرة التسليم | البائع (أنت) | ترافق البضاعة | ما تقول إنك شحنته | لا شيء — لا تتطلب مبالغ |
+| إشعار استلام البضائع (GRN) | مستودع المشتري | عند الاستلام الفعلي والفحص | ما يؤكد المشتري وصوله فعلاً وبأي حالة | لا شيء — لكنه يجيز الدفع لاحقاً |
+| الفاتورة | البائع (أنت) | عند التسليم أو بعده | ما تطالب به مع الضريبة | تنشئ الالتزام القانوني بالسداد |
+
+مذكرة التسليم إفادتك أنت؛ وإشعار الاستلام ردُّ المشتري عليها؛ والفاتورة هي المطالبة التي يجب أن تتفق مع الوثيقتين معاً.
+
+## مسار الوثائق خطوة بخطوة
+
+1. **أمر الشراء (PO).** يصدر قسم المشتريات لدى العميل أمر شراء يحدد الأصناف والكميات والأسعار المتفق عليها — مثلاً 200 وحدة بسعر 45 ريالاً للوحدة. لا تشحن أبداً للشركات دون أمر شراء؛ راجع [دليل أوامر الشراء](/blog/purchase-order-guide) لتعرف السبب.
+2. **مذكرة التسليم.** تُعِدّ مذكرة تسليم تتضمن رقم أمر الشراء ووصف الأصناف والكميات — دون أسعار عادةً، لأن السائق وموظفي المستودع الذين يتداولونها لا يحتاجون الشروط التجارية. يوقّع المستلم نسخة تحتفظ بها أنت.
+3. **إشعار الاستلام (GRN).** يعدّ أمين مستودع المشتري البضاعة ويفحصها، ثم يحرر إشعار استلام يسجّل ما قُبل فعلاً: ربما 195 وحدة، مع رفض 5 وحدات لتلفها.
+4. **الفاتورة.** تصدر الآن فاتورة بما قُبل — 195 × 45 = 8,775 ريالاً مضافاً إليها ضريبة القيمة المضافة 15% — مع ذكر رقم أمر الشراء ورقم مذكرة التسليم. أنشئها خلال دقائق عبر [مولّد الفواتير المجاني](/invoice).
+5. **المطابقة الثلاثية والسداد.** يقارن قسم حسابات الموردين بين أمر الشراء وإشعار الاستلام والفاتورة، فإذا تطابقت الثلاث اعتُمدت الفاتورة لدورة الدفع التالية.
+
+## لماذا تؤخر المطابقة الثلاثية سداد مستحقاتك؟
+
+تُوجَّه أقسام حسابات الموردين في الشركات الإماراتية والسعودية عادةً بعدم صرف أي مبلغ يفشل في المطابقة. وأكثر أسباب الفشل شيوعاً يمكن تفاديها تماماً:
+
+- **اختلاف الكميات.** فوترت 200 وحدة بينما يقول إشعار الاستلام 195، فتتجمد الفاتورة كلها — لا الوحدات الخمس المتنازع عليها فقط.
+- **غياب المراجع.** فاتورة بلا رقم أمر شراء تعني أن موظف الحسابات لا يستطيع أصلاً العثور على المعاملة لمطابقتها.
+- **فروق الأسعار.** أمر الشراء يقول 45.00 درهماً وفاتورتك تقول 47.50. حتى الزيادة الصغيرة غير المتفق عليها تُدخل الفاتورة دورة مراجعة يدوية قد تضيف 30 يوماً.
+- **مذكرة تسليم غير موقّعة.** دون توقيع المستلم لا تملك إثبات تسليم إذا "ضاع" إشعار الاستلام.
+
+الحل هو الانضباط لا تكديس الأوراق: لا تفوتر إلا بعد اطلاعك على كميات إشعار الاستلام (أو تأكيدها على الأقل)، واذكر كل رقم مرجعي يستخدمه نظام المشتري.
+
+## وماذا عن الخدمات؟
+
+نادراً ما تستخدم شركات الخدمات مذكرات التسليم، لكن المنطق نفسه ينطبق بأسماء مختلفة. فكشف الساعات الموقّع، أو بريد قبول المرحلة، أو شهادة الإنجاز تؤدي دور إشعار الاستلام: إنها تأكيد العميل الكتابي بأن العمل استُلم وقُبل. احصل على هذا التأكيد **قبل** إصدار الفاتورة وستنخفض النزاعات انخفاضاً كبيراً.
+
+## أخطاء شائعة تجنّبها
+
+- استخدام مذكرة التسليم كفاتورة. فهي بلا تفصيل ضريبي ولا تنشئ التزاماً بالسداد — ما زال بعض الموردين في مصر والأردن يكتبون "يرجى الدفع" بخط اليد على مذكرات التسليم ثم يتساءلون لماذا لا يحدث شيء.
+- إظهار الأسعار على مذكرات التسليم حين تمر البضاعة عبر مستودعات طرف ثالث. أبقِ الشروط التجارية بعيدة عن الوثائق التي يتداولها موظفون من خارج الإدارة المالية.
+- ترك ترقيم مذكرات التسليم ينفصل عن ترقيم الفواتير فيستحيل تتبع سجل التدقيق. رقّم السلسلتين تسلسلياً واربط كلاً منهما بالأخرى؛ راجع [دليل مذكرة التسليم الكامل](/blog/delivery-note-guide) لنظام ترقيم فعّال.
+
+## جهّز الثلاثي مرة واحدة
+
+أنشئ قوالب متطابقة مرة واحدة: مذكرة تسليم، وفاتورة، ونموذج إشعار استلام بسيطاً تقدمه للمشترين الصغار الذين لا يملكون نموذجهم الخاص. يتكفل [مولّد الفواتير](/invoice) من Xuvilo بجانب الفواتير مع احتساب الضريبة تلقائياً وتنسيق ثنائي اللغة بالعربية والإنجليزية، فتبقى وثائقك متفقة مع بعضها ومع ملف المشتري دائماً.
+`,
+    contentEn: `
+If you sell physical goods to companies in the Gulf — a trading business supplying a supermarket chain in Riyadh, a workshop delivering parts to a contractor in Dubai — three documents travel with every order: the delivery note, the goods received note (GRN), and the invoice. Confuse them, or skip one, and your payment sits in the client's accounts payable queue for months. This guide explains exactly what each document does and how they lock together.
+
+## Three Documents, Three Different Jobs
+
+| Document | Issued by | When | What it proves | Financial effect |
+|---|---|---|---|---|
+| Delivery note | Seller (you) | Travels with the goods | What you claim you shipped | None — no amounts required |
+| GRN (Goods Received Note) | Buyer's warehouse | On physical receipt and inspection | What the buyer confirms actually arrived, in what condition | None — but it authorizes payment later |
+| Invoice | Seller (you) | On or after delivery | What you are charging, with VAT | Creates the legal payment obligation |
+
+The delivery note is your statement; the GRN is the buyer's answer to it; the invoice is the bill that must agree with both.
+
+## The Document Flow, Step by Step
+
+1. **Purchase order (PO).** The buyer's procurement team issues a PO stating items, quantities, and agreed prices — say 200 units at SAR 45 each. Never ship without one when dealing with corporates; our [purchase order guide](/blog/purchase-order-guide) covers why.
+2. **Delivery note.** You prepare a delivery note listing the PO number, item descriptions, and quantities — but usually no prices, since the driver and warehouse staff who handle it don't need commercial terms. The receiver signs one copy; you keep it.
+3. **GRN.** The buyer's storekeeper counts and inspects the goods, then raises a GRN recording what was actually accepted: perhaps 195 units, with 5 rejected for damage.
+4. **Invoice.** You now invoice for what was accepted — 195 × SAR 45 = SAR 8,775 plus 15% VAT — quoting the PO number and delivery note number. Generate it in minutes with the [free invoice generator](/invoice).
+5. **Three-way match and payment.** Accounts payable compares PO, GRN, and invoice. If all three agree, the invoice is approved for the next payment run.
+
+## Why the Three-Way Match Delays Your Payment
+
+Corporate AP departments in the UAE and Saudi Arabia are usually instructed to pay nothing that fails the match. The most common failures are entirely preventable:
+
+- **Quantity mismatch.** You invoiced 200 units, the GRN says 195. The whole invoice is parked — not just the 5 disputed units.
+- **Missing references.** No PO number on the invoice means the AP clerk cannot even find the transaction to match it.
+- **Price variance.** The PO said AED 45.00, your invoice says AED 47.50. Even a small unagreed increase triggers a manual review cycle that can add 30 days.
+- **Unsigned delivery note.** Without the receiver's signature, you have no proof of delivery if the GRN "goes missing".
+
+The fix is discipline, not paperwork volume: invoice only after you see (or at least confirm) the GRN quantities, and quote every reference number the buyer's system uses.
+
+## What About Services?
+
+Service businesses rarely use delivery notes, but the same logic applies under different names. A signed timesheet, a milestone acceptance email, or a completion certificate plays the GRN role: it is the client's written confirmation that the work was received and accepted. Get that confirmation **before** you invoice and disputes drop dramatically.
+
+## Common Mistakes to Avoid
+
+- Using the delivery note as an invoice. It has no VAT breakdown and creates no payment obligation — some suppliers in Egypt and Jordan still hand-write "please pay" on delivery notes, and then wonder why nothing happens.
+- Showing prices on delivery notes when goods pass through third-party warehouses. Keep commercial terms off documents that non-finance staff handle.
+- Letting delivery note numbering drift out of sync with invoices, making the audit trail impossible to follow. Number both series sequentially and reference them against each other; see our full [delivery note guide](/blog/delivery-note-guide) for a numbering scheme that works.
+
+## Set Up the Trio Properly
+
+Create matching templates once — delivery note, invoice, and a simple GRN form you can offer smaller buyers who don't have their own. Xuvilo's [invoice generator](/invoice) handles the invoice side with automatic VAT and bilingual Arabic-English layouts, so your documents always agree with each other and with the buyer's file.
+`,
+  },
+
+  {
+    slug: "credit-notes-complete-guide",
+    titleAr: "الإشعار الدائن: الدليل الكامل للشركات في الشرق الأوسط",
+    titleEn: "Credit Notes: The Complete Guide for MENA Businesses",
+    metaTitleAr: "الإشعار الدائن: متى تصدره وكيف | Xuvilo",
+    metaTitleEn: "Credit Notes Explained: When and How | Xuvilo",
+    excerptAr: "متى تصدر إشعاراً دائناً، وكيف يعدّل ضريبة القيمة المضافة في السعودية والإمارات، وكيف ترقّمه، والأخطاء التي تستدعي أسئلة مصلحة الضرائب.",
+    excerptEn: "When to issue a credit note, how it adjusts VAT in Saudi Arabia and the UAE, how to number it, and the mistakes that trigger tax authority questions.",
+    date: "2026-07-23",
+    readTime: 7,
+    category: "invoices",
+    keywordAr: "الإشعار الدائن للفواتير",
+    keywordEn: "credit note guide",
+    relatedSlugs: ["zatca-invoice-requirements-saudi-arabia", "invoice-numbering-best-practices", "how-to-write-professional-invoice"],
+    contentAr: `
+أصدرت فاتورة لعميل بمبلغ 11,500 ريال ثم اكتشفت أن السعر المتفق عليه 10,500 ريال. أو أعاد العميل قطعتين من عشر. أو فوترت التسليم نفسه مرتين بالخطأ. في كل هذه الحالات، الجواب الخاطئ هو حذف الفاتورة الأصلية أو تعديلها — والجواب الصحيح هو الإشعار الدائن. إليك كيفية استخدامه بشكل صحيح في بيئة ضريبة القيمة المضافة.
+
+## ما هو الإشعار الدائن فعلاً؟
+
+الإشعار الدائن (ويسمى في الإمارات "إشعار دائن ضريبي") هو وثيقة **تخفّض** المبلغ الذي يدين به العميل عن فاتورة صدرت سابقاً. وهو مرآة للفاتورة: الأطراف نفسها ومنطق الضريبة نفسه، لكن بأثر تجاري سالب. تبقى الفاتورة الأصلية في سجلاتك دون مساس، ويجلس الإشعار الدائن إلى جانبها ليعدّل صافي الموقف.
+
+هذا مهم لأن الفواتير الضريبية الصادرة في السعودية والإمارات ومصر غير قابلة للتعديل عملياً — ففي أنظمة الفوترة الإلكترونية مثل نظام هيئة الزكاة والضريبة والجمارك، تُبلَّغ الفاتورة الصادرة ولا يمكن تحريرها ببساطة. والإشعار الدائن هو الطريقة النظامية الوحيدة لتخفيضها.
+
+## متى تصدر إشعاراً دائناً؟
+
+| الحالة | مثال | قيمة الإشعار |
+|---|---|---|
+| إرجاع بضاعة | يعيد العميل كرسيين من عشرة بسعر 300 درهم للقطعة | 600 درهم + الضريبة |
+| خطأ في الفوترة بالزيادة | فوترة 11,500 ريال بدلاً من 10,500 | 1,000 ريال + الضريبة |
+| خصم بعد إصدار الفاتورة | منحت خصم 5% ودياً بعد مشكلة في الخدمة | 5% من الفاتورة + الضريبة |
+| فاتورة مكررة | التسليم نفسه فوتر مرتين | كامل مبلغ الفاتورة المكررة |
+| إلغاء الطلب بعد الفوترة | يلغي العميل قبل التسليم | كامل المبلغ + الضريبة |
+| قبول بضاعة متضررة بسعر مخفض | سماح 10% على شحنة متضررة | 10% من قيمة البند + الضريبة |
+
+لاحظ ما ليس في القائمة: تغيير اسم العميل أو عنوانه، أو تصحيح خطأ إملائي في الوصف، أو تعديل الرقم الضريبي. فالتصحيحات غير المالية البسيطة تُعالج عادةً بالإلغاء وإعادة الإصدار (حيث يسمح النظام) أو بإشعار تكميلي — راجع قواعد بلدك.
+
+## الإشعار الدائن وضريبة القيمة المضافة في الخليج
+
+الإشعار الدائن ليس مجرد قيد محاسبي، بل يعدّل مباشرة الضريبة المستحقة عليك:
+
+- **السعودية (ضريبة 15%).** تشترط هيئة الزكاة والضريبة والجمارك أن يشير الإشعار الدائن إلى رقم الفاتورة الأصلية وتاريخها وأن يحمل حقول الفاتورة الضريبية نفسها. فعند إصدار إشعار بقيمة 1,000 ريال، تعكس أيضاً 150 ريالاً من ضريبة المخرجات في إقرار تلك الفترة.
+- **الإمارات (ضريبة 5%).** تشترط الهيئة الاتحادية للضرائب وثيقة تحمل صراحة عنوان "إشعار دائن ضريبي" وتُظهر رقم التسجيل الضريبي للمورد وقيمة التعديل والضريبة المرتبطة به.
+- **مصر (ضريبة 14%).** تمر الإشعارات الدائنة عبر منظومة الفاتورة الإلكترونية الوطنية ويجب أن تشير إلى المعرّف الفريد للفاتورة الإلكترونية الأصلية.
+
+وفي الدول الثلاث، على المشتري بالمقابل تخفيض ضريبة المدخلات التي استردها. احسب الأرقام عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) قبل الإصدار ليكون سطر الضريبة دقيقاً حتى الهللة أو الفلس.
+
+## الترقيم والتنسيق
+
+خصص للإشعارات الدائنة سلسلة تسلسلية مستقلة — CN-2026-0001 ثم CN-2026-0002 — منفصلة عن سلسلة فواتيرك، ولا تُعِد استخدام رقم ولا تقفز فوق آخر. وينبغي أن يُظهر كل إشعار دائن:
+
+1. العنوان "إشعار دائن" (و"إشعار دائن ضريبي" للمسجلين في ضريبة الإمارات).
+2. رقمه الخاص وتاريخ إصداره.
+3. **رقم الفاتورة الأصلية وتاريخها** — وهو الحقل الأكثر نسياناً على الإطلاق.
+4. بيانات الطرفين وأرقام التسجيل الضريبي.
+5. سبب التعديل في سطر واحد واضح.
+6. البنود والمبلغ الصافي ومبلغ الضريبة والإجمالي الدائن.
+
+الترقيم المتسق هو ما يجعل زيارة المدقق قصيرة؛ ويغطي [دليل ترقيم الفواتير](/blog/invoice-numbering-best-practices) تصميم السلاسل بالتفصيل.
+
+## استرداد أم مقاصة أم ترحيل؟
+
+الإشعار الدائن يثبت أنك مدين للعميل بقيمة — لكنه لا يحدد طريقة التسوية. أمامك ثلاثة خيارات:
+
+- **المقاصة** مع الفاتورة نفسها إن كانت غير مسددة (الأشيع — يدفع العميل الصافي المخفض ببساطة).
+- **الخصم من الفاتورة التالية** كسطر دائن، وهو الأنسب لعملاء العقود الشهرية المستمرة.
+- **رد نقدي** عندما تكون الفاتورة الأصلية سُددت كاملة ولا عمل مستقبلياً مخططاً.
+
+اذكر المعالجة المختارة على الإشعار نفسه كي لا ينشأ نزاع ثانٍ حول حل النزاع الأول.
+
+## أخطاء شائعة تجنّبها
+
+- إصدار فاتورة "مصححة" جديدة دون إشعار دائن للقديمة، فيُظهر دفتر العميل الفاتورتين معاً وتتضاعف إيراداتك دفترياً.
+- نسيان عكس ضريبة المخرجات، فتدفع للهيئة الضريبية أكثر من المستحق بصمت.
+- أسباب مبهمة ("تسوية") يلتقطها المدققون؛ اكتب بدلاً منها "إرجاع وحدتين على الفاتورة INV-2026-0231".
+- تحرير ملفات PDF يدوياً. أصدر إشعاراتك الدائنة من النظام نفسه الذي يصدر فواتيرك — يحافظ [مولّد الفواتير المجاني](/invoice) على اتساق الأطراف ونسب الضريبة والمراجع بين الوثيقتين.
+`,
+    contentEn: `
+You invoiced a client SAR 11,500, then discovered the agreed price was SAR 10,500. Or the client returned two of the ten items. Or you accidentally billed the same delivery twice. In every one of these cases the wrong answer is deleting or editing the original invoice — and the right answer is a credit note. Here is how to use them properly in a VAT environment.
+
+## What a Credit Note Actually Is
+
+A credit note (also called a tax credit note in the UAE, or إشعار دائن in Arabic) is a document that **reduces** the amount a customer owes on a previously issued invoice. It mirrors the invoice: same parties, same VAT logic, but with a negative commercial effect. The original invoice stays untouched in your records; the credit note sits beside it and adjusts the net position.
+
+This matters because in Saudi Arabia, the UAE, and Egypt, issued tax invoices are effectively immutable — under e-invoicing regimes like ZATCA's, an issued invoice is reported and cannot simply be edited. The credit note is the only compliant way to reduce it.
+
+## When to Issue One
+
+| Situation | Example | Credit note amount |
+|---|---|---|
+| Goods returned | Client returns 2 of 10 chairs at AED 300 each | AED 600 + VAT |
+| Overbilling error | Invoiced SAR 11,500 instead of SAR 10,500 | SAR 1,000 + VAT |
+| Post-invoice discount | You grant 5% goodwill discount after a service issue | 5% of invoice + VAT |
+| Duplicate invoice | Same delivery invoiced twice | Full amount of the duplicate |
+| Order cancelled after invoicing | Client cancels before delivery | Full amount + VAT |
+| Damaged goods accepted at reduced price | 10% allowance on a damaged shipment | 10% of line value + VAT |
+
+Note what is **not** on the list: changing the client's name or address, fixing a typo in a description, or correcting a VAT number. Minor non-monetary corrections are usually handled by cancelling and reissuing (where the regime allows) or by a supplementary note — check your local rules.
+
+## Credit Notes and VAT in the Gulf
+
+The credit note is not just bookkeeping — it directly adjusts the VAT you owe:
+
+- **Saudi Arabia (15% VAT).** ZATCA requires credit notes to reference the original invoice number and date, and to carry the same fields as a tax invoice. When you issue a SAR 1,000 credit note, you also reverse SAR 150 of output VAT in that period's return.
+- **UAE (5% VAT).** The FTA requires a document explicitly titled "Tax Credit Note", showing the supplier's TRN, the value of the adjustment, and the VAT charged in relation to it.
+- **Egypt (14% VAT).** Credit notes flow through the national e-invoicing platform and must reference the original electronic invoice's UUID.
+
+In all three, the buyer must correspondingly reduce the input VAT they reclaimed. Run the numbers with the [VAT calculator](/calculators/vat-tax) before you issue, so the note's tax line is exact to the halala or fils.
+
+## Numbering and Format
+
+Give credit notes their own sequential series — CN-2026-0001, CN-2026-0002 — separate from your invoice series, and never reuse or skip numbers. Every credit note should show:
+
+1. The title "Credit Note" (and "Tax Credit Note" for UAE VAT-registered businesses).
+2. Its own number and issue date.
+3. **The original invoice number and date it adjusts** — the single most-forgotten field.
+4. Both parties' details and tax registration numbers.
+5. The reason for the adjustment, in one clear line.
+6. Line items, net amount, VAT amount, and total credited.
+
+Consistent numbering is what keeps an auditor's visit short; our [invoice numbering guide](/blog/invoice-numbering-best-practices) covers series design in depth.
+
+## Refund, Offset, or Carry Forward?
+
+A credit note establishes that you owe the client value — it doesn't dictate how you settle it. Three options:
+
+- **Offset** against the same unpaid invoice (most common — the client simply pays the reduced net).
+- **Apply to the next invoice** as a credit line, ideal for ongoing clients on retainers.
+- **Cash refund** when the original invoice was already paid in full and no future work is planned.
+
+State the chosen treatment on the note itself to avoid a second dispute about the first one.
+
+## Common Mistakes to Avoid
+
+- Issuing a new "corrected" invoice without crediting the old one, so the client's ledger shows both and your revenue is double-counted.
+- Forgetting to reverse the output VAT, quietly overpaying the tax authority.
+- Vague reasons ("adjustment") that auditors flag; write "return of 2 units against invoice INV-2026-0231" instead.
+- Hand-editing PDFs. Issue credit notes from the same system as your invoices — the [free invoice generator](/invoice) keeps parties, VAT rates, and references consistent between the two documents.
+`,
+  },
+
+  {
+    slug: "deposit-and-advance-payment-invoices",
+    titleAr: "فواتير الدفعات المقدمة والعربون: كيف تفوتر مقدماً بشكل صحيح",
+    titleEn: "Deposit and Advance Payment Invoices: How to Bill Upfront Correctly",
+    metaTitleAr: "فواتير الدفعة المقدمة والعربون | Xuvilo",
+    metaTitleEn: "Deposit and Advance Payment Invoices | Xuvilo",
+    excerptAr: "كيف تفوتر العربون والدفعات المقدمة في الخليج: قواعد توقيت الضريبة، والتسلسل الصحيح للوثائق، وكيف تُظهر الفاتورة النهائية خصم المقدم.",
+    excerptEn: "How to invoice deposits and advance payments in the Gulf: VAT timing rules, the right document sequence, and how the final invoice shows the deduction.",
+    date: "2026-07-24",
+    readTime: 8,
+    category: "invoices",
+    keywordAr: "فاتورة دفعة مقدمة",
+    keywordEn: "advance payment invoice deposit",
+    relatedSlugs: ["proforma-invoice-vs-commercial-invoice", "invoice-payment-terms-guide", "quotation-best-practices"],
+    contentAr: `
+طلب المال قبل بدء العمل أمر طبيعي واحترافي، وفي بيئة الخليج ذات دورات السداد الطويلة، كثيراً ما يكون الفارق بين عمل تجاري سليم وآخر يختنق نقدياً. ما يوقع الناس في الخطأ هو الأوراق: أي وثيقة ترسلها لطلب الدفعة المقدمة؟ ومتى تستحق ضريبة القيمة المضافة؟ وكيف تحتسب الفاتورة النهائية ما سُدد مسبقاً؟ يشرح هذا الدليل التسلسل كاملاً.
+
+## لماذا تفوتر مقدماً أصلاً؟
+
+- **تصفية العملاء الجادين.** العميل الذي يرفض دفع مقدم 30% على مشروع بقيمة 40,000 ريال كان غالباً سيتحول إلى مشكلة تحصيل عند 100%.
+- **تمويل العمل.** فالمواد والمقاولون من الباطن وتراخيص البرمجيات تُدفع قبل أن يدفع لك عميلك.
+- **تقاسم المخاطر بإنصاف.** إذا توقف المشروع في منتصفه، لا يتحمل طرف واحد الخسارة كلها.
+
+الأعراف الإقليمية المعتادة: مقدم 30%–50% لأعمال التصميم والإبداع، و20%–30% للاستشارات، وجداول مراحل (مثل 40/40/20) لمشاريع البناء والتشطيب.
+
+## عربون أم دفعة مقدمة أم فاتورة مبدئية — أي وثيقة ومتى؟
+
+| الوثيقة | ما هي | هل تنشئ التزاماً ضريبياً؟ | متى تستخدمها |
+|---|---|---|---|
+| عرض السعر | عرضك المسعّر | لا | عند الاتفاق على النطاق والسعر — ابدأ من [مولّد عروض الأسعار](/quotation) |
+| الفاتورة المبدئية (Proforma) | طلب دفع رسمي **ليس** فاتورة ضريبية | لا — حتى يصل السداد | لطلب المقدم قبل نشوء أي واقعة ضريبية |
+| فاتورة الدفعة المقدمة (الضريبية) | فاتورة ضريبية حقيقية بالمبلغ المستلم | نعم | عند استلام المقدم أو فور استلامه |
+| الفاتورة النهائية | فاتورة ضريبية بالرصيد المتبقي | نعم، على الرصيد | عند التسليم/الإنجاز مع إظهار خصم المقدم |
+
+الخطأ الشائع هو إصدار فاتورة ضريبية بكامل قيمة المشروع لمجرد طلب مقدم 40%، فيصبح كامل مبلغ الضريبة مستحقاً في تلك الفترة رغم أن 60% من النقد لم يصل بعد.
+
+## الضريبة على الدفعات المقدمة: قاعدة التوقيت
+
+في السعودية والإمارات معاً، الواقعة الضريبية هي **الأسبق** من: تسليم السلع أو الخدمات، أو إصدار الفاتورة الضريبية، أو استلام الدفع. وعليه فإن الدفعة المقدمة تُنشئ ضريبة على المبلغ المستلم لحظة استلامه.
+
+مثال عملي (السعودية، ضريبة 15%):
+
+1. قيمة المشروع: 20,000 ريال + الضريبة. يوافق العميل على مقدم 40%.
+2. تستلم 9,200 ريال (8,000 ريال + 1,200 ريال ضريبة). يجب أن تصدر فاتورة ضريبية بمبلغ 8,000 + 1,200 وأن تُدرج الـ1,200 ريال في إقرار تلك الفترة.
+3. عند الإنجاز تصدر الفاتورة النهائية: الإجمالي 20,000 ريال + 3,000 ريال ضريبة، **ناقصاً** المقدم المستلم 8,000 + 1,200، ليبقى رصيد 12,000 + 1,800 = 13,800 ريال.
+
+راجع كل تقسيم عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) — فتقريب المقدم والرصيد كلٍّ على حدة هو الباب الذي تتسلل منه فروق الهللة الواحدة إلى الإقرارات.
+
+## مكوّنات فاتورة الدفعة المقدمة الجيدة
+
+إضافة إلى حقول الفاتورة الضريبية المعتادة، ينبغي أن تذكر فاتورة المقدم:
+
+- وصفاً واضحاً: "دفعة مقدمة (40%) على عرض السعر Q-2026-0117 لتشطيب مطبخ، فيلا 12، جميرا".
+- إجمالي قيمة المشروع الذي تتعلق به، للسياق.
+- عبارة "دفعة مقدمة" صراحة — كي يقيّدها محاسب العميل كدفعة مسبقة لا كشراء مكتمل.
+
+ويجب أن تُظهر الفاتورة النهائية الحساب صراحة: الإجمالي، ثم الضريبة، مطروحاً منهما كل فاتورة مقدم برقمها وتاريخها، ثم صافي الرصيد المستحق. أنشئ الوثيقتين في [مولّد الفواتير المجاني](/invoice) لتبقى الأرقام والمراجع مترابطة.
+
+## الفوترة بالمراحل للمشاريع الأكبر
+
+للمشاريع التي تتجاوز نحو 50,000 درهم، استبدل بالمقدم الواحد جدولَ مراحل يُتفق عليه في عرض السعر:
+
+1. 30% عند التوقيع — للتجهيز والانطلاق.
+2. 40% عند تسليم المرحلة الوسطى المتفق عليها (اعتماد التصميم، اكتمال الهيكل).
+3. 30% عند التسليم النهائي، تستحق خلال 15 يوماً.
+
+تحصل كل مرحلة على فاتورتها الضريبية عند استحقاق دفعتها. هكذا تبقى الضريبة متوازية مع النقد، ويحصل العميل على ثلاثة قرارات اعتماد صغيرة بدل قرار كبير واحد — وفي مشتريات الشركات يعني ذلك ثلاث موافقات سريعة بدل موافقة واحدة بطيئة.
+
+## احمِ الدفعة المقدمة نفسها
+
+انصَّ في عرض السعر على قابلية المقدم للاسترداد وشروطها. صيغة شائعة وعادلة للخدمات: المقدم غير قابل للاسترداد متى بدأ العمل، ويُرد أي جزء غير مستخدم إذا ألغيت أنت (المورد) الاتفاق. وضع السطر نفسه على فاتورة المقدم. ولصياغة الشروط المحيطة راجع دليلنا حول [شروط السداد القابلة للتنفيذ فعلاً](/blog/invoice-payment-terms-guide).
+`,
+    contentEn: `
+Asking for money before the work starts is normal, professional, and — in the Gulf's long-payment-cycle environment — often the difference between a healthy business and a cash-starved one. What trips people up is the paperwork: what document do you send to request the deposit, when does VAT become due, and how does the final invoice account for what was already paid? This guide walks through the full sequence.
+
+## Why Bill Upfront at All
+
+- **It filters serious clients.** A client who won't pay a 30% deposit on a SAR 40,000 project was probably going to be a collection problem at 100%.
+- **It funds the work.** Materials, subcontractors, and software licenses get paid before your client pays you.
+- **It shares risk fairly.** If the project dies halfway, neither side carries the whole loss.
+
+Typical regional norms: 30%–50% deposits for design and creative work, 20%–30% for consulting, and milestone schedules (e.g., 40/40/20) for construction and fit-out projects.
+
+## Deposit, Advance Payment, Proforma — Which Document When?
+
+| Document | What it is | Creates VAT obligation? | Use it when |
+|---|---|---|---|
+| Quotation | Your priced offer | No | Agreeing scope and price — start with the [quotation generator](/quotation) |
+| Proforma invoice | A formal payment request that is **not** a tax invoice | No — not until payment arrives | Requesting a deposit before any tax point exists |
+| Advance payment (tax) invoice | A real tax invoice for the amount received | Yes | On or immediately after receiving the deposit |
+| Final invoice | Tax invoice for the remaining balance | Yes, on the balance | On delivery/completion, showing the advance deducted |
+
+The common mistake is issuing a full tax invoice for 100% of the project just to request a 40% deposit. That makes the entire VAT amount due in that period even though 60% of the cash hasn't arrived.
+
+## VAT on Advance Payments: The Timing Rule
+
+In both Saudi Arabia and the UAE, the tax point is the **earliest** of: delivery of goods/services, issue of a tax invoice, or receipt of payment. An advance payment therefore triggers VAT on the amount received, at the moment you receive it.
+
+Worked example (Saudi Arabia, 15% VAT):
+
+1. Project value: SAR 20,000 + VAT. Client agrees to a 40% advance.
+2. You receive SAR 9,200 (SAR 8,000 + SAR 1,200 VAT). You must issue a tax invoice for SAR 8,000 + SAR 1,200 and report the SAR 1,200 in that period's return.
+3. On completion you issue the final invoice: total SAR 20,000 + SAR 3,000 VAT, **less** advance received SAR 8,000 + SAR 1,200, leaving a balance of SAR 12,000 + SAR 1,800 = SAR 13,800.
+
+Check every split with the [VAT calculator](/calculators/vat-tax) — rounding the advance and the balance separately is how one-halala discrepancies creep into returns.
+
+## Anatomy of a Good Advance Invoice
+
+Beyond the standard tax invoice fields, an advance invoice should state:
+
+- A clear description: "Advance payment (40%) against Quotation Q-2026-0117 for kitchen fit-out, Villa 12, Jumeirah".
+- The total project value it relates to, for context.
+- The words "advance payment" — so the client's accountant books it as a prepayment, not a completed purchase.
+
+And the final invoice must show the arithmetic openly: gross total, VAT, minus each advance invoice by number and date, and the net balance due. Build both documents in the [free invoice generator](/invoice) so numbering and references stay linked.
+
+## Milestone Billing for Larger Projects
+
+For projects above roughly AED 50,000, replace the single deposit with a milestone schedule agreed in the quotation:
+
+1. 30% on signature — mobilization.
+2. 40% on delivery of the agreed mid-project milestone (design approval, structural completion).
+3. 30% on handover, due net 15.
+
+Each milestone gets its own tax invoice when the payment falls due. This keeps VAT aligned with cash and gives the client three small approval decisions instead of one large one — which in corporate procurement means three fast approvals instead of one slow one.
+
+## Protect the Deposit Itself
+
+State in the quotation whether the deposit is refundable, and under what conditions. A common, fair formula for services: the deposit is non-refundable once work has commenced, but any unused portion is returned if you (the supplier) cancel. Put the same line on the advance invoice. For the wording of the surrounding terms, see our guide to [payment terms that actually get enforced](/blog/invoice-payment-terms-guide).
+`,
+  },
+
+  {
+    slug: "recurring-retainer-invoicing-freelancers",
+    titleAr: "فوترة العقود الشهرية والمتكررة للمستقلين: نظام عملي",
+    titleEn: "Recurring and Retainer Invoicing for Freelancers: A Practical System",
+    metaTitleAr: "فوترة العقود الشهرية للمستقلين | Xuvilo",
+    metaTitleEn: "Retainer Invoicing for Freelancers | Xuvilo",
+    excerptAr: "حوّل المشاريع المتفرقة إلى عقود شهرية: نماذج الاشتراك الثلاثة، وكيف تسعّرها، وإيقاع الفوترة الذي يجعل النقد يصل مطلع كل شهر.",
+    excerptEn: "Turn one-off projects into monthly retainers: the three retainer models, how to price them, and the invoicing cadence that keeps cash arriving on the 1st.",
+    date: "2026-07-25",
+    readTime: 7,
+    category: "invoices",
+    keywordAr: "فوترة العقود الشهرية للمستقلين",
+    keywordEn: "retainer invoicing freelancers",
+    relatedSlugs: ["how-to-price-services-freelancer", "cash-flow-management-freelancers", "freelancer-invoice-tips-uae"],
+    contentAr: `
+الفرق بين مستقل ينام مرتاحاً وآخر يحدّث تطبيق البنك في الثانية فجراً نادراً ما يكون الموهبة — إنه قابلية التنبؤ بالإيراد. العقود الشهرية تحوّل دخل المشاريع المتقطع إلى خط أساس شهري، ونظام الفوترة الذي يقف خلفها هو ما يجعل العملاء يتعاملون مع هذا الخط بوصفه التزاماً قائماً. إليك كيفية هيكلة العقود الشهرية وفوترتها بشكل صحيح في سوق الشرق الأوسط.
+
+## ثلاثة نماذج للعقد الشهري (ومتى يناسبك كل منها)
+
+| النموذج | آلية العمل | مثال | الأنسب لـ |
+|---|---|---|---|
+| رصيد ساعات | يدفع العميل مقدماً حزمة ساعات شهرية | 20 ساعة بسعر 250 درهماً = 5,000 درهم شهرياً | البرمجة والتصميم والاستشارات المتفرقة |
+| باقة مخرجات | قائمة مخرجات شهرية ثابتة | 8 منشورات + مقالتان = 6,500 ريال شهرياً | المحتوى والتسويق ووسائل التواصل |
+| اشتراك أولوية | يدفع العميل مقابل أولوية التوافر، ويُفوتر العمل على حدة أو بسقف | 15,000 جنيه شهرياً لاستشارات قانونية أو تقنية تحت الطلب | كبار المتخصصين والمستشارين |
+
+رصيد الساعات أسهل في البيع لكنه يشجع مراقبة العداد. باقة المخرجات أسهل في الفوترة وأكثر حصانة ضد النزاع — فسطر الفاتورة يقابل ناتجاً مرئياً. أما اشتراك الأولوية فيحقق أعلى الأسعار الفعلية لكنه يتطلب سمعة راسخة.
+
+## تسعير العقد الشهري
+
+سعّر العقود الشهرية بخصم متواضع عن سعر مشاريعك — عادة 10%–15% — مقابل الالتزام، وليس أكثر أبداً. فالعقد الشهري بخصم 40% عن سعر مشاريعك ليس عقداً شهرياً؛ إنه تخفيض راتب بخطوات إضافية. ثبّت الرقم على حدك الأدنى أولاً (يعرض [دليل تسعير خدمات المستقل](/blog/how-to-price-services-freelancer) طريقة الحساب)، ثم تأكد أن السعر بعد الخصم ما زال يحقق هامشك المستهدف عبر [حاسبة هامش الربح](/calculators/profit-margin).
+
+هناك بندان وقائيان يجب أن يردا في كل اتفاق شهري:
+
+- **سياسة الترحيل.** الساعات غير المستخدمة إما تنتهي شهرياً (الأنظف)، أو تُرحَّل شهراً واحداً على الأكثر، أو تتحول إلى رصيد صغير. الترحيل غير المحدود يراكم التزاماً يبتلع في النهاية شهراً كاملاً.
+- **سعر التجاوز.** العمل الزائد عن العقد يُفوتر بسعر مشاريعك الكامل، ويُعرض مسبقاً. هذا يمنع تحول العقد إلى بوفيه مفتوح.
+
+## إيقاع الفوترة الذي يضمن السداد
+
+التدفق النقدي للعقود الشهرية يحيا أو يموت على الإيقاع:
+
+1. **أصدر الفاتورة في التاريخ نفسه كل شهر** — الأول من الشهر مثالي، لأن الشركات في السعودية والإمارات تدير دورات دفعها حول مطلع الشهر ومنتصفه.
+2. **فوتر مقدماً لا بأثر رجعي.** فاتورة مارس الصادرة في 1 مارس تغطي مارس. أنت تمنح ائتماناً كافياً أصلاً؛ والعقد الشهري المفوتر بأثر رجعي مجرد مشروع بأسعار أسوأ.
+3. **أبقِ الفاتورة متطابقة كل شهر.** الوصف نفسه ("عقد محتوى شهري — مارس 2026")، والمبلغ نفسه، والمراجع نفسها. تعتمد أقسام الحسابات الفواتير المألوفة بسرعة وتستجوب الجديدة.
+4. **أرفق ملخص تسليمات من صفحة واحدة** عن الشهر السابق. ليس مطلباً قانونياً — بل وقاية من النزاعات وذخيرة للتجديد.
+5. **حدد الاستحقاق بـ7 أو 15 يوماً.** العقد الشهري اشتراك لا مشروع؛ وشروط الثلاثين يوماً تهزم غايته.
+
+أنشئ الوثيقة المتكررة خلال ثوانٍ كل شهر عبر [مولّد الفواتير المجاني](/invoice) — انسخ فاتورة الشهر الماضي، حدّث الرقم والفترة، وأرسلها قبل التاسعة صباح اليوم الأول.
+
+## التعامل مع تمدد النطاق
+
+تمدد النطاق في العقود الشهرية أهدأ منه في المشاريع: "مهمة سريعة" إضافية واحدة أسبوعياً تصبح 20% خدمة مجانية بنهاية الربع. دافع عن الحدود إدارياً لا عاطفياً:
+
+- سجّل الأعمال المسلَّمة مقابل الباقة المتفق عليها في الملخص الشهري.
+- عندما يتجاوز طلبٌ النطاقَ، رُدّ بعرض سعر مصغر: "بكل سرور — هذا خارج العقد الشهري، فتكلفته 900 ريال كمهمة مستقلة. هل أباشر؟" يجعل [مولّد عروض الأسعار](/quotation) هذه الخطوة مسألة دقيقتين.
+- راجع حجم العقد كل ستة أشهر. إذا كان العميل يحتاج باستمرار 30 ساعة من رصيد 20 ساعة، فهذه محادثة ترقية سعيدة لا مشكلة.
+
+## عندما يريد العميل الإيقاف أو الإلغاء
+
+ضمّن الاتفاق بند إشعار كتابي قبل 30 يوماً للطرفين، وانصَّ على أن الشهر الجاري مستحق كاملاً دائماً. واعرض خيار "الإيقاف المؤقت" (ينخفض العقد إلى رسم حجز أولوية 25% لمدة شهرين كحد أقصى) — فالعملاء الذين يواجهون تجميداً مؤقتاً للميزانية يختارون الإيقاف بدل الإلغاء غالباً، والعميل الموقوف يعود؛ أما الملغي فنادراً. ولرياضيات التدفق النقدي لقاعدة العقود الشهرية راجع دليلنا حول [إدارة التدفق النقدي للمستقلين](/blog/cash-flow-management-freelancers).
+`,
+    contentEn: `
+The difference between a freelancer who sleeps well and one who refreshes their bank app at 2 a.m. is rarely talent — it's revenue predictability. Retainers convert lumpy project income into a monthly baseline, and the invoicing system behind them is what makes clients treat that baseline as a standing obligation. Here is how to structure and bill retainers properly in the MENA market.
+
+## Three Retainer Models (and When Each Fits)
+
+| Model | How it works | Example | Best for |
+|---|---|---|---|
+| Hours bank | Client prepays a block of hours per month | 20 hours at AED 250/hr = AED 5,000/month | Development, design, ad-hoc consulting |
+| Deliverables package | Fixed monthly output list | 8 social posts + 2 blog articles = SAR 6,500/month | Content, marketing, social media |
+| Access retainer | Client pays for priority availability, work billed separately or capped | EGP 15,000/month for on-call legal or technical advisory | Senior specialists, advisors |
+
+The hours bank is easiest to sell but invites clock-watching. The deliverables package is easiest to invoice and dispute-proof — the invoice line matches a visible output. The access retainer commands the highest effective rates but requires an established reputation.
+
+## Pricing the Retainer
+
+Price retainers at a modest discount to your project rate — typically 10%–15% — in exchange for the commitment, never more. A retainer at 40% below your project rate isn't a retainer; it's a pay cut with extra steps. Anchor the number to your floor rate first (our [freelance pricing guide](/blog/how-to-price-services-freelancer) shows the calculation), then verify the discounted rate still clears your target margin with the [profit margin calculator](/calculators/profit-margin).
+
+Two protective terms belong in every retainer agreement:
+
+- **Rollover policy.** Unused hours either expire monthly (cleanest), roll over one month at most, or convert to a small credit. Unlimited rollover builds a liability that eventually swallows a whole month.
+- **Overage rate.** Work beyond the retainer bills at your full project rate, quoted in advance. This keeps the retainer from becoming an all-you-can-eat plan.
+
+## The Invoicing Cadence That Gets You Paid
+
+Retainer cash flow lives or dies on rhythm:
+
+1. **Invoice on the same date every month** — the 1st is ideal, because corporate clients in Saudi Arabia and the UAE run payment cycles around month-start and mid-month cutoffs.
+2. **Invoice in advance, not arrears.** The March invoice, issued March 1st, covers March. You are extending enough credit already; a retainer billed in arrears is just a project with worse rates.
+3. **Keep the invoice identical every month.** Same line description ("Monthly content retainer — March 2026"), same amount, same references. AP teams approve familiar invoices fast and question novel ones.
+4. **Attach a one-page delivery summary** of the previous month. It's not legally required — it's dispute prevention and renewal ammunition.
+5. **Set due dates at net 7 or net 15.** A retainer is a subscription, not a project; 30-day terms defeat its purpose.
+
+Generate the recurring document in seconds each month with the [free invoice generator](/invoice) — duplicate last month's invoice, update the number and period, and send before 9 a.m. on the 1st.
+
+## Handling Scope Creep
+
+Scope creep on retainers is quieter than on projects: one extra "quick task" per week becomes 20% unpaid overservicing by quarter-end. Defend the boundary administratively, not emotionally:
+
+- Log delivered work against the agreed package in the monthly summary.
+- When a request exceeds scope, reply with a mini-quote: "Happy to — that sits outside the retainer, so it would be SAR 900 as a one-off. Shall I proceed?" The [quotation generator](/quotation) makes this a two-minute step.
+- Review the retainer size every six months. If the client consistently needs 30 hours from a 20-hour bank, that's a happy upsell conversation, not a problem.
+
+## When a Client Wants to Pause or Cancel
+
+Include a 30-day written notice clause for both sides, and state that the current month is always payable in full. Offer a "pause" option (retainer drops to a 25% priority-hold fee for up to two months) — clients facing a temporary budget freeze will often take the pause instead of cancelling, and paused clients come back; cancelled ones rarely do. For the cash-flow mathematics of maintaining a retainer base, see our guide to [cash flow management for freelancers](/blog/cash-flow-management-freelancers).
+`,
+  },
+
+  {
+    slug: "e-signatures-invoices-mena-validity",
+    titleAr: "هل التوقيع الإلكتروني على الفواتير والعقود معتمد في الشرق الأوسط؟ دولة بدولة",
+    titleEn: "Are E-Signatures on Invoices and Contracts Valid in MENA? Country by Country",
+    metaTitleAr: "حجية التوقيع الإلكتروني في الشرق الأوسط | Xuvilo",
+    metaTitleEn: "E-Signature Validity in MENA Countries | Xuvilo",
+    excerptAr: "الإمارات والسعودية ومصر والأردن تعترف قانوناً بالتوقيع الإلكتروني. ماذا يعني ذلك للفواتير وعروض الأسعار والعقود، ومتى ما زلت تحتاج الحبر؟",
+    excerptEn: "UAE, Saudi, Egypt, and Jordan all recognize e-signatures by law. What that means for invoices, quotations, and contracts — and when you still need ink.",
+    date: "2026-07-26",
+    readTime: 8,
+    category: "laws",
+    keywordAr: "حجية التوقيع الإلكتروني",
+    keywordEn: "e-signature validity MENA",
+    relatedSlugs: ["zatca-invoice-requirements-saudi-arabia", "how-to-write-professional-invoice", "first-invoice-checklist"],
+    contentAr: `
+"ممكن توقعها وتختمها وترسل الأصل؟" — سمع كل مستقل وكل شركة صغيرة في المنطقة هذه العبارة، وغالباً عن فاتورة روتينية لا يشترط أي قانون توقيعها أصلاً. الواقع القانوني في الشرق الأوسط أكثر وداً للعمل الرقمي مما توحي به عادات المكاتب. إليك ما يقوله القانون فعلاً، دولة بدولة، وكيف تتعامل مع العملاء الذين ما زالوا يريدون الحبر.
+
+## أولاً: هل تحتاج الفاتورة إلى توقيع أصلاً؟
+
+في السعودية والإمارات ومصر والأردن، **التوقيع ليس شرطاً قانونياً لصحة الفاتورة الضريبية.** فقوانين ضريبة القيمة المضافة تحدد الحقول الإلزامية — بيانات المورد، ورقم التسجيل الضريبي، والرقم التسلسلي، والتاريخ، والبنود، وتفصيل الضريبة — وليس التوقيع اليدوي بينها. بل يذهب نظام الفوترة الإلكترونية لدى هيئة الزكاة والضريبة والجمارك في السعودية أبعد: تُعتمد الفواتير تشفيرياً، ما يجعل توقيع القلم بلا معنى تقني.
+
+عادة التوقيع والختم عادة ثقافية وإجرائية لا قانونية. فكثير من أقسام حسابات الموردين والبنوك ما زالت تطلب فواتير مختومة كضبط داخلي، وهذا حقها كعميل — لكنه تفضيل لا نص قانوني. أما عروض الأسعار والعقود فمختلفة: فهي اتفاقات، والتوقيع (الإلكتروني أو الحي) هو وسيلة إثبات القبول.
+
+## الإطار القانوني دولة بدولة
+
+| الدولة | القانون الأساسي | ما يقرره |
+|---|---|---|
+| الإمارات | المرسوم بقانون اتحادي رقم 46 لسنة 2021 بشأن المعاملات الإلكترونية وخدمات الثقة | التوقيع الإلكتروني معادل قانوناً للتوقيع اليدوي؛ والتوقيعات "المعتمدة" من مزودي خدمات الثقة المرخصين تحمل قرينة الموثوقية |
+| السعودية | نظام التعاملات الإلكترونية (المرسوم الملكي م/18 لعام 2007) | التوقيعات والسجلات الإلكترونية مقبولة ونافذة؛ والشهادات الرقمية الصادرة ضمن البنية الوطنية للمفاتيح العامة لها وزن إثباتي قوي |
+| مصر | قانون التوقيع الإلكتروني رقم 15 لسنة 2004 (تنظمه هيئة تنمية صناعة تكنولوجيا المعلومات ITIDA) | للتوقيع الإلكتروني الموثق الحجية الإثباتية نفسها للتوقيع اليدوي في المسائل التجارية والمدنية |
+| الأردن | قانون المعاملات الإلكترونية رقم 15 لسنة 2015 | الوثائق والتوقيعات الإلكترونية صحيحة؛ والتوقيع "المحمي" المستوفي للشروط التقنية يحوز الحجية الكاملة |
+
+النمط متسق: تبنّت كل الأسواق الرئيسية في المنطقة نموذج التكافؤ الوظيفي الدولي — فالتوقيع الإلكتروني يفي بأي اشتراط قانوني للتوقيع، بشرط إمكان تحديد هوية الموقّع وحماية سلامة المستند.
+
+## بسيط ومتقدم وموثق: اعرف المستويات
+
+ليست التوقيعات الإلكترونية سواء أمام القضاء:
+
+1. **التوقيع البسيط.** اسم مكتوب، أو صورة توقيع ملصقة، أو نقرة "أوافق". معترف به قانوناً، لكن عند النزاع عليك إثبات من نقر. يكفي لعروض الأسعار منخفضة القيمة والموافقات الروتينية.
+2. **التوقيع المتقدم.** مرتبط بالموقّع حصرياً وكاشف لأي عبث (مثل منصات التوقيع ذات سجلات التدقيق). مناسب لعقود الخدمات واتفاقات العقود الشهرية.
+3. **التوقيع الموثق/المؤهل.** يصدر عبر مزود خدمات ثقة مرخص حكومياً. المعيار الذهبي للعقود عالية القيمة والعقارات وكل ما قد تحتاج إنفاذه قضائياً.
+
+قاعدة عملية للشركات الصغيرة: توقيع بسيط لما دون نحو 10,000 ريال أو درهم، وتوقيع متقدم بسجل تدقيق لما فوق ذلك، وتوقيع موثق حين تتجاوز مدة العقد سنة أو يكون الطرف الآخر مجهولاً لديك.
+
+## ما الذي ما زال يحتاج الحبر؟
+
+لكل تشريع استثناءاته. من الوثائق المستبعدة عادة من قوانين التوقيع الإلكتروني: نقل ملكية العقارات، والوصايا ووثائق الميراث، وبعض الوكالات التي تستلزم التوثيق، وبعض الأوراق القضائية. كما تصر بعض المناقصات الحكومية والبنوك تعاقدياً على التوقيع الحي بصرف النظر عن القانون. عند الشك في وثيقة مصيرية، اسأل الجهة المستلمة نفسها — لا موظف المشتريات لدى العميل.
+
+## سير عمل عملي للفواتير وعروض الأسعار
+
+- أرسل عروض الأسعار مع آلية قبول إلكترونية واضحة — فرسالة رد بعبارة "معتمد، باشروا" تُعد بذاتها دليل قبول صحيحاً في الدول الأربع. أنشئها عبر [مولّد عروض الأسعار](/quotation) ليكون الإصدار المقبول محدداً برقمه بدقة.
+- أصدر الفواتير دون توقيع من [مولّد الفواتير المجاني](/invoice)، وأضف صورة التوقيع وخانة الختم فقط حين تشترطها إجراءات العميل. وتتضمن [قوالب الفواتير](/templates/invoice) من Xuvilo خانة ختم وتوقيع لهؤلاء العملاء تحديداً.
+- احتفظ بسلسلة الإثبات — عرض السعر، وموافقة العميل الكتابية، ودليل التسليم، والفاتورة — في مجلد واحد لكل مشروع. فعند النزاع، هذه السلسلة أهم بكثير من أي توقيع منفرد. ولمعرفة ما يجب أن تحويه الفاتورة نفسها راجع [دليل الفاتورة الاحترافية](/blog/how-to-write-professional-invoice).
+`,
+    contentEn: `
+"Can you stamp and sign it and send the original?" Every freelancer and small business in the region has heard this line — often for a routine invoice that no law actually requires to be signed at all. The legal reality across MENA is far friendlier to digital workflows than office habits suggest. Here is what the law actually says, country by country, and how to work with clients who still want ink.
+
+## First: Do Invoices Even Need a Signature?
+
+In Saudi Arabia, the UAE, Egypt, and Jordan, **a signature is not a legal requirement for a valid tax invoice.** VAT laws define mandatory invoice fields — supplier details, tax registration number, sequential number, date, line items, VAT breakdown — and a handwritten signature is not among them. Saudi Arabia's ZATCA e-invoicing regime goes further: invoices are validated cryptographically, making a pen signature technically meaningless.
+
+The signature-and-stamp habit is cultural and procedural, not legal. Many corporate AP departments and banks still request stamped invoices as an internal control, which is their right as a customer — but it is a preference, not a statute. Quotations and contracts are different: those are agreements, and a signature (electronic or wet) is how acceptance is evidenced.
+
+## The Legal Framework, Country by Country
+
+| Country | Key law | What it establishes |
+|---|---|---|
+| UAE | Federal Decree-Law No. 46 of 2021 on Electronic Transactions and Trust Services | E-signatures are legally equivalent to handwritten ones; "qualified" signatures from licensed trust providers carry a presumption of reliability |
+| Saudi Arabia | Electronic Transactions Law (Royal Decree M/18 of 2007) | E-signatures and electronic records are admissible and enforceable; digital certificates issued under the national PKI carry strong evidentiary weight |
+| Egypt | E-Signature Law No. 15 of 2004 (regulated by ITIDA) | Certified e-signatures have the same evidentiary force as handwritten signatures in commercial and civil matters |
+| Jordan | Electronic Transactions Law No. 15 of 2015 | Electronic documents and signatures are valid; "protected" signatures meeting technical conditions get full evidentiary weight |
+
+The pattern is consistent: every major MENA market adopted the international model of functional equivalence — an electronic signature satisfies any legal requirement for a signature, provided the signer can be identified and the document's integrity is protected.
+
+## Simple, Advanced, and Qualified: Know the Tiers
+
+Not all e-signatures are equal in court:
+
+1. **Simple e-signature.** A typed name, a pasted signature image, clicking "I accept". Legally recognized, but if disputed, you must prove who clicked. Fine for low-value quotations and routine approvals.
+2. **Advanced e-signature.** Uniquely linked to the signer and tamper-evident (e.g., signature platforms with audit trails). Suitable for service contracts and retainer agreements.
+3. **Qualified/certified e-signature.** Issued through a government-licensed trust service provider. The gold standard for high-value contracts, real estate, and anything you may need to enforce in court.
+
+A pragmatic rule for small businesses: use simple signatures below roughly SAR 10,000 / AED 10,000, advanced signatures with audit trails above that, and qualified signatures when the contract term exceeds a year or the counterparty is unknown to you.
+
+## What Still Needs Ink
+
+Exceptions exist in every jurisdiction. Documents commonly excluded from e-signature laws include real estate transfers, wills and inheritance documents, some powers of attorney requiring notarization, and certain court filings. Additionally, some government tenders and banks contractually insist on wet signatures regardless of the law. When in doubt for a high-stakes document, ask the receiving institution — not the client's procurement clerk.
+
+## Practical Workflow for Invoices and Quotations
+
+- Send quotations with a clear electronic acceptance mechanism — a reply email saying "approved, proceed" is itself valid evidence of acceptance in all four countries. Generate them with the [quotation generator](/quotation) so the accepted version is precisely identified by number.
+- Issue invoices unsigned, from the [free invoice generator](/invoice); add a signature image and company stamp block only when a client's AP process demands it. Xuvilo's [invoice templates](/templates/invoice) include a stamp-and-signature area for exactly these clients.
+- Keep the acceptance trail — the quotation, the client's written approval, delivery evidence, the invoice — in one folder per project. In a dispute, that chain matters far more than any single signature. For what belongs on the invoice itself, see our [professional invoice guide](/blog/how-to-write-professional-invoice).
+`,
+  },
+
+  {
+    slug: "invoice-numbering-multi-branch",
+    titleAr: "ترقيم الفواتير للشركات متعددة الفروع: أنظمة تنمو معك",
+    titleEn: "Invoice Numbering for Multi-Branch Businesses: Schemes That Scale",
+    metaTitleAr: "ترقيم الفواتير للفروع المتعددة | Xuvilo",
+    metaTitleEn: "Multi-Branch Invoice Numbering Schemes | Xuvilo",
+    excerptAr: "فرعان ورقم ضريبي واحد وسلسلة فواتير واحدة — أم ثلاث؟ أنظمة الترقيم التي تُبقي الشركات متعددة الفروع جاهزة للتدقيق في السعودية والإمارات.",
+    excerptEn: "Two branches, one VAT number, one invoice series — or three? The numbering schemes that keep multi-branch businesses audit-ready in Saudi Arabia and the UAE.",
+    date: "2026-07-27",
+    readTime: 7,
+    category: "invoices",
+    keywordAr: "ترقيم الفواتير للفروع",
+    keywordEn: "invoice numbering multiple branches",
+    relatedSlugs: ["invoice-numbering-best-practices", "zatca-invoice-requirements-saudi-arabia", "small-business-invoicing-guide"],
+    contentAr: `
+الشركة ذات الموقع الواحد نادراً ما تفكر في ترقيم الفواتير حتى يسأل المدقق. أما الشركة متعددة الفروع فتشعر بالألم أبكر بكثير: فرع جدة وفرع الرياض يصدران كلاهما "INV-0451" في الأسبوع نفسه، فيقضي المحاسب يوماً في فك التشابك، ويتحول الإقرار الضريبي فجأة إلى مشروع تسويات. الترقيم قرار هيكلي — إليك كيف تصممه قبل أن يفرضه النمو عليك.
+
+## القواعد التي لا يجوز كسرها
+
+أياً كان النظام الذي تختاره، هناك ثلاثة قيود غير قابلة للتفاوض في دول ضريبة القيمة المضافة:
+
+- **التفرد.** لا يجوز لفاتورتين صادرتين تحت التسجيل الضريبي نفسه أن تحملا رقماً واحداً. ففي السعودية تشترط هيئة الزكاة والضريبة والجمارك أن تحمل كل فاتورة رقماً تسلسلياً يحددها حصرياً، وللإمارات ومصر اشتراطات مماثلة.
+- **تسلسل بلا فجوات.** يقرأ المدققون الأرقام المفقودة إيراداً محذوفاً. إذا وُجدت الفاتورة 0452 ولم توجد 0451، فاستعد لتفسير السبب — وسجل الفواتير الملغاة صديقك هنا.
+- **الديمومة.** لا تعِد ترقيم فواتير سابقة أبداً، ولو "للترتيب". فالرقم على نسخة العميل يجب أن يطابق نسختك إلى الأبد.
+
+ولاحظ أن فروع الشركة الواحدة تتشارك في معظم الحالات تسجيلاً ضريبياً واحداً — فالهيئة الضريبية ترى مكلفاً واحداً، وعليه يجب أن يكون ترقيمك المجمّع قابلاً للدفاع عنه كنظام واحد.
+
+## أربعة أنظمة ناجحة
+
+| النظام | مثال الصيغة | نقاط القوة | احذر من |
+|---|---|---|---|
+| بادئة الفرع | RUH-2026-0001 وJED-2026-0001 | وضوح فوري؛ كل فرع يعمل باستقلالية | يجب أن تكون سلسلة كل فرع نفسها بلا فجوات |
+| نطاقات أرقام | المركز: 1–49999، الفرع الثاني: 50000–99999 | يعمل مع البرمجيات البسيطة التي تَعُدّ فقط | النطاقات تنفد؛ والانتقالات قبيحة |
+| سلسلة مركزية واحدة | 2026-000001 مشتركة بين الفروع | أبسط قصة أمام المدقق؛ سلسلة واحدة متصلة | تتطلب إصداراً مركزياً لحظياً — الفروع غير المتصلة تكسرها |
+| سلسلة لكل نشاط | INV- للمبيعات وSRV- لأعمال الصيانة وCN- للإشعارات الدائنة | فصل نظيف لأنواع الوثائق | تضاعف عدد السلاسل التي تراقبها |
+
+لمعظم الشركات الصغيرة والمتوسطة في الخليج، يحقق **نظام بادئة الفرع** التوازن: فالرقم RUH-2026-0001 يخبر أي شخص — محاسباً أو مدققاً أو موظف حسابات — أين ومتى صدرت الفاتورة قبل فتحها. وادمجه مع مقطع السنة كي يُصفَّر العداد كل يناير وتظهر السنة بلمحة.
+
+## الاختيار بحسب وضعك
+
+1. **فرعان أو ثلاثة ومحاسب مشترك:** بادئات فروع مع تصفير سنوي للعدادات. بسيط ومقروء بشرياً.
+2. **فروع تُصدر دون اتصال (نقاط بيع، مبيعات ميدانية):** بادئات الفروع إلزامية عملياً — فالسلسلة المركزية لا تنجو من انقطاع الاتصال دون توليد أرقام مكررة.
+3. **مستودع واحد وقنوات بيع عدة (معرض، متجر إلكتروني، طلبات واتساب):** فكّر في بادئات القنوات بدلاً من الفروع — SHW- وWEB- وWAP- — والمنطق واحد.
+4. **كيانات قانونية منفصلة (سجلات تجارية أو رخص مختلفة):** توقف — هذه ليست فروعاً. فلكل كيان تسجيله الضريبي الخاص ويجب أن يدير سلاسل وأوراقاً رسمية وإقرارات ضريبية منفصلة تماماً.
+
+وأياً كان اختيارك، أبقِ الإشعارات الدائنة وعروض الأسعار في سلاسل موازية خاصة بكل فرع (RUH-CN-2026-0001 وRUH-Q-2026-0001). فالإشعار الدائن المرقّم داخل تسلسل الفواتير يُحدث فجوة وهمية في سلسلة الفواتير — وهي بالضبط الشذوذ الذي دُرّب المدققون على مطاردته، وتكلفك أمسية تفسيرات كل نهاية سنة.
+
+## قائمة خطوات التنفيذ
+
+1. وثّق النظام في صفحة واحدة: الصيغة، ومن يُصدر، وأين تعيش العدادات، وكيف تُسجَّل الإلغاءات.
+2. اضبط الصيغة مرة واحدة في أداة الفوترة — يتيح لك [مولّد الفواتير المجاني](/invoice) تحديد بادئة ورقم بداية لكل سلسلة، وتعرض [قوالب الفواتير](/templates/invoice) الرقم في المكان الذي يبحث فيه موظفو الحسابات.
+3. أنشئ سجلاً مشتركاً للفواتير الملغاة: الرقم، التاريخ، السبب، رقم البديل.
+4. سوِّ شهرياً: يصدّر كل فرع قائمة فواتيره ويتحقق أحدهم من الاستمرارية — خمس دقائق لكل فرع توفر أياماً في نهاية السنة.
+5. لا تدع شخصين يُصدران من العداد نفسه في آن واحد دون برنامج يفرض التسلسل.
+
+## ترحيل فوضى قائمة
+
+إذا كانت فروعك تتصادم أصلاً، فلا تعِد ترقيم الماضي. اختر تاريخ تحول (أول الشهر، ويفضَّل بداية ربع جديد)، وابدأ النظام الجديد من نطاق مختلف ظاهرياً (مثلاً القفز إلى RUH-2026-1000)، واحتفظ بمذكرة ربط في سجلاتك تشرح الانتقال. يقبل المدققون تغيير نظامٍ موثقاً؛ ولا يقبلون تاريخاً معاد كتابته. وللأساسيات التي تنطبق على أي سلسلة — الأصفار البادئة ومقاطع السنة ولماذا يفشل "1، 2، 3" — راجع [دليل أفضل ممارسات ترقيم الفواتير](/blog/invoice-numbering-best-practices).
+`,
+    contentEn: `
+A single-location business rarely thinks about invoice numbering until an auditor asks. A multi-branch business feels the pain much earlier: the Jeddah branch and the Riyadh branch both issue "INV-0451" in the same week, the accountant spends a day untangling them, and the VAT return is suddenly a reconciliation project. Numbering is an architecture decision — here is how to design it before growth forces the issue.
+
+## The Rules You Must Not Break
+
+Whatever scheme you choose, three constraints are non-negotiable in VAT jurisdictions:
+
+- **Uniqueness.** No two invoices issued under the same tax registration may share a number. In Saudi Arabia, ZATCA requires each invoice to carry a sequential number that uniquely identifies it; the UAE and Egypt have equivalent requirements.
+- **Sequence without gaps.** Auditors read missing numbers as deleted revenue. If invoice 0452 exists and 0451 doesn't, be prepared to explain why — a cancelled-invoice log is your friend.
+- **Permanence.** Never renumber past invoices, even to "clean up". The number on the client's copy must match yours forever.
+
+Note that in most cases branches of one company share one VAT registration — the tax authority sees one taxpayer, so your combined numbering must be defensible as one system.
+
+## Four Schemes That Work
+
+| Scheme | Format example | Strengths | Watch out for |
+|---|---|---|---|
+| Branch prefix | RUH-2026-0001, JED-2026-0001 | Instant readability; each branch runs independently | Each branch series must itself be gapless |
+| Range blocks | HQ: 1–49999, Branch 2: 50000–99999 | Works with basic software that only counts | Blocks run out; migrations are ugly |
+| Central single series | 2026-000001 shared by all branches | Simplest audit story; one gapless chain | Needs real-time central issuing — offline branches break it |
+| Per-activity series | INV- for sales, SRV- for service jobs, CN- for credit notes | Clean separation of document types | Multiplies the series you must monitor |
+
+For most SMEs in the Gulf, the **branch prefix scheme** hits the balance: RUH-2026-0001 tells anyone — accountant, auditor, AP clerk — where and when the invoice originated before they open it. Combine it with a year segment so each January resets the counter and the year is visible at a glance.
+
+## Choosing for Your Situation
+
+1. **Two or three branches, shared bookkeeper:** branch prefixes, counters reset annually. Simple and human-readable.
+2. **Branches issuing offline (retail counters, field sales):** branch prefixes are effectively mandatory — a central series cannot survive connectivity gaps without creating duplicate numbers.
+3. **One warehouse, several sales channels (showroom, online, WhatsApp orders):** consider channel prefixes instead — SHW-, WEB-, WAP- — the logic is identical.
+4. **Separate legal entities (different CRs / trade licenses):** stop — these are not branches. Each entity has its own tax registration and must run fully separate series, letterheads, and VAT returns.
+
+Whatever you choose, keep credit notes and quotations on their own parallel series per branch (RUH-CN-2026-0001, RUH-Q-2026-0001). A credit note numbered inside the invoice sequence creates a phantom gap in the invoice chain — the exact anomaly auditors are trained to chase, and one that costs an afternoon of explanations every year-end.
+
+## Implementation Checklist
+
+1. Document the scheme in one page: format, who issues, where counters live, how cancellations are logged.
+2. Configure the format once in your invoicing tool — the [free invoice generator](/invoice) lets you set a prefix and starting number per document series, and our [invoice templates](/templates/invoice) display the number prominently where AP clerks look for it.
+3. Create a shared cancelled-invoice register: number, date, reason, replacement number.
+4. Reconcile monthly: each branch exports its issued list, and someone checks continuity — five minutes per branch that saves days at year-end.
+5. Never let two people issue from the same counter simultaneously without software enforcing the sequence.
+
+## Migrating an Existing Mess
+
+If your branches already collide, do not renumber history. Pick a cutover date (the 1st of a month, ideally a new quarter), start the new scheme from a visibly different range (e.g., jump to RUH-2026-1000), and keep a mapping note in your records explaining the transition. Auditors accept a documented scheme change; they do not accept rewritten history. For the fundamentals that apply to any series — leading zeros, year segments, why "1, 2, 3" fails — see our [invoice numbering best practices guide](/blog/invoice-numbering-best-practices).
+`,
+  },
+
+  {
+    slug: "resolving-invoice-disputes-corporate-clients",
+    titleAr: "حل نزاعات الفواتير مع العملاء من الشركات الكبرى: خطة التصعيد",
+    titleEn: "Resolving Invoice Disputes with Corporate Clients: The Escalation Playbook",
+    metaTitleAr: "حل نزاعات الفواتير مع الشركات | Xuvilo",
+    metaTitleEn: "Resolve Invoice Disputes with Corporates | Xuvilo",
+    excerptAr: "الفاتورة العالقة لدى شركة كبرى نادراً ما تكون مسألة مال — بل مسألة إجراءات. إليك سلّم التصعيد الذي يحررها دون إحراق العلاقة.",
+    excerptEn: "A stuck invoice at a corporate client is rarely about money — it's about process. Here is the escalation ladder that unsticks it without burning the relationship.",
+    date: "2026-07-28",
+    readTime: 8,
+    category: "tips",
+    keywordAr: "نزاعات الفواتير مع الشركات",
+    keywordEn: "invoice dispute resolution corporate clients",
+    relatedSlugs: ["handle-late-payments-invoice-disputes", "invoice-payment-terms-guide", "purchase-order-guide"],
+    contentAr: `
+عندما تعترض شركة كبرى على فاتورتك، فأسوأ افتراض هو أنها ترفض الدفع. في معظم الحالات، اصطدم شخص محدد داخل إجراء محدد بعائق محدد — ومهمتك أن تجد الثلاثة. الموردون الصغار الذين يتعاملون مع النزاعات كألغاز إجرائية يُدفَع لهم؛ والذين يتعاملون معها كخيانات يكتبون رسائل غاضبة وينتظرون. تغطي هذه الخطة الوقاية وسلّم التصعيد معاً.
+
+## لماذا تعترض الشركات فعلاً على الفواتير؟
+
+| سبب الاعتراض | شيوعه (نمطياً) | الحل الحقيقي |
+|---|---|---|
+| رقم أمر شراء مفقود أو خاطئ | شائع جداً | إعادة الإصدار بالمرجع الصحيح — في اليوم نفسه |
+| سعر مخالف لأمر الشراء أو العقد | شائع | تقديم قائمة الأسعار أو أمر التغيير الموقّع |
+| اختلاف كمية أو نطاق عن إشعار الاستلام أو القبول | شائع | إشعار دائن بالفارق وفوترة الباقي |
+| أخطاء في الضريبة أو رقم التسجيل | أحياناً | فاتورة مصححة؛ وتحقق من الرقمين الضريبيين للطرفين |
+| "لم تصلنا الفاتورة" | أكثر شيوعاً مما يعترف به أحد | أعد الإرسال إلى بريد قسم الحسابات لا البريد الشخصي لجهة اتصالك |
+| استياء حقيقي من العمل | نادر | تفاوض تجاري لا أوراق |
+
+لاحظ أن خمسة من الأسباب الستة إدارية. وهذا خبر جيد: فالمشكلات الإدارية لها حلول إدارية بمسؤولين محددين.
+
+## الوقاية: اكسب النزاع قبل إصدار الفاتورة
+
+- **طابق أمر الشراء حرفياً.** الأوصاف نفسها وأسعار الوحدات نفسها والكميات نفسها — حتى الفلس. إذا قال أمر الشراء "خدمات استشارية — مارس" فلا تكتب "عقد استشاري شهري".
+- **احصل على قبول كتابي قبل الفوترة.** توقيع مذكرة تسليم، أو بريد اعتماد مرحلة، أو رقم إشعار استلام. يشرح [دليل أوامر الشراء](/blog/purchase-order-guide) المطابقة الثلاثية التي يجب أن تنجو منها فاتورتك.
+- **اسأل قسم الحسابات مباشرة عمّا يحتاجه.** مكالمة خمس دقائق عند بدء التعامل مع شركة كبرى — "ما الذي يجب أن يظهر على الفواتير لاعتمادها مباشرة؟" — تمنع معظم النزاعات المقبلة. بعض الشركات السعودية تشترط رقم أمر الشراء ورمز المشروع ورقم العقد على كل فاتورة.
+- **فوتر نظيفاً وسريعاً.** فاتورة احترافية مكتملة من [مولّد الفواتير المجاني](/invoice) بكل حقول المراجع معبأة تُسقط أسباب الرفض السهلة.
+
+## سلّم التصعيد
+
+اصعد درجة واحدة كل مرة، كتابةً، وبنحو أسبوع لكل درجة:
+
+1. **موظف الحسابات (اليوم الأول).** اسأل بدقة عمّا يعطّل الفاتورة: "هل تفيدني أي حقل أو مستند يوقف الفاتورة INV-2026-0388؟" وأصلح ما يذكره خلال 24 ساعة.
+2. **جهة اتصالك التجارية (الأسبوع الأول).** فمن طلب العمل يريد لعلاقات مورديه أن تسير بسلاسة. اطلب منه الدفع داخلياً — تموت معظم النزاعات هنا.
+3. **مدير المشتريات أو المالية (الأسبوعان الثاني والثالث).** بريد قصير وقائعي: رقم الفاتورة، والمبلغ (مثلاً 34,500 ريال)، ورقم أمر الشراء، ودليل التسليم، وتواريخ المتابعات السابقة. بلا عاطفة، وأرفق كل شيء.
+4. **خطاب مطالبة رسمي (الأسابيع 4–6).** خطاب مسجل أو بريد رسمي من شركتك (أو من محامٍ) يبيّن الدين وأساسه التعاقدي وغرامات التأخير المتراكمة إن اتُّفق عليها، مع مهلة 14 يوماً. وفي الإمارات والسعودية يُعد هذا الخطاب أيضاً شرطاً إجرائياً لمعظم المسارات القانونية.
+5. **الوساطة أو التحكيم أو القضاء (الملاذ الأخير).** للفواتير دون نحو 50,000 درهم، مسارات الدعاوى الصغيرة في الإمارات أسرع مما توحي سمعتها. وازن المبلغ مقابل العلاقة: كسب 20,000 ريال وخسارة عميل يدرّ 200,000 ريال سنوياً خسارةٌ صافية.
+
+## أبقِ النقد يتدفق أثناء الخلاف
+
+لا تدع نزاعاً على بند واحد يجمّد الفاتورة كلها — أو الحساب كله:
+
+- **قسّم الفاتورة.** أصدر إشعاراً دائناً للبند المتنازع عليه وأعد فوترته منفصلاً، واطلب من الحسابات صرف الرصيد غير المتنازع عليه فوراً. استرداد 80% الآن خير من 100% بعد ستة أشهر.
+- **واصل الخدمة — بحدود.** أكمل العمل الجاري، لكن أوقف الطلبات الجديدة متى تجاوز التعرض المتأخر سقفاً تحدده مسبقاً (لدى كثير من الشركات الصغيرة: شهر واحد من إيراد ذلك العميل).
+- **راقب التركّز.** تتبّع كل فاتورة مفتوحة عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging)؛ فالعميل الذي يتجاوز 25% من ذممك المدينة يستحق شروطاً أشد لا أرخى.
+
+## وثّق كل شيء بهدوء
+
+كل مكالمة يتبعها بريد في اليوم نفسه: "كما ناقشنا، العائق هو كذا، وتتوقعون الاعتماد بحلول الجمعة." هذه الجملة تحوّل المحادثة إلى دليل. واحفظ السلسلة كاملة — عرض السعر وأمر الشراء ودليل التسليم والفاتورة والتذكيرات — في مجلد واحد لكل نزاع. فإن بلغت الدرجة الرابعة كان المجلد ملف قضيتك جاهزاً. وللجانب الأكثر لطفاً في ملاحقة المدفوعات دون إفساد العلاقات راجع دليلنا حول [التعامل مع التأخر في السداد ونزاعات الفواتير](/blog/handle-late-payments-invoice-disputes).
+`,
+    contentEn: `
+When a corporate client disputes your invoice, the worst assumption you can make is that they are refusing to pay. In most cases, a specific person inside a specific process has hit a specific blocker — and your job is to find all three. Small suppliers who treat disputes as procedural puzzles get paid; those who treat them as betrayals write angry emails and wait. This playbook covers both prevention and the escalation ladder.
+
+## Why Corporates Actually Dispute Invoices
+
+| Dispute reason | Share of cases (typical) | The real fix |
+|---|---|---|
+| Missing or wrong PO number | Very common | Reissue with the correct reference — same day |
+| Price differs from PO or contract | Common | Provide the rate card or signed change order |
+| Quantity/scope mismatch vs GRN or acceptance | Common | Credit note for the difference, invoice the rest |
+| VAT or tax registration errors | Occasional | Corrected invoice; check TRN/VAT numbers both ways |
+| "Never received it" | More common than anyone admits | Resend to the AP inbox, not your contact's personal email |
+| Genuine dissatisfaction with the work | Rare | Commercial negotiation, not paperwork |
+
+Notice that five of the six are administrative. This is good news: administrative problems have administrative solutions with defined owners.
+
+## Prevention: Win the Dispute Before You Invoice
+
+- **Mirror the PO exactly.** Same descriptions, same unit prices, same quantities — down to AED 0.01. If the PO says "Consulting services — March" do not write "Advisory retainer".
+- **Get written acceptance before invoicing.** A delivery note signature, a milestone approval email, a GRN number. Our [purchase order guide](/blog/purchase-order-guide) explains the three-way match your invoice must survive.
+- **Ask AP directly what they need.** One five-minute call when onboarding a corporate client — "What must appear on invoices for straight-through approval?" — prevents most future disputes. Some Saudi corporates require the PO number, project code, and contract number on every invoice.
+- **Invoice clean and fast.** A professional, complete invoice from the [free invoice generator](/invoice) with every reference field filled removes the easy rejection reasons.
+
+## The Escalation Ladder
+
+Move one rung at a time, in writing, with roughly one week per rung:
+
+1. **The AP clerk (day 1).** Ask precisely what is blocking the invoice: "Could you tell me which field or document is holding INV-2026-0388?" Fix whatever they name within 24 hours.
+2. **Your business contact (week 1).** The person who ordered the work wants their supplier relationships to run smoothly. Ask them to nudge internally — most disputes die here.
+3. **Procurement or finance manager (week 2–3).** A short, factual email: invoice number, amount (e.g., SAR 34,500), PO number, delivery evidence, dates of previous follow-ups. No emotion; attach everything.
+4. **Formal demand letter (week 4–6).** A registered letter or email from your company (or a lawyer) stating the debt, the contractual basis, accrued late fees if agreed, and a 14-day deadline. In the UAE and Saudi Arabia, this letter is also the procedural prerequisite for most legal routes.
+5. **Mediation, arbitration, or court (last resort).** For invoices under roughly AED 50,000, small-claims-style tracks in the UAE are faster than reputation suggests. Weigh the amount against the relationship: winning SAR 20,000 and losing a SAR 200,000-a-year client is a loss.
+
+## Keep Cash Flowing While You Argue
+
+Never let a dispute over one line freeze the whole invoice — or the whole account:
+
+- **Split the invoice.** Issue a credit note for the disputed line and reissue it separately; ask AP to process the undisputed balance immediately. Recovering 80% now beats 100% in six months.
+- **Keep serving — with limits.** Continue current work, but hold new orders once overdue exposure exceeds a threshold you set in advance (for many SMEs, one month of that client's revenue).
+- **Watch concentration.** Track every open invoice with the [invoice aging calculator](/calculators/invoice-aging); a client above 25% of your receivables deserves stricter terms, not looser ones.
+
+## Document Everything, Calmly
+
+Every call gets a same-day follow-up email: "As discussed, the blocker is X, and you expect approval by Friday." That sentence converts a conversation into evidence. Keep the whole chain — quotation, PO, delivery proof, invoice, reminders — in one folder per dispute. If you reach rung four, that folder is your case file, ready-made. For the softer craft of chasing payment without souring relationships, see our guide on [handling late payments and disputes](/blog/handle-late-payments-invoice-disputes).
+`,
+  },
+
+  {
+    slug: "proforma-invoice-customs-clearance",
+    titleAr: "الفاتورة المبدئية للتخليص الجمركي: ما يجب أن يعرفه المستوردون",
+    titleEn: "Proforma Invoices for Customs Clearance: What Importers Must Know",
+    metaTitleAr: "الفاتورة المبدئية والتخليص الجمركي | Xuvilo",
+    metaTitleEn: "Proforma Invoice for Customs Clearance | Xuvilo",
+    excerptAr: "متى تقبل الجمارك الفاتورة المبدئية، وما الحقول الواجبة فيها — رموز HS وشروط التسليم والمنشأ — وكيف تُحسب الرسوم الخليجية على شحنتك.",
+    excerptEn: "When customs accepts a proforma invoice, what fields it must contain — HS codes, Incoterms, origin — and how GCC duty is calculated on your shipment.",
+    date: "2026-07-29",
+    readTime: 7,
+    category: "invoices",
+    keywordAr: "الفاتورة المبدئية للتخليص الجمركي",
+    keywordEn: "proforma invoice customs clearance",
+    relatedSlugs: ["proforma-invoice-vs-commercial-invoice", "landed-cost-international-shipping", "purchase-order-guide"],
+    contentAr: `
+كل شحنة تعبر حدود دول المنطقة تحتاج فاتورة — لكن ليس النوع نفسه دائماً. الفاتورة المبدئية (البروفورما) هي حصان العمل في مرحلة ما قبل الشحن: تفتح الاعتمادات المستندية، وتؤمّن تصاريح الاستيراد، وفي حالات محددة تُخلّص البضاعة جمركياً بذاتها. أما استخدامها الخاطئ فيسبب نزاعات تقييم وغرامات وبضاعة قابعة في جبل علي تراكم رسوم أرضيات. إليك موضع البروفورما في العملية الجمركية.
+
+## ماذا تريد الجمارك فعلاً من الفاتورة؟
+
+تستخدم سلطات الجمارك فاتورتك لثلاثة أغراض: **تصنيف** البضاعة (عبر رموز النظام المنسق HS)، و**تقييمها** (لحساب الرسوم)، و**التحقق من المنشأ** (للاتفاقيات التجارية والقيود). وأي وثيقة تمكّنها من الثلاثة بموثوقية تصلح للتخليص؛ ولهذا كانت الفاتورة التجارية هي المعيار، ولهذا تُقبل البروفورما المعدّة جيداً بديلاً في حالات معينة.
+
+## البروفورما مقابل الفاتورة التجارية عند الحدود
+
+| الجانب | الفاتورة المبدئية | الفاتورة التجارية |
+|---|---|---|
+| الطبيعة القانونية | عرض بصيغة فاتورة — لا التزام بالدفع | دليل على بيع فعلي |
+| الإصدار | قبل الشحن، وغالباً قبل التأكيد النهائي | عند الشحن أو بعده |
+| الاستخدام الجمركي | تُقبل للعينات والإدخال المؤقت وطلبات التصاريح وفتح الاعتمادات | مطلوبة للتخليص التجاري الاعتيادي |
+| مخاطر التقييم | قد تطعن الجمارك في القيم بوصفها مبدئية | القيم هي قيمة الصفقة المصرّح بها |
+
+المقارنة التجارية الكاملة في [دليل الفاتورة المبدئية مقابل التجارية](/blog/proforma-invoice-vs-commercial-invoice) — أما هذا المقال فيركّز على الحدود.
+
+## متى تُقبل البروفورما للتخليص؟
+
+- **العينات والشحنات المجانية.** فالبضاعة المرسلة دون مقابل تحتاج مع ذلك قيمة مصرحاً بها لأغراض الرسوم. تحمل البروفورما عبارة "القيمة لأغراض جمركية فقط — لا معاملة تجارية".
+- **الإدخال المؤقت.** بضائع المعارض لجيتكس أو معرض تجاري في الرياض، ومعدات المشاريع، والأصناف الداخلة بنظام الإدخال المؤقت — توثّق البروفورما القيمة دون الإيحاء ببيع.
+- **التخليص المسبق وطلبات التصاريح.** كثير من السلع المنظمة في السعودية (أصناف هيئة الغذاء والدواء) والإمارات (أجهزة الاتصالات عبر هيئة تنظيم الاتصالات) ومصر تتطلب موافقات استيراد قبل الشحن، وتعمل الجهات على أساس البروفورما.
+- **فتح الاعتماد المستندي.** تفتح بنوك الخليج الاعتمادات على أساس البروفورما — ويجب أن تطابقها مستندات الشحن المقدمة لاحقاً مطابقة وثيقة، فعامل كل حقل فيها كالتزام.
+
+أما الشحنة المشتراة الاعتيادية فتوقّع أن تصر الجمارك على الفاتورة التجارية النهائية؛ قد تبدأ البروفورما الإجراء، لكن البيان الجمركي يُستكمل بمستندات الصفقة الحقيقية.
+
+## الحقول التي تمنع التأخير عند المنفذ
+
+تحتاج البروفورما الجاهزة جمركياً تفصيلاً يفوق عرض السعر المحلي:
+
+1. الاسمان والعنوانان الكاملان للمصدّر والمستورد (ويجب أن يطابق اسم المستورد سجله الجمركي/رمز المستورد).
+2. **رمز HS لكل بند** — ستة أرقام حداً أدنى، وتعتمد تعرفة الخليج ثمانية. رمز HS الخاطئ هو أغلى خطأ فوترة في التجارة الدولية على الإطلاق.
+3. وصف دقيق للبضاعة: المادة والطراز والكمية وقيمة الوحدة والإجمالي — فالبنود المبهمة مثل "قطع غيار" تستدعي التفتيش.
+4. **العملة وشروط التسليم (الإنكوترمز)** مع تسمية المكان: "دولار أمريكي، CIF جدة" و"دولار أمريكي، FOB شنغهاي" ينتجان قيمتين خاضعتين للرسوم مختلفتين.
+5. بلد المنشأ لكل بند — فهو ما يقرر المعاملة التفضيلية الخليجية وأي تدابير مكافحة إغراق.
+6. الوزن الصافي والإجمالي وعدد الطرود وعلامات الشحن.
+7. سبب التصدير حين لا يوجد بيع ("عينة تجارية"، "بضائع للعرض وإعادة التصدير").
+
+## كيف تحطّ الرسوم الخليجية على أرقامك؟
+
+تفرض التعرفة الخارجية الموحدة لدول الخليج 5% على معظم السلع، محسوبة على **قيمة CIF** — التكلفة والتأمين والشحن، لا سعر البضاعة وحده. مثال: بضاعة 10,000 دولار + شحن 900 + تأمين 100 = CIF قدره 11,000 دولار ← رسوم 550 دولاراً. ثم تُفرض ضريبة القيمة المضافة عند الاستيراد على القيمة شاملة الرسوم (15% في السعودية و5% في الإمارات). وتطبق مصر جدول تعرفتها الخاص إضافة إلى ضريبة 14%، وتتفاوت النسب كثيراً بحسب رمز HS. نمذج السلسلة كاملة — السعر والشحن والرسوم والضريبة ورسوم التخليص — عبر [حاسبة تكلفة الاستيراد](/calculators/import-cost) قبل تأكيد الطلب، وافحص اقتصاديات الحاوية عبر [حاسبة الحجم الشحني CBM](/calculators/shipping-cbm).
+
+## سير عمل عملي
+
+أصدر البروفورما من النظام نفسه الذي يصدر وثائقك النهائية لتبقى الأوصاف والقيم والمراجع متطابقة — يتيح لك [مولّد الفواتير المجاني](/invoice) إنشاء البروفورما ثم نسخها كفاتورة تجارية عند تأكيد البيع. فالاختلافات بين البروفورما التي يحتفظ بها بنك عميلك والفاتورة التجارية المقدمة لاحقاً هي السبب التقليدي لرفض الاعتمادات واستفسارات الجمارك. وثيقة مصدر واحدة، ومخرجان، وصفر تعارض.
+`,
+    contentEn: `
+Every shipment that crosses a MENA border needs an invoice — but not always the same kind. The proforma invoice is the workhorse of the pre-shipment phase: it opens letters of credit, secures import permits, and in specific cases clears customs on its own. Used wrongly, it also causes valuation disputes, penalty assessments, and cargo sitting at Jebel Ali accruing storage fees. Here is where the proforma fits in the customs process.
+
+## What Customs Actually Wants From an Invoice
+
+Customs authorities use your invoice for three things: **classifying** the goods (via HS codes), **valuing** them (to calculate duty), and **verifying origin** (for trade agreements and restrictions). Any document that lets them do all three reliably can support clearance; that is why the commercial invoice is the standard, and why a well-prepared proforma is sometimes accepted as a substitute.
+
+## Proforma vs Commercial Invoice at the Border
+
+| Aspect | Proforma invoice | Commercial invoice |
+|---|---|---|
+| Legal nature | An offer/quotation in invoice form — no payment obligation | Evidence of an actual sale |
+| Issued | Before shipment, often before final confirmation | At or after shipment |
+| Customs use | Accepted for samples, temporary imports, permit applications, LC opening | Required for standard commercial clearance |
+| Valuation risk | Customs may challenge values as provisional | Values are the declared transaction value |
+
+The full commercial comparison is in our [proforma vs commercial invoice guide](/blog/proforma-invoice-vs-commercial-invoice) — this article focuses on the border.
+
+## When a Proforma Is Accepted for Clearance
+
+- **Samples and no-charge shipments.** Goods sent free of charge still need a declared value for duty purposes. The proforma carries the line "Value for customs purposes only — no commercial transaction".
+- **Temporary imports.** Exhibition goods for GITEX or a Riyadh trade fair, equipment for a project, items entering under temporary admission — the proforma documents value without implying a sale.
+- **Advance clearance and permit applications.** Regulated goods in Saudi Arabia (SFDA items), the UAE (telecom equipment via TDRA), and Egypt often require import approvals before shipment; agencies work from the proforma.
+- **Letter of credit opening.** Banks across the GCC open LCs against the proforma — the shipping documents later presented must match it closely, so treat every field as a commitment.
+
+For a normal purchased consignment, expect customs to insist on the final commercial invoice; a proforma may start the process, but the declaration is completed against real transaction documents.
+
+## The Fields That Prevent Border Delays
+
+A customs-ready proforma needs more detail than a domestic quotation:
+
+1. Full names and addresses of exporter and importer (the importer's name must match the customs registration/importer code).
+2. **HS code for every line** — six digits minimum; GCC tariffs use eight. A wrong HS code is the single most expensive invoice error in international trade.
+3. Precise goods description: material, model, quantity, unit and total values — vague lines like "spare parts" invite inspection.
+4. **Currency and Incoterms** with named place: "USD, CIF Jeddah" and "USD, FOB Shanghai" produce different dutiable values.
+5. Country of origin per line — this drives GCC preferential treatment and any anti-dumping measures.
+6. Net and gross weight, number of packages, and shipping marks.
+7. Reason for export when no sale occurred ("commercial sample", "goods for exhibition and return").
+
+## How GCC Duty Lands on Your Numbers
+
+The GCC common external tariff applies 5% on most goods, calculated on the **CIF value** — cost, insurance, and freight, not just the goods price. Example: goods USD 10,000 + freight USD 900 + insurance USD 100 = CIF USD 11,000 → duty USD 550. VAT is then charged on top of the duty-inclusive value at import (15% in Saudi Arabia, 5% in the UAE). Egypt applies its own tariff schedule plus 14% VAT, and rates vary widely by HS code. Model the full chain — price, freight, duty, VAT, clearance fees — with the [import cost calculator](/calculators/import-cost) before you confirm the order, and check container economics with the [shipping CBM calculator](/calculators/shipping-cbm).
+
+## Practical Workflow
+
+Issue the proforma from the same system as your final documents so descriptions, values, and references stay identical — the [free invoice generator](/invoice) lets you create the proforma, then duplicate it as the commercial invoice when the sale is confirmed. Discrepancies between the proforma your client's bank holds and the commercial invoice presented later are the classic cause of LC rejections and customs queries. One source document, two outputs, zero mismatches.
+`,
+  },
+
+  {
+    slug: "bilingual-invoice-layout-best-practices",
+    titleAr: "تصميم الفاتورة الثنائية عربي-إنجليزي: أفضل الممارسات لمظهر احترافي",
+    titleEn: "Bilingual Arabic-English Invoice Layout: Best Practices That Look Professional",
+    metaTitleAr: "تصميم فاتورة ثنائية عربي إنجليزي | Xuvilo",
+    metaTitleEn: "Bilingual Arabic-English Invoice Layout | Xuvilo",
+    excerptAr: "كيف تصمم فاتورة تُقرأ صحيحة بالعربية والإنجليزية معاً: بنية الاتجاهين، وتسميات الحقول، والأرقام، والتواريخ، والعملة، والخطوط.",
+    excerptEn: "How to lay out an invoice that reads correctly in both Arabic and English: RTL/LTR structure, field labels, numerals, dates, currency, and fonts.",
+    date: "2026-07-30",
+    readTime: 8,
+    category: "tips",
+    keywordAr: "تصميم فاتورة ثنائية اللغة",
+    keywordEn: "bilingual invoice layout Arabic English",
+    relatedSlugs: ["نموذج-فاتورة-عربي-انجليزي", "zatca-invoice-requirements-saudi-arabia", "how-to-write-professional-invoice"],
+    contentAr: `
+في سوق الشرق الأوسط، الفاتورة الثنائية اللغة ليست رفاهية — بل كثيراً ما تكون النسخة الوحيدة التي تُرضي كل من يلمس الوثيقة: المحاسب الذي لغته الأولى العربية، ومدير المشروع الذي لغته الإنجليزية، والبنك، والهيئة الضريبية. والسعودية تجعل الأمر صريحاً: تشترط هيئة الزكاة والضريبة والجمارك إصدار الفواتير الضريبية بالعربية مع جواز إرفاق لغات أخرى إلى جانبها. فالسؤال ليس هل تعتمد الثنائية، بل كيف تنفذها دون إنتاج فوضى مكتظة. هذه قواعد التصميم التي تنجح.
+
+## القرار الهيكلي: أعمدة متعاكسة
+
+أنظف نمط ثنائي يضع **التسميات العربية يميناً والإنجليزية يساراً والقيمة بينهما أو تحتهما**. فالعربية تُقرأ من اليمين إلى اليسار والإنجليزية من اليسار إلى اليمين — والتخطيط المتعاكس يتيح لكل قارئ أن يبدأ من "حافته" ليلتقيا عند الأرقام المشتركة:
+
+- الترويسة: شعارك في الوسط أو عند إحدى الحافتين، مع اسم الشركة وعنوانها بالعربية (محاذاة يمين) وبالإنجليزية (محاذاة يسار).
+- التسميات مزدوجة: "فاتورة ضريبية / Tax Invoice"، و"تاريخ الإصدار / Issue Date"، و"رقم الفاتورة / Invoice No.".
+- جدول البنود: اعتمد جدولاً **واحداً** برؤوس أعمدة مزدوجة ("الوصف / Description"، "الكمية / Qty") لا جدولين منفصلين — فالجداول المكررة تضاعف مساحة الخطأ وتضمن اختلافهما يوماً ما.
+
+قاوم إغراء تكرار صفحة الفاتورة كاملة بكل لغة. وثيقة واحدة، وتسميات مزدوجة، ومجموعة أرقام واحدة — هذا هو التنسيق الذي تعالجه البنوك والمدققون في الخليج بأسرع ما يكون.
+
+## مرجع التسميات حقلاً بحقل
+
+| الحقل | العربية | الإنجليزية | ملاحظة |
+|---|---|---|---|
+| عنوان الوثيقة | فاتورة ضريبية | Tax Invoice | صياغة إلزامية للمسجلين في الضريبة |
+| الرقم الضريبي | الرقم الضريبي | VAT / TRN No. | أظهر رقمي الطرفين معاً |
+| تاريخ الاستحقاق | تاريخ الاستحقاق | Due Date | اكتب التاريخ نصاً لتجنب لبس الصيغ |
+| المجموع الفرعي | المجموع الفرعي | Subtotal | قبل الضريبة |
+| الضريبة (15%) | ضريبة القيمة المضافة (15%) | VAT (15%) | اذكر النسبة في التسمية نفسها |
+| الإجمالي | الإجمالي المستحق | Total Due | الرقم الوحيد الذي يبحث عنه الجميع |
+
+أوصاف البنود هي الاستثناء من الازدواج الكامل: اكتبها بلغة العقد، وأضف اللغة الثانية فقط حيث تشترطها إجراءات حسابات العميل.
+
+## الأرقام والتواريخ والعملة
+
+هنا تخطئ الفواتير الثنائية أكثر ما تخطئ:
+
+1. **استخدم الأرقام الغربية (1، 2، 3) في كامل الوثيقة.** فهي المعيار في وثائق الأعمال في الخليج ومصر، ومقروءة لدى كل الأطراف، وتمنع أخطاء المسح الضوئي وإدخال البيانات. ولا تخلط ٣٤٥ و345 في وثيقة واحدة.
+2. **اكتب تواريخ لا لبس فيها.** فالتاريخ 05/07/2026 يعني 7 مايو لدى بعض القراء و5 يوليو لدى آخرين. استخدم "5 يوليو 2026 / 5 July 2026" أو الصيغة الدولية 2026-07-05. وإذا اشترط عميل سعودي التاريخ الهجري فأظهر التقويمين معاً بتسمية واضحة.
+3. **ضع رمز العملة لا الرمز الشكلي فقط.** "SAR 12,650.00" أو "AED 8,400.00" — فرموز العملات تنجو من النسخ والبريد ولقطات الشاشة، بينما تتشوه الرموز الشكلية. وتذكّر للدينار الأردني ثلاث منازل عشرية (JOD 1,250.500).
+4. **أبقِ المبالغ من اليسار إلى اليمين حتى في السياق العربي.** فالأرقام تُقرأ بالاتجاه نفسه في اللغتين؛ ولا تدع معالجة النص من اليمين لليسار تعكس رقماً أبداً.
+5. **اكتب الإجمالي كتابةً بالعربية** ("فقط اثنا عشر ألفاً وستمائة وخمسون ريالاً لا غير") — فكثير من شركات المنطقة وبنوكها ما زالت تتوقعها وسيلةً لمنع التلاعب.
+
+## خطوط تصمد
+
+- اختر عائلة خطوط بدعم عربي حقيقي وأوزان متطابقة — الأزواج الآمنة مثل Noto Sans مع Noto Naskh Arabic، أو خط Cairo للنصين معاً، تحفظ اتساق الوثيقة في PDF والطباعة.
+- يحتاج الخط العربي حجماً أكبر قليلاً لوضوح مماثل: إذا كان النص الإنجليزي 9 نقاط فاجعل العربي 10–11 نقطة.
+- لا تستخدم التسويد الاصطناعي أو الإمالة على النص العربي أبداً؛ استخدم أوزاناً حقيقية، وللتوكيد لجأ إلى اللون أو الحجم بدل الميل.
+- اختبر ملف PDF على الهاتف. فمعظم فواتير المنطقة تُفتح أول مرة في واتساب — وإذا التفّت التسميات المزدوجة بشكل سيئ على عرض الجوال فبسّط التصميم.
+
+## ابنِها مرة واستخدمها للأبد
+
+بناء هذا التخطيط يدوياً في معالج نصوص ينهار أول مرة يلتف فيها سطر بند. استخدم قالباً مهندساً للنص ثنائي الاتجاه: ينتج [مولّد الفواتير](/invoice) من Xuvilo فواتير عربية-إنجليزية متعاكسة بشكل صحيح بأرقام سليمة وحقول ضريبة وإجمالي كتابةً، ويقدم [معرض قوالب الفواتير](/templates/invoice) تخطيطات مختبرة مسبقاً ضد المزالق أعلاه. ولجولة في مثال ثنائي كامل راجع [دليل نموذج الفاتورة عربي-إنجليزي](/blog/نموذج-فاتورة-عربي-انجليزي).
+`,
+    contentEn: `
+In the MENA market, a bilingual invoice is not a nice-to-have — it is often the only version that satisfies everyone who touches the document: the Arabic-first accountant, the English-first project manager, the bank, and the tax authority. Saudi Arabia makes the point explicit: ZATCA requires tax invoices to be issued in Arabic, with other languages permitted alongside. The question is not whether to go bilingual, but how to do it without producing a cluttered mess. These are the layout rules that work.
+
+## The Structural Decision: Mirrored Columns
+
+The cleanest bilingual pattern puts **Arabic labels on the right, English labels on the left, and the value between or beneath them**. Arabic is read right-to-left, English left-to-right — a mirrored layout lets each reader start from "their" edge and meet at the shared numbers:
+
+- Header: your logo centered or at one edge, with company name and address in Arabic (right-aligned) and English (left-aligned).
+- Field labels paired: "فاتورة ضريبية / Tax Invoice", "تاريخ الإصدار / Issue Date", "رقم الفاتورة / Invoice No.".
+- The items table: keep **one** table with paired column headers ("الوصف / Description", "الكمية / Qty") rather than two separate tables — duplicate tables double the error surface and guarantee they eventually disagree.
+
+Resist the temptation to fully duplicate the invoice page in each language. One document, dual labels, single set of numbers — that is the format banks and auditors across the GCC process fastest.
+
+## Field-by-Field Label Reference
+
+| Field | Arabic | English | Note |
+|---|---|---|---|
+| Document title | فاتورة ضريبية | Tax Invoice | Mandatory wording where VAT-registered |
+| VAT number | الرقم الضريبي | VAT / TRN No. | Show both parties' numbers |
+| Due date | تاريخ الاستحقاق | Due Date | Spell out the date to avoid format ambiguity |
+| Subtotal | المجموع الفرعي | Subtotal | Before VAT |
+| VAT (15%) | ضريبة القيمة المضافة (15%) | VAT (15%) | State the rate in the label |
+| Total | الإجمالي المستحق | Total Due | The one number everyone looks for |
+
+Line-item descriptions are the exception to full pairing: write them in the language of the contract, and add the second language only where the client's AP process demands it.
+
+## Numbers, Dates, and Currency
+
+This is where bilingual invoices most often go wrong:
+
+1. **Use Western Arabic numerals (1, 2, 3) throughout.** They are standard in business documents across the Gulf and Egypt, readable by every party, and prevent OCR and data-entry errors. Do not mix ٣٤٥ and 345 in one document.
+2. **Write unambiguous dates.** 05/07/2026 means May 7 to some readers and 5 July to others. Use "5 July 2026 / 5 يوليو 2026" or ISO format 2026-07-05. If a Saudi client requires Hijri dates, show both calendars, clearly labeled.
+3. **Place the currency code, not just the symbol.** "SAR 12,650.00" or "AED 8,400.00" — currency codes survive photocopies, emails, and screenshots; symbols get mangled. For Jordanian dinar remember 3 decimal places (JOD 1,250.500).
+4. **Keep amounts left-to-right even in Arabic context.** Numbers are read the same direction in both languages; never let RTL text processing reverse a figure.
+5. **Write the total in words in Arabic** ("فقط اثنا عشر ألفاً وستمائة وخمسون ريالاً لا غير") — many regional corporates and banks still expect it as an anti-tampering measure.
+
+## Typography That Holds Up
+
+- Choose a font family with genuine Arabic support and matching weights — system-safe pairs like Noto Sans / Noto Naskh Arabic, or Cairo for both scripts, keep the document consistent in PDF and print.
+- Arabic scripts need slightly larger sizes for equal legibility: if English body text is 9pt, set Arabic at 10–11pt.
+- Never use fake-bold or italics on Arabic text; use real weights, and use color or size for emphasis instead of slanting.
+- Test the PDF on a phone. Most invoices in the region are first opened in WhatsApp — if the paired labels wrap badly at mobile width, simplify.
+
+## Build It Once, Reuse Forever
+
+Hand-building this layout in a word processor breaks the first time a line item wraps. Use a template engineered for dual-direction text: Xuvilo's [invoice generator](/invoice) produces properly mirrored Arabic-English invoices with correct numerals, VAT fields, and totals in words, and the [invoice template gallery](/templates/invoice) offers layouts already tested against the pitfalls above. For a walkthrough of a complete bilingual example, see our [Arabic-English invoice template guide](/blog/نموذج-فاتورة-عربي-انجليزي).
+`,
+  },
+
+  {
+    slug: "oman-vat-guide-small-businesses",
+    titleAr: "دليل ضريبة القيمة المضافة في عُمان للشركات الصغيرة والمستقلين (2026)",
+    titleEn: "Oman VAT Guide for Small Businesses and Freelancers (2026)",
+    metaTitleAr: "دليل ضريبة القيمة المضافة في عُمان | Xuvilo",
+    metaTitleEn: "Oman VAT Guide for Small Businesses 2026 | Xuvilo",
+    excerptAr: "ضريبة القيمة المضافة في عُمان بنسبة 5%: حدود التسجيل، التوريدات المعفاة والخاضعة لنسبة الصفر، متطلبات الفاتورة الضريبية، والإقرارات الربعية.",
+    excerptEn: "Oman VAT at 5%: registration thresholds, zero-rated and exempt supplies, tax invoice rules, quarterly filing, and penalties — explained for small businesses.",
+    date: "2026-07-31",
+    readTime: 8,
+    category: "taxes",
+    keywordAr: "ضريبة القيمة المضافة عمان",
+    keywordEn: "Oman VAT small businesses",
+    relatedSlugs: ["invoice-generator-oman", "vat-registration-gcc-countries", "vat-calculator-saudi-arabia"],
+    contentAr: `
+طبّقت سلطنة عُمان ضريبة القيمة المضافة في 16 أبريل 2021 بموجب المرسوم السلطاني رقم 121/2020، لتصبح رابع دولة خليجية تطبق الضريبة بعد السعودية والإمارات والبحرين. وبنسبة 5%، تتقاسم عُمان مع الإمارات أدنى معدل أساسي في الخليج. يتولى جهاز الضرائب العُماني إدارة الضريبة، ورغم أن القواعد أخف من كثير من الدول، تحتاج الشركات الصغيرة والمستقلون إلى ضبط التسجيل والفوترة والإقرارات منذ اليوم الأول.
+
+## من يجب عليه التسجيل في عُمان؟
+
+يعتمد التسجيل على قيمة توريداتك السنوية الخاضعة للضريبة — أي المبيعات الخاضعة للنسبة الأساسية أو لنسبة الصفر. أما التوريدات المعفاة فلا تُحتسب ضمن الحد.
+
+- **التسجيل الإلزامي:** عندما تتجاوز التوريدات السنوية الخاضعة للضريبة 38,500 ريال عُماني، أو يُتوقع أن تتجاوزها خلال الاثني عشر شهراً القادمة.
+- **التسجيل الاختياري:** عندما تتجاوز التوريدات أو المصروفات الخاضعة للضريبة 19,250 ريالاً. يتيح لك التسجيل الاختياري استرداد ضريبة المدخلات — وهو مفيد إذا كنت تشتري معدات أو مخزوناً قبل أن تبدأ الإيرادات الفعلية.
+- **غير المقيمين:** يجب على غير المقيم الذي يقوم بتوريدات خاضعة للضريبة داخل عُمان التسجيل بغض النظر عن حجم أعماله، مباشرة أو عبر ممثل ضريبي.
+
+يتم التسجيل إلكترونياً عبر بوابة جهاز الضرائب (taxoman.gov.om)، وبعد الموافقة تحصل على رقم التعريف الضريبي (VATIN) الذي يجب أن يظهر على كل فاتورة ضريبية تصدرها.
+
+## معدلات الضريبة في عُمان باختصار
+
+| المعاملة | النسبة | أمثلة شائعة |
+|---|---|---|
+| النسبة الأساسية | 5% | معظم السلع والخدمات |
+| نسبة الصفر | 0% | الصادرات، النقل الدولي، قائمة السلع الغذائية الأساسية، الأدوية والمعدات الطبية، الذهب والفضة والبلاتين الاستثماري |
+| الإعفاء | — | الخدمات المالية، الرعاية الصحية، التعليم، الأراضي الفضاء، إعادة بيع العقارات السكنية، النقل المحلي للركاب |
+
+الفرق بين نسبة الصفر والإعفاء أهم مما يبدو: من يورّد بنسبة الصفر يفرض 0% لكنه يسترد ضريبة مدخلاته، بينما لا يستطيع صاحب التوريدات المعفاة ذلك. وإذا كنت تجمع بين توريدات خاضعة ومعفاة فعليك توزيع ضريبة المدخلات بينهما — راجع دليلنا حول [حساب الضريبة مع تعدد النسب](/blog/how-to-calculate-vat-mixed-rate).
+
+## متطلبات الفاتورة الضريبية
+
+يجب أن تتضمن الفاتورة الضريبية الكاملة في عُمان: عبارة فاتورة ضريبية؛ اسم منشأتك وعنوانها ورقمها الضريبي؛ رقماً تسلسلياً للفاتورة؛ تاريخ الإصدار وتاريخ التوريد إن اختلف؛ اسم العميل وعنوانه؛ وصفاً واضحاً للسلع أو الخدمات؛ الكميات وأسعار الوحدة قبل الضريبة؛ نسبة الضريبة ومبلغها لكل بند؛ والإجمالي المستحق بالريال العُماني. ويسمح الجهاز بفواتير مبسّطة لمعاملات التجزئة الصغيرة — تحقق من الشروط والحدود الحالية لدى جهاز الضرائب قبل الاعتماد عليها.
+
+يمكنك إصدار فاتورة ثنائية اللغة متوافقة خلال دقائق عبر [منشئ فواتير Xuvilo المجاني](/invoice)، والتحقق من أي مبلغ شامل أو غير شامل للضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax).
+
+## الإقرارات والسداد
+
+تُقدَّم إقرارات الضريبة في عُمان ربع سنوياً عبر بوابة الجهاز، ويستحق الإقرار والسداد خلال 30 يوماً من نهاية الفترة الضريبية، مع وجوب تقديم إقرار صفري حتى لو لم يكن هناك نشاط. كما يجب الاحتفاظ بالسجلات المحاسبية والفواتير الضريبية والمستندات الجمركية لمدة 10 سنوات على الأقل — و15 سنة للسجلات المتعلقة بالعقارات.
+
+## غرامات يجب تجنبها
+
+- **التأخر في التسجيل:** يبدأ الالتزام من التاريخ الذي كان يجب أن تسجل فيه، وتضاف الغرامات الإدارية إلى الضريبة المستحقة بأثر رجعي.
+- **مخالفات الفوترة:** عدم إصدار فواتير ضريبية، أو إصدار فواتير تُظهر ضريبة دون تسجيل، كلاهما يعرّضك للغرامة.
+- **التأخر في الإقرار أو السداد:** تتراكم الغرامات والمبالغ الإضافية حتى تقديم الإقرار وسداد الضريبة.
+- **التهرب الجسيم:** ينص القانون على عقوبات جنائية في الحالات المشددة.
+
+تتحدد مبالغ الغرامات في القانون واللائحة التنفيذية وتُحدَّث من وقت لآخر — تحقق من الجدول الحالي لدى جهاز الضرائب العُماني.
+
+## ما القادم؟ الفوترة الإلكترونية
+
+أعلن جهاز الضرائب عن خطط لنظام وطني للفوترة الإلكترونية على مراحل، تبدأ بمرحلة اختيارية يعقبها إلزام تدريجي للمنشآت الأكبر. وقد تغيّرت الجداول الزمنية أكثر من مرة، لذا تحقق من خطة التطبيق الحالية لدى الجهاز قبل الالتزام بأي نظام — لكن اختيار برنامج فوترة يُنتج فواتير منظمة ومفصلة منذ الآن سيجعل الانتقال سلساً.
+
+## قائمة عملية للشركات الصغيرة
+
+- راقب إيراداتك الخاضعة للضريبة على أساس 12 شهراً متحركة شهرياً، لا مرة واحدة في السنة.
+- سجّل قبل أن تتجاوز 38,500 ريال — الانتظار يكلفك مالاً.
+- اعرض أسعار المستهلكين شاملة الضريبة، ووضّح الأمر في عروض الأعمال.
+- احتفظ بكل فاتورة ضريبية من مورديك: لا استرداد لضريبة المدخلات بلا فاتورة صحيحة.
+- طابق ضريبة المخرجات والمدخلات قبل كل موعد ربع سنوي، لا بعده.
+
+ضريبة القيمة المضافة العُمانية من أخف الأنظمة في المنطقة. سجّل في الوقت المناسب، وأصدر فواتير صحيحة، وقدّم إقراراتك ربع سنوياً، وستتحول نسبة 5% إلى بند اعتيادي في فواتيرك لا إلى خطر على عملك. وللمقارنة مع الدول المجاورة راجع [دليل التسجيل في ضريبة القيمة المضافة الخليجية](/blog/vat-registration-gcc-countries).
+`,
+    contentEn: `
+Oman introduced value added tax on 16 April 2021 under Royal Decree No. 121/2020, becoming the fourth GCC state to implement VAT after Saudi Arabia, the UAE, and Bahrain. At 5%, Oman shares the lowest standard rate in the Gulf with the UAE. The tax is administered by the Oman Tax Authority (OTA), and while the rules are lighter than in many countries, small businesses and freelancers still need to get registration, invoicing, and filing right from day one.
+
+## Who must register for VAT in Oman
+
+Registration is based on the value of your annual taxable supplies — that is, sales that are standard-rated or zero-rated. Exempt supplies do not count toward the threshold.
+
+- **Mandatory registration:** annual taxable supplies exceed OMR 38,500, or are expected to exceed that amount in the coming 12 months.
+- **Voluntary registration:** annual taxable supplies or taxable expenses exceed OMR 19,250. Voluntary registration lets you reclaim input VAT — useful if you are buying equipment or stock before serious revenue arrives.
+- **Non-residents:** a non-resident making taxable supplies in Oman must register regardless of turnover, either directly or through a tax representative.
+
+Registration is completed online through the OTA portal (taxoman.gov.om). Once approved, you receive a VAT identification number (VATIN) that must appear on every tax invoice you issue.
+
+## Omani VAT rates at a glance
+
+| Treatment | Rate | Typical examples |
+|---|---|---|
+| Standard | 5% | Most goods and services |
+| Zero-rated | 0% | Exports, international transport, a published list of essential food items, medicines and medical equipment, investment gold, silver, and platinum |
+| Exempt | — | Financial services, healthcare, education, bare land, resale of residential property, local passenger transport |
+
+The distinction between zero-rated and exempt matters more than it looks. A zero-rated business charges 0% but can still reclaim input VAT on its costs; an exempt business cannot. If you make both taxable and exempt supplies, you must apportion your input VAT between them — our guide to [calculating VAT with mixed rates](/blog/how-to-calculate-vat-mixed-rate) walks through the method.
+
+## Tax invoice requirements
+
+A full Omani tax invoice must show: the words tax invoice; your business name, address, and VATIN; a sequential invoice number; the issue date and the date of supply if different; the customer name and address; a clear description of the goods or services; quantities and unit prices excluding VAT; the VAT rate and amount per line; and the total payable in Omani rials. The OTA permits simplified invoices for smaller retail transactions — verify the current conditions and limits with the authority before relying on them.
+
+You can issue a compliant bilingual Arabic-English invoice in minutes with the free [Xuvilo invoice generator](/invoice), and double-check any VAT-inclusive or exclusive amount with the [VAT calculator](/calculators/vat-tax).
+
+## Filing and paying
+
+VAT returns in Oman are filed quarterly through the OTA portal. Both the return and the payment are due within 30 days of the end of the tax period, and a nil return must still be filed even if you had no activity. Businesses are required to keep accounting records, tax invoices, and customs documents for at least 10 years — 15 years for records relating to real estate.
+
+## Penalties to avoid
+
+- **Late registration:** liability starts from the date you should have registered, and administrative penalties apply on top of the back tax.
+- **Invoicing failures:** not issuing tax invoices, or issuing invoices that show VAT without being registered, both attract fines.
+- **Late filing or payment:** penalties and additional amounts accrue until the return is filed and the tax settled.
+- **Serious evasion:** the law provides for criminal sanctions in aggravated cases.
+
+Exact penalty amounts are set in the law and Executive Regulations and are updated from time to time — verify the current schedule with the Oman Tax Authority.
+
+## What is coming next: e-invoicing
+
+The OTA has announced plans for a phased national e-invoicing system, with a voluntary phase expected first and mandatory integration for larger businesses to follow. Timelines have shifted more than once, so verify the current rollout schedule with the OTA before committing to a system — but choosing invoicing software that already produces structured, itemized invoices will make the transition painless.
+
+## Practical checklist for small businesses
+
+- Track your rolling 12-month taxable turnover every month, not once a year.
+- Register before you cross OMR 38,500 — waiting costs money.
+- Quote consumer prices VAT-inclusive; quote business prices clearly either way.
+- Keep every supplier tax invoice: no valid invoice, no input VAT recovery.
+- Reconcile output and input VAT before each quarterly deadline, not after.
+
+Oman's VAT is one of the mildest regimes in the region. Register on time, invoice correctly, and file quarterly, and the 5% becomes a routine line item on your invoices rather than a business risk. For a comparison with neighboring states, see our [GCC VAT registration guide](/blog/vat-registration-gcc-countries).
+`,
+  },
+
+  {
+    slug: "bahrain-vat-10-percent-guide",
+    titleAr: "ضريبة القيمة المضافة في البحرين بنسبة 10%: الدليل الكامل للشركات الصغيرة (2026)",
+    titleEn: "Bahrain VAT at 10%: The Complete Guide for Small Businesses (2026)",
+    metaTitleAr: "دليل ضريبة القيمة المضافة في البحرين | Xuvilo",
+    metaTitleEn: "Bahrain VAT at 10%: Complete Guide 2026 | Xuvilo",
+    excerptAr: "رفعت البحرين ضريبة القيمة المضافة إلى 10% في 2022. حدود التسجيل لدى الجهاز الوطني للإيرادات، التوريدات بنسبة الصفر، ومتطلبات الفواتير والإقرارات.",
+    excerptEn: "Bahrain doubled VAT to 10% in 2022. Registration thresholds with the NBR, zero-rated supplies, tax invoice rules, and filing deadlines — all in one guide.",
+    date: "2026-08-01",
+    readTime: 7,
+    category: "taxes",
+    keywordAr: "ضريبة القيمة المضافة البحرين",
+    keywordEn: "Bahrain VAT 10 percent",
+    relatedSlugs: ["invoice-generator-bahrain", "vat-registration-gcc-countries", "how-to-calculate-vat-mixed-rate"],
+    contentAr: `
+طبّقت مملكة البحرين ضريبة القيمة المضافة في 1 يناير 2019 بنسبة 5% بموجب المرسوم بقانون رقم 48 لسنة 2018، ثم ضاعفت النسبة الأساسية إلى 10% في 1 يناير 2022 — لتكون أول زيادة خليجية بعد رفع السعودية النسبة إلى 15%. يتولى الجهاز الوطني للإيرادات (NBR) إدارة الضريبة. إذا كنت تبيع سلعاً أو خدمات في البحرين، فإليك ما يعنيه نظام 10% لتسجيلك وفواتيرك وإقراراتك.
+
+## حدود التسجيل لدى الجهاز الوطني للإيرادات
+
+تُقاس الحدود بقيمة توريداتك السنوية الخاضعة للضريبة — أي المبيعات بالنسبة الأساسية ونسبة الصفر معاً.
+
+- **التسجيل الإلزامي:** عندما تتجاوز التوريدات السنوية الخاضعة للضريبة 37,500 دينار بحريني.
+- **التسجيل الاختياري:** عندما تتجاوز التوريدات أو المصروفات الخاضعة للضريبة 18,750 ديناراً.
+- **غير المقيمين:** يلتزمون بالتسجيل من أول دينار توريدات خاضعة في البحرين دون أي حد أدنى، مباشرة أو عبر ممثل ضريبي.
+
+يتم التسجيل عبر بوابة الجهاز الإلكترونية، وبعد الموافقة تحصل على رقم حساب ضريبي يجب أن يظهر على فواتيرك. والتأخر في التسجيل لا يؤجل التزامك — إذ يستطيع الجهاز مطالبتك بالضريبة بأثر رجعي من تاريخ وجوب التسجيل مع الغرامات.
+
+## ما يخضع لنسبة 10% وما يخضع للصفر وما يُعفى
+
+| المعاملة | النسبة | أمثلة شائعة |
+|---|---|---|
+| النسبة الأساسية | 10% | معظم السلع والخدمات: الإلكترونيات، الملابس، المطاعم، الخدمات المهنية |
+| نسبة الصفر | 0% | قائمة السلع الغذائية الأساسية، الرعاية الصحية، التعليم، إنشاء المباني الجديدة، النقل المحلي، النفط والغاز، الصادرات والنقل الدولي |
+| الإعفاء | — | بعض الخدمات المالية، بيع العقارات وتأجيرها |
+
+قائمة نسبة الصفر البحرينية سخية بمعايير الخليج — فالرعاية الصحية والتعليم والإنشاءات الجديدة خاضعة للصفر لا معفاة، ما يعني أن مورّدي هذه القطاعات يستردون ضريبة مدخلاتهم. وإذا كان مزيج مبيعاتك يجمع عدة معاملات، فدليلنا حول [الضريبة مع تعدد النسب](/blog/how-to-calculate-vat-mixed-rate) يوضح طريقة التوزيع الصحيحة. تُحدَّد تفاصيل كل قائمة في اللائحة التنفيذية — تحقق من الحالات الحدّية لدى الجهاز الوطني للإيرادات.
+
+## الفواتير الضريبية في ظل نسبة 10%
+
+يجب أن تتضمن الفاتورة الضريبية البحرينية: عبارة فاتورة ضريبية؛ اسم المورد وعنوانه ورقم حسابه الضريبي؛ رقماً تسلسلياً؛ تاريخ الإصدار وتاريخ التوريد؛ بيانات العميل؛ وصف السلع أو الخدمات؛ سعر الوحدة قبل الضريبة؛ نسبة الضريبة ومبلغها لكل بند؛ والإجمالي شاملاً الضريبة بالدينار البحريني، مع بيان سعر الصرف المستخدم إن وجد. ويُسمح بالفواتير المبسّطة عندما يكون العميل غير مسجل والمبلغ أقل من الحد المنصوص عليه في اللائحة.
+
+التنسيق المفصّل الواضح ليس مسألة شكلية — فهو أول ما يفحصه مدققو الجهاز. ينتج [منشئ فواتير Xuvilo المجاني](/invoice) فواتير ثنائية اللغة بكل الحقول المطلوبة، وتتكفل [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) بحسابات 10% شاملة وغير شاملة فوراً.
+
+## فترات الإقرار والمواعيد
+
+تقدم معظم المنشآت المسجلة إقراراتها ربع سنوياً، بينما تلتزم المنشآت التي تتجاوز توريداتها السنوية 3 ملايين دينار بالإقرار الشهري. يستحق الإقرار والسداد بنهاية الشهر التالي لانتهاء الفترة الضريبية، مع وجوب تقديم الإقرارات الصفرية. احتفظ بالسجلات والفواتير ومستندات الاستيراد 5 سنوات على الأقل — وأطول من ذلك للعقارات.
+
+## غرامات يجدر معرفتها
+
+- التأخر في التسجيل قد يصل بالغرامة إلى 10,000 دينار.
+- التأخر في الإقرار أو السداد يستتبع غرامات نسبية تتصاعد مع مدة التأخير.
+- التهرب المتعمد جريمة جنائية قد تصل عقوبتها إلى الحبس وغرامات تبلغ أضعاف الضريبة المستحقة.
+
+يُطبَّق إطار الغرامات حالة بحالة — اعتبر هذه الأرقام استرشادية وتحقق من الجدول الحالي لدى الجهاز.
+
+## نصائح عملية لنسبة 10%
+
+- **أعد التسعير بوعي.** عند 10%، فإن امتصاص الضريبة بصمت يلتهم عُشر هامشك كاملاً. حدد صراحة ما هو شامل للضريبة في عروضك وعقودك.
+- **راقب الحد شهرياً.** 37,500 دينار تعادل نحو 3,125 ديناراً من المبيعات الخاضعة شهرياً — وربع سنة نشط قد يتجاوز بالمستقل الحد دون إنذار.
+- **استرد بانتظام.** كل فاتورة مورد بلا رقم حساب ضريبي صحيح هي ضريبة مدخلات لن تستردها.
+- **خطط للسيولة حول الموعد.** الضريبة التي تحصّلها مال للجهاز الوطني للإيرادات لا رأس مال عامل. اعزلها فور إصدار الفاتورة.
+
+مقارنة بجيرانها، تقف البحرين في المنتصف: أعلى من 5% في الإمارات وعُمان، وأدنى من 15% السعودية. وللاطلاع على الحدود في الدول الأربع المطبّقة راجع [دليل التسجيل في ضريبة القيمة المضافة الخليجية](/blog/vat-registration-gcc-countries).
+`,
+    contentEn: `
+Bahrain introduced VAT on 1 January 2019 at 5% under Decree-Law No. 48 of 2018, then doubled the standard rate to 10% on 1 January 2022 — the first GCC rate increase after Saudi Arabia's jump to 15%. The tax is administered by the National Bureau for Revenue (NBR). If you sell goods or services in Bahrain, here is what the 10% regime means for your registration, invoices, and returns.
+
+## Registration thresholds with the NBR
+
+Thresholds are measured against your annual taxable supplies — standard-rated and zero-rated sales combined.
+
+- **Mandatory registration:** annual taxable supplies exceed BHD 37,500.
+- **Voluntary registration:** annual taxable supplies or expenses exceed BHD 18,750.
+- **Non-residents:** must register from the first dinar of taxable supplies in Bahrain, with no threshold, directly or via a tax representative.
+
+Registration is done through the NBR online portal. After approval you receive a VAT account number that must appear on your tax invoices. Registering late does not delay your liability — the NBR can assess back tax from the date you should have registered, plus penalties.
+
+## What is taxed at 10%, 0%, and exempt
+
+| Treatment | Rate | Typical examples |
+|---|---|---|
+| Standard | 10% | Most goods and services, including electronics, clothing, restaurants, and professional services |
+| Zero-rated | 0% | A published list of basic food items, healthcare, education, new building construction, local transport, oil and gas, exports and international transport |
+| Exempt | — | Certain financial services, sale and lease of real estate |
+
+Bahrain's zero-rated list is unusually generous by GCC standards — healthcare, education, and new construction are zero-rated rather than exempt, which means suppliers in those sectors can reclaim input VAT. If your sales mix spans several treatments, our guide to [VAT with mixed rates](/blog/how-to-calculate-vat-mixed-rate) shows how to apportion correctly. The exact scope of each list is defined in the Executive Regulations — verify borderline items with the NBR.
+
+## Tax invoices under the 10% regime
+
+A Bahraini tax invoice must include: the words tax invoice; the supplier name, address, and VAT account number; a sequential number; the date of issue and date of supply; the customer details; a description of goods or services; the unit price exclusive of VAT; the VAT rate and amount per line; the total including VAT in Bahraini dinars; and, where an exchange rate is used, the rate applied. Simplified tax invoices are allowed where the customer is not registered and the consideration is below the threshold set in the regulations.
+
+A clean, itemized layout is not just cosmetic — it is what NBR auditors check first. The free [Xuvilo invoice generator](/invoice) produces bilingual Arabic-English invoices with all required fields, and the [VAT calculator](/calculators/vat-tax) handles 10% inclusive and exclusive math instantly.
+
+## Filing periods and deadlines
+
+Most registered businesses file quarterly. Businesses with annual supplies above BHD 3 million file monthly. Returns and payment are due by the last day of the month following the end of the tax period. Nil returns are still mandatory. Keep records, invoices, and import documents for at least 5 years — longer for real estate.
+
+## Penalties worth knowing
+
+- Late registration can attract a fine of up to BHD 10,000.
+- Late filing or payment triggers percentage-based penalties that grow with the delay.
+- Deliberate evasion is a criminal offence and can carry imprisonment as well as fines up to a multiple of the tax due.
+
+The penalty framework is applied case by case — treat these figures as indicative and verify the current schedule with the NBR.
+
+## Practical tips for the 10% rate
+
+- **Reprice deliberately.** At 10%, absorbing VAT quietly costs a full tenth of your margin. Decide explicitly what is VAT-inclusive in your quotes and contracts.
+- **Watch the threshold monthly.** BHD 37,500 is roughly BHD 3,125 of taxable sales per month — a busy quarter can push a freelancer over without warning.
+- **Reclaim systematically.** Every supplier invoice without a valid VAT account number is input VAT you cannot recover.
+- **Plan cash flow around the deadline.** VAT you collect is the NBR's money, not working capital. Set it aside as you invoice.
+
+Compared with its neighbors, Bahrain sits in the middle: higher than the 5% in the UAE and Oman, lower than Saudi Arabia's 15%. For thresholds across all four implementing states, see the [GCC VAT registration guide](/blog/vat-registration-gcc-countries).
+`,
+  },
+
+  {
+    slug: "kuwait-tax-landscape-freelancers",
+    titleAr: "المشهد الضريبي في الكويت للمستقلين والشركات الصغيرة (2026)",
+    titleEn: "Kuwait's Tax Landscape for Freelancers and Small Businesses (2026)",
+    metaTitleAr: "الضرائب في الكويت للمستقلين 2026 | Xuvilo",
+    metaTitleEn: "Kuwait Taxes for Freelancers: 2026 Guide | Xuvilo",
+    excerptAr: "لا ضريبة دخل شخصية ولا قيمة مضافة في الكويت حتى الآن — لكن قواعد الاحتجاز وضريبة الشركات الأجنبية والحد الأدنى الجديد 15% تمسّ عملك فعلاً.",
+    excerptEn: "Kuwait has no personal income tax and no VAT yet — but retention rules, corporate tax on foreign entities, and the new 15% top-up tax still affect your business.",
+    date: "2026-08-02",
+    readTime: 7,
+    category: "taxes",
+    keywordAr: "الضرائب في الكويت للمستقلين",
+    keywordEn: "Kuwait tax freelancers",
+    relatedSlugs: ["invoice-generator-kuwait", "vat-registration-gcc-countries", "withholding-tax-saudi-arabia"],
+    contentAr: `
+توصف الكويت كثيراً بأنها بلد بلا ضرائب، وهذا صحيح إلى حد بعيد بالنسبة للأفراد: لا ضريبة دخل شخصية على الرواتب أو أرباح العمل الحر، ولم تُطبَّق ضريبة القيمة المضافة بعد. لكن اعتبار الكويت دولة صفرية الضرائب خطأ يوقع المقاولين والوكالات والشركات النامية كل عام. إليك المشهد الحقيقي كما هو في 2026 — والقواعد الأقرب لمساس فواتير المستقلين.
+
+## ما لا تفرضه الكويت (حتى الآن)
+
+- **لا ضريبة دخل شخصية.** الرواتب والأتعاب المهنية ودخل العمل الحر للأفراد غير خاضعة للضريبة.
+- **لا ضريبة قيمة مضافة.** وقّعت الكويت الاتفاقية الإطارية الخليجية، لكن التطبيق تأجل مراراً. وتطرح مناقشات الميزانية جداول زمنية للقيمة المضافة والانتقائية بين حين وآخر — تحقق من الوضع الحالي لدى وزارة المالية قبل البناء عليه في عقودك المقبلة.
+- **لا ضريبة استقطاع عامة.** بخلاف السعودية أو قطر، لا تفرض الكويت ضريبة استقطاع تقليدية على المدفوعات عبر الحدود.
+
+## ما تفرضه الكويت فعلاً
+
+| الاقتطاع | النسبة | من يدفع |
+|---|---|---|
+| ضريبة دخل الشركات | 15% | الشركات الأجنبية العاملة في الكويت |
+| الحد الأدنى المحلي للضريبة (DMTT) | مستوى فعلي 15% | المجموعات متعددة الجنسيات الكبرى التي تبلغ إيراداتها العالمية 750 مليون يورو فأكثر، اعتباراً من 2025 |
+| الزكاة | 1% من صافي الربح | شركات المساهمة الكويتية |
+| ضريبة دعم العمالة الوطنية | 2.5% من صافي الربح | الشركات المدرجة في بورصة الكويت |
+| حصة مؤسسة التقدم العلمي | 1% من صافي الربح | شركات المساهمة الكويتية |
+
+تنطبق ضريبة دخل الشركات على الكيانات الأجنبية — بما فيها الشركاء الأجانب في المشاريع المشتركة — لا على الأعمال المملوكة بالكامل لمواطنين كويتيين أو خليجيين. أما الحد الأدنى المحلي فقد صدر بالمرسوم بقانون رقم 157 لسنة 2024 تماشياً مع قواعد الركيزة الثانية لمنظمة التعاون الاقتصادي، وسرى على السنوات المالية التي تبدأ من 2025، ولا يعني إلا المجموعات الكبرى.
+
+## قاعدة الاحتجاز 5% — القاعدة التي تؤلم فعلاً
+
+أكثر قاعدة تمس المستقلين وصغار الموردين هي احتجاز العقود: يلتزم أصحاب الأعمال والجهات الحكومية في الكويت باحتجاز 5% من كل دفعة تعاقدية حتى يقدّم الطرف الآخر شهادة براءة ذمة ضريبية من وزارة المالية. وإذا كنت فرداً كويتياً بلا التزام ضريبي فالحصول على الشهادة إجراء إداري — لكن إلى أن تحصل عليها يبقى 5% من فاتورتك مجمداً. أدرج هذه الأوراق ضمن إجراءات التعاقد مع أي عميل كبير، واذكر شروط الدفع بوضوح في كل فاتورة. راجع دليلنا حول [كتابة فاتورة احترافية](/blog/how-to-write-professional-invoice) للبنود الجديرة بالإضافة.
+
+## فوترة متقنة في سوق بلا قيمة مضافة
+
+غياب الضريبة لا يعني غياب المستندات. يتوقع العملاء الكويتيون — خصوصاً الشركات المدرجة والوزارات — فواتير مرقمة أصولاً لأغراض تدقيقهم والتزامات الاحتجاز لديهم:
+
+- استخدم أرقام فواتير تسلسلية وتواريخ إصدار؛ فالفجوات تثير الأسئلة في تدقيق العملاء.
+- اعرض المبالغ بالدينار الكويتي بثلاث خانات عشرية (الفلس).
+- انص صراحة على شروط الدفع وتبعات التأخير.
+- احتفظ بالنسخ 5 سنوات على الأقل؛ فقد يطلبها العملاء أثناء تفتيش وزارة المالية.
+
+ينتج [منشئ فواتير Xuvilo المجاني](/invoice) فواتير ثنائية اللغة تناسب العملاء الكويتيين، وتساعدك [حاسبة تحويل العملات](/calculators/currency-exchange) عند فوترة عملاء أجانب بالدولار أو اليورو.
+
+## العمل عبر الحدود
+
+ما إن يصبح عملاؤك خارج الكويت حتى تطالك قواعد الدول الأخرى. فالعميل السعودي الذي يدفع لمستقل كويتي قد يلتزم بتطبيق ضريبة الاستقطاع السعودية على الدفعة، والعميل القطري قد يحتجز مبالغ وفق القواعد القطرية. سعّر أعمالك العابرة للحدود مع أخذ هذه الاقتطاعات في الحسبان — يشرح [دليل ضريبة الاستقطاع السعودية](/blog/withholding-tax-saudi-arabia) الآلية من جانب الدافع.
+
+## ما يجب مراقبته حتى نهاية 2026
+
+- **القيمة المضافة والانتقائية:** لا تزال الكويت أبعد دول الخليج عن التطبيق، لكن الضغط المالي يبقي الملف مفتوحاً، وأي تطبيق مستقبلي سيحاكي على الأرجح إطار 5% لدى الجيران.
+- **مقترحات ضريبة أرباح الأعمال:** نوقشت علناً مشاريع لتوسيع الضريبة إلى ما بعد الشركات الأجنبية. لا شيء مؤكد قبل صدور التشريع — تحقق لدى وزارة المالية.
+- **إصلاح الزكاة ودعم العمالة:** تعود مقترحات التحديث إلى مجلس الأمة بانتظام.
+
+الخلاصة العملية: استمتع ببيئة خالية من ضريبة الدخل، لكن أدر عملك وكأن التوثيق مهم — لأنه كذلك فعلاً لشهادات الاحتجاز وتدقيق العملاء وأي تسجيل مستقبلي في القيمة المضافة. وللاطلاع على وجهة المنطقة راجع [دليل التسجيل في ضريبة القيمة المضافة الخليجية](/blog/vat-registration-gcc-countries).
+`,
+    contentEn: `
+Kuwait is often described as tax-free, and for individuals that is still broadly true: there is no personal income tax on salaries or freelance earnings, and no VAT has been implemented yet. But calling Kuwait a zero-tax country is a mistake that catches out contractors, agencies, and growing businesses every year. Here is the real landscape as of 2026 — and the rules most likely to touch a freelancer's invoices.
+
+## What Kuwait does not tax (yet)
+
+- **No personal income tax.** Salaries, professional fees, and freelance income earned by individuals are not taxed.
+- **No VAT.** Kuwait signed the GCC VAT Framework Agreement, but implementation has been postponed repeatedly. Successive budget discussions have floated VAT and excise timelines — verify the current status with the Ministry of Finance before assuming anything for future contracts.
+- **No general withholding tax.** Unlike Saudi Arabia or Qatar, Kuwait does not levy a classic withholding tax on cross-border payments.
+
+## What Kuwait does tax
+
+| Levy | Rate | Who pays |
+|---|---|---|
+| Corporate income tax | 15% | Foreign companies carrying on business in Kuwait |
+| Domestic Minimum Top-up Tax (DMTT) | 15% effective level | Large multinational groups with global revenue of EUR 750 million or more, from 2025 |
+| Zakat | 1% of net profit | Kuwaiti shareholding companies |
+| National Labour Support Tax (NLST) | 2.5% of net profit | Companies listed on Boursa Kuwait |
+| Contribution to science | 1% of net profit | Kuwaiti shareholding companies (KFAS) |
+
+The corporate income tax applies to foreign entities — including foreign partners in joint ventures — not to businesses wholly owned by Kuwaiti or GCC nationals. The DMTT, introduced by Decree-Law No. 157 of 2024 in line with the OECD Pillar Two rules, took effect for fiscal years starting in 2025 and only concerns very large multinational groups.
+
+## The 5% retention rule — the one that bites
+
+The rule most relevant to freelancers and small suppliers is contract retention. Kuwaiti businesses and government bodies making payments under contracts are required to retain 5% of each payment until the counterparty presents a tax clearance certificate from the Ministry of Finance. If you are a Kuwaiti individual with no tax liability, obtaining the certificate is administrative — but until you do, that 5% of your invoice sits frozen. Build the paperwork into your onboarding with any large client, and state your payment terms clearly on every invoice. Our guide to [professional invoices](/blog/how-to-write-professional-invoice) covers the clauses worth adding.
+
+## Invoicing well in a no-VAT market
+
+No VAT does not mean no paperwork. Kuwaiti clients — especially listed companies and ministries — expect proper serial-numbered invoices for their own audit and retention compliance:
+
+- Use sequential invoice numbers and issue dates; gaps raise questions in client audits.
+- Show amounts in Kuwaiti dinars with three decimal places (fils).
+- State payment terms and late-payment consequences explicitly.
+- Keep copies for at least 5 years; corporate clients may request them during Ministry of Finance inspections.
+
+The free [Xuvilo invoice generator](/invoice) produces bilingual Arabic-English invoices suited to Kuwaiti corporate clients, and the [currency exchange calculator](/calculators/currency-exchange) helps when you bill foreign clients in dollars or euros.
+
+## Working across borders
+
+The moment your clients sit outside Kuwait, other countries' rules reach you. A Saudi client paying a Kuwaiti freelancer may need to apply Saudi withholding tax to the payment; a Qatari client may retain amounts under Qatari rules. Price your cross-border work with those deductions in mind — our [Saudi withholding tax guide](/blog/withholding-tax-saudi-arabia) explains the mechanics from the payer's side.
+
+## What to watch through 2026
+
+- **VAT and excise:** Kuwait remains the GCC state furthest from implementation, but fiscal pressure keeps the file open. A future 5% VAT would mirror the framework applied by its neighbors.
+- **Business profits tax proposals:** draft legislation extending profit taxation beyond foreign companies has been discussed publicly. Nothing is certain until enacted — verify with the Ministry of Finance.
+- **Zakat and NLST reform:** modernization proposals appear regularly in parliament.
+
+The practical takeaway: enjoy the zero-income-tax environment, but run your business as if documentation mattered — because for retention certificates, client audits, and any future VAT registration, it already does. For a view of where the region is heading, see the [GCC VAT registration guide](/blog/vat-registration-gcc-countries).
+`,
+  },
+
+  {
+    slug: "qatar-taxes-freelancers-guide",
+    titleAr: "الضرائب في قطر للمستقلين والشركات الصغيرة: ما ينطبق فعلاً (2026)",
+    titleEn: "Taxes in Qatar for Freelancers and Small Businesses: What Actually Applies (2026)",
+    metaTitleAr: "دليل الضرائب في قطر للمستقلين | Xuvilo",
+    metaTitleEn: "Qatar Taxes for Freelancers Explained | Xuvilo",
+    excerptAr: "لا ضريبة دخل ولا قيمة مضافة في قطر — لكن ضريبة الشركات 10% والاستقطاع 5% والتسجيل في «ضريبة» والانتقائية قد تطال عملك فعلاً.",
+    excerptEn: "No personal income tax and no VAT in Qatar — but 10% corporate tax, 5% withholding, Dhareeba registration, and excise rules can still reach your business.",
+    date: "2026-08-03",
+    readTime: 7,
+    category: "taxes",
+    keywordAr: "الضرائب في قطر للمستقلين",
+    keywordEn: "Qatar taxes freelancers",
+    relatedSlugs: ["invoice-generator-qatar", "vat-registration-gcc-countries", "withholding-tax-saudi-arabia"],
+    contentAr: `
+لا تفرض قطر ضريبة دخل شخصية على الرواتب ولا ضريبة قيمة مضافة — ومع ذلك قد يخسر مستقل يفوتر شركات قطرية 5% من دفعته للاستقطاع، وقد تدين شركة صغيرة ذات ملكية أجنبية بنسبة 10% من أرباحها. تدير هذه القواعد الهيئة العامة للضرائب عبر بوابتها الإلكترونية «ضريبة». إليك ما ينطبق فعلاً في 2026.
+
+## العنوان الأبرز: ما لا يدفعه الأفراد
+
+دخل العمل والأجور والبدلات غير خاضعة للضريبة في قطر. لا توجد ضريبة دخل شخصية عامة، ولا ضريبة أرباح رأسمالية على الاستثمارات الشخصية خارج النشاط التجاري، ولا قيمة مضافة على إنفاقك المنزلي. وتقتصر اشتراكات التأمينات الاجتماعية على المواطنين القطريين دون الموظفين الوافدين.
+
+## ضريبة دخل الشركات: قاعدة 10%
+
+تفرض قطر ضريبة موحدة بنسبة 10% على أرباح الأعمال — لكن على الحصة العائدة للملكية الأجنبية فقط.
+
+- الشركة المملوكة بالكامل لمواطنين قطريين أو خليجيين مقيمين لا تخضع عموماً لضريبة الدخل على أرباحها المحلية.
+- الشركة التي تضم شركاء أجانب تدفع 10% على حصة الأجانب من الأرباح.
+- كيانات مركز قطر للمال تخضع لنظامه الضريبي الخاص، بنسبة 10% أيضاً على الأرباح محلية المصدر.
+- أنشطة النفط والغاز تخضع لمعدلات أعلى بموجب اتفاقيات خاصة، عادة 35%.
+
+وحتى الشركات القطرية المعفاة بالكامل يجب أن تسجل لدى الهيئة عبر «ضريبة»، وتحصل على رقم تعريف ضريبي، وتقدم الإقرارات. فتفويت موعد الإقرار يستوجب الغرامة حتى لو لم تكن هناك ضريبة مستحقة — وهو خطأ شائع يمكن تفاديه بسهولة.
+
+## ضريبة الاستقطاع: نسبة 5% التي تفاجئ المستقلين
+
+تطبق قطر استقطاعاً بنسبة 5% على المدفوعات لغير المقيمين الذين لا منشأة دائمة لهم في قطر مقابل الخدمات والإتاوات والفوائد والعمولات والأتعاب الفنية. عملياً: إذا كنت مستقلاً في دبي أو عمّان أو القاهرة وتفوتر شركة قطرية، فتوقع أن يخصم العميل 5% ويورّدها للهيئة ما لم توفر اتفاقية تجنب الازدواج الضريبي إعفاءً. لديك خطا دفاع عمليان:
+
+- ضمّن الاستقطاع في أتعابك، أو أضف بند تحميل إجمالي (gross-up) في عقدك.
+- تحقق مما إذا كانت اتفاقية بلدك مع قطر تخفض النسبة، وجهّز شهادات الإقامة الضريبية مبكراً.
+
+اذكر المعاملة المتفق عليها في الفاتورة نفسها حتى لا تجتهد إدارات الحسابات من عندها. يتيح لك [منشئ فواتير Xuvilo المجاني](/invoice) إضافة ملاحظة استقطاع واضحة بالعربية والإنجليزية.
+
+## الضريبة الانتقائية والرسوم الأخرى
+
+| الاقتطاع | النسبة | ينطبق على |
+|---|---|---|
+| الضريبة الانتقائية | 100% | منتجات التبغ ومشروبات الطاقة والسلع ذات الأغراض الخاصة |
+| الضريبة الانتقائية | 50% | المشروبات الغازية |
+| الرسوم الجمركية | 5% عادة | معظم السلع المستوردة وفق التعرفة الخليجية الموحدة |
+
+إذا كنت تستورد بضاعة فتذكر أن الرسوم والانتقائية تدخل في قاعدة تكلفتك قبل أن تحدد أي سعر — تساعدك [حاسبة تكاليف الاستيراد](/calculators/import-cost) على حساب التكلفة الحقيقية للبضاعة الواصلة.
+
+## ماذا عن القيمة المضافة في قطر؟
+
+وقّعت قطر الاتفاقية الإطارية الخليجية وأعدت مشروع تشريع، لكنها لم تطبق الضريبة حتى مطلع 2026. وقد لمّح المسؤولون مراراً إلى الجاهزية دون الالتزام بتاريخ. الخطوة الحصيفة للعقود الممتدة بعد 2026 هي بند ضريبي ينص على إضافة أي ضريبة تُستحدث إلى السعر المتفق عليه — وتحقق من الوضع الحالي لدى الهيئة العامة للضرائب. وللاطلاع على آلية الضريبة في الدول الخليجية الأربع المطبقة راجع [دليل التسجيل في ضريبة القيمة المضافة الخليجية](/blog/vat-registration-gcc-countries).
+
+## قائمة الامتثال للشركات الصغيرة في قطر
+
+- سجّل في «ضريبة» وحدّث بطاقتك الضريبية باستمرار حتى لو كنت معفى.
+- قدّم إقرار ضريبة الدخل السنوي في موعده — عموماً خلال أربعة أشهر من نهاية السنة المالية.
+- احتفظ بحسابات مدققة أو منظمة جيداً؛ فالكيانات التي تتجاوز الحدود التي تضعها الهيئة ملزمة بقوائم مدققة.
+- احتفظ بالفواتير والسجلات للمدة القانونية، ورقّم فواتيرك تسلسلياً.
+- عند الدفع لموردين غير مقيمين تصبح أنت وكيل الاستقطاع — اخصم 5% وورّدها وإلا انتقل الالتزام إليك. الآلية تشبه النظام السعودي المشروح في [دليل ضريبة الاستقطاع](/blog/withholding-tax-saudi-arabia).
+
+تبقى قطر من أخف البيئات الضريبية في العالم، لكن الخفة ليست صفراً. وعلى المستقلين كذلك امتلاك سند قانوني سليم لنشاطهم — سجل تجاري أو تصريح عمل حر أو ترتيب عبر كيان مرخص — لأن العملاء باتوا يتحققون من ذلك قبل سداد الفواتير. سجّل وقدّم إقراراتك في موعدها واكتب الاستقطاع في عقودك، وستبقى الهيئة تفصيلاً في الخلفية لا مشكلة في تدفقك النقدي.
+`,
+    contentEn: `
+Qatar levies no personal income tax on salaries and no VAT — yet a freelancer invoicing Qatari companies can still lose 5% of a payment to withholding, and a small business with foreign ownership can owe 10% on its profits. The rules are administered by the General Tax Authority (GTA) through its Dhareeba online portal. Here is what actually applies in 2026.
+
+## The headline: what individuals do not pay
+
+Employment income, wages, and allowances are not taxed in Qatar. There is no general personal income tax, no capital gains tax on personal investments outside business activity, and no VAT on your household spending. Social insurance contributions apply to Qatari nationals, not to expatriate employees.
+
+## Corporate income tax: the 10% rule
+
+Qatar taxes business profits at a flat 10% — but only the share attributable to foreign ownership.
+
+- A company wholly owned by Qatari or GCC nationals (resident in Qatar) is generally not subject to income tax on its local profits.
+- A company with foreign partners pays 10% on the foreign share of profits.
+- Entities in the Qatar Financial Centre (QFC) fall under the QFC's own tax regime, also at 10% on local-source profits.
+- Oil and gas operations are taxed at higher rates under specific agreements, typically 35%.
+
+Even fully exempt Qatari-owned companies must register with the GTA on Dhareeba, obtain a tax identification number, and file returns. Missing a filing deadline attracts penalties even when no tax is due — a common and avoidable mistake.
+
+## Withholding tax: the 5% that surprises freelancers
+
+Qatar applies a 5% withholding tax on payments to non-residents without a permanent establishment in Qatar for services, royalties, interest, commissions, and technical fees. In practice: if you are a freelancer based in Dubai, Amman, or Cairo invoicing a Qatari company, expect the client to deduct 5% and remit it to the GTA unless a double tax treaty provides relief. Two practical defenses:
+
+- Price the withholding into your fee, or add a gross-up clause to your contract.
+- Check whether your country's treaty with Qatar reduces the rate, and prepare residency certificates early.
+
+State the agreed treatment on the invoice itself so accounts payable teams do not improvise. The free [Xuvilo invoice generator](/invoice) lets you add a clear withholding note in Arabic and English.
+
+## Excise tax and other levies
+
+| Levy | Rate | Applies to |
+|---|---|---|
+| Excise tax | 100% | Tobacco products, energy drinks, special-purpose goods |
+| Excise tax | 50% | Carbonated drinks |
+| Customs duty | 5% typical | Most imported goods under the GCC common tariff |
+
+If you import stock, remember duty and excise land in your cost base before you ever set a price — the [import cost calculator](/calculators/import-cost) helps you compute the true landed cost.
+
+## What about VAT in Qatar?
+
+Qatar signed the GCC VAT Framework Agreement and has drafted legislation, but had not implemented VAT as of early 2026. Officials have repeatedly signaled readiness without committing to a date. The prudent move for contracts extending beyond 2026 is a tax clause stating that any newly introduced VAT will be added to the agreed price — verify the current status with the General Tax Authority. For how VAT works in the four GCC states that already apply it, see the [GCC VAT registration guide](/blog/vat-registration-gcc-countries).
+
+## Compliance checklist for small businesses in Qatar
+
+- Register on Dhareeba and keep your tax card current, even if exempt.
+- File the annual income tax return by the deadline — generally within four months of the year-end.
+- Keep audited or well-organized accounts; entities above GTA-set thresholds must file audited statements.
+- Retain invoices and records for the statutory period, and number invoices sequentially.
+- When paying non-resident suppliers, remember you become the withholding agent — deduct and remit the 5%, or the liability becomes yours. The mechanics mirror the Saudi system described in our [withholding tax guide](/blog/withholding-tax-saudi-arabia).
+
+Qatar remains one of the lightest tax environments anywhere, but light is not zero. Freelancers should also hold a proper legal basis for their activity — a commercial registration, a freelance permit, or an arrangement through a licensed entity — because clients increasingly verify this before paying invoices. Register, file on time, and write withholding into your contracts, and the GTA will stay a background detail rather than a cash flow problem.
+`,
+  },
+
+  {
+    slug: "uae-free-zone-vs-mainland-invoicing",
+    titleAr: "المنطقة الحرة مقابل البر الرئيسي في الإمارات: ماذا يتغير في فواتيرك؟ (2026)",
+    titleEn: "UAE Free Zone vs Mainland: What Changes on Your Invoices (2026)",
+    metaTitleAr: "الفوترة في المناطق الحرة الإماراتية | Xuvilo",
+    metaTitleEn: "UAE Free Zone vs Mainland Invoicing | Xuvilo",
+    excerptAr: "منطقة حرة أم بر رئيسي في الإمارات؟ القيمة المضافة والمناطق المحددة ودخل 0% المؤهل وقواعد الرقم الضريبي تغيّر شكل الفاتورة الصحيحة.",
+    excerptEn: "Free zone or mainland in the UAE? VAT, designated zones, 0% qualifying income, and TRN rules all change what a correct invoice looks like. Here is the map.",
+    date: "2026-08-04",
+    readTime: 8,
+    category: "laws",
+    keywordAr: "فواتير المناطق الحرة الإمارات",
+    keywordEn: "UAE free zone mainland invoicing",
+    relatedSlugs: ["free-invoice-generator-uae", "uae-corporate-tax-guide-smes", "freelancer-invoice-tips-uae"],
+    contentAr: `
+يُطرح الاختيار بين المنطقة الحرة والبر الرئيسي في الإمارات عادة كسؤال ترخيص. لكن هذا الاختيار يلاحقك إلى كل فاتورة تصدرها: فهو يحدد معاملة القيمة المضافة في بعض المعاملات، وملفك في ضريبة الشركات، وما يتوقع عملاؤك رؤيته في المستند. إليك الفروق العملية بين النظامين — وما يجب أن يظهر في الفاتورة في كل حالة.
+
+## أولاً: ما لا يتغير
+
+تسري ضريبة القيمة المضافة بنسبة 5% في كل الإمارات أياً كان مكان ترخيصك. فشركة المنطقة الحرة التي تتجاوز حد التسجيل الإلزامي 375,000 درهم يجب أن تسجل لدى الهيئة الاتحادية للضرائب تماماً كشركة البر الرئيسي، وتحصل على رقم التسجيل الضريبي (TRN)، وتصدر فواتير ضريبية متوافقة. والحقول المطلوبة واحدة في كل مكان: عبارة فاتورة ضريبية، اسم المورد ورقمه الضريبي، رقم تسلسلي، التاريخ، بيانات العميل، وصف البنود، نسبة الضريبة ومبلغها، والإجماليات بالدرهم. ويُسمح بالفاتورة الضريبية المبسطة للتوريدات دون 10,000 درهم للعملاء غير المسجلين.
+
+## المناطق المحددة: حيث تصبح الضريبة أكثر تعقيداً
+
+مجموعة فرعية من المناطق الحرة — مناطق مسوّرة صدر بها قرار من مجلس الوزراء، مثل المنطقة الحرة لجبل علي ومدينة خليفة الصناعية — تُعد مناطق محددة لها قواعد خاصة للسلع:
+
+- نقل السلع بين المناطق المحددة قد يقع خارج نطاق الضريبة إذا استوفيت الشروط.
+- السلع المورّدة داخل المنطقة المحددة لإدماجها في سلع أخرى قد تكون خارج النطاق.
+- أما الخدمات فتُعامل دائماً تقريباً كأنها مورّدة داخل الدولة وتخضع للنسبة الاعتيادية 5%.
+
+هذه أكثر منطقة يُساء فهمها في ضريبة الإمارات. فشركة برمجيات في منطقة محددة تفرض 5% على خدماتها لعملاء البر الرئيسي، بينما شركة تجارية تنقل بضائع بين منطقتين محددتين قد لا تفرض الضريبة إطلاقاً. وثّق حركة البضائع بدقة وتحقق من الحالات الحدّية لدى الهيئة الاتحادية للضرائب — فالخطأ في أي اتجاه يخلق مخاطرة.
+
+## ضريبة الشركات: سؤال الصفر
+
+منذ يونيو 2023 تسري ضريبة الشركات الإماراتية بنسبة 9% على الدخل الخاضع الذي يتجاوز 375,000 درهم. وتستطيع كيانات المناطق الحرة الوصول إلى نسبة 0% على الدخل المؤهل بصفتها شخصاً مؤهلاً في المنطقة الحرة (QFZP) إذا حافظت على وجود فعلي كافٍ في المنطقة، وحققت دخلاً مؤهلاً (عموماً: المعاملات مع أشخاص المناطق الحرة الآخرين وأنشطة محددة)، وبقيت ضمن حد الدنيا للإيراد غير المؤهل (الأقل من 5 ملايين درهم أو 5% من إجمالي الإيراد)، والتزمت بقواعد التسعير التحويلي، وقدمت قوائم مالية مدققة.
+
+بِع كثيراً في البر الرئيسي وقد تفقد صفة QFZP للفترة كلها — فالصفر امتياز ذو حافة حادة. أما شركات البر الرئيسي فتدفع ببساطة 0% حتى 375,000 درهم من الأرباح و9% فوقها. التفاصيل في [دليل ضريبة الشركات الإماراتية](/blog/uae-corporate-tax-guide-smes).
+
+## فروق الفوترة في لمحة
+
+| البند | شركة البر الرئيسي | شركة المنطقة الحرة |
+|---|---|---|
+| التسجيل في القيمة المضافة | إلزامي فوق 375,000 درهم | إلزامي فوق 375,000 درهم |
+| الضريبة على الخدمات | 5% أساسية | 5% أساسية |
+| الضريبة على السلع | 5% أساسية | قد تكون خارج النطاق بين المناطق المحددة |
+| ضريبة الشركات | 9% فوق 375,000 درهم أرباح | 0% على الدخل المؤهل لمن يحمل صفة QFZP وإلا 9% |
+| الاسم القانوني في الفاتورة | وفق رخصة دائرة التنمية الاقتصادية | وفق رخصة المنطقة الحرة مع ذكر اسم المنطقة |
+
+## قواعد فوترة عملية لا تحد عنها
+
+- **فوتر باسم الكيان المرخص.** يجب أن يطابق الاسم ورقم الرخصة والعنوان في الفاتورة رخصتك التجارية — فالتعارض يؤخر الدفع وقد يبطل استرداد ضريبة المدخلات لدى عميلك.
+- **أظهر رقمك الضريبي بوضوح** بمجرد التسجيل؛ فعملاء الشركات في البر الرئيسي سيرفضون فاتورة ضريبية بدونه.
+- **تتبّع إيراد البر الرئيسي على حدة** إذا كنت QFZP — فحساب حد الدنيا يعتمد عليه، وتصنيفات الفوترة النظيفة تجعل اختبار نهاية السنة يسيراً.
+- **بيّن مكان التوريد** للسلع المتحركة عبر المناطق المحددة، مع مستندات تسليم داعمة. راجع [دليل مذكرة التسليم](/blog/delivery-note-guide) لهذه الأوراق.
+
+يمكنك إنشاء فواتير إماراتية متوافقة ثنائية اللغة برقم TRN وضريبة على مستوى البنود وإجماليات بالدرهم عبر [منشئ فواتير Xuvilo المجاني](/invoice)، والتحقق من أي مبلغ شامل للضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax).
+
+## أي خيار يفوز؟
+
+إذا كان عملاؤك أساساً شركات ومستهلكين في البر الرئيسي، فالترخيص المحلي يبقي حياتك بسيطة: ملف ضريبي واحد ولا اختبارات QFZP. أما إذا كان عملك دولياً بحق — تصدير خدمات، تجارة بضائع عبر الموانئ، خدمة كيانات مناطق حرة أخرى — فمسار المنطقة الحرة قد يحفظ لك نسبة 0% لا تنالها شركات البر الرئيسي. وفي الحالتين، الفاتورة هي المكان الذي يصبح فيه اختيارك مرئياً للهيئة. اضبط قالبك مرة واحدة بشكل صحيح، وسيرث كل مستند لاحق هذا الامتثال.
+`,
+    contentEn: `
+Choosing between a UAE free zone and the mainland is usually framed as a licensing question. But the choice follows you onto every invoice you issue: it determines your VAT treatment on some transactions, your corporate tax profile, and what your customers expect to see on the document. Here is how the two regimes differ in practice — and what to put on the invoice in each case.
+
+## First, the things that do not change
+
+VAT applies across the UAE at 5% regardless of where you are licensed. A free zone company above the AED 375,000 mandatory registration threshold must register with the Federal Tax Authority (FTA) exactly like a mainland company, obtain a Tax Registration Number (TRN), and issue compliant tax invoices. The same invoice fields are required everywhere: the words tax invoice, supplier name and TRN, sequential number, date, customer details, line descriptions, VAT rate and amount, and totals in dirhams. A simplified tax invoice is permitted for supplies below AED 10,000 to unregistered customers.
+
+## Designated zones: where VAT gets interesting
+
+A subset of free zones — fenced areas listed by Cabinet decision, such as Jebel Ali Free Zone and Khalifa Industrial Zone — are designated zones with special VAT rules for goods:
+
+- Transfers of goods between designated zones can be outside the scope of VAT if conditions are met.
+- Goods supplied within a designated zone for incorporation into other goods may be out of scope.
+- Services, however, are almost always treated as supplied inside the UAE and taxed normally at 5%.
+
+This is the single most misunderstood area of UAE VAT. A software company in a designated zone still charges 5% on services to mainland clients; a trading company moving goods between two designated zones may not charge VAT at all. Document the movement carefully and verify borderline cases with the FTA — getting it wrong in either direction creates exposure.
+
+## Corporate tax: the 0% question
+
+Since June 2023, UAE corporate tax applies at 9% on taxable income above AED 375,000. Free zone entities can access a 0% rate on qualifying income as a Qualifying Free Zone Person (QFZP), if they maintain adequate substance in the zone, earn qualifying income (broadly, transactions with other free zone persons and certain listed activities), stay within the de minimis limit for non-qualifying revenue (the lower of AED 5 million or 5% of total revenue), comply with transfer pricing rules, and file audited financial statements.
+
+Sell too much into the mainland and you can lose QFZP status for the whole period — the 0% is a privilege with a cliff edge. Mainland companies simply pay 0% up to AED 375,000 of profit and 9% above it. The details are covered in our [UAE corporate tax guide](/blog/uae-corporate-tax-guide-smes).
+
+## Invoicing differences at a glance
+
+| Item | Mainland company | Free zone company |
+|---|---|---|
+| VAT registration | Required above AED 375,000 | Required above AED 375,000 |
+| VAT on services | 5% standard | 5% standard |
+| VAT on goods | 5% standard | May be out of scope between designated zones |
+| Corporate tax | 9% above AED 375,000 profit | 0% on qualifying income if QFZP, else 9% |
+| Legal name on invoice | As per DED license | As per free zone license, including zone name |
+
+## Practical invoicing rules to live by
+
+- **Bill from the licensed entity.** The name, license number, and address on the invoice must match your trade license — mismatches delay payment and can invalidate input VAT for your customer.
+- **Show your TRN prominently** once registered; mainland corporate clients will refuse tax invoices without it.
+- **Track mainland revenue separately** if you are a QFZP — your de minimis calculation depends on it, and clean invoicing categories make the year-end test painless.
+- **State the place of supply** for goods moving through designated zones, with supporting delivery documents. Our [delivery note guide](/blog/delivery-note-guide) covers the paperwork.
+
+You can generate compliant, bilingual UAE invoices with TRN, line-level VAT, and dirham totals using the free [Xuvilo invoice generator](/invoice), and check any VAT-inclusive figure with the [VAT calculator](/calculators/vat-tax).
+
+## Which setup wins?
+
+If your customers are mainly UAE mainland businesses and consumers, mainland licensing keeps life simple: one tax profile, no QFZP tests. If your business is genuinely international — exporting services, trading goods through ports, serving other free zone entities — the free zone route can preserve a 0% corporate tax rate that mainland companies cannot access. Either way, the invoice is where your choice becomes visible to the FTA. Set your template up correctly once, and every document that follows inherits the compliance.
+`,
+  },
+
+  {
+    slug: "saudi-fatoora-phase-2-waves",
+    titleAr: "المرحلة الثانية من فاتورة السعودية: شرح موجات الربط (2026)",
+    titleEn: "Saudi FATOORA Phase 2: Integration Waves Explained (2026)",
+    metaTitleAr: "موجات المرحلة الثانية من فاتورة | Xuvilo",
+    metaTitleEn: "ZATCA FATOORA Phase 2 Waves Explained | Xuvilo",
+    excerptAr: "تطبّق هيئة الزكاة والضريبة والجمارك المرحلة الثانية من فاتورة على موجات حسب الإيراد. اعرف موجتك ومتطلبات الربط وكيف تستعد قبل موعدك.",
+    excerptEn: "ZATCA is rolling out FATOORA Phase 2 in revenue-based waves. Which wave you fall in, what integration requires, and how to prepare before your date arrives.",
+    date: "2026-08-05",
+    readTime: 8,
+    category: "laws",
+    keywordAr: "المرحلة الثانية فاتورة السعودية",
+    keywordEn: "FATOORA phase 2 waves",
+    relatedSlugs: ["zatca-invoice-requirements-saudi-arabia", "vat-calculator-saudi-arabia", "withholding-tax-saudi-arabia"],
+    contentAr: `
+تدير المملكة العربية السعودية أكثر أنظمة الفوترة الإلكترونية تقدماً في العالم العربي. قسّمت هيئة الزكاة والضريبة والجمارك برنامج «فاتورة» إلى مرحلتين: المرحلة الأولى (الإصدار)، السارية منذ 4 ديسمبر 2021، أنهت عصر الفواتير اليدوية وملفات Word لكل المنشآت المسجلة في ضريبة القيمة المضافة. أما المرحلة الثانية (الربط والتكامل) فتوصل أنظمة فوترة المكلفين مباشرة بمنصة الهيئة — وتُطبَّق على موجات وفق الإيراد السنوي الخاضع للضريبة. ومعرفة موجتك أصبحت اليوم سؤال امتثال جوهرياً.
+
+## المرحلة الأولى مقابل الثانية في دقيقة
+
+- **المرحلة الأولى (الإصدار):** يجب إنشاء الفواتير إلكترونياً بالحقول الإلزامية مع رمز QR على الفواتير المبسطة، دون اتصال بالهيئة.
+- **المرحلة الثانية (الربط):** يجب أن يتكامل نظامك مع منصة فاتورة عبر واجهات API. تمر الفواتير الضريبية القياسية (بين المنشآت) بعملية الاعتماد — إذ تختمها الهيئة تشفيرياً في الوقت الفعلي قبل تسليمها للعميل. أما الفواتير المبسطة (للمستهلكين) فتُرفع للهيئة خلال 24 ساعة من إصدارها.
+
+كما تشدد المرحلة الثانية الصيغة التقنية: يجب إنتاج الفواتير بصيغة XML أو PDF/A-3 مع XML مضمّن، مع معرّف UUID وختم تشفيري وتسلسل هاش مرتبط بالفاتورة السابقة وعدّاد مضاد للتلاعب.
+
+## نظام الموجات
+
+تُخطر الهيئة كل موجة قبل موعد الربط بستة أشهر على الأقل. وقد نزلت الموجات حتى الآن سلّم الإيراد بثبات:
+
+| الموجة | حد الإيراد السنوي الخاضع للضريبة | بداية الربط |
+|---|---|---|
+| 1 | فوق 3 مليارات ريال | يناير 2023 |
+| 2 | فوق 500 مليون ريال | يوليو 2023 |
+| 3 | فوق 250 مليون ريال | أكتوبر 2023 |
+| 4 | فوق 150 مليون ريال | نوفمبر 2023 |
+| 5 | فوق 100 مليون ريال | ديسمبر 2023 |
+| 6–8 | 70 / 50 / 40 مليون ريال | يناير–مارس 2024 |
+| 9–12 | من 30 مليوناً نزولاً إلى 10 ملايين | يونيو–ديسمبر 2024 |
+| 13 فما بعدها | 7 ملايين ريال فأقل تنازلياً | من يناير 2025 |
+
+وواصلت الموجات اللاحقة دفع الحد نزولاً نحو المنشآت الصغيرة بإعلانات شبه شهرية. ويعتمد اختبار الإيراد عادة على سنة 2021 أو 2022 أو سنة لاحقة — أيّها تحدده الهيئة في إعلان الموجة. لا تعتمد على هذا الجدول لتحديد موعدك: راجع أحدث إعلانات الموجات على zatca.gov.sa، واعتبر سنة الإيراد التي تسميها الهيئة هي الفيصل.
+
+## ماذا يتطلب الربط فعلياً؟
+
+- **حل متوافق:** يجب أن يستطيع برنامج فوترتك توليد فواتير XML وتطبيق الختم التشفيري واستدعاء واجهات الاعتماد والرفع لدى الهيئة.
+- **التهيئة:** تحصل على معرّف ختم تشفيري لكل جهاز أو وحدة حل عبر بوابة فاتورة.
+- **مسار الاعتماد للفواتير القياسية:** لا تصبح الفاتورة القياسية صحيحة إلا بعد اعتماد الهيئة لها — فأدمج هذه الجولة في دورة فوترتك حتى لا ينتظر عملاؤك.
+- **مسار الرفع للفواتير المبسطة:** يجب أن تصل الفواتير المبسطة للهيئة خلال 24 ساعة، ما يعني عملياً مهمة آلية ليلية على الأقل.
+
+## كيف تستعد المنشآت الصغيرة؟
+
+- **اعرف رقمك.** إيرادك الخاضع للضريبة في السنوات المرجعية يحدد موجتك. استخرجه من إقراراتك المقدمة لا من الذاكرة.
+- **اختر البرنامج قبل وصول الإخطار.** ستة أشهر تبدو سخية؛ لكن ترحيل الأنظمة يستغرق أطول عادة. إذا كانت أداتك الحالية لا تنتج XML متوافقاً فابدأ التحول الآن.
+- **نظّف بياناتك الأساسية.** يرفض الاعتماد الفواتير ذات الأرقام الضريبية المشوهة أو بيانات المشتري الناقصة في فواتير الأعمال أو الترقيم التسلسلي المكسور. يسرد [دليل متطلبات فاتورة ZATCA](/blog/zatca-invoice-requirements-saudi-arabia) كل الحقول الإلزامية.
+- **اختبر الحساب.** يجب أن تتطابق ضريبة البنود بنسبة 15% مع إجماليات الفاتورة حتى الهللة — فأخطاء التقريب سبب رئيسي للرفض. تساعدك [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) على التحقق سريعاً.
+- **واصل إصدار مستندات صحيحة في الأثناء.** حتى موعد موجتك تبقى قواعد المرحلة الأولى سارية بالكامل، بما فيها رموز QR على الفواتير المبسطة. ويمكنك إنتاج فواتير ثنائية اللغة مفصلة عبر [منشئ فواتير Xuvilo](/invoice).
+
+## الغرامات والواقع العملي
+
+فضّلت الهيئة تاريخياً التوعية أولاً — خطابات تنبيه وفترات سماح قبل الغرامات — لكن عدم الربط بعد موعد موجتك، أو غياب الختم، أو عدم رفع الفواتير المبسطة، كلها قد تستوجب غرامات تتصاعد مع التكرار. كما تطلق الهيئة مبادرات إعفاء من الغرامات دورياً؛ تحقق من الموقف التنفيذي الحالي لدى الهيئة.
+
+اتجاه المسار لا لبس فيه: كل منشأة مسجلة في الضريبة بالمملكة ستصل إلى الربط في النهاية. المنشآت التي تتعامل مع موعد موجتها كموعد تسليم مشروع — برنامج مختار وبيانات نظيفة وواجهات مختبرة — تعبر بسلاسة. أما التي تنتظر خطاب الإخطار لتبدأ البحث فلا.
+`,
+    contentEn: `
+Saudi Arabia runs the most advanced e-invoicing regime in the Arab world. The Zakat, Tax and Customs Authority (ZATCA) split the FATOORA program into two phases: Phase 1 (generation), in force since 4 December 2021, ended handwritten and plain-Word invoices for all VAT-registered businesses. Phase 2 (integration) connects taxpayers' invoicing systems directly to ZATCA's platform — and it is being rolled out in waves based on annual VAT-liable revenue. Understanding which wave you fall into is now a core compliance question.
+
+## Phase 1 vs Phase 2 in one minute
+
+- **Phase 1 (generation):** invoices must be created electronically with mandatory fields and a QR code on simplified invoices. No connection to ZATCA required.
+- **Phase 2 (integration):** your system must integrate with the FATOORA platform via API. Standard (B2B) tax invoices go through clearance — ZATCA cryptographically stamps them in real time before you deliver them to the customer. Simplified (B2C) invoices are reported to ZATCA within 24 hours of issuance.
+
+Phase 2 also tightens the technical format: invoices must be produced in XML or PDF/A-3 with embedded XML, carry a UUID, a cryptographic stamp, a hash chained to the previous invoice, and an anti-tampering counter.
+
+## The wave system
+
+ZATCA notifies each wave at least six months before its integration date. Waves so far have descended steadily down the revenue ladder:
+
+| Wave | Revenue threshold (annual, VAT-liable) | Integration began |
+|---|---|---|
+| 1 | Above SAR 3 billion | January 2023 |
+| 2 | Above SAR 500 million | July 2023 |
+| 3 | Above SAR 250 million | October 2023 |
+| 4 | Above SAR 150 million | November 2023 |
+| 5 | Above SAR 100 million | December 2023 |
+| 6–8 | SAR 70M / 50M / 40M | January–March 2024 |
+| 9–12 | SAR 30M down to 10M | June–December 2024 |
+| 13 onwards | SAR 7 million and below, descending | From January 2025 |
+
+Later waves have continued pushing the threshold down toward small businesses, with announcements arriving on a near-monthly rhythm. The revenue test typically looks at 2021, 2022, or a later year — whichever ZATCA specifies in the wave announcement. Do not rely on this table for your own deadline: check the latest wave announcements on zatca.gov.sa, and treat any revenue year ZATCA names as decisive.
+
+## What integration actually requires
+
+- **A compliant solution:** your invoicing software must be able to generate XML invoices, apply the cryptographic stamp, and call ZATCA's clearance and reporting APIs.
+- **Onboarding:** you obtain a cryptographic stamp identifier for each device or solution unit through the FATOORA portal.
+- **Clearance workflow for B2B:** a standard tax invoice is only valid once ZATCA clears it — build the round-trip into your billing process so customers are not kept waiting.
+- **Reporting workflow for B2C:** simplified invoices must reach ZATCA within 24 hours, which in practice means an automated nightly job at minimum.
+
+## How small businesses should prepare
+
+- **Know your number.** Your VAT-liable revenue for the reference years determines your wave. Pull it from your filed VAT returns, not from memory.
+- **Choose software before the letter arrives.** Six months sounds generous; ERP migrations routinely take longer. If your current tool cannot produce compliant XML, start switching now.
+- **Clean your master data.** Clearance rejects invoices with malformed VAT numbers, missing buyer IDs on B2B invoices, or broken sequential numbering. Our [ZATCA invoice requirements guide](/blog/zatca-invoice-requirements-saudi-arabia) lists every mandatory field.
+- **Test the arithmetic.** Line-level VAT at 15% must reconcile to invoice totals to the halala — rounding errors are a leading cause of rejection. The free [VAT calculator](/calculators/vat-tax) helps you verify amounts quickly.
+- **Keep issuing correct documents meanwhile.** Until your wave date, Phase 1 rules still apply in full, including QR codes on simplified invoices. You can produce clean, itemized bilingual invoices with the [Xuvilo invoice generator](/invoice).
+
+## Penalties and the pragmatic reality
+
+ZATCA has historically favored education first — warning letters and grace periods before fines — but non-integration after your wave deadline, missing stamps, or failure to report simplified invoices can all attract penalties that escalate with repetition. The authority also runs periodic penalty-waiver initiatives; verify the current enforcement posture with ZATCA.
+
+The direction of travel is unmistakable: every VAT-registered business in the Kingdom will eventually integrate. The businesses that treat their wave date as a project deadline — software chosen, data cleaned, APIs tested — sail through. The ones that wait for the notification letter to start shopping do not.
+`,
+  },
+
+  {
+    slug: "egypt-e-receipt-system-retailers",
+    titleAr: "منظومة الإيصال الإلكتروني في مصر: ما المطلوب من تجار التجزئة الآن؟ (2026)",
+    titleEn: "Egypt's E-Receipt System: What Retailers Must Do Now (2026)",
+    metaTitleAr: "منظومة الإيصال الإلكتروني في مصر | Xuvilo",
+    metaTitleEn: "Egypt E-Receipt System for Retailers | Xuvilo",
+    excerptAr: "تُلزم مصلحة الضرائب المصرية مبيعات التجزئة بالمرور عبر منظومة الإيصال الإلكتروني. من المشمول وكيف يتم ربط نقاط البيع وكيف تبقى ملتزماً في 2026.",
+    excerptEn: "Egypt's Tax Authority requires B2C sales to flow through the e-receipt system. Who is covered, how POS integration works, and how to stay compliant in 2026.",
+    date: "2026-08-06",
+    readTime: 7,
+    category: "laws",
+    keywordAr: "الإيصال الإلكتروني مصر",
+    keywordEn: "Egypt e-receipt system",
+    relatedSlugs: ["invoice-generator-egypt", "egypt-corporate-tax-2026", "receipt-vs-invoice-difference"],
+    contentAr: `
+أمضت مصر السنوات الأخيرة في بناء واحد من أكثر برامج الرقمنة الضريبية طموحاً في المنطقة. جاءت أولاً منظومة الفاتورة الإلكترونية التي جعلت الفواتير الإلكترونية إلزامية لمعاملات الأعمال على مراحل منذ 2020 وشرطاً لخصم التكاليف واسترداد ضريبة القيمة المضافة. أما الركيزة الثانية فهي منظومة الإيصال الإلكتروني: إذ تُلزم مصلحة الضرائب المصرية الآن تجار التجزئة ومقدمي الخدمات للمستهلكين بإصدار إيصالاتهم عبر نقاط بيع متصلة تُبلّغ المصلحة شبه لحظياً. إذا كنت تدير متجراً أو مطعماً أو صيدلية أو عيادة أو أي نشاط يبيع للمستهلك في مصر، فهذه المنظومة موجهة إليك تحديداً.
+
+## الفاتورة الإلكترونية مقابل الإيصال الإلكتروني: منظومتان ومنصة واحدة
+
+- **الفاتورة الإلكترونية:** تغطي معاملات الأعمال فيما بينها. فواتير إلكترونية منظمة برقم تسجيل المشتري الضريبي، موقعة رقمياً، تُرسل إلى منصة المصلحة.
+- **الإيصال الإلكتروني:** يغطي البيع للمستهلك النهائي. إيصالات تصدر عند نقطة البيع بمعرّف فريد (UUID) ورمز QR وتُبث إلى المصلحة من جهاز نقطة البيع أو برنامج الكاشير.
+
+وكلاهما يخدم الهدف نفسه: مطابقة المصلحة للضريبة المصرّح بها (النسبة الأساسية في مصر 14%) مع بيانات المعاملات التفصيلية. راجع شرحنا حول [الفرق بين الإيصال والفاتورة](/blog/receipt-vs-invoice-difference) لتعرف أي مستند يخص أي معاملة.
+
+## من الملزم؟ ومتى؟
+
+بدأ التطبيق بمرحلة تجريبية في أبريل 2022 ثم توسع عبر قرارات وزارية مرقمة، يُلزم كل منها دفعة جديدة من الممولين حسب القطاع والحجم — بدءاً من سلاسل التجزئة الكبرى ونزولاً تدريجياً إلى المتوسطين والصغار في المحافظات. تنشر المصلحة الإعلانات، ويمنح كل قرار الشركات المشمولة مهلة للربط. ولأن الدفعات تتوالى، فالافتراض الآمن الوحيد في 2026 هو: إذا كنت تبيع للمستهلكين في مصر فأنت إما ملزم بالفعل أو دفعتك قادمة. تحقق من وضعك في أحدث قرارات المصلحة بدلاً من افتراض أنك أصغر من المنظومة.
+
+## ماذا تتطلب المنظومة من التاجر؟
+
+- **التسجيل في بوابة الإيصال الإلكتروني** برقم التسجيل الضريبي وبيانات النشاط.
+- **نقطة بيع متوافقة.** يجب أن يستطيع جهاز الكاشير أو برنامج المبيعات توليد الإيصالات بالصيغة المطلوبة وتوقيعها وبثها للمصلحة. وتنشر المصلحة قائمة الموردين المعتمدين ومواصفات الربط.
+- **محتوى الإيصال:** اسم البائع ورقم تسجيله الضريبي، الرقم التسلسلي والمعرّف الفريد، التاريخ والوقت، تفصيل السلع أو الخدمات بالكميات والأسعار، مبلغ الضريبة بالنسبة السارية، الإجمالي، ورمز QR يمكن للعميل أو المفتش مسحه للتحقق من الإيصال في سجلات المصلحة.
+- **مرونة العمل دون اتصال:** الإيصالات الصادرة أثناء انقطاع الاتصال يجب تخزينها وبثها فور عودته ضمن المهلة المسموحة.
+
+## لماذا صار الامتثال حتمياً؟
+
+ربطت المصلحة المنظومات الرقمية بالحياة الضريبية اليومية: فالتكاليف المدعومة بمستندات ورقية فقط مهددة بالرفض، ومردودات الضريبة تُطابَق مع بيانات المنصة، والمستهلكون يُشجَّعون — حتى عبر سحوبات جوائز على الإيصالات الممسوحة — على طلب الإيصال الإلكتروني. وتوجد عقوبات على عدم الربط وعدم إصدار الإيصالات بموجب قانون الإجراءات الضريبية الموحد تتصاعد مع التكرار؛ تحقق من المبالغ الحالية لدى المصلحة.
+
+## خطة تطبيق عملية
+
+- **افحص مسار مبيعاتك أولاً.** احصر نقاط بيعك وذروة حجم معاملاتك وما إذا كان مورد نقاط البيع لديك معتمداً من المصلحة.
+- **اربط الفرع الأكثر ازدحاماً أولاً،** ثم ثبّت التشغيل وكرر — فالتطبيق المتوازي يضاعف مشكلات البداية.
+- **درّب الكاشير على الاستثناءات:** المرتجعات والخصومات والإيصالات الملغاة لكل منها مسار محدد في المنظومة؛ والحلول المرتجلة تخلق فروقات ستراها المصلحة.
+- **طابق يومياً.** قارن إجماليات نقاط البيع بما تؤكد المنصة استلامه؛ فالفجوات أسهل علاجاً خلال 24 ساعة.
+- **انتبه لهوامشك.** للامتثال كلفة — أجهزة واشتراكات وتدريب. أدخلها في تسعيرك عبر [حاسبة هامش الربح](/calculators/profit-margin) بدل امتصاصها بصمت.
+
+وفي مبيعات الأعمال تذكّر أن منظومة الفاتورة الإلكترونية هي المطبقة برقم تسجيل المشتري إلزامياً — ويمكنك تجهيز مستندات ثنائية اللغة نظيفة عبر [منشئ فواتير Xuvilo المجاني](/invoice). وللصورة الضريبية الأشمل بما فيها تطورات ضريبة الشركات راجع [دليل ضريبة الشركات في مصر](/blog/egypt-corporate-tax-2026).
+
+رسالة مصر لتجار التجزئة ثابتة: الاقتصاد النقدي يُوصَل بالشبكة الضريبية إيصالاً بعد إيصال. المبادرون مبكراً يحصلون على أنظمة مستقرة وتدقيق هادئ؛ والمتأخرون على مهل ضاغطة وغرامات وربط متعجل. كن في المجموعة الأولى.
+`,
+    contentEn: `
+Egypt has spent the past few years building one of the region's most ambitious tax digitization programs. First came the e-invoice system, which made electronic invoices mandatory for B2B transactions in stages from 2020 and a condition for deducting costs and reclaiming VAT. The second pillar is the e-receipt system: the Egyptian Tax Authority (ETA) now requires retailers and service providers selling to consumers to issue receipts through connected point-of-sale systems that report to the ETA in near real time. If you run a shop, restaurant, pharmacy, clinic, or any B2C business in Egypt, this system is aimed squarely at you.
+
+## E-invoice vs e-receipt: two systems, one platform
+
+- **E-invoice:** covers B2B transactions. Structured electronic invoices with the buyer's tax ID, digitally signed, submitted to the ETA platform.
+- **E-receipt:** covers B2C transactions. Receipts generated at the point of sale, carrying a unique identifier (UUID) and QR code, transmitted to the ETA from the POS device or cash register software.
+
+Both feed the same goal: the ETA cross-matches declared VAT (the standard rate in Egypt is 14%) against transaction-level data. Our explainer on the [difference between receipts and invoices](/blog/receipt-vs-invoice-difference) covers which document belongs to which transaction.
+
+## Who must comply, and when
+
+The rollout began with a pilot in April 2022 and has expanded through numbered ministerial decisions, each obligating a new batch of taxpayers by sector and size — starting with large retail chains and moving progressively down to medium and smaller merchants across the governorates. Announcements are published by the ETA, and each decision gives the covered companies a deadline to integrate. Because batches keep being added, the only safe assumption in 2026 is this: if you sell to consumers in Egypt, either you are already obligated or your batch is coming. Verify your status against the latest ETA decisions rather than assuming you are too small.
+
+## What the system requires from a retailer
+
+- **Registration on the ETA e-receipt portal** with your tax registration number and activity data.
+- **Compatible POS.** Your cash register, POS device, or sales software must be able to generate receipts in the required format, sign them, and transmit them to the ETA. Approved POS vendors and integration specifications are listed by the authority.
+- **Receipt content:** seller name and tax registration number, receipt serial number and UUID, date and time, itemized goods or services with quantities and prices, VAT amount at the applicable rate, total, and a QR code the customer (or an inspector) can scan to verify the receipt against ETA records.
+- **Offline resilience:** receipts issued during connectivity outages must be stored and transmitted once the connection returns, within the allowed window.
+
+## Why compliance is becoming unavoidable
+
+The ETA has linked the digital systems to everyday tax life: costs supported only by paper documents face rejection, VAT refunds are matched against platform data, and consumers are encouraged — including through prize draws on scanned receipts — to demand e-receipts. Penalties for non-integration and for failing to issue receipts exist under the Unified Tax Procedures Law and escalate for repeat offenses; verify current amounts with the ETA.
+
+## A practical adoption plan
+
+- **Audit your sales flow first.** Count your sales points, peak transaction volumes, and whether your current POS vendor is ETA-approved.
+- **Integrate the busiest branch first,** stabilize, then replicate — parallel rollouts multiply teething problems.
+- **Train cashiers on exceptions:** returns, discounts, and voided receipts all have defined flows in the system; improvised workarounds create mismatches the ETA will see.
+- **Reconcile daily.** Compare POS totals against what the platform confirms received; gaps are much easier to fix within 24 hours.
+- **Mind your margins.** Compliance has a cost — devices, subscriptions, training. Build it into pricing with the [profit margin calculator](/calculators/profit-margin) rather than absorbing it silently.
+
+For B2B sales, remember the e-invoice system applies instead, with the buyer's tax ID mandatory — you can prepare clean bilingual documents with the free [Xuvilo invoice generator](/invoice). And for the broader tax picture, including corporate income tax changes, see our [Egypt corporate tax guide](/blog/egypt-corporate-tax-2026).
+
+Egypt's message to retailers is consistent: the cash economy is being wired into the tax net, one receipt at a time. Early movers get working systems and calm audits; late movers get deadlines, penalties, and rushed integrations. Choose the first group.
+`,
+  },
+
+  {
+    slug: "morocco-tva-rates-guide",
+    titleAr: "معدلات الضريبة على القيمة المضافة في المغرب: دليل 2026 للشركات الصغيرة",
+    titleEn: "Morocco VAT (TVA) Rates: The 2026 Guide for Small Businesses",
+    metaTitleAr: "معدلات الضريبة على القيمة المضافة بالمغرب | Xuvilo",
+    metaTitleEn: "Morocco VAT (TVA) Rates Guide 2026 | Xuvilo",
+    excerptAr: "يوحّد المغرب معدلات الضريبة على القيمة المضافة نحو 10% و20% بحلول 2026. المعدلات الحالية والتسجيل لدى المديرية العامة للضرائب وقواعد الفوترة.",
+    excerptEn: "Morocco is converging its VAT bands toward 10% and 20% by 2026. Current TVA rates, who must register with the DGI, invoicing rules, and filing deadlines.",
+    date: "2026-08-07",
+    readTime: 7,
+    category: "taxes",
+    keywordAr: "الضريبة على القيمة المضافة المغرب",
+    keywordEn: "Morocco TVA VAT rates",
+    relatedSlugs: ["invoice-generator-morocco", "how-to-calculate-vat-mixed-rate", "vat-registration-gcc-countries"],
+    contentAr: `
+تُدار الضريبة على القيمة المضافة في المغرب من قبل المديرية العامة للضرائب، وقد كانت تاريخياً من أكثر الأنظمة تجزؤاً في المنطقة بأربعة معدلات إلى جانب الإعفاءات. لكن ذلك يتغير: فقد أطلق قانون المالية لسنة 2024 خطة توحيد على ثلاث سنوات لدمج المعدلات في معدلين رئيسيين، 10% و20%، بحلول 2026. إذا كنت تبيع في المغرب فربما تغيّر المعدل على فاتورتك في كل يناير من السنوات الأخيرة — إليك الوضع الحالي وكيفية الفوترة الصحيحة.
+
+## هيكل المعدلات ووجهته
+
+| المعدل | وضعه في الإصلاح | أمثلة شائعة |
+|---|---|---|
+| 20% | المعدل الأساسي دون تغيير | معظم السلع والخدمات، الخدمات المهنية، الإلكترونيات |
+| 14% | في طريقه للإلغاء — تنتقل بنوده إلى 10% أو 20% بخطوات سنوية | تاريخياً: الكهرباء وبعض النقل والزبدة |
+| 10% | المعدل المخفض المستهدف | الفنادق والمطاعم، العمليات البنكية، الماء، بعض الأغذية |
+| 7% | في طريقه للإلغاء — تنتقل بنوده إلى 10% | تاريخياً: الماء والسكر المكرر والأدوية واللوازم المدرسية |
+
+وفق جدول التوحيد، ترتفع بنود معدل 7% تدريجياً نحو 10%، وتنتقل بنود 14% إلى 10% أو 20% حسب المنتج، مع تعديلات تسري في فاتح يناير من كل سنة حتى 2026. ونُقلت بعض الأساسيات إلى الإعفاء الكامل بدلاً من ذلك — فالمنتجات الصيدلانية مثلاً أُعفيت مع الحق في الخصم. ولأن البنود تحركت في كل سنة من الإصلاح، لا تسعّر من الذاكرة: تحقق من المعدل الحالي لمنتجك أو خدمتك في جداول قانون المالية الأخير أو لدى المديرية العامة للضرائب قبل طباعة أي لائحة أسعار.
+
+## من يجب عليه التسجيل وفرض الضريبة؟
+
+تسري الضريبة على الأنشطة الصناعية والتجارية والحرفية والخدمات المهنية والواردات. وينشأ التسجيل لدى مصالح المديرية بمجرد مزاولة نشاط خاضع — فلا يوجد حد تسجيل مرتفع يحمي صغار التجار كما في الأنظمة الخليجية، وإن وُجدت أنظمة خاصة لصغار الملزمين (مثل نظام المقاول الذاتي الذي يُفرض على رقم المعاملات مع إعفاء من الضريبة على القيمة المضافة). ويستفيد المصدّرون من نسبة الصفر مع حق استرداد ضريبة المدخلات. وإن كنت تتابع أسواق الخليج أيضاً فلاحظ الفرق مع الأنظمة القائمة على الحدود في [دليل التسجيل الخليجي](/blog/vat-registration-gcc-countries).
+
+## متطلبات الفوترة في المغرب
+
+يجب أن تُظهر الفاتورة المغربية المتوافقة: اسم شركتك ومعرفاتك الضريبية — وأبرزها المعرف الموحد للمقاولة (ICE) والمعرف الجبائي ورقم السجل التجاري؛ ورقماً تسلسلياً وتاريخاً؛ واسم العميل ومعرفه الموحد في مبيعات الأعمال؛ ووصفاً واضحاً للسلع أو الخدمات؛ والمبالغ دون احتساب الضريبة، ومعدل الضريبة ومبلغها لكل شريحة، والإجمالي شاملاً الضريبة بالدرهم. وغياب المعرف الموحد سبب كلاسيكي لرفض عملاء الأعمال للفواتير، لأن خصمهم الضريبي يتوقف عليه.
+
+إذا كان مزيج مبيعاتك يجمع بنوداً بمعدل 10% وأخرى بمعدل 20%، فطبّق كل معدل على بنوده وأظهر مجموعاً فرعياً لكل شريحة — يشرح [دليل الضريبة متعددة النسب](/blog/how-to-calculate-vat-mixed-rate) طريقة الحساب، وتتكفل [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية بأي معدل فوراً. أما المستند نفسه فينتجه [منشئ فواتير Xuvilo](/invoice) بشكل ثنائي اللغة يمكنك تكييفه بعناوين حقول فرنسية.
+
+## الإقرارات والمواعيد
+
+- **الإقرار الشهري:** للمنشآت التي بلغ رقم معاملاتها مليون درهم فأكثر في السنة السابقة.
+- **الإقرار الربعي:** للمنشآت الأصغر.
+- تُقدَّم الإقرارات ويُسدد المستحق إلكترونياً عبر منصة SIMPL التابعة للمديرية، عموماً بنهاية الشهر التالي للفترة.
+- ضريبة المدخلات على مشتريات النشاط قابلة للخصم من ضريبة المخرجات شرط توافر المستندات — احتفظ بكل فاتورة مورد بمعرفات صحيحة.
+
+## ما ينبغي للشركات الصغيرة مراقبته في 2026
+
+- **الخطوة الأخيرة من التوحيد.** سنة 2026 هي محطة الوصول لنظام المعدلين؛ راجع أي منتجاتك تحرك في قانون المالية الحالي.
+- **الفوترة الإلكترونية.** أعلنت المديرية عن العمل على نظام وطني للفوترة الإلكترونية بتطبيق تدريجي خلال السنوات القادمة. وما زالت المواصفات والتواريخ قيد الاستكمال — تحقق من الوضع الحالي لدى المديرية قبل الاستثمار، لكن اعتماد فوترة رقمية منظمة الآن سيسهّل الانتقال.
+- **آليات الحجز في المنبع.** أدخلت قوانين المالية الأخيرة حجزاً للضريبة من قبل بعض العملاء على مدفوعات الموردين الذين لا يقدمون شهادة انتظام ضريبي — سبب إضافي لإبقاء ملفك الضريبي نظيفاً.
+
+تمر الضريبة على القيمة المضافة المغربية بأكبر إعادة تصميم منذ عقود، والاتجاه يميل نحو البساطة: معدلان، وإقرار إلكتروني، وفوترة إلكترونية لاحقاً. والمنشآت التي تُحدّث معدلاتها وتُكمل فواتيرها ستجد محطة الوصول أبسط من الرحلة.
+`,
+    contentEn: `
+Morocco's value added tax — TVA (taxe sur la valeur ajoutée) — is administered by the Direction Générale des Impôts (DGI) and has historically been one of the most fragmented systems in the region, with four rates plus exemptions. That is changing: the 2024 Finance Law launched a three-year convergence plan to consolidate VAT into two main rates, 10% and 20%, by 2026. If you sell in Morocco, the rate on your invoice may have changed every January recently — here is where things stand and how to invoice correctly.
+
+## The rate structure and where it is heading
+
+| Rate | Status in the reform | Typical examples |
+|---|---|---|
+| 20% | Standard rate, unchanged | Most goods and services, professional services, electronics |
+| 14% | Being phased out — items migrating to 10% or 20% in annual steps | Historically: electricity, certain transport, butter |
+| 10% | Target reduced rate | Hotels and restaurants, banking operations, water, certain foods |
+| 7% | Being phased out — items migrating to 10% | Historically: water, refined sugar, pharmaceuticals and school supplies |
+
+Under the convergence timetable, items in the 7% band step up toward 10%, and items at 14% move to either 10% or 20% depending on the product, with adjustments applied each 1 January through 2026. Some essentials were moved to full exemption instead — pharmaceutical products, for example, were exempted with deduction rights. Because individual items have shifted every year of the reform, do not price from memory: verify the current rate for your specific product or service in the latest Finance Law tables or with the DGI before printing a price list.
+
+## Who must register and charge TVA
+
+VAT applies to industrial, commercial, and artisanal activities, professional services, and imports. Registration with the DGI's tax services follows from carrying out taxable activity — there is no high registration threshold shielding small traders the way GCC systems work, although specific small-taxpayer regimes (such as the auto-entrepreneur status, taxed on turnover with VAT exemption) can apply. Exporters benefit from zero-rating with the right to reclaim input VAT. If you also follow Gulf markets, note the contrast with the threshold-based systems described in our [GCC VAT registration guide](/blog/vat-registration-gcc-countries).
+
+## Invoicing requirements in Morocco
+
+A compliant Moroccan invoice must show: your company name and tax identifiers — notably the ICE (identifiant commun de l'entreprise), the identifiant fiscal, and trade register number; a sequential invoice number and date; the customer's name and ICE for B2B sales; a clear description of goods or services; amounts excluding tax (hors taxe), the TVA rate and amount per rate band, and the total including tax (TTC) in dirhams. Missing ICE numbers are a classic reason B2B customers reject invoices, because their own deduction depends on it.
+
+If your sales mix spans 10% and 20% items, apply each rate to its own lines and subtotal per band — the [mixed-rate VAT guide](/blog/how-to-calculate-vat-mixed-rate) shows the arithmetic, and the free [VAT calculator](/calculators/vat-tax) handles any rate instantly. For the document itself, the [Xuvilo invoice generator](/invoice) produces clean bilingual invoices you can adapt with French field labels.
+
+## Filing and deadlines
+
+- **Monthly declarations:** businesses with turnover of MAD 1,000,000 or more in the previous year file monthly.
+- **Quarterly declarations:** smaller businesses file quarterly.
+- Declarations and payment are made electronically through the DGI's SIMPL portal, generally by the end of the month following the period.
+- Input VAT on business purchases is deductible against output VAT, subject to documentation — keep every supplier invoice with valid identifiers.
+
+## What small businesses should watch in 2026
+
+- **The final convergence step.** 2026 is the target end-state of the two-rate system; check which of your products moved in the current Finance Law.
+- **E-invoicing.** The DGI has announced work toward a national electronic invoicing system, with phased implementation signaled for the coming years. Specifications and dates were still being finalized — verify the current status with the DGI before investing, but structured digital invoicing now will ease the transition.
+- **Withholding mechanisms.** Recent finance laws introduced VAT withholding by certain clients on payments to suppliers who cannot present a tax compliance certificate — one more reason to keep your tax file clean.
+
+Morocco's VAT is in the middle of its biggest redesign in decades, and the direction favors simplicity: two rates, electronic filing, and eventually electronic invoicing. Businesses that keep their rates current and their invoices complete will find the destination simpler than the journey.
+`,
+  },
+
+  {
+    slug: "jordan-jofotara-e-billing-guide",
+    titleAr: "نظام الفوترة الوطني الأردني «جوفوترة»: الدليل الكامل (2026)",
+    titleEn: "Jordan's JoFotara E-Billing System: The Complete Guide (2026)",
+    metaTitleAr: "دليل نظام جوفوترة الأردني 2026 | Xuvilo",
+    metaTitleEn: "Jordan JoFotara E-Billing Guide 2026 | Xuvilo",
+    excerptAr: "«جوفوترة» هو نظام الفوترة الإلكتروني الوطني الأردني لدى دائرة ضريبة الدخل والمبيعات. من الملزم وكيف تُصدر الفواتير ولماذا صار الخصم الضريبي مرهوناً بها.",
+    excerptEn: "JoFotara is Jordan's national e-invoicing system run by the ISTD. Who must join, how invoices are issued and verified, and why deductibility now depends on it.",
+    date: "2026-08-08",
+    readTime: 7,
+    category: "laws",
+    keywordAr: "جوفوترة الفوترة الإلكترونية الأردن",
+    keywordEn: "Jordan JoFotara e-invoicing",
+    relatedSlugs: ["invoice-generator-jordan", "jordan-gst-guide-small-businesses", "how-to-write-professional-invoice"],
+    contentAr: `
+انضم الأردن إلى موجة الفوترة الإلكترونية الإقليمية عبر «جوفوترة»، نظام الفوترة الوطني الذي تديره دائرة ضريبة الدخل والمبيعات بالتعاون مع وزارة الاقتصاد الرقمي والريادة. أُطلق النظام في 2023 وتوسع على مراحل، متحولاً من تجربة اختيارية إلى العمود الفقري للاعتراف بالفواتير في المملكة: فالفواتير الصادرة خارج النظام تفقد قيمتها الضريبية تدريجياً. إليك كيف يعمل وما المطلوب من منشأتك.
+
+## ما هو نظام جوفوترة؟
+
+«جوفوترة» منصة حكومية مركزية تُصدر المنشآت فواتيرها من خلالها أو تُبلغ عنها عبرها. تحصل كل فاتورة مسجلة في النظام على معرّف فريد ورمز QR، ما يتيح للدائرة — ولعميلك — التحقق من أن المستند حقيقي ومقيّد. يغطي النظام فواتير بيع السلع والخدمات للأعمال والمستهلكين على السواء، ويعمل إما عبر بوابة إلكترونية مجانية لصغار المصدرين أو عبر ربط مباشر بين برنامجك المحاسبي وواجهة المنصة البرمجية للأحجام الأكبر.
+
+## من الملزم باستخدامه؟
+
+اتسع الالتزام على مراحل، بدءاً بالمسجلين في ضريبة المبيعات وامتداداً عبر القطاعات. وثمة نقطتا ضغط أهم من غيرهما عملياً:
+
+- **قبول النفقات للخصم.** تقضي التعليمات المطبقة من أبريل 2025 بألا تُقبل فواتير المشتريات كتكاليف قابلة للخصم — ولا يُعترف بضريبة المدخلات — إلا إذا صدرت عبر جوفوترة. فإذا اشتريت من مورد خارج النظام فقد تُطعن تلك الكلفة في ملفك الضريبي أنت.
+- **التعامل مع الحكومة.** يُتوقع من الجهات التي تفوتر الوزارات والهيئات العامة أن تصدر فواتيرها عبر النظام.
+
+بعبارة أخرى: حتى حيث لم يصل نص الإلزام إلى قطاع بعينه بعد، فإن السوق يفرضه — إذ يطلب العملاء الجادون اليوم فواتير جوفوترة لأن خصومهم الضريبية تتوقف عليها. تحقق من وضع فئتك الحالي لدى الدائرة.
+
+## ماذا يجب أن تتضمن الفاتورة؟
+
+تحمل فاتورة جوفوترة المتوافقة البنية المألوفة للمستند الضريبي الصحيح — يغطي [دليل الفاتورة الاحترافية](/blog/how-to-write-professional-invoice) الأساسيات — إضافة إلى عناصر خاصة بالنظام:
+
+- اسم البائع ورقمه الضريبي، واسم المشتري (مع رقمه الضريبي في معاملات الأعمال).
+- رقم تسلسلي وتاريخ ومعرّف فريد يولّده النظام.
+- وصف على مستوى البند مع الكمية وسعر الوحدة وأي خصم مبيّن صراحة.
+- الضريبة العامة على المبيعات بالنسبة السارية — النسبة الأساسية 16% مع نسب مخفضة وإعفاءات لسلع وخدمات محددة — مبيّنة لكل بند وفي الإجمالي.
+- رمز QR الذي تولده المنصة ويمسحه المفتشون والعملاء للتحقق.
+
+تُذكر المبالغ بالدينار الأردني بثلاث خانات عشرية (الفلس). وللاطلاع على آلية النسب راجع [دليل ضريبة المبيعات الأردنية](/blog/jordan-gst-guide-small-businesses)، واستخدم [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية لحساب المبالغ الشاملة وغير الشاملة عند 16% أو أي نسبة مخفضة.
+
+## خطوات الانضمام العملية
+
+- **سجّل** عبر بوابة جوفوترة برقمك الضريبي وبيانات منشأتك؛ وستتسلم بيانات دخول لبيئة الفوترة.
+- **اختر نمطك.** حجم فواتير قليل: أصدر مباشرة من البوابة. حجم أكبر: اربط برنامج الفوترة أو نقاط البيع لديك بالمنصة وفق المواصفات الفنية المنشورة.
+- **رتّب دليل أصنافك.** نظّف أسماء البنود والوحدات والتصنيفات الضريبية قبل الربط — فالبيانات الفوضوية تُنتج فواتير مرفوضة أو غير متطابقة.
+- **عالج الإشعارات الدائنة أصولاً.** المرتجعات والتصحيحات يجب أن تمر عبر النظام أيضاً بالإشارة إلى الفاتورة الأصلية؛ فحذف الفواتير أو الكتابة فوقها ليس خياراً.
+- **احتفظ بسجلات موازية.** المنصة هي مرجع الدائرة، لكنك ما زلت بحاجة إلى أرشيفك التسلسلي الخاص للتدقيق والنزاعات.
+
+## الغرامات وكلفة البقاء خارج النظام
+
+إلى جانب الغرامات الرسمية على مخالفة التزامات الفوترة بموجب القوانين الضريبية، فإن العقوبة الأقسى تجارية: الفواتير غير القابلة للخصم تجعلك مورداً مكلفاً. فالعميل الذي لا يستطيع خصم 16% ولا إثبات الكلفة سيطلب حسماً أو يبدّل المورد. واستثمار الامتثال — أيام من الإعداد عادة لا شهوراً — يسدد نفسه أول مرة يسألك فيها عميل كبير: هل أنتم على النظام؟
+
+## الصورة الأكبر
+
+نهج الأردن يحاكي ما فعلته السعودية مع «فاتورة» ومصر بمنظومتي الفاتورة والإيصال الإلكترونيين: جعل المستند الإلكتروني هو المستند الوحيد المعتد به. والعتبة التقنية لجوفوترة منخفضة عمداً — بوابة مجانية وتحقق بسيط برمز QR — لذا فإن نافذة الأعذار تُغلق سريعاً. سجّل واربط واجعل كل فاتورة قابلة للتحقق؛ ففي النظام الضريبي الأردني، الفاتورة التي ليست في جوفوترة لم تعد فاتورة أصلاً.
+`,
+    contentEn: `
+Jordan joined the regional e-invoicing wave with JoFotara, the national electronic billing system operated by the Income and Sales Tax Department (ISTD) together with the Ministry of Digital Economy and Entrepreneurship. Launched in 2023 and expanded in phases since, JoFotara has moved from a voluntary pilot to the backbone of invoice recognition in the Kingdom: invoices issued outside the system are progressively losing their tax value. Here is how it works and what your business needs to do.
+
+## What JoFotara is
+
+JoFotara is a central government platform through which businesses issue, or report, their invoices. Each invoice registered in the system receives a unique identifier and a QR code, allowing the ISTD — and your customer — to verify that the document is genuine and recorded. The system covers sales invoices for goods and services, both B2B and B2C, and works either through a free web portal for small issuers or through direct integration between your accounting software and the platform's API for higher volumes.
+
+## Who must use it
+
+The obligation has widened in stages, starting with taxpayers registered for sales tax and expanding across sectors. Two pressure points matter most in practice:
+
+- **Expense deductibility.** Directives applied from April 2025 provide that purchase invoices are accepted as deductible costs — and input tax is recognized — only when issued through JoFotara. If your business buys from a supplier who is not on the system, that cost may be challenged in your own tax file.
+- **Government dealings.** Entities invoicing ministries and public bodies are expected to bill through the system.
+
+In other words, even where the letter of the obligation has not reached a given sector yet, the market enforces it: serious customers now ask for JoFotara invoices because their own deductions depend on them. Verify your category's current status with the ISTD.
+
+## What an invoice must contain
+
+A compliant JoFotara invoice carries the familiar anatomy of a proper tax document — our [professional invoice guide](/blog/how-to-write-professional-invoice) covers the fundamentals — plus system-specific elements:
+
+- Seller name and tax number, and the buyer's name (with tax number for B2B).
+- Sequential invoice number, date, and the system-generated unique identifier.
+- Item-level description, quantity, unit price, and any discount shown explicitly.
+- General Sales Tax (GST) at the applicable rate — the standard rate is 16%, with reduced rates and exemptions for listed goods and services — shown per line and in total.
+- The QR code generated by the platform, which inspectors and customers scan to verify.
+
+Amounts are stated in Jordanian dinars with three decimal places (fils). For the tax mechanics behind the rates, see our [Jordan GST guide](/blog/jordan-gst-guide-small-businesses), and use the free [VAT calculator](/calculators/vat-tax) for quick inclusive and exclusive figures at 16% or any reduced rate.
+
+## Getting onboarded: the practical steps
+
+- **Register** through the JoFotara portal using your tax number and establishment details; you receive credentials for the invoicing environment.
+- **Choose your mode.** Low invoice volume: issue directly from the portal. Higher volume: integrate your invoicing or POS software with the platform, using the published technical specifications.
+- **Map your catalog.** Clean item names, units, and tax categories before integration — messy master data produces rejected or mismatched invoices.
+- **Handle credit notes properly.** Returns and corrections must also flow through the system, referencing the original invoice; deleting or overwriting invoices is not an option.
+- **Keep parallel records.** The platform is the source of truth for the ISTD, but you still need your own sequential archive for audits and disputes.
+
+## Penalties and the cost of staying outside
+
+Beyond formal fines for non-compliance with invoicing obligations under the tax laws, the sharper penalty is commercial: non-deductible invoices make you an expensive supplier. A customer who cannot deduct 16% GST or claim the cost will either demand a discount or switch suppliers. The compliance investment — usually days of setup, not months — pays for itself the first time a large client asks whether you are on the system.
+
+## The bigger picture
+
+Jordan's approach mirrors what Saudi Arabia did with FATOORA and Egypt with its twin e-invoice and e-receipt systems: make the electronic document the only document that counts. JoFotara's technical bar is deliberately low — a free portal, simple QR verification — so the excuse window is closing fast. Register, integrate, and make every invoice verifiable; in Jordan's tax system, an invoice that is not in JoFotara increasingly is not an invoice at all.
+`,
+  },
+
+  {
+    slug: "withholding-tax-gcc-comparison",
+    titleAr: "ضريبة الاستقطاع في دول الخليج: مقارنة دولة بدولة (2026)",
+    titleEn: "Withholding Tax Across the GCC: A Country-by-Country Comparison (2026)",
+    metaTitleAr: "مقارنة ضريبة الاستقطاع في الخليج | Xuvilo",
+    metaTitleEn: "Withholding Tax in GCC: 2026 Comparison | Xuvilo",
+    excerptAr: "السعودية تستقطع حتى 20% والإمارات تطبق 0% والكويت تحتجز 5% — مقارنة عملية لقواعد ضريبة الاستقطاع الخليجية على الفواتير عبر الحدود.",
+    excerptEn: "Saudi Arabia withholds up to 20%, the UAE applies 0%, Kuwait retains 5% — a practical comparison of GCC withholding tax rules for cross-border invoices.",
+    date: "2026-08-09",
+    readTime: 8,
+    category: "taxes",
+    keywordAr: "ضريبة الاستقطاع دول الخليج",
+    keywordEn: "withholding tax GCC comparison",
+    relatedSlugs: ["withholding-tax-saudi-arabia", "uae-corporate-tax-guide-smes", "vat-registration-gcc-countries"],
+    contentAr: `
+تفوتر عميلاً خليجياً بعشرة آلاف — فيصلك 9,500. مرحباً بك في ضريبة الاستقطاع: الآلية التي تفرض بها الدولة الضريبة على غير المقيمين بإلزام الدافع المحلي بخصمها من المنبع قبل الدفع للمورد الأجنبي. وبالنسبة للمستقلين والوكالات الذين يخدمون عملاء عبر الخليج، فالاستقطاع هو السبب الأول لاختلاف المبلغ المفوتر عن المبلغ المستلم. وتتباين القواعد بحدة بين الدول؛ إليك خريطة 2026.
+
+## المقارنة في لمحة
+
+| الدولة | النهج العام | أبرز النسب على مدفوعات غير المقيمين |
+|---|---|---|
+| السعودية | نظام استقطاع كامل | 5% توزيعات أرباح، 5% فوائد، 15% إتاوات، 5–15% خدمات، 20% أتعاب إدارة |
+| الإمارات | استقطاع قانوني 0% | صفر في جميع الفئات بموجب قانون ضريبة الشركات |
+| قطر | استقطاع موحد | 5% على الخدمات والإتاوات والفوائد والعمولات لغير المقيمين بلا منشأة دائمة |
+| الكويت | لا استقطاع بل احتجاز | احتجاز 5% من دفعات العقود حتى تقديم شهادة براءة ذمة ضريبية |
+| البحرين | لا استقطاع | لا تُفرض حالياً |
+| عُمان | استقطاع محدد الهدف | 10% على الإتاوات وبعض الأتعاب؛ الاستقطاع على التوزيعات والفوائد موقوف — تحقق من النطاق الحالي |
+
+اعتبر هذا الجدول بوصلة لا نصاً مقدساً: فالنسب تتغير مع دورات الموازنات، واتفاقيات تجنب الازدواج الضريبي قد تخفضها أو تلغيها. تحقق دائماً من القواعد الحالية لدى هيئة الضرائب في دولة الدافع.
+
+## السعودية: النظام الأكثر صرامة
+
+يسري الاستقطاع السعودي، الذي تديره هيئة الزكاة والضريبة والجمارك، كلما دفع مقيم سعودي (أو منشأة دائمة) لغير مقيم مقابل خدمات مستفاد منها في المملكة. وتختلف النسب حسب نوع الدفعة — 5% للخدمات الفنية والاستشارية لأطراف غير مرتبطة، و15% للإتاوات، و20% لأتعاب الإدارة وهي من الأعلى في المنطقة. يقدّم الدافع السعودي إقرارات استقطاع شهرية ويتحمل المسؤولية إذا لم يستقطع. إذا كان العملاء السعوديون حصة معتبرة من إيرادك فاقرأ [دليل ضريبة الاستقطاع السعودية](/blog/withholding-tax-saudi-arabia) المخصص — فتصنيف أتعاب إدارة على أنها استشارات خطأ مكلف.
+
+## الإمارات والبحرين: نادي الصفر
+
+أدخلت الإمارات مفهوم الاستقطاع في قانون ضريبة الشركات لكنها حددت النسبة بصفر في جميع الفئات — إشارة مقصودة للحفاظ على جاذبية الدولة كمركز إقليمي. أما البحرين فلا تفرض استقطاعاً إطلاقاً. المدفوعات من هاتين الدولتين تصل كاملة عموماً، وإن بقيت [التزامات ضريبة الشركات](/blog/uae-corporate-tax-guide-smes) قائمة على جانب الدافع.
+
+## قطر والكويت: واحدة تخصم وأخرى تجمّد
+
+تطبق قطر استقطاعاً موحداً بنسبة 5% على الخدمات والإتاوات والفوائد والعمولات المدفوعة لغير المقيمين بلا منشأة دائمة، يورّده الدافع إلى الهيئة العامة للضرائب. أما الكويت فلا استقطاع لديها نظرياً — لكن قاعدة الاحتجاز 5% تشبهه في أثرها على الجيب: إذ يحتجز دافعو العقود 5% من كل دفعة حتى يقدم المورد شهادة براءة ذمة من وزارة المالية. والفرق جوهري: الاستقطاع القطري مال ذهب (ما لم تُعفِك اتفاقية)، بينما الاحتجاز الكويتي مال مؤجل حتى اكتمال الأوراق.
+
+## عُمان: استقطاع محدد وموقوف جزئياً
+
+تفرض عُمان استقطاعاً بنسبة 10% على الإتاوات وفئات معينة من الأتعاب المدفوعة لغير المقيمين. وقد عُلّق الاستقطاع على التوزيعات والفوائد بقرار جرى تمديده، كما ضُيّق نطاق إخضاع أتعاب الخدمات منذ 2020. هذا أكثر أنظمة الخليج تقلباً — تحقق من النطاق الحالي لدى جهاز الضرائب العُماني قبل تسعير أي عقد.
+
+## خمس قواعد للفوترة في ظل الاستقطاع
+
+- **حدد في العقد من يتحمل الضريبة.** بند التحميل الإجمالي (أن يدفع العميل قيمة الفاتورة كاملة ويتحمل الاستقطاع فوقها) مقابل السكوت عنه يغيّر إيرادك حتى الخُمس في السعودية.
+- **أظهرها في الفاتورة.** اذكر فئة الخدمة والمعاملة المتوقعة للاستقطاع وما إذا كانت المبالغ إجمالية أو صافية — فإدارات الحسابات تنفذ ما هو مكتوب. يدعم [منشئ فواتير Xuvilo المجاني](/invoice) ملاحظات ثنائية اللغة لهذا الغرض تحديداً.
+- **استفد من الاتفاقيات.** اتفاقيات تجنب الازدواج قد تخفض النسب كثيراً، لكن الإعفاء يتطلب عادة شهادة إقامة ضريبية تُستخرج مسبقاً لا بعد الدفع.
+- **اجمع شهادات الاستقطاع.** المبالغ المخصومة قد تُحتسب من ضريبتك في بلدك — لكن فقط بشهادة الدافع دليلاً.
+- **سعّر والخصم في حسبانك.** إذا كانت النسبة لا مفر منها فاحسب عكسياً من الصافي الذي تحتاجه؛ و[حاسبة هامش الربح](/calculators/profit-margin) تجعل الحساب سريعاً.
+
+ضريبة الاستقطاع ليست عقوبة — بل هي طريقة دول الخليج في إخضاع دخلٍ كان سيغادر البلاد دون مساس. افهم نسبة كل دولة قبل أن تقدم عرضك، واكتب المعاملة في عقدك، وسيكف الفارق بين المفوتر والمستلم عن كونه مفاجأة.
+`,
+    contentEn: `
+You invoice a Gulf client for 10,000 — and 9,500 arrives. Welcome to withholding tax (WHT): the mechanism by which a country taxes non-residents by making the local payer deduct tax at source before paying a foreign supplier. For freelancers and agencies serving clients across the GCC, withholding is the single biggest reason invoiced amounts and received amounts differ. The rules vary sharply by country; here is the 2026 map.
+
+## The comparison at a glance
+
+| Country | General approach | Key rates on payments to non-residents |
+|---|---|---|
+| Saudi Arabia | Full WHT regime | 5% dividends, 5% interest, 15% royalties, 5–15% services, 20% management fees |
+| UAE | Statutory 0% WHT | 0% across categories under the corporate tax law |
+| Qatar | Flat WHT | 5% on services, royalties, interest, commissions paid to non-residents without a local PE |
+| Kuwait | No WHT, but retention | 5% of contract payments retained until a tax clearance certificate is presented |
+| Bahrain | No WHT | None currently levied |
+| Oman | Targeted WHT | 10% on royalties and certain fees; WHT on dividends and interest suspended — verify current scope |
+
+Treat this as orientation, not gospel: rates shift with budget cycles, and double tax treaties can reduce or eliminate them. Always verify against the current rules of the paying country's tax authority.
+
+## Saudi Arabia: the strictest regime
+
+Saudi WHT, administered by ZATCA, applies whenever a Saudi resident (or a permanent establishment) pays a non-resident for services used in the Kingdom. Rates differ by payment type — 5% for technical and consulting services paid to unrelated parties, 15% for royalties, and 20% for management fees, one of the highest rates in the region. The Saudi payer files monthly WHT returns and bears the liability if it fails to withhold. If Saudi clients are a meaningful share of your revenue, read our dedicated [Saudi withholding tax guide](/blog/withholding-tax-saudi-arabia) — misclassifying a management fee as consulting is an expensive mistake.
+
+## UAE and Bahrain: the zero club
+
+The UAE introduced a withholding tax concept with its corporate tax law but set the rate at 0% across the board — a deliberate signal to keep the Emirates attractive as a regional hub. Bahrain levies no withholding tax at all. Payments from these two countries generally arrive whole, though the payer's own [corporate tax obligations](/blog/uae-corporate-tax-guide-smes) still apply on their side.
+
+## Qatar and Kuwait: one deducts, one freezes
+
+Qatar applies a flat 5% WHT on services, royalties, interest, and commissions paid to non-residents without a permanent establishment, remitted by the payer to the General Tax Authority. Kuwait technically has no withholding tax — but its 5% retention rule feels similar in the wallet: contract payers hold back 5% of every payment until the supplier produces a tax clearance certificate from the Ministry of Finance. The difference matters: Qatari WHT is money gone (absent treaty relief), while Kuwaiti retention is money delayed until paperwork clears.
+
+## Oman: targeted and partly suspended
+
+Oman applies 10% WHT on royalties and certain categories of fees paid to non-residents. Withholding on dividends and interest was suspended by decision and the suspension has been extended; the taxation of service fees has also been narrowed since 2020. This is the GCC's most changeable regime — verify the current scope with the Oman Tax Authority before pricing a contract.
+
+## Five rules for invoicing under withholding
+
+- **Decide who bears the tax in the contract.** A gross-up clause (client pays you the invoice amount in full and bears WHT on top) versus silence changes your revenue by up to a fifth in Saudi Arabia.
+- **Show it on the invoice.** State the service category, the expected WHT treatment, and whether amounts are gross or net — accounts payable teams follow what is written. The free [Xuvilo invoice generator](/invoice) supports bilingual notes for exactly this.
+- **Use treaties.** Double tax treaties can cut rates substantially, but relief usually requires a tax residency certificate obtained in advance, not after payment.
+- **Collect withholding certificates.** The deducted amounts may be creditable against tax in your home country — but only with the payer's certificate as proof.
+- **Price with the deduction in mind.** If a rate is unavoidable, work backward from the net amount you need; the [profit margin calculator](/calculators/profit-margin) makes the arithmetic quick.
+
+Withholding tax is not a penalty — it is how Gulf states tax income that would otherwise leave the country untouched. Understand each country's rate before you quote, write the treatment into your contract, and the gap between invoiced and received stops being a surprise.
+`,
+  },
+
+  {
+    slug: "retainer-vs-hourly-pricing-freelancers",
+    titleAr: "التسعير بالعقد الشهري أم بالساعة: أيهما يُكسب المستقل أكثر؟",
+    titleEn: "Retainer vs Hourly Pricing: Which Model Earns Freelancers More?",
+    metaTitleAr: "التسعير الشهري أم بالساعة للمستقلين — Xuvilo",
+    metaTitleEn: "Retainer vs Hourly Pricing for Freelancers — Xuvilo",
+    excerptAr: "الفوترة بالساعة تسقف دخلك، والعقد الشهري يثبّته. مقارنة عملية بأمثلة بالريال والدرهم، وخطوات نقل عملائك إلى عقود شهرية.",
+    excerptEn: "Hourly billing caps your income; retainers stabilize it. A practical comparison with SAR and AED examples, plus a script for moving clients to monthly retainers.",
+    date: "2026-08-10",
+    readTime: 8,
+    category: "business",
+    keywordAr: "التسعير الشهري مقابل الساعة للمستقلين",
+    keywordEn: "retainer vs hourly pricing freelancers",
+    relatedSlugs: ["how-to-price-services-freelancer", "cash-flow-management-freelancers", "freelancer-invoice-tips-uae"],
+    contentAr: `
+اسأل عشرة مستقلين في الرياض أو دبي أو القاهرة عن طريقة تسعير أعمالهم، وسيجيب معظمهم بالإجابة نفسها: بالساعة أو بالمشروع. قلة قليلة فقط تعمل بنظام العقد الشهري (Retainer) — وهذا بالضبط ما يجعل معظم المستقلين يصطدمون بسقف دخل ثابت في سنتهم الثانية. فهم متى يصلح كل نموذج هو من أهم القرارات التجارية التي ستتخذها.
+
+## كيف يعمل التسعير بالساعة فعلياً
+
+التسعير بالساعة بسيط: تتفق على سعر — مثلاً 150 ريالاً سعودياً أو 200 درهم إماراتي أو 500 جنيه مصري للساعة — وتتتبع وقتك وتُصدر الفاتورة نهاية الشهر.
+
+**المزايا:**
+
+- لا مخاطرة في تقدير النطاق: إذا كبر المشروع كبرت فاتورتك معه.
+- مناسب للمستقلين الجدد الذين لا يجيدون بعد تقدير تكلفة المشاريع.
+- يفهمه العميل فوراً.
+
+**العيوب:**
+
+- دخلك محدود بعدد ساعات عملك، وساعات الشهر القابلة للفوترة محدودة مهما اجتهدت.
+- تُعاقَب على خبرتك: كلما أصبحت أسرع، انخفضت ساعات المهمة نفسها وانخفض دخلك منها.
+- الدخل متقلب، وشهر هادئ واحد يعني فاتورة صغيرة وأزمة سيولة.
+
+## كيف يعمل العقد الشهري
+
+العقد الشهري هو رسم ثابت مقابل نطاق عمل مستمر متفق عليه — مثلاً 6,000 ريال شهرياً لإدارة حسابات التواصل الاجتماعي، أو 8,000 درهم شهرياً مقابل 40 ساعة دعم برمجي. يدفع العميل بداية كل شهر مقابل فاتورة دورية.
+
+**المزايا:**
+
+- دخل يمكن التنبؤ به: ثلاثة عملاء بعقود شهرية بقيمة 5,000 ريال لكل منهم تعني 15,000 ريال مضمونة قبل أن يبدأ الشهر.
+- تتقاضى أجرك مقابل القيمة والجاهزية، لا مقابل الساعات المسجلة فقط.
+- إدارة أقل: فاتورة واحدة ونطاق واحد ودفعة واحدة لكل عميل شهرياً.
+- علاقات أعمق مع العملاء، فعميل العقد الشهري نادراً ما يبحث عن بديل كل شهر.
+
+**العيوب:**
+
+- تمدد النطاق هو القاتل الصامت: بدون نطاق مكتوب تتحول «مهمة صغيرة إضافية» إلى عشر مهام.
+- عليك الالتزام بالتسليم حتى في الأشهر المزدحمة بأعمال أخرى.
+
+## مقارنة مباشرة
+
+| العامل | بالساعة | العقد الشهري |
+| --- | --- | --- |
+| إمكانية التنبؤ بالدخل | منخفضة | عالية |
+| مكافأة الخبرة | لا — العمل الأسرع يكسب أقل | نعم |
+| العبء الإداري | مرتفع (سجلات وقت) | منخفض |
+| مخاطرة النطاق | يتحملها العميل | تتحملها أنت |
+| الأنسب لـ | عملاء جدد ونطاق غامض | عمل متكرر ومستمر |
+
+## تسعير العقد الشهري بشكل صحيح
+
+الخطأ الكلاسيكي هو تسعير العقد الشهري كـ«ساعات مخفّضة». إذا كان سعر ساعتك 200 درهم ويتوقع العميل نحو 30 ساعة شهرياً، لا تعرض 5,000 درهم لمجرد أنها علاقة ملتزمة. اعرض 6,000 درهم مع مخرجات محددة — العميل يدفع مقابل جاهزية مضمونة وأولوية في الوصول إليك، وهذه ميزة تستحق علاوة لا خصماً.
+
+قبل تقديم أي عرض، اعرف حدك الأدنى: أدخل تكاليفك الشهرية في [حاسبة نقطة التعادل](/calculators/break-even) لتعرف الإيراد الشهري الأدنى الذي تحتاجه، ثم افحص كل عقد عبر [حاسبة هامش الربح](/calculators/profit-margin) للتأكد من أنه يحقق هامشك المستهدف.
+
+## نقل عميل الساعات إلى عقد شهري
+
+أفضل المرشحين هم العملاء الذين أرسلوا لك عملاً لثلاثة أشهر متتالية. اتبع هذه الخطوات:
+
+1. اجمع ما دفعوه فعلياً خلال آخر ثلاثة أشهر واحسب المتوسط الشهري.
+2. اقترح عقداً شهرياً بقيمة قريبة من هذا المتوسط، مقدَّماً كأولوية وصول: ردّ مضمون خلال يوم عمل، وقائمة مخرجات شهرية ثابتة، وميزة سعرية بسيطة مقارنة بالطلبات المتفرقة.
+3. اكتب النطاق: ما المشمول، وما يُعد إضافياً، وكيف تُفوتر الإضافات (عادةً بسعر ساعتك المعتاد).
+4. أصدر الفاتورة في اليوم الأول من كل شهر بشروط سداد خلال 7 أيام. فاتورة دورية احترافية من [مولّد الفواتير](/invoice) المجاني تضبط إيقاع العلاقة من البداية.
+
+## النموذج الهجين الذي يستقر عليه الناجحون
+
+عملياً، تدير أنجح أعمال المستقلين في الخليج والمنطقة مزيجاً: عقدان أو ثلاثة عقود شهرية تغطي التكاليف الثابتة (الإيجار، الاشتراكات، رسوم رخصة العمل الحر)، ومشاريع مسعّرة بالقيمة فوقها. العقود الشهرية تمنحك الهدوء، والمشاريع تمنحك النمو.
+
+ابدأ بتحويل أفضل عملائك هذا الشهر. عقد واحد بقيمة 5,000 ريال يغيّر طريقة نومك.
+`,
+    contentEn: `
+Ask ten freelancers in Riyadh, Dubai, or Cairo how they price their work and most will say the same thing: by the hour or by the project. Very few use retainers — and that is exactly why most freelancers hit an income ceiling in their second year. Understanding when each model works is one of the highest-leverage business decisions you can make.
+
+## How hourly pricing really works
+
+Hourly pricing is simple: you agree a rate — say 150 SAR, 200 AED, or 500 EGP per hour — track your time, and invoice at the end of the month.
+
+**Advantages:**
+
+- Zero scoping risk: if the project grows, your invoice grows with it.
+- Easy for new freelancers who cannot yet estimate projects accurately.
+- Clients understand it instantly.
+
+**Disadvantages:**
+
+- Your income is capped by your working hours. There are only so many billable hours in a month.
+- You are penalized for getting faster. The more experienced you become, the fewer hours the same task takes — and the less you earn for it.
+- Income is unpredictable. A quiet month means a small invoice, which is exactly the cash flow trap described in our [cash flow guide for freelancers](/calculators/invoice-aging) workflows.
+
+## How retainers work
+
+A retainer is a fixed monthly fee for an agreed scope of ongoing work — for example, 6,000 SAR per month for social media management, or 8,000 AED per month for 40 hours of development support. The client pays at the start of each month, usually against a recurring invoice.
+
+**Advantages:**
+
+- Predictable income. Three retainer clients at 5,000 SAR each means 15,000 SAR guaranteed before the month starts.
+- You get paid for value and availability, not just hours logged.
+- Less admin: one invoice, one scope, one payment per client per month.
+- Deeper client relationships — retainer clients rarely shop around every month.
+
+**Disadvantages:**
+
+- Scope creep is the silent killer. Without a written scope, «one small extra task» becomes ten.
+- You must deliver consistently even in months when you are busy with other work.
+
+## Side-by-side comparison
+
+| Factor | Hourly | Retainer |
+| --- | --- | --- |
+| Income predictability | Low | High |
+| Rewards experience | No — faster work earns less | Yes |
+| Admin burden | High (timesheets) | Low |
+| Scope risk | Client carries it | You carry it |
+| Best for | New clients, unclear scope | Ongoing, repeating work |
+
+## Pricing a retainer correctly
+
+The classic mistake is pricing a retainer as «discounted hours». If your hourly rate is 200 AED and the client expects roughly 30 hours per month, do not quote 5,000 AED just because it is a committed relationship. Price it at 6,000 AED and include defined deliverables — the client is paying for guaranteed availability and priority access, which is worth a premium, not a discount.
+
+Before quoting, know your floor. Run your monthly costs through the [break-even calculator](/calculators/break-even) to see the minimum monthly revenue you need, then check each retainer with the [profit margin calculator](/calculators/profit-margin) to make sure the engagement actually earns above your target margin.
+
+## Moving an hourly client to a retainer
+
+The best candidates are clients who have sent you work for three consecutive months. Use this approach:
+
+1. Add up what they actually paid you over the last three months and take the monthly average.
+2. Propose a retainer at roughly that average, framed as priority access: guaranteed response within one business day, a fixed monthly deliverable list, and a small rate advantage versus ad-hoc requests.
+3. Put the scope in writing: what is included, what counts as extra, and how extras are billed (usually your normal hourly rate).
+4. Invoice on the 1st of each month, payable within 7 days. A professional recurring invoice from the free [invoice generator](/invoice) with clear payment terms sets the tone.
+
+## The hybrid model most successful freelancers land on
+
+In practice, mature freelance businesses in the Gulf and wider MENA region run a mix: two or three retainers covering fixed costs (rent, subscriptions, freelance permit fees), plus project-based work priced by value on top. The retainers keep you calm; the projects keep you growing.
+
+Start by converting your single best client this month. One 5,000 SAR retainer changes how you sleep.
+`,
+  },
+
+  {
+    slug: "payment-reminder-scripts-whatsapp-email",
+    titleAr: "نصوص جاهزة لتذكير العملاء بالدفع عبر واتساب والبريد",
+    titleEn: "Payment Reminder Scripts for WhatsApp and Email (Copy-Paste)",
+    metaTitleAr: "نصوص تذكير بالدفع واتساب وبريد — Xuvilo",
+    metaTitleEn: "Payment Reminder Scripts: WhatsApp & Email — Xuvilo",
+    excerptAr: "نصوص عربية وإنجليزية جاهزة للنسخ لتذكير العملاء بالدفع عبر واتساب والبريد — تسلسل من خمس خطوات يحصّل فواتيرك دون إحراج العلاقة.",
+    excerptEn: "Ready-to-copy Arabic and English payment reminder scripts for WhatsApp and email — a five-step cadence that collects invoices without damaging client relationships.",
+    date: "2026-08-11",
+    readTime: 7,
+    category: "tips",
+    keywordAr: "رسالة تذكير بالدفع واتساب",
+    keywordEn: "payment reminder message whatsapp email",
+    relatedSlugs: ["handle-late-payments-invoice-disputes", "invoice-payment-terms-guide", "how-to-send-invoice-email"],
+    contentAr: `
+في منطقة الشرق الأوسط وشمال أفريقيا، تجري معظم محادثات الدفع بين الشركات عبر واتساب لا البريد الإلكتروني. ومع ذلك، فإن أغلب المستقلين والشركات الصغيرة إما لا يرسلون أي تذكير — على أمل أن يتذكر العميل — أو يرسلون رسالة محرجة واحدة ثم يصمتون. النتيجة: فواتير كان يمكن تحصيلها في أسبوع تبقى معلقة لشهرين.
+
+الحل هو **التسلسل المنهجي**: سلسلة ثابتة من الرسائل المهذبة والمتصاعدة تُرسل وفق جدول محدد، بصياغات جاهزة أعددتها مسبقاً حتى لا تكتب العاطفة رسائلك بدلاً منك.
+
+## تسلسل التذكير بخمس خطوات
+
+| الخطوة | التوقيت | القناة | النبرة |
+| --- | --- | --- | --- |
+| 1. تنبيه قبل الاستحقاق | قبل 3 أيام من الاستحقاق | واتساب | ودّية |
+| 2. رسالة يوم الاستحقاق | يوم الاستحقاق | واتساب | محايدة |
+| 3. متابعة أولى | تأخير 5–7 أيام | بريد + واتساب | مباشرة ولطيفة |
+| 4. تذكير حازم | تأخير 14–15 يوماً | بريد | رسمية |
+| 5. إشعار أخير | تأخير 25–30 يوماً | بريد | ذكر العواقب |
+
+قبل البدء، اعرف بدقة أي الفواتير متأخرة وكم يوماً — [حاسبة أعمار الفواتير](/calculators/invoice-aging) ترتب لك ذلك في دقيقة.
+
+## الخطوة 1 — تنبيه قبل الاستحقاق (واتساب)
+
+مرحباً أستاذ [الاسم]، أتمنى أن تكون بخير. تذكير سريع بأن الفاتورة رقم [INV-042] بمبلغ [3,500 درهم] تستحق يوم الخميس القادم [التاريخ]. أرفقت نسخة الفاتورة للاطلاع. شكراً جزيلاً.
+
+**بالإنجليزية:**
+
+Hi [Name], a quick note that invoice [INV-042] for [3,500 AED] is due this Thursday, [date]. The PDF is attached for easy reference. Thank you!
+
+## الخطوة 2 — رسالة يوم الاستحقاق (واتساب)
+
+مرحباً أستاذ [الاسم]، فاتورة [INV-042] بمبلغ [3,500 درهم] مستحقة اليوم. إذا تم التحويل بالفعل فتجاهل هذه الرسالة، وإلا نقدّر إتمام التحويل اليوم. بيانات الحساب موجودة على الفاتورة.
+
+**بالإنجليزية:**
+
+Hi [Name], invoice [INV-042] for [3,500 AED] is due today. If payment has already been made, please ignore this message — otherwise I would appreciate the transfer today.
+
+## الخطوة 3 — متابعة أولى بعد 5–7 أيام تأخير (بريد + واتساب)
+
+الموضوع: الفاتورة INV-042 — متأخرة 7 أيام
+
+الأستاذ الفاضل [الاسم]، تحية طيبة. الفاتورة رقم INV-042 بمبلغ 3,500 درهم والمستحقة بتاريخ [التاريخ] لا تزال غير مسددة. نرجو إفادتنا بالموعد المتوقع للسداد، وإذا كانت هناك أي ملاحظة على الفاتورة يسعدنا معالجتها فوراً. مع خالص التحية، [اسمك]
+
+## الخطوة 4 — تذكير حازم بعد 14–15 يوماً (بريد)
+
+الموضوع: تذكير ثانٍ — الفاتورة INV-042 متأخرة 15 يوماً
+
+الأستاذ الفاضل [الاسم]، هذا تذكير ثانٍ بأن الفاتورة INV-042 بمبلغ 3,500 درهم متأخرة الآن 15 يوماً عن موعد استحقاقها. وفقاً للشروط المتفق عليها، نرجو ترتيب السداد خلال 5 أيام عمل وتأكيد التحويل فور إتمامه. مع التحية، [اسمك]
+
+## الخطوة 5 — إشعار أخير بعد 25–30 يوماً (بريد)
+
+الموضوع: إشعار أخير — الفاتورة INV-042
+
+الأستاذ الفاضل [الاسم]، رغم التذكيرات السابقة، لا تزال الفاتورة INV-042 بمبلغ 3,500 درهم غير مسددة بعد مرور 30 يوماً على استحقاقها. في حال عدم استلام المبلغ بحلول [التاريخ]، سنضطر لإيقاف الأعمال الجارية وإحالة الموضوع للتحصيل الرسمي. نفضّل بالتأكيد حل الأمر ودياً — نرجو التواصل معنا اليوم. مع التحية، [اسمك]
+
+## آداب واتساب في ثقافة الأعمال بالمنطقة
+
+- أرسل التذكيرات خلال ساعات العمل، وتجنّب يوم الجمعة وساعات المساء المتأخرة.
+- الرسائل الصوتية للعلاقات الاجتماعية؛ أما طلبات الدفع فيجب أن تكون **مكتوبة** دائماً ليبقى لها سجل.
+- حافظ على الاحترام حتى في الخطوة الخامسة — في ثقافة الأعمال الخليجية، الضغط العلني أو النبرة الحادة قد ينهيان العلاقة دون أن تستلم أموالك.
+- أرفق نسخة الفاتورة PDF مع كل تذكير، واجعل عملية الدفع سهلة قدر الإمكان.
+
+## عالج المشكلة من جذرها
+
+نصف حالات التأخر في السداد سببها فواتير غير واضحة: تاريخ استحقاق مفقود، بيانات بنكية ناقصة، أو مبالغ يعترض عليها العميل. أصدر فواتير نظيفة واحترافية بشروط دفع صريحة عبر [مولّد الفواتير المجاني](/invoice)، ووثّق الاستلام بـ[إيصال دفع](/receipt) فور وصول المبلغ — العملاء يدفعون أسرع عندما تكون المستندات احترافية في الاتجاهين.
+`,
+    contentEn: `
+In the MENA region, most B2B payment conversations happen on WhatsApp, not email. Yet most freelancers and small businesses either send no reminders at all — hoping the client remembers — or send one awkward message and then go silent. The result: invoices that could have been collected in a week sit unpaid for two months.
+
+The fix is a **cadence**: a fixed sequence of polite, escalating messages sent on a schedule, using wording you prepared in advance so emotion never writes the message for you.
+
+## The five-step reminder cadence
+
+| Step | Timing | Channel | Tone |
+| --- | --- | --- | --- |
+| 1. Pre-due nudge | 3 days before due date | WhatsApp | Friendly heads-up |
+| 2. Due-date note | On the due date | WhatsApp | Neutral |
+| 3. First follow-up | 5–7 days overdue | Email + WhatsApp | Direct, still warm |
+| 4. Firm reminder | 14–15 days overdue | Email | Formal |
+| 5. Final notice | 25–30 days overdue | Email | Consequences stated |
+
+Before you start, know exactly which invoices are overdue and by how many days — the [invoice aging calculator](/calculators/invoice-aging) sorts this out in a minute.
+
+## Step 1 — Pre-due nudge (WhatsApp)
+
+**English:**
+
+Hi [Name], hope all is well. A quick note that invoice [INV-042] for [3,500 AED] is due this Thursday, [date]. The PDF is attached again for easy reference. Thank you!
+
+**Arabic:**
+
+مرحباً أستاذ [الاسم]، أتمنى أن تكون بخير. تذكير سريع بأن الفاتورة رقم [INV-042] بمبلغ [3,500 درهم] تستحق يوم الخميس القادم [التاريخ]. أرفقت نسخة الفاتورة للاطلاع. شكراً جزيلاً.
+
+## Step 2 — Due-date note (WhatsApp)
+
+**English:**
+
+Hi [Name], invoice [INV-042] for [3,500 AED] is due today. If payment has already been made, please ignore this message — otherwise I would appreciate the transfer today. Bank details are on the invoice.
+
+**Arabic:**
+
+مرحباً أستاذ [الاسم]، فاتورة [INV-042] بمبلغ [3,500 درهم] مستحقة اليوم. إذا تم التحويل بالفعل فتجاهل هذه الرسالة، وإلا نقدّر إتمام التحويل اليوم. بيانات الحساب موجودة على الفاتورة.
+
+## Step 3 — First follow-up, 5–7 days overdue (email + WhatsApp)
+
+**English:**
+
+Subject: Invoice INV-042 — 7 days past due
+
+Dear [Name], I hope you are doing well. Invoice INV-042 for 3,500 AED, due on [date], remains unpaid. Could you let me know the expected payment date? If there is any issue with the invoice, I am happy to resolve it quickly. Best regards, [Your name]
+
+**Arabic:**
+
+الموضوع: الفاتورة INV-042 — متأخرة 7 أيام
+
+الأستاذ الفاضل [الاسم]، تحية طيبة. الفاتورة رقم INV-042 بمبلغ 3,500 درهم والمستحقة بتاريخ [التاريخ] لا تزال غير مسددة. نرجو إفادتنا بالموعد المتوقع للسداد، وإذا كانت هناك أي ملاحظة على الفاتورة يسعدنا معالجتها فوراً. مع خالص التحية، [اسمك]
+
+## Step 4 — Firm reminder, 14–15 days overdue (email)
+
+**English:**
+
+Subject: Second reminder — Invoice INV-042 overdue 15 days
+
+Dear [Name], this is a second reminder that invoice INV-042 for 3,500 AED is now 15 days overdue. As per our agreed terms, kindly arrange payment within 5 business days. Please confirm once the transfer is made. Regards, [Your name]
+
+**Arabic:**
+
+الموضوع: تذكير ثانٍ — الفاتورة INV-042 متأخرة 15 يوماً
+
+الأستاذ الفاضل [الاسم]، هذا تذكير ثانٍ بأن الفاتورة INV-042 بمبلغ 3,500 درهم متأخرة الآن 15 يوماً عن موعد استحقاقها. وفقاً للشروط المتفق عليها، نرجو ترتيب السداد خلال 5 أيام عمل وتأكيد التحويل فور إتمامه. مع التحية، [اسمك]
+
+## Step 5 — Final notice, 25–30 days overdue (email)
+
+**English:**
+
+Subject: Final notice — Invoice INV-042
+
+Dear [Name], despite previous reminders, invoice INV-042 for 3,500 AED remains unpaid 30 days past its due date. If payment is not received by [date], we will be forced to pause ongoing work and refer the matter for formal collection. We would much prefer to resolve this directly — please contact me today. Regards, [Your name]
+
+**Arabic:**
+
+الموضوع: إشعار أخير — الفاتورة INV-042
+
+الأستاذ الفاضل [الاسم]، رغم التذكيرات السابقة، لا تزال الفاتورة INV-042 بمبلغ 3,500 درهم غير مسددة بعد مرور 30 يوماً على استحقاقها. في حال عدم استلام المبلغ بحلول [التاريخ]، سنضطر لإيقاف الأعمال الجارية وإحالة الموضوع للتحصيل الرسمي. نفضّل بالتأكيد حل الأمر ودياً — نرجو التواصل معنا اليوم. مع التحية، [اسمك]
+
+## WhatsApp etiquette in MENA business culture
+
+- Send reminders during business hours, never on Friday, and avoid late evenings.
+- Voice notes are for relationships; payment requests should always be **written** so there is a record.
+- Keep the tone respectful even at step 5 — in Gulf business culture, public pressure or a harsh tone can end the relationship and still not get you paid.
+- Always attach the invoice PDF again with every reminder. Make paying effortless.
+
+## Prevent the problem at the source
+
+Half of late payments trace back to unclear invoices: missing due dates, missing bank details, or amounts the client disputes. Issue clean, professional invoices with explicit payment terms from the [free invoice generator](/invoice), and confirm receipt with a [payment receipt](/receipt) the moment money arrives — clients pay faster when the paperwork is professional in both directions.
+`,
+  },
+
+  {
+    slug: "company-profile-that-wins-tenders",
+    titleAr: "كيف تبني ملفاً تجارياً يفوز بالمناقصات الحكومية",
+    titleEn: "How to Build a Company Profile That Wins Government Tenders",
+    metaTitleAr: "ملف تجاري يفوز بالمناقصات — Xuvilo",
+    metaTitleEn: "Company Profile That Wins Tenders — Xuvilo",
+    excerptAr: "لجان المناقصات في الخليج تتصفح مئات الملفات. إليك الهيكل ومستندات الامتثال والصيغة ثنائية اللغة التي تُدخل شركتك القائمة القصيرة.",
+    excerptEn: "Tender committees in the GCC scan hundreds of profiles. Here is the structure, compliance documents, and bilingual format that gets your SME shortlisted.",
+    date: "2026-08-12",
+    readTime: 8,
+    category: "business",
+    keywordAr: "ملف الشركة للمناقصات الحكومية",
+    keywordEn: "company profile for tenders GCC",
+    relatedSlugs: ["how-to-create-company-profile", "business-document-templates-guide", "quotation-best-practices"],
+    contentAr: `
+الملف التجاري العادي يجلب لك عملاء. أما الملف الجاهز للمناقصات فيجلب لك عقوداً تساوي عشرة أضعاف. المناقصات الحكومية ومناقصات الشركات الكبرى في دول الخليج — عبر منصات مثل بوابة اعتماد السعودية والمشتريات الاتحادية الإماراتية ونظام المناقصات الحكومية القطري — هي المكان الذي تتحول فيه الشركات الصغيرة إلى متوسطة. لكن لجان المناقصات تقيّم المستندات لا الوعود، ومعظم ملفات الشركات الصغيرة تسقط في الفرز الأول لأسباب يمكن تفاديها تماماً.
+
+## كيف تقرأ لجان المناقصات ملفك فعلياً
+
+موظف المشتريات الذي يراجع 40 عرضاً يقضي **ثلاث إلى خمس دقائق** مع ملفك في الجولة الأولى. هو لا يقرأ بل يتحقق من بنود:
+
+- هل الشركة مؤهلة قانونياً؟ (سجل تجاري ساري، شهادة ضريبية، عضوية غرفة تجارية)
+- هل نفّذت أعمالاً مماثلة بهذا الحجم من قبل؟
+- هل وضعها المالي مقنع لحجم العقد؟
+- هل المستند احترافي بما يكفي ليُؤتمن على ميزانية عامة؟
+
+يجب أن يجيب ملفك عن الأسئلة الأربعة في الجولة الأولى، وإلا فلن تكون هناك جولة ثانية.
+
+## الهيكل الجاهز للمناقصات
+
+| القسم | ما تبحث عنه اللجنة |
+| --- | --- |
+| الغلاف والهوية القانونية | الاسم القانوني المطابق للسجل التجاري، الشعار، رقم السجل |
+| الملخص التنفيذي | صفحة واحدة: من أنتم، ماذا تقدمون، الحجم، ميزتكم |
+| المستندات القانونية | السجل التجاري، الشهادة الضريبية، عضوية الغرفة، التراخيص |
+| سجل الأعمال | مشاريع مسماة بقيمها وتواريخها ومراجع عملائها |
+| الفريق والقدرة | الكوادر الأساسية، عدد الموظفين، المعدات إن وجدت |
+| الوضع المالي | نطاق الإيرادات، خطاب مرجعي بنكي |
+| الجودة والسلامة | شهادات ISO وسياسة السلامة إن وُجدت |
+| صفحة التواصل | بيانات المفوض بالتوقيع |
+
+## الأخطاء الخمسة التي تقتل عروض الشركات الصغيرة
+
+**1. عدم تطابق الاسم.** إذا كان سجلك التجاري باسم «النور للتجارة والمقاولات ذ.م.م» بينما غلاف ملفك يقول «مجموعة النور»، فستضع اللجنة علامة استفهام. كل مستند يجب أن يحمل الاسم القانوني المسجل بحذافيره.
+
+**2. سجل أعمال غامض.** عبارة «نفّذنا مشاريع كثيرة لعملاء كبار» بلا قيمة. اكتب: «توريد وتركيب أثاث مكتبي، فرع وزارة التعليم الإقليمي بالدمام — 640,000 ريال، اكتمل في مارس 2025». ثلاثة مشاريع محددة أقوى من ثلاثين ادعاءً عاماً.
+
+**3. مرفقات منتهية الصلاحية.** أي عرض بسجل تجاري أو شهادة ضريبية منتهية يُستبعد آلياً في منصة اعتماد ومعظم بوابات الخليج. راجع تواريخ انتهاء كل مستند في أسبوع التقديم.
+
+**4. لغة واحدة فقط.** المناقصات الحكومية في السعودية تُقيَّم بالعربية، وكثير من لجان الإمارات وقطر تعمل باللغتين. الملف ثنائي اللغة — العربية أولاً للجهات الحكومية والإنجليزية مقابلها — يعكس الاحترافية ويزيل العوائق. اجعل النسختين متطابقتين في الهيكل ليسهل على المقيّمين المقارنة.
+
+**5. غياب الأرقام.** اللجان تثق بالشركات المُرقّمة: عدد الموظفين، سنوات التشغيل، عدد المشاريع المنجزة، إجمالي قيمة العقود المنفذة. وإذا كانت هوامشك تسمح بتسعير تنافسي فاعرفها بدقة — [حاسبة هامش الربح](/calculators/profit-margin) تساعدك على تحديد موقفك التسعيري بثقة قبل الالتزام بأسعار المناقصة.
+
+## معايير الإخراج
+
+اجعل الملف بين 8 و16 صفحة. استخدم ألوان علامتك التجارية بثبات وعائلة خطوط واحدة نظيفة وصوراً حقيقية لأعمالك بدلاً من الصور الجاهزة — اللجان رأت كل الصور الجاهزة الممكنة. صدّره كملف PDF واحد أقل من 10 ميغابايت بفهرس محتويات قابل للنقر. وإذا كانت الصياغة ثنائية اللغة هي العقبة، فإن [كاتب الأعمال بالذكاء الاصطناعي](/ai-writer) يصيغ أقسام الملف بالعربية والإنجليزية لتنقّحها بتفاصيلك.
+
+## منظومة المستندات المساندة
+
+الفوز بالمناقصات نادراً ما يعتمد على الملف وحده. اللجنة نفسها سترى لاحقاً عرض سعرك، وبعد الترسية فواتيرك ومستندات التسليم. اجعلها متسقة بصرياً: [عرض سعر](/quotation) احترافي يطابق هوية ملفك، ثم فواتير نظيفة من [مولّد الفواتير](/invoice) تُشير إلى رقم أمر الشراء في كل بند. الاتساق عبر المستندات هو الشكل الفعلي لعبارة «شركة راسخة» على الورق.
+
+## قبل إغلاق المناقصة القادمة
+
+ابنِ الملف الآن، لا في ليلة الموعد النهائي. احتفظ بمجلد رئيسي يضم المستندات القانونية السارية محدثاً كل ربع سنة، مع الملف باللغتين. عندما تظهر المناقصة المناسبة — وفي اعتماد وحدها تُنشر آلاف المناقصات شهرياً — سترد خلال أيام بينما يتخبط منافسوك لأسابيع.
+
+وأخيراً، تعامل مع الملف كمستند حي. بعد كل عقد تفوز به، أضف المشروع إلى قسم سجل الأعمال بقيمته وتاريخ اكتماله والتفاصيل ما زالت طازجة. واطلب من العملاء الراضين خطاب مرجعية قصيراً عند التسليم، حين تكون النية الطيبة في ذروتها — مجلد من ستة خطابات مرجعية حديثة كثيراً ما يكون الفارق الصامت بين متنافسَين متكافئَين فنياً.
+`,
+    contentEn: `
+A generic company profile gets you clients. A tender-ready company profile gets you contracts worth ten times more. Government and large-corporate tenders across the GCC — through platforms like Saudi Arabia's Etimad portal, UAE federal procurement, and Qatar's government tendering system — are where small companies become medium ones. But tender committees evaluate documents, not promises, and most SME profiles fail the first screening for entirely avoidable reasons.
+
+## How tender committees actually read your profile
+
+A procurement officer reviewing 40 submissions spends **three to five minutes** on your profile in the first pass. They are not reading; they are checking boxes:
+
+- Is the company legally qualified? (valid commercial registration, tax registration, chamber of commerce membership)
+- Has it done this kind of work before, at this scale?
+- Is the financial position credible for the contract size?
+- Is the document professional enough to trust with a public budget?
+
+Your profile must answer all four in the first pass, or there is no second pass.
+
+## The tender-ready structure
+
+| Section | What committees look for |
+| --- | --- |
+| Cover + legal identity | Exact legal name matching your CR, logo, CR number |
+| Executive summary | One page: who, what, scale, differentiator |
+| Legal documents | CR, tax certificate, chamber membership, licenses |
+| Track record | Named projects with values, dates, client references |
+| Team and capacity | Key staff, headcount, equipment where relevant |
+| Financial standing | Revenue range, bank reference letter |
+| HSE / quality | ISO certificates, safety policy if applicable |
+| Contact page | Authorized signatory details |
+
+## The five mistakes that kill SME tender submissions
+
+**1. Name mismatches.** If your commercial registration says «Al Noor Trading and Contracting LLC» but your profile cover says «Al Noor Group», committees flag it. Every document must carry the exact registered legal name.
+
+**2. Vague track record.** «We have executed many projects for major clients» is worthless. Write: «Supply and installation of office furniture, Ministry of Education regional office, Dammam — 640,000 SAR, completed March 2025.» Three specific projects beat thirty vague claims.
+
+**3. Expired attachments.** A tender submission with an expired commercial registration or tax certificate is disqualified automatically on Etimad and most GCC portals. Check every expiry date the week you submit.
+
+**4. English-only or Arabic-only.** Government tenders in Saudi Arabia are evaluated in Arabic; many UAE and Qatar committees work bilingually. A dual-language profile — Arabic first for government, English mirrored — signals professionalism and removes friction. Structure both versions identically so evaluators can cross-reference.
+
+**5. No numbers.** Committees trust quantified companies. Staff count, years operating, projects delivered, total contract value executed. If your margins allow competitive pricing, know them precisely — the [profit margin calculator](/calculators/profit-margin) helps you state your pricing position with confidence before you commit to tender rates.
+
+## Presentation standards
+
+Keep the profile between 8 and 16 pages. Use your brand colors consistently, one clean font family, and real photographs of your work rather than stock images — committees have seen every stock photo. Export as a single PDF under 10 MB with a clickable table of contents. If writing polished bilingual copy is the bottleneck, the [AI business writer](/ai-writer) drafts profile sections in both Arabic and English that you can refine with your specifics.
+
+## The supporting document ecosystem
+
+Winning tenders is rarely about the profile alone. The same committee will later see your quotation, and after award, your invoices and delivery documentation. Make them visually consistent: a professional [quotation](/quotation) that matches your profile branding, then clean invoices from the [invoice generator](/invoice) referencing the purchase order number on every line. Consistency across documents is what «established company» actually looks like on paper.
+
+## Before the next tender closes
+
+Build the profile now, not the night before a deadline. Keep a master folder with current legal documents, updated every quarter, plus the profile in both languages. When the right tender appears — and on Etimad alone, thousands are published monthly — you respond in days while competitors scramble for weeks.
+
+Finally, treat the profile as a living document. After every awarded contract, add the project to the track record section with its value and completion date while the details are fresh. Ask satisfied clients for a short reference letter at handover, when goodwill is highest — a folder of six recent reference letters is often the quiet difference between two technically equal bidders.
+`,
+  },
+
+  {
+    slug: "rfq-response-playbook-smes",
+    titleAr: "دليل الرد على طلبات عروض الأسعار: كيف تفوز الشركات الصغيرة",
+    titleEn: "The RFQ Response Playbook: How SMEs Win More Quote Requests",
+    metaTitleAr: "دليل الرد على طلبات عروض الأسعار — Xuvilo",
+    metaTitleEn: "RFQ Response Playbook for SMEs — Xuvilo",
+    excerptAr: "من قراءة طلب عرض السعر بعناية إلى التسعير والتنسيق والمتابعة — دليل خطوة بخطوة يرفع نسبة تحويل عروضك إلى أوامر شراء.",
+    excerptEn: "From reading the RFQ properly to pricing, formatting, and following up — a step-by-step playbook that lifts your quote-to-order conversion rate.",
+    date: "2026-08-13",
+    readTime: 8,
+    category: "business",
+    keywordAr: "الرد على طلب عرض سعر RFQ",
+    keywordEn: "RFQ response how to win quotations",
+    relatedSlugs: ["quotation-guide-mena", "quotation-best-practices", "purchase-order-guide"],
+    contentAr: `
+يصلك طلب عرض سعر (RFQ): مشترٍ في شركة مقاولات بجدة يحتاج 200 وحدة خلال ثلاثة أسابيع ويريد سعرك قبل الخميس. ما تفعله في الـ48 ساعة التالية يحدد إن كنت ستفوز بالطلب، أم تخسره، أم — وهذا الأسوأ — تفوز به بسعر يخسّرك مالاً.
+
+معظم الشركات الصغيرة تتعامل مع طلبات عروض الأسعار كسباق لإرسال رقم. أما الشركات التي تفوز باستمرار فتتعامل معها كـ**عملية منهجية**. إليك الدليل.
+
+## الخطوة 1 — اقرأه مرتين قبل تسعير أي شيء
+
+طلبات عروض الأسعار تخفي فخاخها في التفاصيل. قبل لمس الآلة الحاسبة، استخرج ودوّن:
+
+- المواصفات والكميات الدقيقة (أخطاء وحدة القياس هي الكارثة الكلاسيكية — قطعة أم كرتونة أم طبلية)
+- موقع التسليم والموعد النهائي — التسليم إلى موقع في الجبيل يختلف كلفةً تماماً عن التسليم من مستودعك في الرياض
+- شروط الدفع التي يتوقعها المشتري (30 يوماً؟ 60 يوماً؟ هل الدفعة المقدمة مقبولة؟)
+- مدة صلاحية السعر المطلوبة
+- هل تشمل الأسعار الضريبة والجمارك والتركيب والتوصيل أم لا
+
+إذا كان أي بند غامضاً فاسأل. سؤال استيضاحي قبل التسعير يعكس احترافية؛ أما الافتراض الخاطئ بعد الفوز فيكلف مالاً حقيقياً.
+
+## الخطوة 2 — قرر أولاً: هل تتقدم أصلاً؟
+
+ليس كل طلب يستحق الرد. قيّمه سريعاً:
+
+- هل تستطيع فعلاً التسليم في الموعد دون تدمير التزاماتك الحالية؟
+- هل المشتري جاد، أم يجمع ثلاثة عروض ليبرر مورّداً اختاره مسبقاً؟
+- هل تناسب شروط الدفع وضعك النقدي؟ الفوز بطلب بقيمة 300,000 جنيه مصري بشرط سداد 90 يوماً قد يُغرق شركة صغيرة تدفع لمورّديها خلال 30 يوماً.
+
+الاعتذار السريع المهذب يحفظ العلاقة للطلب القادم؛ أما الفوز الخاسر فقد ينهي سنتك المالية.
+
+## الخطوة 3 — سعّر من التكلفة صعوداً لا من التخمين نزولاً
+
+ابنِ السعر طبقات:
+
+1. **التكلفة المباشرة للوحدة** — تكلفة الشراء أو الإنتاج، والشحن الوارد، والتغليف. وللبضائع المستوردة أضف الرسوم والتخليص عبر [حاسبة تكلفة الاستيراد](/calculators/import-cost).
+2. **تكاليف الطلب المحددة** — التوصيل لموقع المشتري، تغليف خاص، رسوم الضمان البنكي إن طُلب.
+3. **الهامش** — يُضاف عن وعي. اعرف الفرق بين نسبة الإضافة والهامش قبل تحديده؛ [حاسبة الهامش ونسبة الإضافة](/calculators/markup-margin) تجنّبك الخطأ الكلاسيكي: إضافة 20% على التكلفة وأنت تظن أنك تربح هامش 20%.
+4. **هامش التفاوض** — في معظم أسواق المنطقة، المشترون يفاوضون. اترك مجالاً بنسبة 3–5% حتى يُنهي الخصمُ النقاشَ لا أرباحك. جرّب السيناريوهات في [حاسبة الخصم](/calculators/discount) قبل المكالمة لا أثناءها.
+
+## الخطوة 4 — نسّق عرضك كشركة لا كرسالة نصية
+
+نسبة مفاجئة من عروض الشركات الصغيرة في المنطقة لا تزال تُرسل كرسائل واتساب أو أسطر بريد مجردة. المشترون يمررون العروض داخلياً للاعتماد — لقطة شاشة واتساب تموت في تلك السلسلة، بينما ملف PDF نظيف ينجو منها.
+
+يجب أن يتضمن عرضك: رقم العرض وتاريخه، مدة الصلاحية، بنوداً مفصلة بأسعار الوحدات، المجموع الفرعي، الضريبة ظاهرة منفصلة (15% في السعودية، 5% في الإمارات، 14% في مصر)، شروط التسليم والدفع، ومدة التوريد. [مولّد عروض الأسعار](/quotation) المجاني ينتج هذا الهيكل بالضبط بالعربية والإنجليزية في دقائق.
+
+| العنصر | لماذا يهم |
+| --- | --- |
+| مدة الصلاحية | تحميك من تغيرات أسعار المواد والصرف |
+| البنود المفصلة | تتيح للمشتري الاعتماد دون الاتصال بك |
+| الضريبة منفصلة | ضرورية لاسترداد المشتري لضريبة المدخلات |
+| مدة التوريد لكل بند | تمنع النزاعات بعد وصول أمر الشراء |
+
+## الخطوة 5 — تابع وفق جدول
+
+أرسل العرض، ثم تابع في اليوم الثاني (تأكيد الاستلام وعرض التوضيح)، واليوم الخامس (سؤال مهذب عن مسار القرار)، واليوم العاشر (تحقق أخير قبل تحرير المخزون أو الطاقة المحجوزة). اثنان من كل ثلاثة طلبات تخسرها الشركات الصغيرة بعد التسعير تضيع بسبب الصمت لا السعر.
+
+## الخطوة 6 — أغلق الدائرة عند وصول أمر الشراء
+
+عند وصول أمر الشراء، راجعه بنداً بنداً مقابل عرضك — الكميات والأسعار والشروط. تصحيح الفروقات قبل التسليم أسهل بكثير من بعده. ثم أصدر الفاتورة مع الإشارة إلى رقم أمر الشراء في كل مستند.
+
+طبّق هذا الدليل على كل طلب عرض سعر لربع سنة واحد وقِس نسبة التحويل. معظم الشركات التي تنتقل من الردود المرتجلة إلى عملية منظمة ترى نسبة فوزها ترتفع بمقدار الثلث — وبهوامش أفضل فيما تفوز به.
+`,
+    contentEn: `
+An RFQ — request for quotation — lands in your inbox. A buyer at a contracting company in Jeddah needs 200 units delivered in three weeks and wants your price by Thursday. What you do in the next 48 hours determines whether you win the order, lose it, or worse: win it at a price that loses you money.
+
+Most SMEs treat RFQs as a race to send a number. The companies that win consistently treat them as a **process**. Here is the playbook.
+
+## Step 1 — Read it twice before pricing anything
+
+RFQs hide their traps in the details. Before touching a calculator, extract and write down:
+
+- Exact specifications and quantities (unit of measure errors are the classic disaster — pieces vs cartons vs pallets)
+- Delivery location and deadline — delivered to site in Jubail is a very different cost from ex-warehouse Riyadh
+- Payment terms the buyer expects (Net 30? Net 60? advance payment allowed?)
+- Validity period they require for your price
+- Whether prices should include VAT, customs, installation, or delivery
+
+If anything is ambiguous, ask. A clarifying question before quoting signals professionalism; a wrong assumption after winning costs real money.
+
+## Step 2 — Decide whether to bid at all
+
+Not every RFQ deserves a response. Score it quickly:
+
+- Can you actually deliver on the deadline without wrecking existing commitments?
+- Is the buyer serious, or collecting three quotes to justify a supplier they already chose?
+- Does the payment term fit your cash position? Winning a 300,000 EGP order at Net 90 can sink a small business that pays its own suppliers at Net 30.
+
+A fast, polite decline preserves the relationship for the next RFQ. A bad win can end your year.
+
+## Step 3 — Price from cost up, not from guess down
+
+Build the price in layers:
+
+1. **Direct cost per unit** — purchase or production cost, inbound freight, packaging. For imported goods, include duties and clearance with the [import cost calculator](/calculators/import-cost).
+2. **Order-specific costs** — delivery to the buyer's site, special packaging, bank guarantee fees if required.
+3. **Margin** — applied deliberately. Know the difference between markup and margin before you set it; the [markup and margin calculator](/calculators/markup-margin) prevents the classic mistake of adding 20% markup while believing you earn 20% margin.
+4. **Negotiation buffer** — in most MENA markets, buyers negotiate. Quote with 3–5% room so a discount ends the conversation instead of your profit. Model scenarios with the [discount calculator](/calculators/discount) before the call, not during it.
+
+## Step 4 — Format the quotation like a company, not a text message
+
+A surprising share of SME quotes in the region are still sent as WhatsApp messages or bare email lines. Buyers forward quotations internally for approval — a WhatsApp screenshot dies in that chain; a clean PDF survives it.
+
+Your quotation should include: quotation number and date, validity period, itemized lines with unit prices, subtotal, VAT shown separately (15% Saudi Arabia, 5% UAE, 14% Egypt), delivery terms, payment terms, and lead time. The free [quotation generator](/quotation) produces exactly this structure in Arabic and English in minutes.
+
+| Element | Why it matters |
+| --- | --- |
+| Validity period | Protects you from price changes in materials and FX |
+| Itemized lines | Lets the buyer approve without calling you |
+| VAT shown separately | Required for the buyer's input VAT recovery |
+| Lead time per line | Prevents disputes after the PO arrives |
+
+## Step 5 — Follow up on a schedule
+
+Send the quote, then follow up on day 2 (confirm it was received and offer to clarify), day 5 (ask politely where the decision stands), and day 10 (final check before you release reserved stock or capacity). Two of three orders that SMEs lose after quoting are lost to silence, not to price.
+
+## Step 6 — Close the loop when the PO arrives
+
+When the purchase order comes, check it line by line against your quotation — quantities, prices, terms. Discrepancies are far easier to fix before delivery than after. Then invoice referencing the PO number on every document.
+
+Run this playbook on every RFQ for one quarter and measure your conversion rate. Most businesses that move from improvised replies to a structured process see their win rate rise by a third — with better margins on what they win.
+`,
+  },
+
+  {
+    slug: "simple-cash-flow-forecast-template",
+    titleAr: "نموذج بسيط لتوقع التدفق النقدي ستستخدمه فعلاً",
+    titleEn: "A Simple Cash Flow Forecast Template You Will Actually Use",
+    metaTitleAr: "نموذج توقع التدفق النقدي البسيط — Xuvilo",
+    metaTitleEn: "Simple Cash Flow Forecast Template — Xuvilo",
+    excerptAr: "ابنِ توقعاً للتدفق النقدي لـ13 أسبوعاً في ساعة واحدة بجدول بيانات عادي: الصفوف المطلوبة، مثال عملي بالريال، وطقس التحديث الأسبوعي.",
+    excerptEn: "Build a 13-week cash flow forecast in one hour with a plain spreadsheet: the exact rows, a worked SAR example, and the 20-minute weekly update ritual.",
+    date: "2026-08-14",
+    readTime: 7,
+    category: "business",
+    keywordAr: "نموذج توقع التدفق النقدي",
+    keywordEn: "cash flow forecast template small business",
+    relatedSlugs: ["cash-flow-management-freelancers", "break-even-analysis-guide", "invoice-payment-terms-guide"],
+    contentAr: `
+كل الأدلة تنصحك بأن «تتوقع تدفقك النقدي»، ولا يكاد أحد يريك الجدول الفعلي. هذه المقالة تفعل. خلال ساعة واحدة سيكون لديك توقع عامل لـ13 أسبوعاً، وبعشرين دقيقة أسبوعياً ستُبقيه حياً — ولن يفاجئك بعدها أبداً موعد رواتب يصل قبل دفعة العميل.
+
+## لماذا 13 أسبوعاً
+
+ثلاثة عشر أسبوعاً تساوي ربع سنة: مدة كافية لرؤية المشكلة قادمة — دفعة ضريبة القيمة المضافة، موسمية رمضان، عميل يتأخر دائماً 20 يوماً — وقصيرة بما يكفي لتبقى الأرقام واقعية لا متفائلة. التوقعات الشهرية تخفي الخطر: قد يبدو الشهر سليماً في مجموعه بينما أسبوعه الثاني يتركك عاجزاً عن دفع الرواتب.
+
+## هيكل النموذج
+
+افتح جدول بيانات فارغاً. الأعمدة هي الأسابيع (أ1 إلى أ13). والصفوف:
+
+**الرصيد الافتتاحي** — النقد الموجود فعلاً في البنك بداية الأسبوع.
+
+**النقد الداخل:**
+- دفعات عملاء مؤكدة (فواتير بمواعيد متفق عليها)
+- دفعات محتملة (فواتير صادرة، مقدّرة حسب سلوك العميل)
+- إيرادات أخرى (مستردات، عرابين)
+
+**النقد الخارج:**
+- الرواتب والأجور
+- الإيجار
+- الموردون
+- الضريبة والرسوم الحكومية
+- الاشتراكات والمرافق
+- مسحوبات المالك
+
+**صافي الحركة** = إجمالي الداخل − إجمالي الخارج.
+**الرصيد الختامي** = الافتتاحي + صافي الحركة، ويصبح الرصيد الافتتاحي للأسبوع التالي.
+
+## مثال عملي (بالريال السعودي)
+
+استوديو تصميم صغير في الرياض، أول أربعة أسابيع:
+
+| الصف | أ1 | أ2 | أ3 | أ4 |
+| --- | --- | --- | --- | --- |
+| الرصيد الافتتاحي | 42,000 | 24,500 | 51,500 | 22,500 |
+| دفعات العملاء | 8,000 | 35,000 | 0 | 12,000 |
+| الرواتب | 0 | 0 | 26,000 | 0 |
+| الإيجار | 12,000 | 0 | 0 | 0 |
+| موردون واشتراكات | 13,500 | 8,000 | 3,000 | 4,500 |
+| الرصيد الختامي | 24,500 | 51,500 | 22,500 | 30,000 |
+
+لاحظ ما يكشفه التوقع: الأسبوع الثالث يُغلق عند 22,500 ريال — قريباً بشكل خطير من رواتب بقيمة 26,000 ريال إذا تأخرت دفعة الأسبوع الثاني البالغة 35,000 ريال أسبوعين. هذه هي القيمة الكاملة للأداة: ترى التصادم **قبل ستة أسابيع**، بينما ما زال بوسعك التصرف — ملاحقة الفاتورة، أو تأجيل دفعة مورد، أو ترحيل عملية شراء.
+
+## تقدير أصعب صف: دفعات العملاء
+
+النقد الخارج سهل التنبؤ؛ أما النقد الداخل فهو حيث تكذب التوقعات. قاعدتان تُبقيانك صادقاً:
+
+1. **اعتمد على السلوك لا الوعود.** إذا كان عميل قد سدد فواتيرك الأربع الأخيرة بعد 18–25 يوماً من الاستحقاق، فتوقّع الفاتورة القادمة عند +21 يوماً مهما قال العقد. [حاسبة أعمار الفواتير](/calculators/invoice-aging) تُظهر لك نمط السداد الحقيقي لكل عميل من فواتيرك المعلقة.
+2. **خصّم المال غير المؤكد.** أدخل الدفعات المؤكدة بنسبة 100%، والفواتير الصادرة بنسبة 80%، والأعمال الموعودة غير المفوترة بصفر. ما لا تستطيع فوترته بعد ليس تدفقاً نقدياً — وكلما أسرعت بإصدار الفاتورة عبر [مولّد الفواتير](/invoice) أسرع تحوله إلى نقد حقيقي.
+
+## طقس العشرين دقيقة الأسبوعي
+
+اختر موعداً ثابتاً — صباح الأحد مناسب لأسبوع العمل الخليجي. ثم:
+
+1. استبدل أرقام توقع الأسبوع الماضي بالفعلي من كشف حسابك البنكي (5 دقائق).
+2. حدّث مواعيد الدفع المتوقعة وفق أي مستجدات من العملاء (5 دقائق).
+3. أضف الأسبوع 14 في النهاية ليبقى الأفق دائماً 13 أسبوعاً (5 دقائق).
+4. انظر إلى أدنى رصيد ختامي في الجدول. هذا الرقم — القاع — هو وضعك المالي الحقيقي، لا رصيد اليوم في البنك (5 دقائق).
+
+## ماذا تفعل بما تراه
+
+إذا هبط القاع تحت الصفر فأمامك أسابيع — لا أيام — للتصرف: عجّل الفوترة، اطلب دفعة مقدمة على الأعمال الجديدة، فاوض على شروط الموردين، أو قلّص مصروفاً كمالياً. وإذا بقي القاع مريحاً فوق الصفر لربع سنة كامل، تستطيع أخيراً الإجابة عن أسئلة النمو بالبيانات: هل يتحمل العمل موظفاً جديداً أو إيجاراً أعلى، وكم إيراداً إضافياً يتطلب ذلك عبر [حاسبة نقطة التعادل](/calculators/break-even).
+
+التوقع لا يصنع نقداً؛ إنه يصنع **وقتاً** — وفي الأعمال الصغيرة، الوقت هو ما يحوّل الأزمة إلى مهمة عادية. ابنِ الجدول هذا الأسبوع قبل أن تحتاجه؛ فأسوأ لحظة لبدء التوقع هي الأسبوع الذي وصلت فيه المشكلة فعلاً.
+`,
+    contentEn: `
+Every guide tells you to «forecast your cash flow». Almost none shows you the actual spreadsheet. This article does. In one hour you will have a working 13-week forecast; in twenty minutes a week you will keep it alive — and you will never again be surprised by a payroll date arriving before a client payment does.
+
+## Why 13 weeks
+
+Thirteen weeks is one quarter. It is long enough to see trouble coming — a VAT payment, Ramadan seasonality, a client who always pays 20 days late — and short enough that the numbers stay real rather than hopeful. Monthly forecasts hide the danger: a month can look fine in total while week two of it leaves you unable to pay salaries.
+
+## The template structure
+
+Open a blank spreadsheet. Columns are weeks (W1 to W13). Rows are:
+
+**Opening balance** — cash actually in the bank at the start of the week.
+
+**Cash in:**
+- Confirmed client payments (invoices with agreed dates)
+- Probable payments (issued invoices, estimated by client behavior)
+- Other income (refunds, deposits)
+
+**Cash out:**
+- Salaries and wages
+- Rent
+- Suppliers
+- VAT and government fees
+- Subscriptions and utilities
+- Owner drawings
+
+**Net movement** = total in − total out.
+**Closing balance** = opening + net movement. This becomes next week's opening balance.
+
+## A worked example (SAR)
+
+A small design studio in Riyadh, first four weeks:
+
+| Row | W1 | W2 | W3 | W4 |
+| --- | --- | --- | --- | --- |
+| Opening balance | 42,000 | 24,500 | 51,500 | 22,500 |
+| Client payments in | 8,000 | 35,000 | 0 | 12,000 |
+| Salaries | 0 | 0 | 26,000 | 0 |
+| Rent | 12,000 | 0 | 0 | 0 |
+| Suppliers + subs | 13,500 | 8,000 | 3,000 | 4,500 |
+| Closing balance | 24,500 | 51,500 | 22,500 | 30,000 |
+
+Notice what the forecast reveals: W3 closes at 22,500 SAR — dangerously close to the 26,000 SAR payroll if the W2 client payment of 35,000 slips by two weeks. That is the entire value of the tool: you see the collision **six weeks early**, while you can still act — chase the invoice, delay a supplier payment, or shift a purchase.
+
+## Estimating the hardest row: client payments
+
+Cash out is easy to predict; cash in is where forecasts lie. Two rules keep you honest:
+
+1. **Use behavior, not promises.** If a client has paid your last four invoices 18–25 days after the due date, forecast the next one at +21 days regardless of what the contract says. The [invoice aging calculator](/calculators/invoice-aging) shows you each client's real payment pattern from your outstanding invoices.
+2. **Discount uncertain money.** Enter confirmed payments at 100%, issued invoices at 80%, and promised-but-uninvoiced work at 0. If you cannot invoice it yet, it is not cash flow — and the faster you issue the invoice via the [invoice generator](/invoice), the sooner it becomes real.
+
+## The 20-minute weekly ritual
+
+Pick a fixed slot — Sunday morning works well in Gulf business weeks. Then:
+
+1. Replace last week's forecast numbers with actuals from your bank statement (5 min).
+2. Update expected payment dates based on any client news (5 min).
+3. Add week 14 at the end so the horizon always stays 13 weeks (5 min).
+4. Look at the lowest closing balance in the sheet. That number — the trough — is your real financial position, not today's bank balance (5 min).
+
+## What to do with what you see
+
+If the trough goes negative, you have weeks — not days — to respond: accelerate invoicing, request a deposit on new work, negotiate supplier terms, or trim a discretionary cost. If the trough stays comfortably positive for a full quarter, you can finally answer growth questions with data: whether the business can absorb a new hire or higher rent, and check how much more revenue that requires with the [break-even calculator](/calculators/break-even).
+
+A forecast does not create cash. It creates **time** — and in small business, time is what turns a crisis into an errand. Build the sheet this week, before you need it; the worst moment to start forecasting is the week the trouble has already arrived.
+`,
+  },
+
+  {
+    slug: "freelancer-contract-essentials-mena",
+    titleAr: "أساسيات عقد المستقل في المنطقة: 9 بنود تحميك",
+    titleEn: "Freelancer Contract Essentials in MENA: 9 Clauses That Protect You",
+    metaTitleAr: "أساسيات عقد المستقل في المنطقة — Xuvilo",
+    metaTitleEn: "Freelancer Contract Essentials in MENA — Xuvilo",
+    excerptAr: "النطاق والدفعة المقدمة والتعديلات ونقل الملكية الفكرية وغرامة التأخير والاختصاص القضائي — تسعة بنود يحتاجها كل مستقل قبل أي مشروع.",
+    excerptEn: "Scope, deposits, revisions, IP transfer, late fees, and jurisdiction — the nine contract clauses every MENA freelancer needs before starting any project.",
+    date: "2026-08-15",
+    readTime: 8,
+    category: "laws",
+    keywordAr: "عقد المستقل بنود الحماية",
+    keywordEn: "freelancer contract clauses MENA",
+    relatedSlugs: ["handle-late-payments-invoice-disputes", "freelancer-invoice-tips-uae", "invoice-payment-terms-guide"],
+    contentAr: `
+معظم نزاعات العمل الحر في منطقتنا — الفاتورة غير المدفوعة، التعديلات التي لا تنتهي، العميل الذي يختفي بعد التسليم — خُسرت قبل أن يبدأ المشروع، لحظة بدأ المستقل العمل بناءً على «تمام، ابدأ» في واتساب. اتفاق مكتوب قصير، ولو من صفحتين، يمنع أغلبها. إليك البنود التسعة المهمة، وكيف تصيغ كلاً منها ليحميك فعلاً.
+
+*هذه المقالة معلومات عامة وليست استشارة قانونية. للعقود الكبيرة، استشر محامياً مرخصاً في الدولة المعنية.*
+
+## أولاً: صحّح وضعك القانوني
+
+العقد يحميك بالكامل فقط عندما يكون عملك قانونياً. وقد سهّلت المنطقة ذلك كثيراً: السعودية تصدر وثيقة العمل الحر عبر منصة العمل الحر الرسمية، والإمارات توفر رخص العمل الحر عبر المناطق الحرة وجهات البر الرئيسي، ومصر تتيح القيد كممول فردي لدى مصلحة الضرائب. العمل بوضع نظامي يعني أيضاً أن العملاء يستطيعون تمرير فواتيرك عبر أنظمتهم المحاسبية — وهو ما يعجّل سدادك.
+
+## البنود التسعة الأساسية
+
+**1. نطاق العمل — موصوفاً بالمخرجات لا بالجهد.** اكتب «موقع من خمس صفحات: الرئيسية، من نحن، الخدمات، المدونة، التواصل — التصاميم تُسلَّم بصيغة Figma والتطوير على WordPress» بدلاً من «تصميم وتطوير موقع». كل ما لم يُذكر يُعد خارج النطاق تلقائياً.
+
+**2. الدفعة المقدمة وجدول السداد.** للمشاريع التي تتجاوز نحو 3,000 ريال أو 3,000 درهم أو 15,000 جنيه، اشترط 30–50% قبل البدء، والباقي مربوطاً بمراحل الإنجاز — وليس كله عند التسليم النهائي أبداً. الدفعة المقدمة تُصفّي العملاء غير الجادين أفضل من أي بند آخر.
+
+**3. شروط الدفع وطريقته.** حدد العملة ومدة الاستحقاق بدقة (7 أو 15 يوماً للمستقلين — فشرط الثلاثين يوماً عادة شركات لست ملزماً بقبولها) وطريقة التحويل: حوالة بنكية أو نظام تحويل فوري حيث يتوفر. واجعل الشروط نفسها تظهر على كل [فاتورة](/invoice) تصدرها.
+
+**4. عواقب التأخر في السداد.** بند بسيط يغيّر السلوك: يتوقف العمل عند تجاوز الفاتورة 10 أيام تأخير، وتُسلَّم الملفات النهائية بعد السداد الكامل. تابع المتأخرات منهجياً عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging).
+
+**5. التعديلات — معدودة ومعرّفة.** «جولتا تعديلات مشمولتان؛ الجولات الإضافية تُفوتر بسعر [كذا] للجولة». وعرّف الجولة: قائمة تغييرات واحدة مجمّعة، لا رسائل يومية متقطرة.
+
+**6. نقل الملكية الفكرية — عند السداد.** الصياغة الأكثر حماية للمستقل: تنتقل الملكية الفكرية للمخرجات إلى العميل **عند استلام كامل المستحقات**. حتى ذلك الحين، العمل ملكك. واحتفظ بحق عرض العمل في معرض أعمالك ما لم يدفع العميل مقابل السرية.
+
+**7. الإنهاء.** يجوز لأي طرف إنهاء التعاقد بإشعار كتابي قبل 14 يوماً، ويدفع العميل مقابل كل العمل المنجز حتى تاريخ الإنهاء، والدفعة المقدمة غير مستردة بعد بدء العمل.
+
+**8. السرية — متبادلة ومحدودة.** اجعلها معقولة: معلومات عمل العميل تبقى سرية، ويستمر الالتزام سنتين إلى ثلاث، وتُستثنى المهارات والمعرفة العامة.
+
+**9. القانون الواجب التطبيق والنزاعات.** حدد قانون أي دولة يسري وأين تُحل النزاعات. في العمل العابر للحدود — مستقل في القاهرة يخدم عميلاً في دبي — هذا البند هو الأهم، لأن التنفيذ بدونه ضربٌ من التخمين.
+
+## جدول مرجعي سريع
+
+| البند | الحماية في سطر |
+| --- | --- |
+| النطاق | يقتل تمدد المهام |
+| الدفعة المقدمة | تُصفّي غير الجادين |
+| شروط الدفع | تضبط ساعة التحصيل |
+| غرامة التأخير | تمنح تذكيراتك أسناناً |
+| التعديلات | تُنهي دوامة اللمسات الأخيرة |
+| الملكية عند السداد | ورقتك الأقوى |
+| الإنهاء | خروج نظيف بعمل مدفوع |
+| السرية | محدودة ومتبادلة |
+| الاختصاص القضائي | يجعل التنفيذ ممكناً |
+
+## كيف تجعله طبيعياً مع العملاء
+
+في ثقافة الأعمال بالمنطقة، قد يبدو دفع مستند قانوني كثيف نحو عميل ودود تصرفاً صدامياً. الحل في التغليف: قدّم الاتفاق كـ«ملخص مشروع» من صفحة واحدة مرفق بـ[عرض السعر](/quotation) — النطاق والجدول والدفعات والشروط بلغة واضحة، بتوقيع الطرفين. العملاء يحترمونه، والجادون منهم يتوقعونه. المستقلون الذين يخسرون أموالهم ليسوا غالباً من طلبوا التوقيع — بل من استحوا أن يطلبوه.
+`,
+    contentEn: `
+Most freelance disputes in the MENA region — the unpaid invoice, the endless revisions, the client who disappears after delivery — were lost before the project started, at the moment the freelancer began work on a WhatsApp «ok, go ahead». A short written agreement, even two pages, prevents the majority of them. Here are the nine clauses that matter, and how to write each one so it actually protects you.
+
+*This article is general information, not legal advice. For significant contracts, consult a lawyer licensed in the relevant country.*
+
+## First: get your legal status right
+
+A contract protects you fully only when you can legally do the work. The region has made this dramatically easier: Saudi Arabia issues freelance certificates through the official freelance platform; the UAE offers freelance permits through free zones and mainland authorities; Egypt allows registration as a sole proprietor with the Tax Authority. Working with formal status also means clients can process your invoices through their accounting systems — which gets you paid faster.
+
+## The nine essential clauses
+
+**1. Scope of work — described by deliverables, not effort.** Write «one five-page website: home, about, services, blog, contact — designs delivered in Figma, development in WordPress» rather than «design and develop a website». Anything not listed is out of scope by default.
+
+**2. Deposit and payment schedule.** For projects above roughly 3,000 SAR / 3,000 AED / 15,000 EGP, require 30–50% before work starts, with the balance tied to milestones — never entirely on final delivery. A deposit filters out non-serious clients better than any other clause.
+
+**3. Payment terms and method.** Specify the currency, the exact due period (Net 7 or Net 15 for freelancers — Net 30 is a corporate habit you do not have to accept), and the transfer method: bank transfer, or an instant scheme where available. Reference your invoice terms — the same terms should appear on every [invoice](/invoice) you issue.
+
+**4. Late payment consequences.** A modest clause changes behavior: work pauses when an invoice is 10 days overdue, and delivery of final files happens after full payment. Track overdue amounts systematically with the [invoice aging calculator](/calculators/invoice-aging).
+
+**5. Revisions — counted and defined.** «Two rounds of revisions included; additional rounds billed at [rate] per round.» Define what one round means: a single consolidated list of changes, not a drip of daily messages.
+
+**6. Intellectual property transfer — on payment.** The most protective formulation for freelancers: IP in the deliverables transfers to the client **upon receipt of full payment**. Until then, you own the work. Also reserve the right to display the work in your portfolio unless the client pays for confidentiality.
+
+**7. Termination.** Either party may end the engagement with 14 days written notice; the client pays for all work completed to the termination date, and the deposit is non-refundable once work has started.
+
+**8. Confidentiality — mutual and bounded.** Keep it reasonable: client business information stays confidential; the obligation lasts 2–3 years; general skills and knowledge are excluded.
+
+**9. Governing law and disputes.** State which country's law applies and where disputes are resolved. For cross-border work — a freelancer in Cairo serving a client in Dubai — this clause matters most, because without it, enforcement is guesswork.
+
+## Quick-reference table
+
+| Clause | One-line protection |
+| --- | --- |
+| Scope | Kills scope creep |
+| Deposit | Filters non-serious clients |
+| Payment terms | Sets the collection clock |
+| Late payment | Gives your reminders teeth |
+| Revisions | Ends the endless-tweaks loop |
+| IP on payment | Your strongest leverage |
+| Termination | Clean exits, paid work |
+| Confidentiality | Bounded, mutual |
+| Jurisdiction | Makes enforcement possible |
+
+## Making it feel natural with clients
+
+In regional business culture, pushing a dense legal document at a friendly client can feel confrontational. The fix is packaging: present the agreement as a one-page «project summary» attached to your [quotation](/quotation) — scope, schedule, payments, and terms in plain language, signed by both sides. Clients respect it; the serious ones expect it. The freelancers who lose money are almost never the ones who asked for a signature — they are the ones who were too embarrassed to ask.
+`,
+  },
+
+  {
+    slug: "multi-currency-bookkeeping-basics",
+    titleAr: "أساسيات مسك الدفاتر متعدد العملات لشركات المنطقة",
+    titleEn: "Multi-Currency Bookkeeping Basics for MENA Businesses",
+    metaTitleAr: "أساسيات المحاسبة متعددة العملات — Xuvilo",
+    metaTitleEn: "Multi-Currency Bookkeeping Basics — Xuvilo",
+    excerptAr: "تفوتر بالدولار وتصرف بالجنيه وتقدّم تقاريرك بالريال؟ العملة الأساس وأسعار الصرف وفروقات العملة ورسوم البنوك — بأمثلة عملية.",
+    excerptEn: "Invoicing in USD, spending in EGP, reporting in SAR? Base currency, exchange rates, FX gains and losses, and bank fees — explained with worked examples.",
+    date: "2026-08-16",
+    readTime: 8,
+    category: "business",
+    keywordAr: "المحاسبة متعددة العملات",
+    keywordEn: "multi currency bookkeeping small business",
+    relatedSlugs: ["currency-risk-mena-businesses", "landed-cost-international-shipping", "expense-report-guide"],
+    contentAr: `
+مصممة في القاهرة تفوتر عميلاً في دبي بالدولار، وتستلم جنيهات مصرية في حسابها بعد التحويل، وتدفع اشتراكات البرمجيات بالدولار مجدداً. شركة تجارية في جدة تستورد باليوان وتبيع بالريال وتحتفظ بحساب دولاري للموردين. واقع تعدد العملات يصل مبكراً لشركات المنطقة — عادةً قبل أن يتدرب أحد في الفريق على مسك الدفاتر بزمن طويل. إليك المفاهيم التي تُبقي أرقامك صادقة.
+
+## القاعدة 1: اختر عملة أساس واحدة ولا تساوم عليها
+
+عملة الأساس هي العملة التي تعيش فيها دفاترك وتقاريرك وحسابات أرباحك — وهي عادةً عملة بلدك والتزاماتك الضريبية: الريال في السعودية، الدرهم في الإمارات، الجنيه في مصر. كل معاملة بعملة أخرى تُترجم إلى عملة الأساس بسعر يوم المعاملة. يمكنك الفوترة بخمس عملات؛ لكنك تقيس الربح بعملة واحدة.
+
+## القاعدة 2: سجّل سعر الصرف يوم حدوث المعاملة
+
+عندما تصدر فاتورة بـ5,000 دولار في 3 مارس والسعر 50.9 جنيه للدولار، سجّل إيراداً بقيمة 254,500 جنيه — حتى لو لم يتحرك أي مال بعد. وعندما تصل الدفعة في 10 أبريل بسعر 51.6، تستلم 258,000 جنيه. الفارق البالغ 3,500 جنيه ليس إيراداً إضافياً: إنه **ربح فروق عملة** يُسجل منفصلاً. ولو تحرك السعر عكسياً لكان خسارة فروق عملة.
+
+لماذا يهم الفصل: خلط تحركات العملة في الإيرادات يجعل مبيعاتك تبدو متقلبة وهي مستقرة — ويخفي خسائر عملة حقيقية داخل دخل يبدو سليماً. محاسبك وبنكك ومصلحة الضرائب لاحقاً، كلهم يريدون هذه البنود منفصلة.
+
+## القاعدة 3: المحقق مقابل غير المحقق — اعرف أيهما لديك
+
+- **الأرباح والخسائر المحققة** تحدث عند تحويل المال فعلاً: فاتورة سُددت أو مورد تمت تسويته.
+- **غير المحققة** موجودة على الورق: تحتفظ برصيد 10,000 دولار وتتغير قيمته بعملة الأساس مع السوق.
+
+على الشركات الصغيرة تتبع الفروقات المحققة بدقة، وإعادة تقييم الأرصدة الأجنبية الكبيرة على الأقل في نهاية السنة. وللمتابعة اليومية والتحويلات السريعة، أبقِ [حاسبة تحويل العملات](/calculators/currency-exchange) في متناولك.
+
+## القاعدة 4: فروقات أسعار البنوك تكلفة حقيقية — قِسها
+
+السعر الذي يمنحك إياه البنك ليس سعر السوق. البنوك وخدمات التحويل في المنطقة تقتطع عادةً 1–3% داخل سعر الصرف، فوق رسوم التحويل الظاهرة. على معاملات أجنبية سنوية بقيمة 200,000 ريال، فرق 2% يعني 4,000 ريال — مصروف صامت لا تراه معظم الشركات لأنه لا يظهر كبند مستقل.
+
+سجّل الفرق بين سعر السوق وسعرك المنفذ كتكلفة بنكية. وبمجرد أن يصبح مرئياً تستطيع التصرف: التفاوض مع البنك، أو تجميع التحويلات الصغيرة في تحويلات أكبر، أو تمرير مسارات محددة عبر مزودين أقل كلفة.
+
+## مثال كامل من البداية للنهاية
+
+وكالة في عمّان (عملة الأساس الدينار الأردني) تنفذ مشروعاً لعميل سعودي:
+
+| الحدث | السعر المستخدم | القيد |
+| --- | --- | --- |
+| فاتورة 20,000 ريال، 1 يونيو | 1 ريال = 0.188 دينار | إيراد 3,760 دينار وذمم مدينة 3,760 دينار |
+| استلام الدفعة، 5 يوليو | 1 ريال = 0.190 دينار | نقد 3,800 دينار وإقفال الذمم |
+| الفارق | — | ربح فروق عملة 40 ديناراً |
+| رسوم البنك المخصومة | — | مصاريف بنكية 25 ديناراً |
+
+أربعة أسطر تحكي الحقيقة كاملة: إيراد حقيقي، وأثر عملة حقيقي، وتكلفة بنك حقيقية — كلٌّ في مكانه.
+
+## عادات عملية للأعمال متعددة العملات
+
+- **اذكر العملة على كل مستند.** مبالغ الريال والدرهم والدولار تتشابه تماماً بدون الرمز. كل [فاتورة](/invoice) وعرض سعر يجب أن يحمل رمز عملة صريحاً في كل بند.
+- **اتفق على عملة الفوترة كتابةً قبل المشروع.** تغيير العملة بعد التسليم مفاوضة ستخسرها.
+- **طابق عملة التكاليف مع الإيرادات حيث أمكن.** إذا كنت تكسب دولارات فادفع اشتراكاتك الدولارية من رصيد دولاري بدل التحويل مرتين ودفع فرقين.
+- **في الاستيراد، أدخل فروق العملة في التكلفة الشاملة.** الرسوم والشحن والتحويل كلها جزء من تكلفة الوحدة الحقيقية — [حاسبة تكلفة الاستيراد](/calculators/import-cost) تجمع الصورة الكاملة قبل تحديد سعر بيعك.
+- **راجع أرباح وخسائر العملة كل ربع سنة.** إذا كانت الخسائر تنمو كل ربع، فتسعيرك أو شروط دفعك تحمل مخاطرة عملة خفية — فكّر في شروط سداد أقصر لفواتير العملات الأجنبية أو تعديل الأسعار.
+
+مسك الدفاتر متعدد العملات ليس محاسبة متقدمة؛ إنه حفنة عادات منضبطة. تبنّها وأنت صغير، فلا يكسر التوسعُ عبر الحدود دفاترَك أبداً.
+`,
+    contentEn: `
+A designer in Cairo invoices a Dubai client in USD, receives EGP in her bank account after conversion, and pays for software subscriptions in USD again. A trading company in Jeddah imports in CNY, sells in SAR, and holds a USD account for suppliers. Multi-currency reality arrives early for MENA businesses — usually long before anyone on the team has bookkeeping training. Here are the concepts that keep your numbers honest.
+
+## Rule 1: Choose one base currency and never negotiate with it
+
+Your base currency is the currency your books, reports, and profit calculations live in — normally the currency of your country and tax obligations: SAR in Saudi Arabia, AED in the UAE, EGP in Egypt. Every transaction in another currency gets translated into the base currency at the rate on the transaction date. You can invoice in five currencies; you measure profit in one.
+
+## Rule 2: Record the rate on the day it happened
+
+When you issue a 5,000 USD invoice on March 3 and the rate is 50.9 EGP per USD, record revenue of 254,500 EGP — even though no money has moved yet. When the payment lands on April 10 at 51.6, you receive 258,000 EGP. The 3,500 EGP difference is not extra revenue: it is a **foreign exchange gain**, recorded separately. If the rate had moved the other way, it would be an FX loss.
+
+Why the separation matters: mixing FX movements into revenue makes your sales look volatile when they are stable — and hides real currency losses inside apparently healthy income. Your accountant, your bank, and eventually the tax authority all want these lines separate.
+
+## Rule 3: Realized vs unrealized — know which one you have
+
+- **Realized** gains and losses happen when money actually converts: an invoice is paid, a supplier is settled.
+- **Unrealized** gains and losses exist on paper: you hold a 10,000 USD balance, and its value in your base currency shifts with the market.
+
+Small businesses should track realized FX rigorously and revalue significant foreign balances at least at year-end. For daily rate checks and quick conversions, keep the [currency exchange calculator](/calculators/currency-exchange) at hand.
+
+## Rule 4: Bank spreads are a real cost — measure them
+
+The rate your bank gives you is not the market rate. Banks and transfer services in the region typically take 1–3% inside the exchange rate, on top of visible transfer fees. On 200,000 SAR of annual foreign transactions, a 2% spread is 4,000 SAR — a silent expense most businesses never see because it never appears as a line item.
+
+Record the difference between the market rate and your executed rate as a bank cost. Once it is visible, you can act: negotiate with the bank, batch small transfers into larger ones, or route specific corridors through lower-cost providers.
+
+## A worked example, end to end
+
+An Amman-based agency (base currency JOD) does a project for a Saudi client:
+
+| Event | Rate used | Books entry |
+| --- | --- | --- |
+| Invoice 20,000 SAR, June 1 | 1 SAR = 0.188 JOD | Revenue 3,760 JOD, receivable 3,760 JOD |
+| Payment received July 5 | 1 SAR = 0.190 JOD | Cash 3,800 JOD, clear receivable |
+| Difference | — | FX gain 40 JOD |
+| Bank fee deducted | — | Bank charges 25 JOD |
+
+Four lines, complete truth: real revenue, real FX effect, real bank cost — each in its own place.
+
+## Practical habits for multi-currency businesses
+
+- **State the currency on every document.** SAR, AED, and USD amounts look identical without the code. Every [invoice](/invoice) and quotation should carry an explicit currency code on every line.
+- **Agree the invoice currency in writing before the project.** Changing currency after delivery is a negotiation you will lose.
+- **Match currency of costs and revenues where you can.** If you earn USD, pay your USD subscriptions from a USD balance instead of converting twice and paying two spreads.
+- **For imports, capture FX inside landed cost.** Duty, freight, and conversion all belong in the true unit cost — the [import cost calculator](/calculators/import-cost) assembles the full picture before you set your selling price.
+- **Review FX gains and losses quarterly.** If losses grow each quarter, your pricing or payment terms are carrying hidden currency risk — consider shorter payment terms on foreign-currency invoices, or price adjustments.
+
+Multi-currency bookkeeping is not advanced accounting; it is a handful of disciplined habits. Adopt them while you are small, and scaling across borders never breaks your books.
+`,
+  },
+
+  {
+    slug: "business-vs-personal-bank-account-mena",
+    titleAr: "الحساب التجاري أم الشخصي: متى يجب الفصل بينهما؟",
+    titleEn: "Business vs Personal Bank Account: When MENA Founders Must Separate",
+    metaTitleAr: "الحساب البنكي التجاري أم الشخصي — Xuvilo",
+    metaTitleEn: "Business vs Personal Bank Account in MENA — Xuvilo",
+    excerptAr: "إدارة عملك من حسابك الشخصي تبدو أسهل — حتى يثبت التسجيل الضريبي أو تجميد الحساب أو رفض التمويل العكس. إليك متى وكيف تفصل بينهما.",
+    excerptEn: "Running your business from a personal account feels easier — until tax registration, a frozen account, or a rejected loan proves otherwise. Here is when and how to separate.",
+    date: "2026-08-17",
+    readTime: 7,
+    category: "business",
+    keywordAr: "حساب بنكي تجاري للشركات الصغيرة",
+    keywordEn: "business bank account vs personal MENA",
+    relatedSlugs: ["cash-flow-management-freelancers", "small-business-invoicing-guide", "financial-ratios-small-business"],
+    contentAr: `
+يبدأ كل مستقل وشركة صغيرة في المنطقة تقريباً بالطريقة نفسها: دفعات العملاء تصل إلى الحساب البنكي الشخصي للمؤسس، مختلطة بالراتب وتحويلات العائلة ومصاريف البيت. الأمر ينجح — حتى الشهر الذي يتوقف فيه فجأة عن النجاح. فهم متى يكفّ الحساب الشخصي عن كونه خياراً، وماذا يكلفك الخلط قبل ذلك، هو دفاع مالي أساسي عن النفس.
+
+## التكاليف الحقيقية لخلط الحسابات
+
+**لا تستطيع رؤية عملك.** عندما تتشارك الإيرادات والأموال الشخصية رصيداً واحداً، تتحول أسئلة مثل «هل كان الشهر الماضي مربحاً؟» إلى تنقيب أثري. حساب [هامش الربح](/calculators/profit-margin) الحقيقي يتطلب معرفة أي درهم كان إيراداً وأيها كان قريبك يسدد ديناً.
+
+**البنوك ترصد النشاط التجاري على الحسابات الشخصية.** تراقب البنوك في الخليج ومصر الحسابات الشخصية بحثاً عن أنماط معاملات تجارية — تحويلات واردة متكررة من مرسلين كثيرين، أحجام تشبه نقاط البيع، وملاحظات مثل «سداد فاتورة». وبموجب قواعد مكافحة غسل الأموال، قد يستدعي النشاط التجاري غير المفسَّر أسئلة أو تجميداً أو إغلاقاً للحساب في أسوأ توقيت ممكن: عندما تصل دفعة عميل كبيرة للتو.
+
+**الانكشاف الضريبي ينمو بصمت.** في السعودية تربط هيئة الزكاة والضريبة والجمارك السجلات التجارية بالبيانات المالية، وفي مصر شددت مصلحة الضرائب الرقابة على البائعين غير المسجلين عبر الإنترنت، وفي الإمارات تسري التزامات التسجيل لضريبة الشركات على الأفراد الذين يتجاوز دوران أعمالهم مليون درهم سنوياً. الحساب الشخصي المليء بمقبوضات تجارية ليس خفياً — بل غير موثق، وهذا أسوأ.
+
+**تبدو صغيراً أمام كل من يهمّك.** العملاء من الشركات يشترطون بشكل متزايد فواتير برقم آيبان يطابق الاسم التجاري المسجل، وقد ترفض إداراتهم المالية الدفع لاسم شخصي من الأساس. وعندما تتقدم لاحقاً لأي تمويل، سيطلب الممول كشوف الحساب التجاري — التي لن تكون لديك.
+
+## متى يصبح الفصل إلزامياً عملياً
+
+| المحفّز | لماذا يفرض التغيير |
+| --- | --- |
+| التسجيل الرسمي (سجل تجاري أو وثيقة عمل حر) | البنوك تشترطه والعملاء يتحققون منه |
+| بلوغ حد التسجيل الضريبي | 375,000 ريال في السعودية و375,000 درهم في الإمارات — والإقرارات تحتاج سجلات نظيفة |
+| أول عميل من الشركات | إدارته المالية تدفع للكيانات المسجلة |
+| توظيف أول موظف | رواتب من حساب شخصي علامة إنذار |
+| التقدم لأي تمويل | الممولون يقرؤون كشوف الحساب التجاري فقط |
+
+## ماذا يتطلب فتح حساب تجاري
+
+تختلف المتطلبات بين الدول لكن القائمة الأساسية ثابتة: سجل تجاري أو وثيقة عمل حر، وهوية المالك، وأحياناً عقد إيجار أو إثبات عنوان. وملاحظتان عمليتان من واقع المنطقة:
+
+- **البنوك التقليدية** قد تطلب حدوداً دنيا للرصيد تُرهق الأعمال الناشئة — غالباً ما يعادل 25,000–50,000 ريال أو درهم. اسأل عن باقات المنشآت الصغيرة؛ فمعظم البنوك الكبرى في السعودية والإمارات ومصر لديها الآن عروض مخصصة بحدود أدنى أقل.
+- **الخدمات المصرفية الرقمية للأعمال** غيّرت المعادلة، خاصة في الإمارات حيث تفتح المنصات الرقمية الموجهة للمنشآت الصغيرة الحسابات خلال أيام لا أسابيع، وبحد أدنى منخفض أو معدوم، وحاملو رخص العمل الحر مؤهلون عادةً.
+
+## خطة الفصل النظيف
+
+1. **افتح الحساب التجاري وانقل كل الفوترة إليه فوراً.** كل [فاتورة](/invoice) جديدة تحمل آيبان الحساب التجاري. بلا استثناءات ولا «هذه المرة فقط» إلى الحساب الشخصي.
+2. **ادفع لنفسك تحويلاً شهرياً ثابتاً.** راتب المالك من الحساب التجاري إلى الشخصي، بالمبلغ نفسه والتاريخ نفسه. هذه العادة وحدها تصنع أنظف سجل تدقيق ممكن وتجعل ميزانيتك الشخصية عاقلة.
+3. **مرّر كل مصروف تجاري عبر الحساب أو البطاقة التجارية.** وإذا اضطررت للدفع شخصياً، عوّض نفسك بتحويل موثق مدعوم بـ[إيصال](/receipt).
+4. **سوِّ الحساب شهرياً.** ثلاثون دقيقة مع كشف الحساب مقابل فواتيرك ومصاريفك. هذه هي المادة الخام لكل قرار مالي ستتخذه — ولا تعمل إلا إذا كان الحساب لا يحوي سوى العمل.
+
+## وماذا عن الفترة الانتقالية؟
+
+إذا كانت لديك شهور من التاريخ المختلط فلا تحاول إعادة بنائه كله. ارسم خطاً: اختر تاريخ بداية، وافتح الحساب التجاري، وأبقِه نظيفاً تماماً من ذلك اليوم فصاعداً. محاسبك يستطيع العمل بمبدأ «فوضى قبل، نظافة بعد» — أما ما يكسر الدفاتر والإقرارات الضريبية فهو الفوضى التي لا تنتهي.
+
+المؤسسون الذين يفصلون مبكراً يصفون الشعور نفسه: العمل يصبح مرئياً أخيراً. الإيرادات والتكاليف والهامش والنقد في مكان واحد يحكي قصة واحدة — وكل محادثة جادة، من الضرائب إلى التمويل، تصبح أسهل لأن الأرقام نظيفة سلفاً.
+`,
+    contentEn: `
+Almost every freelancer and small business in the region starts the same way: client payments arrive in the founder's personal bank account, mixed with salary, family transfers, and grocery spending. It works — until the month it suddenly does not. Understanding when the personal account stops being an option, and what mixing costs you before then, is basic financial self-defense.
+
+## The real costs of mixing accounts
+
+**You cannot see your business.** When revenue and personal money share one balance, questions like «was last month profitable?» become archaeology. Calculating a true [profit margin](/calculators/profit-margin) requires knowing which dirham was revenue and which was your cousin repaying a loan.
+
+**Banks flag commercial activity on personal accounts.** Banks across the GCC and Egypt monitor personal accounts for business-pattern transactions — frequent incoming transfers from many senders, POS-like volumes, references like «invoice payment». Under anti-money-laundering rules, unexplained commercial activity can trigger questions, holds, or account closure at the worst possible moment: when a large client payment has just arrived.
+
+**Tax exposure grows silently.** In Saudi Arabia, ZATCA links commercial registrations with financial data; in Egypt, the Tax Authority has stepped up enforcement on unregistered online sellers; in the UAE, corporate tax registration obligations now apply to individuals whose business turnover exceeds 1 million AED per year. A personal account full of business receipts is not invisible — it is undocumented, which is worse.
+
+**You look small to everyone who matters.** Corporate clients increasingly require invoices with an IBAN matching the registered business name. Payments to a personal name can get rejected by their finance departments outright. And when you later apply for financing, a lender wants business bank statements — which you will not have.
+
+## When separation becomes mandatory in practice
+
+| Trigger | Why it forces the change |
+| --- | --- |
+| Formal registration (CR, freelance permit) | Banks require it; clients verify it |
+| VAT registration threshold | 375,000 SAR in KSA, 375,000 AED in UAE — filings need clean records |
+| First corporate client | Their finance team pays registered entities |
+| Hiring your first employee | Payroll from a personal account is a red flag |
+| Applying for any financing | Lenders read business statements only |
+
+## What opening a business account takes
+
+Requirements vary by country but the core list is stable: commercial registration or freelance permit, owner ID, and sometimes a lease contract or proof of address. Two practical notes from the region:
+
+- **Traditional banks** may ask for minimum balances that sting a new business — often 25,000–50,000 SAR/AED equivalents. Ask about SME packages; most large banks in Saudi Arabia, the UAE, and Egypt now have dedicated small-business offerings with lower thresholds.
+- **Digital business banking** has changed the equation, especially in the UAE, where digital SME-focused banking platforms open accounts in days rather than weeks, with low or zero minimum balance. Freelance permit holders are usually eligible.
+
+## The clean-separation playbook
+
+1. **Open the business account and move all invoicing to it immediately.** Every new [invoice](/invoice) carries the business IBAN. No exceptions, no «just this once» into the personal account.
+2. **Pay yourself a fixed monthly transfer.** Owner salary from business account to personal account, same amount, same date. This one habit creates the cleanest possible audit trail and makes your personal budgeting sane.
+3. **Route every business expense through the business account or card.** If you must pay something personally, reimburse yourself with a documented transfer, backed by a [receipt](/receipt).
+4. **Reconcile monthly.** Thirty minutes with the bank statement against your invoices and expenses. This is the raw material for every financial decision you will make — and it only works if the account contains nothing but business.
+
+## What about the transition period?
+
+If you have months of mixed history, do not try to reconstruct it all. Draw a line: pick a start date, open the business account, and keep it perfectly clean from that day forward. Your accountant can work with «messy before, clean after» — what breaks bookkeeping and tax filings is mess that never ends.
+
+The founders who separate early describe the same feeling: the business finally becomes visible. Revenue, costs, margin, and cash sit in one place, telling one story — and every serious conversation, from taxes to funding, becomes easier because the numbers are already clean.
+`,
+  },
+
+  {
+    slug: "first-year-invoicing-mistakes-startups",
+    titleAr: "10 أخطاء فوترة في السنة الأولى تكلّف الشركات الناشئة أموالاً",
+    titleEn: "10 First-Year Invoicing Mistakes That Cost Startups Money",
+    metaTitleAr: "10 أخطاء فوترة في السنة الأولى — Xuvilo",
+    metaTitleEn: "10 First-Year Invoicing Mistakes — Xuvilo",
+    excerptAr: "من تأخير إصدار الفواتير إلى إهمال الترقيم ونسيان بند الضريبة وعدم تتبع المستحقات — عشرة أخطاء ترتكبها معظم الشركات الجديدة.",
+    excerptEn: "From invoicing late to skipping numbering, forgetting VAT lines, and never tracking receivables — the ten invoicing mistakes almost every new business makes.",
+    date: "2026-08-18",
+    readTime: 7,
+    category: "tips",
+    keywordAr: "أخطاء الفوترة للشركات الناشئة",
+    keywordEn: "invoicing mistakes startups first year",
+    relatedSlugs: ["first-invoice-checklist", "invoice-numbering-best-practices", "how-to-write-professional-invoice"],
+    contentAr: `
+في السنة الأولى لأي شركة، تبدو الفوترة عملاً ورقياً — شيئاً يُنجز بعد العمل الحقيقي. هذه العقلية مكلفة. الفوترة الضعيفة تستنزف الشركات الجديدة بصمت من ثلاث جهات: مال يصل متأخراً، ومال لا يصل أبداً، وساعات تضيع في فك تشابك السجلات وقت الضرائب. إليك الأخطاء العشرة الأكثر شيوعاً، بترتيب وقوعها تقريباً.
+
+## 1. إصدار الفاتورة بعد التسليم بأيام أو أسابيع
+
+كل يوم بين إنهاء العمل وإرسال الفاتورة يوم مضاف إلى دورة تحصيلك — على حسابك أنت. ساعة الدفع عند العميل تبدأ عند وصول الفاتورة لا عند تسليمك العمل. اجعل الفوترة جزءاً من التسليم نفسه: يُسلَّم العمل وتُرسل الفاتورة في اليوم ذاته، خلال خمس دقائق عبر [مولّد الفواتير](/invoice).
+
+## 2. لا أرقام للفواتير، أو أرقام مرتجلة
+
+فواتير مرقمة «1» أو «نهائي2» أو بلا رقم أصلاً تجعل التسوية مستحيلة وتبدو هاوية أمام عملاء الشركات. والأسوأ أن الترقيم التسلسلي متطلب رسمي في أنظمة ضريبة القيمة المضافة في المنطقة. اختر نظاماً واحداً — INV-2026-001 يفي بالغرض — ولا تكسر التسلسل أبداً.
+
+## 3. غياب تاريخ الاستحقاق
+
+«الدفع عند الاستلام» عبارة لا يمكن إنفاذها. الفاتورة بلا تاريخ استحقاق صريح لا يمكن أن تصبح «متأخرة»، أي أن تذكيراتك بلا مرجع. كل فاتورة تحتاج تاريخ إصدار وتاريخ استحقاق وشروطاً معلنة (7 أو 15 أو 30 يوماً).
+
+## 4. التعامل الخاطئ مع الضريبة — في الاتجاهين
+
+خطآن متعاكسان بجذر واحد: عدم معرفة التزاماتك. بعض الشركات الناشئة تُحصّل ضريبة القيمة المضافة قبل التسجيل (مخالفة في السعودية والإمارات ومصر على السواء)، وأخرى تسجّل ثم تنسى بند الضريبة فتأكل 15% من هامشها. اعرف حالة تسجيلك، وأظهر الضريبة بنداً منفصلاً بالنسبة الصحيحة، وراجع الحساب عبر [حاسبة الضريبة](/calculators/vat-tax).
+
+## 5. بنود غامضة
+
+«خدمات مقدمة — 18,000 ريال» دعوة مفتوحة للنزاعات وتأخير الاعتمادات. الإدارات المالية لا تستطيع اعتماد ما لا تستطيع مطابقته بأمر شراء أو اتفاق. فصّل: ماذا، وكم، وبأي سعر للوحدة. سترى النزاعات تنخفض فوراً.
+
+## 6. بيانات بنكية ناقصة أو خاطئة
+
+نسبة مدهشة من الدفعات «المتأخرة» هي في الحقيقة تحويلات فاشلة: آيبان خاطئ، اسم حساب لا يطابق ترويسة الفاتورة، رمز سويفت مفقود للتحويلات عبر الحدود. دقق كتلة بيانات الدفع ثلاث مرات، وأبقِ اسم الحساب مطابقاً تماماً لاسمك التجاري المسجل.
+
+## 7. لا دفعة مقدمة للمشاريع الكبيرة
+
+تسليم مشروع ثلاثة أشهر ثم إصدار فاتورة واحدة كبيرة يركّز كل مخاطرتك في اللحظة التي تملك فيها أقل نفوذ. الممارسة القياسية إقليمياً وعالمياً: 30–50% مقدماً والباقي على مراحل. وإذا رفض عميل أي دفعة مقدمة، فهذه معلومة بحد ذاتها.
+
+## 8. عدم تتبع المستحقات إطلاقاً
+
+كثير من مؤسسي السنة الأولى لا يستطيعون حرفياً الإجابة عن سؤال «من يدين لك بالمال الآن؟». الفواتير غير المراقبة تشيخ بصمت، وكلما تقدمت الفاتورة في العمر صعُب تحصيلها. راجع الفواتير المعلقة أسبوعياً عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging) — انضباط يستغرق خمس دقائق ويغيّر نتائج التحصيل جذرياً.
+
+## 9. مستندات غير متسقة
+
+عرض السعر يقول مجموعاً والفاتورة تقول آخر؛ الشعار يتغير بين المستندات؛ والإيصال رسالة واتساب نصها «وصل، شكراً». كل تعارض ذريعة لإدارة مالية لتعليق الدفع. استخدم طقماً واحداً متسقاً — [عرض سعر](/quotation) وفاتورة و[إيصال](/receipt) — بالهوية نفسها والترقيم نفسه والمجاميع نفسها.
+
+## 10. التعامل مع القوالب كديكور
+
+القالب ثنائي اللغة المحترف ليس مسألة جمالية — إنه يرسّخ الحقول الإلزامية بحيث لا تنساها: بيانات البائع، الرقم الضريبي حيث ينطبق، التواريخ، الشروط، التفصيل، المجاميع. ابدأ من [قالب فاتورة](/templates/invoice) احترافي بدل إعادة اختراع التنسيق في جدول بيانات كل مرة.
+
+## النمط خلف الأخطاء العشرة
+
+كل خطأ صغير بمفرده، لكن أثرها المركّب ليس كذلك. الشركة الناشئة التي تفوتر متأخرة، بلا أرقام ولا دفعات مقدمة ولا متابعة، تنتظر عادةً 60–90 يوماً لمال كان يمكن تحصيله في 15. أصلح المنظومة مرة واحدة — قوالب وترقيم وشروط ومراجعة أعمار أسبوعية — وستصبح الفوترة ما يجب أن تكونه: مهمة خمس دقائق تنتهي بمال في البنك.
+
+طريقة عملية للبدء: راجع هذا الأسبوع آخر عشر فواتير لك مقابل هذه القائمة. عُدّ كم منها يحمل رقماً وتاريخ استحقاق وبنوداً مفصلة ومعالجة ضريبية صحيحة وبيانات بنكية كاملة. معظم شركات السنة الأولى تسجل أربعة أو خمسة من عشرة — وإصلاح القالب مرة واحدة يصلح كل فاتورة تليه.
+`,
+    contentEn: `
+In the first year of a business, invoicing feels like paperwork — something to do after the real work. That mindset is expensive. Weak invoicing quietly costs new businesses in three ways: money that arrives late, money that never arrives, and hours lost untangling records at tax time. Here are the ten mistakes we see most, roughly in the order startups make them.
+
+## 1. Invoicing days (or weeks) after delivery
+
+Every day between finishing the work and sending the invoice is a day added to your payment cycle — at your expense. Clients start their payment clock when the invoice arrives, not when you delivered. Make invoicing part of delivery itself: work ships, invoice ships, same day, in five minutes with the [invoice generator](/invoice).
+
+## 2. No invoice numbers, or improvised ones
+
+Invoices numbered «1», «final2», or nothing at all make reconciliation impossible and look amateur to corporate clients. Worse, sequential numbering is a formal requirement in VAT systems across the region. Pick one scheme — INV-2026-001 works — and never break the sequence.
+
+## 3. Missing due dates
+
+«Payment upon receipt» means nothing enforceable. An invoice without an explicit due date cannot be «overdue», which means your reminders have no anchor. Every invoice needs a date, a due date, and stated terms (Net 7, Net 15, Net 30).
+
+## 4. Handling VAT wrong — in either direction
+
+Two opposite mistakes, same root: not knowing your obligations. Some startups charge VAT before registering (illegal in Saudi Arabia, the UAE, and Egypt alike); others register and then forget the VAT line, eating 15% out of their own margin. Know your registration status, show VAT as a separate line at the correct rate, and check the math with the [VAT calculator](/calculators/vat-tax).
+
+## 5. Vague line items
+
+«Services rendered — 18,000 SAR» invites disputes and approval delays. Corporate finance teams cannot approve what they cannot map to a PO or agreement. Itemize: what, how many, at what unit price. Disputes drop immediately.
+
+## 6. Missing or wrong bank details
+
+An astonishing share of «late» payments are actually failed transfers: wrong IBAN, account name not matching the invoice header, missing SWIFT code for cross-border payments. Triple-check the payment block, and keep the account name identical to your registered business name.
+
+## 7. No deposit on large projects
+
+Delivering a three-month project and then issuing one big invoice concentrates all your risk at the point where you have the least leverage. Standard practice regionally and globally: 30–50% upfront, milestones for the rest. If a client refuses any deposit, that is information.
+
+## 8. Not tracking receivables at all
+
+Many first-year founders literally cannot answer «who owes you money right now?». Unwatched invoices age silently, and the older an invoice gets, the harder it collects. Review outstanding invoices weekly with the [invoice aging calculator](/calculators/invoice-aging) — the discipline takes five minutes and changes collection outcomes dramatically.
+
+## 9. Inconsistent documents
+
+Quotation says one total, invoice says another; the logo changes between documents; the receipt is a WhatsApp message saying «received, thanks». Every mismatch is a reason for a finance department to pause payment. Use one consistent set — [quotation](/quotation), invoice, [receipt](/receipt) — carrying the same branding, numbering, and totals.
+
+## 10. Treating templates as decoration
+
+A proper bilingual template is not about looking pretty — it encodes the mandatory fields so you cannot forget them: seller details, tax registration number where applicable, dates, terms, itemization, totals. Start from a professional [invoice template](/templates/invoice) instead of reinventing the layout in a spreadsheet each time.
+
+## The pattern behind all ten
+
+Each mistake is small; the compound effect is not. A startup that invoices late, without numbers, deposits, or follow-up, routinely waits 60–90 days for money it could have collected in 15. Fix the system once — templates, numbering, terms, weekly aging review — and invoicing becomes what it should be: a five-minute task that ends with money in the bank.
+
+A practical way to start: this week, audit your last ten invoices against this list. Count how many carry a number, a due date, itemized lines, correct VAT treatment, and complete bank details. Most first-year businesses score four or five out of ten — and fixing the template once fixes every invoice that follows.
+`,
+  },
+
+  {
+    slug: "year-end-closing-checklist-small-business",
+    titleAr: "قائمة إقفال نهاية السنة للشركات الصغيرة — نسخة المنطقة",
+    titleEn: "Year-End Closing Checklist for Small Businesses (MENA Edition)",
+    metaTitleAr: "قائمة إقفال نهاية السنة للشركات — Xuvilo",
+    metaTitleEn: "Year-End Closing Checklist for SMEs — Xuvilo",
+    excerptAr: "سوِّ الحسابات وحصّل المستحقات واجرد المخزون وراجع إقرارات الضريبة واقرأ أرقامك — قائمة عملية لإقفال نهاية السنة لشركات المنطقة.",
+    excerptEn: "Reconcile accounts, chase receivables, count inventory, verify VAT filings, and read your numbers — a practical year-end closing checklist for MENA SMEs.",
+    date: "2026-08-19",
+    readTime: 8,
+    category: "business",
+    keywordAr: "إقفال نهاية السنة المالية",
+    keywordEn: "year end closing checklist small business",
+    relatedSlugs: ["financial-ratios-small-business", "expense-report-guide", "uae-corporate-tax-guide-smes"],
+    contentAr: `
+إقفال نهاية السنة هو المكان الذي تكتشف فيه الشركات الصغيرة حقيقة سنتها — وحيث تتحول السجلات المهملة إلى تكاليف حقيقية: مطالبات ضريبة مدخلات ضائعة، ومستحقات شُطبت بعد فوات الأوان، وإقرارات ضريبية مبنية على التخمين. الإقفال المنظم يستغرق أسبوعاً مركزاً؛ أما إقفال الذعر في موسم الإقرارات فيستغرق شهراً ويبقى مليئاً بالأخطاء. إليك القائمة بترتيب العمل.
+
+## الأسبوع 1 — أكمل السجلات
+
+**1. أصدر كل فاتورة ناقصة.** العمل المسلَّم في ديسمبر يجب أن يُفوتر في ديسمبر — فالإيراد يخص السنة التي كسبته فيها. امسح مذكرات التسليم والعقود ومتابعات المشاريع بحثاً عن أي عمل سُلّم ولم يُفوتر، وأغلق الفجوة عبر [مولّد الفواتير](/invoice).
+
+**2. اجمع كل مستند مصروف ناقص.** فواتير الموردين والبيانات الجمركية وإيصالات الاشتراكات وفواتير الوقود والمرافق. في الشركات المسجلة ضريبياً هذا مال مباشر: ضريبة المدخلات بلا فاتورة ضريبية صحيحة غير قابلة للاسترداد عموماً. فاتورة مورد مفقودة بقيمة 5,000 درهم تكلفك 250 درهماً من الضريبة القابلة للاسترداد إضافة إلى خصم من وعاء ضريبة الشركات.
+
+**3. سوِّ كل حساب بنكي.** طابق كل سطر في الكشف مع فاتورة أو مصروف أو تحويل. حقق في كل معاملة غير مفسرة الآن — فلن تتذكرها في مارس. وهنا أيضاً تكتشف الخصومات المكررة والاشتراكات المنسية.
+
+## الأسبوع 2 — نظّف الأرصدة
+
+**4. هاجم قائمة المستحقات.** مرر كل الفواتير المعلقة عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging) وقسمها ثلاث فئات: قابلة للتحصيل الآن (أرسل التذكيرات هذا الأسبوع — نهاية السنة ثقافياً أقوى لحظة للمطالبة لأن الإدارات المالية لدى عملائك تُقفل هي الأخرى)، ومشكوك فيها (اتصل شخصياً وفكر في عروض تسوية)، وميتة (وثّق قرار الشطب مع محاسبك).
+
+**5. اجرد المخزون فعلياً.** إذا كنت تحتفظ ببضاعة فعُدَّها — لا تثق بالجدول. يجب تحديد التالف والمنتهي والمتقادم وتخفيض قيمته. والفرق بين الدفتري والفعلي اكتشاف بحد ذاته: يقيس الفاقد وانضباط عملياتك.
+
+**6. راجع إقرارات الضريبة مقابل الدفاتر.** اجمع ضريبة القيمة المضافة على فواتيرك الصادرة والواردة للسنة وقارنها بما قُدّم كل فترة — إقرارات ربع سنوية أو شهرية في السعودية، وربع سنوية عادة في الإمارات، وشهرية في مصر. الفروقات الصغيرة المكتشفة الآن تصحيحات؛ والفروقات نفسها المكتشفة في فحص ضريبي غرامات.
+
+**7. أقفل الرواتب ومخصصات نهاية الخدمة.** تأكد من تطابق سجلات الرواتب مع التحويلات الفعلية، وحدّث مخصصات مكافآت نهاية الخدمة — التزام حقيقي ينمو بصمت في شركات الخليج. [حاسبة تكلفة الرواتب](/calculators/salary-cost) تساعدك على التحقق من التكلفة الكاملة لكل موظف شاملة البدلات.
+
+## الأسبوع 3 — اقرأ السنة
+
+**8. أعدّ القوائم الثلاث.** الأرباح والخسائر، والميزانية العمومية، والتدفق النقدي — ولو بصيغة مبسطة. ثم استجوبها:
+
+| السؤال | أين تسكن الإجابة |
+| --- | --- |
+| هل ربحنا فعلاً؟ | صافي الهامش في قائمة الدخل |
+| أي العملاء أو المنتجات حمل السنة؟ | تفصيل الإيرادات |
+| أين تسرّب النقد؟ | الفجوة بين التدفق النقدي والربح |
+| هل الهوامش صاعدة أم هابطة؟ | اتجاه الهامش الإجمالي بالأرباع |
+| هل ننجو من ربع بطيء؟ | الاحتياطي النقدي مقابل التكاليف الشهرية |
+
+وقِس تسعيرك في الطريق: أعد حساب الهوامش الحقيقية لكل خدمة أو منتج عبر [حاسبة هامش الربح](/calculators/profit-margin). معظم الشركات تكتشف في نهاية السنة أن أحد منتجاتها يدعم الآخر بصمت.
+
+**9. جهّز الملف الضريبي.** ضريبة الشركات في الإمارات (9% فوق حد الأرباح الصغيرة)، والتزامات الزكاة وضريبة الدخل في السعودية، وضريبة الدخل على الشركات في مصر — لكل نظام تقويم مواعيده. سلّم محاسبك سنة مسوّاة وموثقة لا كومة ملفات PDF، فيتحول التقديم إلى إجراء شكلي بدل أزمة.
+
+**10. أرشف وأعد الضبط.** صدّر السنة كاملة: الفواتير والإيصالات والكشوف والإقرارات — نسخة احتياطية مؤرخة في موقعين. ثم اضبط السنة الجديدة: تسلسل ترقيم فواتير جديد، وقوائم أسعار محدثة، وتوقع تدفق نقدي جديد لـ13 أسبوعاً، وهدفان أو ثلاثة أهداف رقمية ستتابعها فعلاً.
+
+## العادة التي تجعل السنة القادمة سهلة
+
+كل بند في هذه القائمة مؤلم بقدر ما أُهمل بالضبط. الشركات التي تسوّي شهرياً وتراجع مستحقاتها أسبوعياً تُنهي إقفال السنة في يومين، لأن سنتها لم يُسمح لها بالاتساخ أصلاً. ضع «إقفالاً مصغراً» شهرياً من 90 دقيقة في التقويم — أرخص قرار محاسبي ستتخذه في حياتك.
+`,
+    contentEn: `
+Year-end closing is where small businesses discover the truth about their year — and where sloppy records turn into real costs: missed VAT input claims, receivables written off too late, and tax filings built on guesswork. Done properly, closing takes a focused week. Done in panic during filing season, it takes a month and still contains errors. Here is the checklist, in working order.
+
+## Week 1 — Get the records complete
+
+**1. Issue every missing invoice.** Work delivered in December must be invoiced in December — revenue belongs to the year you earned it. Sweep delivery notes, contracts, and project trackers for anything delivered but not yet invoiced, and close the gap through the [invoice generator](/invoice).
+
+**2. Collect every missing expense document.** Supplier invoices, customs declarations, subscription receipts, fuel and utility bills. In VAT-registered businesses this is direct money: input VAT without a valid tax invoice is generally unclaimable. A missing 5,000 AED supplier invoice costs you 250 AED of recoverable VAT plus a deduction against corporate tax.
+
+**3. Reconcile every bank account.** Match each statement line to an invoice, expense, or transfer. Investigate every unexplained transaction now — you will not remember it in March. This is also where you catch duplicate charges and forgotten subscriptions.
+
+## Week 2 — Clean the balances
+
+**4. Attack the receivables list.** Run all outstanding invoices through the [invoice aging calculator](/calculators/invoice-aging) and split them into three groups: collectible now (send reminders this week — year-end is culturally the strongest moment to ask, since client finance teams are also closing), doubtful (call personally, consider settlement offers), and dead (document the write-off decision with your accountant).
+
+**5. Count inventory physically.** If you hold stock, count it — do not trust the spreadsheet. Damaged, expired, and obsolete stock must be identified and valued down. The difference between book and physical count is itself a finding: it measures your shrinkage and process discipline.
+
+**6. Verify VAT filings against the books.** Total the VAT on issued invoices and received invoices for the year and compare against what was filed each period — quarterly or monthly filings in Saudi Arabia, typically quarterly in the UAE, monthly in Egypt. Small mismatches found now are corrections; the same mismatches found in an audit are penalties.
+
+**7. Close out payroll and end-of-service accruals.** Confirm salary records match actual transfers, and update end-of-service benefit accruals — a real liability that grows silently in GCC businesses. The [salary cost calculator](/calculators/salary-cost) helps verify the full employer cost per employee, including allowances.
+
+## Week 3 — Read the year
+
+**8. Produce the three statements.** Profit and loss, balance sheet, cash flow — even in simplified form. Then interrogate them:
+
+| Question | Where the answer lives |
+| --- | --- |
+| Did we actually make money? | Net margin on the P&L |
+| Which clients or products carried the year? | Revenue breakdown |
+| Where did cash leak? | Cash flow vs profit gap |
+| Are margins moving up or down? | Gross margin trend by quarter |
+| Can we survive a slow quarter? | Cash reserve vs monthly costs |
+
+Benchmark your pricing while you are at it: recalculate real margins per service or product with the [profit margin calculator](/calculators/profit-margin). Most businesses discover at year-end that one offering quietly subsidizes another.
+
+**9. Prepare the tax file.** Corporate tax in the UAE (9% above the small-profit threshold), zakat and income tax obligations in Saudi Arabia, corporate income tax in Egypt — each regime has its own deadline calendar. Hand your accountant a reconciled, documented year, not a shoebox of PDFs, and filing becomes a formality instead of a crisis.
+
+**10. Archive and reset.** Export the year: invoices, receipts, statements, filings — one dated backup in two locations. Then reset for the new year: new invoice number sequence, updated price lists, a fresh 13-week cash flow forecast, and two or three numeric targets you will actually track.
+
+## The habit that makes next year easy
+
+Every item on this list is painful in exact proportion to how long it was neglected. Businesses that reconcile monthly and review receivables weekly complete year-end closing in two days, because their year was never allowed to get dirty. Put a monthly 90-minute «mini-close» in the calendar — the cheapest accounting decision you will ever make.
+`,
+  },
+
 ];
 
 
 
+/* ── Scheduled publishing ────────────────────────────────────────────────
+   Articles may carry a FUTURE `date`: they live in the repo but stay
+   invisible everywhere (blog index, article pages, sitemap, RSS, related
+   lists) until their date arrives, then appear automatically — no deploy
+   needed. `date` is compared as an ISO "YYYY-MM-DD" string against UTC
+   today, so lexicographic <= is correct. Both the client (this module's
+   consumers) and server.ts gate through these helpers. */
+
+/** Today's date as a UTC ISO day string, e.g. "2026-07-20". */
+export function todayUtcIso(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+/** True when the post's publish date has arrived (UTC). */
+export function isPublishedPost(post: BlogPost, today: string = todayUtcIso()): boolean {
+  return post.date <= today;
+}
+
+/** All posts whose publish date has arrived. */
+export function getPublishedPosts(today: string = todayUtcIso()): BlogPost[] {
+  return blogPosts.filter((p) => isPublishedPost(p, today));
+}
+
+/**
+ * Look up a post by slug — returns undefined for unknown slugs AND for
+ * scheduled posts whose date hasn't arrived, so future articles cannot be
+ * reached by URL guessing (client-side; server.ts enforces the same rule
+ * for SSR/404s).
+ */
 export function getBlogPost(slug: string): BlogPost | undefined {
-  return blogPosts.find((p) => p.slug === slug);
+  const post = blogPosts.find((p) => p.slug === slug);
+  return post && isPublishedPost(post) ? post : undefined;
 }
 
 export function getRelatedPosts(slugs: string[]): BlogPost[] {

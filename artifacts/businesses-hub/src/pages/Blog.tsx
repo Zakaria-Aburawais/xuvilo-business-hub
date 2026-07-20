@@ -4,10 +4,10 @@ import { Helmet } from "react-helmet-async";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { useLanguage } from "@/context/LanguageContext";
 import {
-  blogPosts,
   BLOG_CATEGORIES,
   BLOG_CATEGORY_LABELS,
   getPostCover,
+  getPublishedPosts,
   type BlogCategoryKey,
 } from "@/data/blogPosts";
 import { Calendar, Clock, Tag, ArrowLeft, ArrowRight, BookOpen, Search, X } from "lucide-react";
@@ -109,10 +109,16 @@ export default function BlogPage() {
   const trimmedQuery = query.trim();
   const normalizedQuery = normalizeText(trimmedQuery);
 
+  // Scheduled (future-dated) posts stay hidden until their date arrives;
+  // newest first so the index always leads with fresh content.
+  const published = getPublishedPosts().sort((a, b) =>
+    a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
+  );
+
   const byCategory =
     activeCategory === "all"
-      ? blogPosts
-      : blogPosts.filter((p) => p.category === activeCategory);
+      ? published
+      : published.filter((p) => p.category === activeCategory);
 
   const filtered = normalizedQuery
     ? byCategory.filter((p) => {

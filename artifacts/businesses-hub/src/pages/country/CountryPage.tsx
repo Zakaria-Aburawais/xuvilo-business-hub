@@ -146,6 +146,15 @@ export default function CountryPage({ country }: Props) {
 
         <div>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+            How Businesses in {country.nameEn} Invoice and Get Paid
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {country.invoicingPractice}
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
             {country.nameEn} Tax &amp; VAT Guide
           </h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -161,9 +170,21 @@ export default function CountryPage({ country }: Props) {
             )}
           </p>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mt-3">
+            The tax authority responsible for {country.nameEn} is {country.taxAuthority}. {country.vatThreshold}
+          </p>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed mt-3">
             Always consult a qualified accountant or tax advisor in {country.nameEn} to ensure your invoices meet the latest
             legal requirements. Tax laws change, and compliance protects your business from penalties and disputes.
             Xuvilo gives you the structural tools — your tax professional provides the legal guidance.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+            E-invoicing Rules in {country.nameEn}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {country.eInvoicing}
           </p>
         </div>
 

@@ -84,6 +84,9 @@
          display=swap keeps text visible with the system fallback meanwhile.
          AdSense is loaded after first paint by the deferred loader above. -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- The loading screen shows the brand mark immediately; preload it so
+         the loader never renders an empty box while the image fetches. -->
+    <link rel="preload" as="image" href="/xuvilo-logo-mark.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
@@ -131,35 +134,27 @@
         letter-spacing: 0.01em;
       }
 
-      /* ── Floating-silk keyframes ──
-         Each ribbon hangs from its top edge and sways gently like a strip of
-         silk in a light breeze: small rotations, skews and lifts with
-         different periods so the three strips never move in unison. The SVG
-         turbulence filter (#jsl-silk) adds a slow cloth-like ripple. */
-      .jsl-r { transform-box: fill-box; transform-origin: 50% 6%; will-change: transform; }
-      @keyframes jsl-sway1 {
-        0%,100% { transform: rotate(-2.6deg) skewX(-1.8deg) translateY(0); }
-        33%     { transform: rotate(2deg)    skewX(2.4deg)  translateY(-1.8px); }
-        66%     { transform: rotate(-.9deg)  skewX(-2.6deg) translateY(-.7px); }
+      /* ── Floating-silk animation ──
+         The approved logo mark (raster image) sits inside an SVG group so
+         the turbulence displacement filter (#jsl-silk) can ripple it like
+         cloth, while the group sways gently and the whole symbol drifts —
+         silk moving in a light breeze. */
+      #jsl-cloth {
+        transform-box: fill-box;
+        transform-origin: 50% 10%;
+        will-change: transform;
+        animation: jsl-sway 4.8s ease-in-out infinite;
       }
-      @keyframes jsl-sway2 {
-        0%,100% { transform: rotate(2.3deg)  skewX(1.9deg)  translateY(-.9px); }
-        33%     { transform: rotate(-2.1deg) skewX(-2.4deg) translateY(0); }
-        66%     { transform: rotate(1.1deg)  skewX(2.6deg)  translateY(-2px); }
-      }
-      @keyframes jsl-sway3 {
-        0%,100% { transform: rotate(-1.9deg) skewX(2.2deg)  translateY(-1.4px); }
-        33%     { transform: rotate(2.5deg)  skewX(-2deg)   translateY(-.4px); }
-        66%     { transform: rotate(-1.2deg) skewX(1.6deg)  translateY(-2.2px); }
+      @keyframes jsl-sway {
+        0%,100% { transform: rotate(-2deg)  skewX(-1.4deg) translateY(0); }
+        33%     { transform: rotate(1.7deg) skewX(1.8deg)  translateY(-1.6px); }
+        66%     { transform: rotate(-.8deg) skewX(-2deg)   translateY(-.6px); }
       }
       /* Whole symbol drifts up and down slowly, like cloth floating on air. */
       @keyframes jsl-float {
         0%,100% { transform: translateY(0) rotate(-1.2deg); }
         50%     { transform: translateY(-7px) rotate(1.4deg); }
       }
-      #jsl-r1 { animation: jsl-sway1 4.6s ease-in-out infinite; }
-      #jsl-r2 { animation: jsl-sway2 5.6s ease-in-out -1.3s infinite; }
-      #jsl-r3 { animation: jsl-sway3 4.1s ease-in-out -2.2s infinite; }
       #jsl-svg { animation: jsl-float 6.5s ease-in-out infinite; }
 
       /* ── Wordmark ── */
@@ -174,8 +169,7 @@
       /* Reduced-motion: centred symbol with gentle pulse — no flight */
       @keyframes jsl-pulse { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
       @media (prefers-reduced-motion: reduce) {
-        #jsl-r1, #jsl-r2, #jsl-r3 { animation: none; }
-        #jsl-cloth { filter: none; }
+        #jsl-cloth { animation: none; filter: none; }
         #jsl-svg { animation: jsl-pulse 2.4s ease-in-out infinite; }
       }
 
@@ -294,22 +288,9 @@
   <body>
     <div id="js-loading" aria-hidden="true" role="presentation">
       <div id="jsl-wrap">
-        <svg id="jsl-svg" width="110" height="110" viewBox="0 0 100 100"
+        <svg id="jsl-svg" width="132" height="132" viewBox="0 0 100 100"
              style="overflow:visible;display:block" aria-hidden="true">
           <defs>
-            <linearGradient id="jsl-g1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#1e1b4b"/>
-              <stop offset="55%" stop-color="#1e40af"/>
-              <stop offset="100%" stop-color="#2563eb"/>
-            </linearGradient>
-            <linearGradient id="jsl-g2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#2563eb"/>
-              <stop offset="100%" stop-color="#38bdf8"/>
-            </linearGradient>
-            <linearGradient id="jsl-g3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#38bdf8"/>
-              <stop offset="100%" stop-color="#a5f3fc"/>
-            </linearGradient>
             <filter id="jsl-silk" x="-30%" y="-30%" width="160%" height="160%">
               <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="4" result="n">
                 <animate attributeName="baseFrequency" dur="8s"
@@ -320,9 +301,10 @@
             </filter>
           </defs>
           <g id="jsl-cloth" filter="url(#jsl-silk)">
-            <g id="jsl-r1" class="jsl-r"><path d="M28 18 C26 40 31 62 41 82" fill="none" stroke="url(#jsl-g1)" stroke-width="15" stroke-linecap="round"/></g>
-            <g id="jsl-r2" class="jsl-r"><path d="M50 16 C48 40 48 62 50 84" fill="none" stroke="url(#jsl-g2)" stroke-width="15" stroke-linecap="round"/></g>
-            <g id="jsl-r3" class="jsl-r"><path d="M72 18 C74 40 69 62 59 82" fill="none" stroke="url(#jsl-g3)" stroke-width="15" stroke-linecap="round"/></g>
+            <!-- The approved brand mark (same art the header uses), rippled
+                 by the silk filter above. width/height keep the mark's
+                 134x136 aspect ratio inside the 100-unit viewBox. -->
+            <image href="/xuvilo-logo-mark.png" x="10.7" y="10" width="78.6" height="80"/>
           </g>
         </svg>
         <div id="jsl-wordmark">

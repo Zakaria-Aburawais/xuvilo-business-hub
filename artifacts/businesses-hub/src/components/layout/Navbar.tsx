@@ -17,63 +17,15 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { ToolsTicker } from "./ToolsTicker";
 import { NavSearch, useNavSearchToggle } from "./NavSearch";
+import { AnimatedLogo } from "@/components/AnimatedLogo";
 
-// Xuvilo silk-ribbon mark: three fanned strips (deep indigo → blue → cyan),
-// rounded caps, converging at the base and opening upward like flowing silk.
-// Shared with the page-loading screen (index.html #js-loading) so the brand
-// reads identically in both places. The header renders it STATIC and crisp;
-// the loader animates the same paths (sway + turbulence) while the app boots.
-const RIBBON_P1 = "M28 18 C26 40 31 62 41 82";
-const RIBBON_P2 = "M50 16 C48 40 48 62 50 84";
-const RIBBON_P3 = "M72 18 C74 40 69 62 59 82";
-
+// Header brand: the APPROVED logo lockup images (public/xuvilo-logo.png and
+// its dark-mode variant), rendered by the shared AnimatedLogo component.
+// The page loader (index.html #js-loading) animates the matching mark image
+// (public/xuvilo-logo-mark.png) with the silk-cloth effect while the app
+// boots; the header stays static.
 function XuviloNavLogo() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <svg
-        width={42} height={42}
-        viewBox="0 0 100 100"
-        aria-hidden="true"
-        style={{ flexShrink: 0, display: "block" }}
-      >
-        <defs>
-          <linearGradient id="xvn-g1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1e1b4b"/>
-            <stop offset="100%" stopColor="#2563eb"/>
-          </linearGradient>
-          <linearGradient id="xvn-g2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2563eb"/>
-            <stop offset="100%" stopColor="#38bdf8"/>
-          </linearGradient>
-          <linearGradient id="xvn-g3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#38bdf8"/>
-            <stop offset="100%" stopColor="#a5f3fc"/>
-          </linearGradient>
-        </defs>
-        <g fill="none" strokeLinecap="round" strokeWidth={15}>
-          <path d={RIBBON_P1} stroke="url(#xvn-g1)"/>
-          <path d={RIBBON_P2} stroke="url(#xvn-g2)"/>
-          <path d={RIBBON_P3} stroke="url(#xvn-g3)"/>
-        </g>
-      </svg>
-      <div style={{ lineHeight: 1.05 }}>
-        <div style={{
-          fontFamily: "'Inter',system-ui,-apple-system,sans-serif",
-          fontSize: 20, fontWeight: 700,
-          color: "var(--color-blue-800, #1e40af)", letterSpacing: "-.02em",
-        }}>
-          Xuvilo
-        </div>
-        <div style={{
-          fontFamily: "'Inter',system-ui,sans-serif",
-          fontSize: 8, fontWeight: 500, letterSpacing: ".22em",
-          color: "var(--color-gray-500, #6b7280)", textTransform: "uppercase",
-        }}>
-          Business Hub
-        </div>
-      </div>
-    </div>
-  );
+  return <AnimatedLogo showWordmark className="flex-shrink-0" />;
 }
 
 /**

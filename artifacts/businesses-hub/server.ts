@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { blogPosts, BLOG_CATEGORY_LABELS, type BlogPost } from "./src/data/blogPosts.ts";
 import { countries as COUNTRIES_DATA } from "./src/data/countries.ts";
+import { FAQ_EN } from "./src/data/faqContent.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // In dev (tsx server.ts): __dirname = artifacts/businesses-hub
@@ -97,7 +98,7 @@ const STATIC_HTML: Record<string, string> = {
       <li><a href="/quotation">Free quotation generator</a> — validity dates, terms and conditions, bilingual layouts, customer acceptance line.</li>
       <li><a href="/receipt">Free receipt generator</a> — payment confirmations in seconds, with the right tax breakdown and invoice reference.</li>
       <li><a href="/calculators">14 free business calculators</a> — VAT, profit margin, currency exchange, discount, overtime, leave, loan, break-even, shipping and more.</li>
-      <li><a href="/templates">320+ free templates</a> — invoices, quotations, receipts, business cards, company profiles, designed for every industry.</li>
+      <li><a href="/templates/invoice">320+ free templates</a> — invoices, quotations, receipts, business cards, company profiles, designed for every industry.</li>
       <li><a href="/ai-writer">AI Business Writer</a> — payment reminders, invoice follow-ups, supplier requests, complaints and more, in Arabic or English, in any tone.</li>
       <li><a href="/tools/stamp-maker">Stamp maker</a>, <a href="/tools/business-card">business cards</a>, <a href="/tools/company-profile">company profiles</a>, <a href="/tools/tracker">order tracker</a>, <a href="/tools/temp-email">temporary email</a> — extra free tools for everyday operations.</li>
     </ul>
@@ -157,7 +158,7 @@ const STATIC_HTML: Record<string, string> = {
     <p><strong>Which currencies are supported?</strong> 176+ currencies including SAR, AED, EGP, LYD, JOD, KWD, QAR, OMR, BHD, USD, EUR, GBP, INR and many more.</p>
     <p><strong>Can I save and edit invoices later?</strong> Yes — sign up for a free account to save documents, edit them later, and sync them between devices.</p>
     <p><strong>Can I add my logo?</strong> Yes — upload a logo and it appears on every invoice you generate.</p>
-    <p>Need a different document type? Use the <a href="/quotation">free quotation generator</a> for sales quotes, the <a href="/receipt">free receipt generator</a> for payment confirmations, or the <a href="/templates">templates library</a> for industry-specific designs. For country-specific guidance, see <a href="/invoice-generator-saudi-arabia">Saudi Arabia</a>, <a href="/invoice-generator-uae">UAE</a>, <a href="/invoice-generator-egypt">Egypt</a>, or the <a href="/countries">full country list</a>. Want to learn more? Read the <a href="/invoice-guide">complete invoice guide</a>.</p>
+    <p>Need a different document type? Use the <a href="/quotation">free quotation generator</a> for sales quotes, the <a href="/receipt">free receipt generator</a> for payment confirmations, or the <a href="/templates/invoice">templates library</a> for industry-specific designs. For country-specific guidance, see <a href="/invoice-generator-saudi-arabia">Saudi Arabia</a>, <a href="/invoice-generator-uae">UAE</a>, <a href="/invoice-generator-egypt">Egypt</a>, or the <a href="/countries">full country list</a>. Want to learn more? Read the <a href="/invoice-guide">complete invoice guide</a>.</p>
   </div>`,
   "/quotation": `<div class="seo-fallback">
     <h1>Free Quotation Generator — Professional Business Quotes in Arabic &amp; English</h1>
@@ -250,7 +251,7 @@ const STATIC_HTML: Record<string, string> = {
       <li>Stationery — business cards, company profiles, branded stamps and seals.</li>
     </ul>
     <h2>How to use the templates</h2>
-    <p><strong>Step 1.</strong> Open the <a href="/templates">templates library</a> and pick a design that fits your brand.</p>
+    <p><strong>Step 1.</strong> Open the <a href="/templates/invoice">templates library</a> and pick a design that fits your brand.</p>
     <p><strong>Step 2.</strong> Fill in your business details and your line items in the matching <a href="/invoice">invoice</a>, <a href="/quotation">quotation</a> or <a href="/receipt">receipt</a> tool. The template auto-applies — you only edit content, not layout.</p>
     <p><strong>Step 3.</strong> Click "Download PDF". You can switch templates at any time without losing your data.</p>
     <h2>Frequently asked questions</h2>
@@ -437,24 +438,13 @@ const STATIC_HTML: Record<string, string> = {
     <p>Replies typically arrive within one business day, Sunday through Thursday. During regional public holidays a reply may take up to two business days. For urgent platform outages we monitor the support inbox continuously.</p>
   </div>`,
 
+  // Generated from FAQ_EN (src/data/faqContent.ts) so the no-JS fallback, the
+  // client accordion (FAQ.tsx) and the SSR FAQPage JSON-LD stay word-for-word
+  // identical — a requirement for valid FAQ rich results.
   "/faq": `<div class="seo-fallback">
     <h1>Frequently Asked Questions — Xuvilo Business Hub</h1>
-    <h2>Is Xuvilo really free?</h2>
-    <p>Yes. The invoice generator, quotation generator, receipt generator, all 14 business calculators, the stamp maker and the 320+ free templates are completely free to use. You do not need to sign up or enter a payment method to use them. Premium features for power users — including unlimited document storage, premium templates, and advanced branding — are available on optional paid plans.</p>
-    <h2>Do I need an account?</h2>
-    <p>No. You can create and download an invoice, quotation or receipt without ever creating an account. An account is only required if you want to save documents, sync them between devices, or manage clients across sessions.</p>
-    <h2>Which languages and currencies are supported?</h2>
-    <p>Xuvilo is fully bilingual in Arabic and English with proper right-to-left layout for Arabic. The invoice and quotation generators support 176+ international currencies including SAR, AED, EGP, LYD, JOD, KWD, QAR, OMR, BHD, USD, EUR, GBP, INR, and many more.</p>
-    <h2>Are the invoices ZATCA compliant?</h2>
-    <p>Yes. The Saudi Arabia invoice generator is designed to meet ZATCA Phase 1 requirements, including the QR code, seller details, VAT registration number, and itemised tax breakdown. Always confirm compliance with your accountant or a certified tax advisor.</p>
-    <h2>Can I export to PDF?</h2>
-    <p>Every document — invoice, quotation, receipt — can be exported as a clean, professional A4 PDF instantly. The PDF is generated in your browser; you can download it, print it, or attach it to an email.</p>
-    <h2>Is my data safe?</h2>
-    <p>Documents are generated in your browser and we do not store invoice content unless you explicitly create an account and choose to save documents. Read our <a href="/privacy">Privacy Policy</a> for details on what we collect and how we use it.</p>
-    <h2>Which countries are supported?</h2>
-    <p>We have country-specific invoice generators for Saudi Arabia, the UAE, Egypt, Libya, Jordan, Kuwait, Qatar, Oman, Bahrain, Iraq, Syria, Lebanon, Morocco, Algeria, Tunisia, and 40+ other markets. The full list is on our <a href="/countries">countries page</a>.</p>
-    <h2>How do I contact support?</h2>
-    <p>Email <a href="mailto:support@xuvilo.com">support@xuvilo.com</a> and we will reply within one business day.</p>
+${FAQ_EN.map((f) => `    <h2>${escapeHtml(f.q)}</h2>\n    <p>${escapeHtml(f.a)}</p>`).join("\n")}
+    <p>Still have a question? Read about <a href="/about">Xuvilo</a>, review our <a href="/privacy">Privacy Policy</a>, browse the <a href="/countries">supported countries</a>, or <a href="/contact">contact support</a>.</p>
   </div>`,
 
   "/how-it-works": `<div class="seo-fallback">
@@ -685,7 +675,7 @@ const STATIC_HTML: Record<string, string> = {
         <li>Validates that your VAT number looks like a valid 15-digit Saudi TIN before generating the QR code.</li>
         <li>Produces a print-ready A4 PDF with all required fields, ready to email to your customer or attach to your accounting system.</li>
       </ul>
-      <p>You can also pick from any of Xuvilo's <a href="/templates">320+ free invoice templates</a> &mdash; including templates designed specifically for Saudi tax invoices &mdash; and switch templates without losing your data. Everything is free for the core flow; you do not need to create an account or enter a payment method to issue compliant ZATCA invoices.</p>
+      <p>You can also pick from any of Xuvilo's <a href="/templates/invoice">320+ free invoice templates</a> &mdash; including templates designed specifically for Saudi tax invoices &mdash; and switch templates without losing your data. Everything is free for the core flow; you do not need to create an account or enter a payment method to issue compliant ZATCA invoices.</p>
 
       <h2>Frequently asked questions</h2>
       <h3>Do all Saudi businesses have to issue e-invoices?</h3>
@@ -703,7 +693,7 @@ const STATIC_HTML: Record<string, string> = {
       <h3>How long do I need to keep my invoices?</h3>
       <p>Under the VAT Implementing Regulations, taxpayers in Saudi Arabia must keep tax invoices and supporting records for at least six years from the end of the tax period to which they relate. Xuvilo's premium plans (coming soon) will add unlimited cloud storage to make six-year retention painless; on the free plan, you can download every invoice as a PDF and keep your own archive.</p>
 
-      <p>Ready to issue your first compliant invoice? Open the <a href="/invoice">free invoice generator</a> or pick a design from the <a href="/templates">320+ template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
+      <p>Ready to issue your first compliant invoice? Open the <a href="/invoice">free invoice generator</a> or pick a design from the <a href="/templates/invoice">320+ template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
     </article>
   </div>`,
 
@@ -756,7 +746,7 @@ const STATIC_HTML: Record<string, string> = {
 
       <h2>Why Xuvilo works perfectly for UAE businesses</h2>
       <p>Xuvilo is built for exactly this market. The <a href="/invoice">free invoice generator</a> defaults to AED for UAE users, supports the 5% VAT rate out of the box, includes a TRN field that appears on the PDF in the right place for FTA-style tax invoices, and renders the document bilingually with Arabic and English on the same A4 page if you choose. There is no sign-up wall, no card requirement, and no hidden cap on how many invoices you can issue per month on the free plan.</p>
-      <p>Beyond the basics, Xuvilo gives UAE freelancers a few extras that are surprisingly hard to find elsewhere. The <a href="/templates">320+ template library</a> includes dedicated UAE designs and bilingual templates suitable for everything from a one-person consultancy to a small agency or trading company. The same business profile you use for invoices also powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed and a free <a href="/receipt">receipt generator</a> for confirming payments after they are made. And the <a href="/ai-writer">AI Business Writer</a> drafts the cover email that goes with each invoice, including bilingual payment reminders for late-paying clients.</p>
+      <p>Beyond the basics, Xuvilo gives UAE freelancers a few extras that are surprisingly hard to find elsewhere. The <a href="/templates/invoice">320+ template library</a> includes dedicated UAE designs and bilingual templates suitable for everything from a one-person consultancy to a small agency or trading company. The same business profile you use for invoices also powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed and a free <a href="/receipt">receipt generator</a> for confirming payments after they are made. And the <a href="/ai-writer">AI Business Writer</a> drafts the cover email that goes with each invoice, including bilingual payment reminders for late-paying clients.</p>
 
       <h2>Arabic and English bilingual invoices</h2>
       <p>The UAE is a genuinely bilingual market. A typical freelancer in Dubai works with a mix of UAE-national clients who prefer Arabic, expat-led companies that work in English, and international clients overseas. A good invoice solution shouldn't force you to pick one language and stick with it. Xuvilo's bilingual mode renders the same invoice with the field labels in Arabic <em>and</em> English on the same page, the values in the appropriate script, and the layout flipped to RTL for the Arabic side. Numbers, currency symbols and dates are formatted correctly for each language &mdash; Arabic-Indic digits in the Arabic side if you choose, Western digits in the English side, AED in both. The document looks professional in either reading direction, and your Arabic-speaking clients see something that respects their language as a first-class citizen rather than an afterthought.</p>
@@ -867,7 +857,7 @@ const STATIC_HTML: Record<string, string> = {
       <h3>What if the customer pays from the quotation by mistake?</h3>
       <p>It happens &mdash; especially with overseas customers who are used to "proforma invoices" being payable. Treat the payment as an advance, issue an invoice for the value of the work as it's performed, and issue a <a href="/receipt">receipt</a> for the funds received in the meantime so your records stay clean.</p>
 
-      <p>Ready to issue your first quote or invoice? Open the <a href="/quotation">free quotation generator</a> or the <a href="/invoice">free invoice generator</a>, or pick a design from the <a href="/templates">320+ template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
+      <p>Ready to issue your first quote or invoice? Open the <a href="/quotation">free quotation generator</a> or the <a href="/invoice">free invoice generator</a>, or pick a design from the <a href="/templates/invoice">320+ template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
     </article>
   </div>`,
 
@@ -988,13 +978,13 @@ const STATIC_HTML: Record<string, string> = {
       <p>Egypt is officially Arabic-speaking and most contracts, government correspondence and consumer-facing receipts are in Arabic. But Egyptian B2B life is also very international: software, oil and gas, tourism, NGOs, and trading routinely work in English. A typical Cairo SME has a mix of Egyptian Arabic-speaking customers, expat-led English-speaking companies, and overseas clients in the EU, the Gulf and beyond. A good invoice generator shouldn't force a single language. Xuvilo's bilingual mode prints the same invoice with Arabic field labels in proper right-to-left layout and English labels in clean left-to-right layout on the same A4 page &mdash; every customer reads the document in their preferred direction without you having to maintain two templates.</p>
 
       <h2>How Xuvilo works for Egyptian SMEs</h2>
-      <p>Open the free <a href="/invoice">invoice generator</a> and the EGP currency is pre-loaded for Egypt. You can switch on the 14% VAT and add your tax registration number once &mdash; Xuvilo remembers it for the next invoice. The invoice can be rendered in Arabic, English, or both at the same time on a single A4 page. You pick a template from the <a href="/templates">320+ template library</a> (including dedicated Egypt-friendly designs), upload your logo once, and download the finished PDF in seconds. There is no sign-up wall, no card requirement, and no hidden cap on how many invoices you can issue per month on the free plan. <a href="/pricing">Premium plans</a> add cloud storage, team seats and advanced branding for users who want them.</p>
+      <p>Open the free <a href="/invoice">invoice generator</a> and the EGP currency is pre-loaded for Egypt. You can switch on the 14% VAT and add your tax registration number once &mdash; Xuvilo remembers it for the next invoice. The invoice can be rendered in Arabic, English, or both at the same time on a single A4 page. You pick a template from the <a href="/templates/invoice">320+ template library</a> (including dedicated Egypt-friendly designs), upload your logo once, and download the finished PDF in seconds. There is no sign-up wall, no card requirement, and no hidden cap on how many invoices you can issue per month on the free plan. <a href="/pricing">Premium plans</a> add cloud storage, team seats and advanced branding for users who want them.</p>
       <p>If you submit invoices to the ETA via a separate certified service provider or ERP, Xuvilo is still useful as the upstream drafting tool &mdash; you can generate the line items, totals, customer details and bilingual presentation in Xuvilo, then export the PDF and the underlying data for upload.</p>
 
       <h2>How to issue your first Egyptian invoice in 3 steps</h2>
       <p><strong>Step 1.</strong> Open the <a href="/invoice">Egypt invoice generator</a>. Select Egypt to set the currency to EGP. If you are VAT-registered, switch on the 14% VAT and add your tax registration number once.</p>
       <p><strong>Step 2.</strong> Fill in your business details (name, address, tax number, commercial registration number, logo) and your client's details. Add line items with quantity, unit price and any discount; the totals and VAT update as you type.</p>
-      <p><strong>Step 3.</strong> Pick a template from the <a href="/templates">320+ template library</a>, choose Arabic, English or bilingual output, and click "Download PDF". Your invoice is generated as a clean A4 file you can email to your client, attach to a delivery message or upload to your accounts software.</p>
+      <p><strong>Step 3.</strong> Pick a template from the <a href="/templates/invoice">320+ template library</a>, choose Arabic, English or bilingual output, and click "Download PDF". Your invoice is generated as a clean A4 file you can email to your client, attach to a delivery message or upload to your accounts software.</p>
 
       <h2>Frequently asked questions</h2>
       <h3>Do I need an ETA e-invoice account to use Xuvilo?</h3>
@@ -1006,7 +996,7 @@ const STATIC_HTML: Record<string, string> = {
       <h3>Is Xuvilo really free for Egyptian SMEs?</h3>
       <p>Yes &mdash; unlimited invoices, quotations and receipts in EGP (or any other currency), full bilingual output, PDF export, and 320+ free templates, without ever creating an account. Optional <a href="/pricing">premium plans</a> (coming soon) will add cloud storage and advanced branding.</p>
 
-      <p>Ready to issue your first Egyptian invoice? Open the free <a href="/invoice">invoice generator</a> or pick a design from the <a href="/templates">template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
+      <p>Ready to issue your first Egyptian invoice? Open the free <a href="/invoice">invoice generator</a> or pick a design from the <a href="/templates/invoice">template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
     </article>
   </div>`,
 
@@ -1243,7 +1233,7 @@ const STATIC_HTML: Record<string, string> = {
       <header>
         <p><strong>By Xuvilo Team</strong> &middot; Published <time datetime="2026-05-01">1 May 2026</time> &middot; 8 min read &middot; Category: Business</p>
         <h1>How to Write a Professional Quotation (With Free Template)</h1>
-        <p>A good quotation is a sales tool, a contract proposal and a project brief rolled into one document. A bad quotation is a one-line price email that leaves the customer with more questions than they started with, leaves you exposed if the price changes, and leaves both sides arguing about scope when the job is done. This guide walks through what every professional quotation in the MENA region must include, how to set validity dates and terms, how to convert an accepted quote into an invoice cleanly, MENA-specific business etiquette around quotes, and how to use Xuvilo's free <a href="/quotation">quotation generator</a> with one of the <a href="/templates">320+ free templates</a> to do all of it in minutes.</p>
+        <p>A good quotation is a sales tool, a contract proposal and a project brief rolled into one document. A bad quotation is a one-line price email that leaves the customer with more questions than they started with, leaves you exposed if the price changes, and leaves both sides arguing about scope when the job is done. This guide walks through what every professional quotation in the MENA region must include, how to set validity dates and terms, how to convert an accepted quote into an invoice cleanly, MENA-specific business etiquette around quotes, and how to use Xuvilo's free <a href="/quotation">quotation generator</a> with one of the <a href="/templates/invoice">320+ free templates</a> to do all of it in minutes.</p>
       </header>
 
       <h2>Why quotations matter more than freelancers think</h2>
@@ -1323,7 +1313,7 @@ const STATIC_HTML: Record<string, string> = {
       <p>In Xuvilo this is one click &mdash; open the quote in the <a href="/quotation">quotation generator</a>, click "Convert to invoice", and the line items, customer, branding and notes carry straight into the new invoice with a fresh INV-number, today's date and your default payment terms.</p>
 
       <h2>How to use Xuvilo's free quotation generator</h2>
-      <p>Open the free <a href="/quotation">quotation generator</a>, pick a template from the <a href="/templates">320+ template library</a> (including dedicated MENA-friendly bilingual designs), enter your business and customer details once (saved for next time), add your line items with quantities and prices, and the totals + VAT update automatically. Choose Arabic, English or bilingual output, set the validity date and your standard T&amp;Cs, and download as a print-ready A4 PDF. <a href="/pricing">Premium plans</a> add cloud storage and team-shared templates; the core flow is genuinely free with no signup required.</p>
+      <p>Open the free <a href="/quotation">quotation generator</a>, pick a template from the <a href="/templates/invoice">320+ template library</a> (including dedicated MENA-friendly bilingual designs), enter your business and customer details once (saved for next time), add your line items with quantities and prices, and the totals + VAT update automatically. Choose Arabic, English or bilingual output, set the validity date and your standard T&amp;Cs, and download as a print-ready A4 PDF. <a href="/pricing">Premium plans</a> add cloud storage and team-shared templates; the core flow is genuinely free with no signup required.</p>
 
       <h2>Frequently asked questions</h2>
       <h3>Should I charge VAT on a quotation?</h3>
@@ -1335,7 +1325,7 @@ const STATIC_HTML: Record<string, string> = {
       <h3>Do I need to send a quotation for small jobs?</h3>
       <p>For small one-off jobs you can skip the quote and invoice straight away. For repeat work, larger jobs, or any new customer, a quotation protects both sides and is worth the five minutes to issue.</p>
 
-      <p>Try the free <a href="/quotation">quotation generator</a> now, or pick a design from the <a href="/templates">template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
+      <p>Try the free <a href="/quotation">quotation generator</a> now, or pick a design from the <a href="/templates/invoice">template library</a>. For more guides, head back to the <a href="/blog">Xuvilo Blog</a>.</p>
     </article>
   </div>`,
 
@@ -1386,12 +1376,12 @@ const STATIC_HTML: Record<string, string> = {
 
       <h2>How Xuvilo supports Jordanian businesses</h2>
       <p>Xuvilo's free <a href="/invoice">invoice generator</a> defaults to JOD currency (with three-decimal precision), the 16% GST rate, and bilingual Arabic-English layout when you select Jordan as your country. Pre-loaded sensible defaults mean you can issue your first compliant Jordanian tax invoice in under a minute.</p>
-      <p>Beyond the basics, the same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they are made, and the <a href="/templates">320+ template library</a> with dedicated Jordan-friendly bilingual designs. Most Jordanian businesses go through quote &rarr; invoice &rarr; receipt for every project, and Xuvilo covers all three with shared customer details, branding and bank info.</p>
+      <p>Beyond the basics, the same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they are made, and the <a href="/templates/invoice">320+ template library</a> with dedicated Jordan-friendly bilingual designs. Most Jordanian businesses go through quote &rarr; invoice &rarr; receipt for every project, and Xuvilo covers all three with shared customer details, branding and bank info.</p>
 
       <h2>How to create your first Jordanian invoice in 3 steps</h2>
       <p><strong>Step 1.</strong> Open the <a href="/invoice">Jordan invoice generator</a> and select Jordan to set the currency to JOD with three-decimal display and 16% GST. If you are GST-registered, add your tax registration number once &mdash; Xuvilo remembers it for the next invoice.</p>
       <p><strong>Step 2.</strong> Fill in your business details (name, address, tax number, logo) and your client's details. Add line items with quantity, unit price (in JOD) and any discount; the totals and GST update as you type. Switch to a different GST rate per line for items in the 4% or 0% schedules.</p>
-      <p><strong>Step 3.</strong> Pick a template from the <a href="/templates">320+ template library</a>, choose Arabic, English or bilingual output, and click "Download PDF". Your invoice is generated as a clean A4 file you can email to your client, attach to a delivery message or upload to your accounts software.</p>
+      <p><strong>Step 3.</strong> Pick a template from the <a href="/templates/invoice">320+ template library</a>, choose Arabic, English or bilingual output, and click "Download PDF". Your invoice is generated as a clean A4 file you can email to your client, attach to a delivery message or upload to your accounts software.</p>
 
       <h2>Frequently asked questions</h2>
       <h3>Why are JOD amounts shown to three decimal places?</h3>
@@ -1681,7 +1671,7 @@ function slugToCountryHtml(slug: string): string {
     ${zatcaSection}
 
     <h2>Beyond invoices — quotations and receipts for ${c.name}</h2>
-    <p>Xuvilo isn't only an invoice generator. The same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they're made, and a <a href="/templates">320+ template library</a> for industry-specific designs. Most ${c.name} businesses go through quote → invoice → receipt for every project, and Xuvilo covers all three.</p>
+    <p>Xuvilo isn't only an invoice generator. The same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they're made, and a <a href="/templates/invoice">320+ template library</a> for industry-specific designs. Most ${c.name} businesses go through quote → invoice → receipt for every project, and Xuvilo covers all three.</p>
 
     <h2>Frequently asked questions</h2>
     <p><strong>Is the ${c.name} invoice generator really free?</strong> Yes — issue unlimited invoices in ${c.currency} without an account or a payment method. Premium plans (coming soon) will add cloud storage and advanced branding, but you never need them just to issue clean invoices.</p>
@@ -1799,7 +1789,7 @@ const SSR_BLOG_NAV = `<header class="ssr-blog-nav">
       <a href="/quotation">Quotation</a>
       <a href="/receipt">Receipt</a>
       <a href="/calculators">Calculators</a>
-      <a href="/templates">Templates</a>
+      <a href="/templates/invoice">Templates</a>
       <a href="/blog">Blog</a>
     </nav>
   </div>
@@ -1819,7 +1809,7 @@ const SSR_BLOG_NAV_AR = `<header class="ssr-blog-nav" lang="ar" dir="rtl">
       <a href="/quotation">عروض الأسعار</a>
       <a href="/receipt">الإيصالات</a>
       <a href="/calculators">الحاسبات</a>
-      <a href="/templates">القوالب</a>
+      <a href="/templates/invoice">القوالب</a>
       <a href="/blog">المدونة</a>
     </nav>
   </div>
@@ -2916,8 +2906,22 @@ function getJsonLdForPath(p: string): object | object[] | null {
   // CountryPage.tsx emits FAQPage for JS-capable crawlers, but AI crawlers that
   // skip JavaScript never see it. We mirror the same FAQ data here in the
   // initial SSR output so it is always present in the page HTML.
-  // FAQPage for /faq is likewise emitted client-side by FAQ.tsx (matches the
-  // visible Q&A exactly), so SSR omits it to avoid a duplicate FAQPage.
+  // FAQPage for /faq: mirrored server-side from the same FAQ_EN data that
+  // drives both the no-JS fallback markup and the FAQ.tsx accordion, so the
+  // schema is present for AI/no-JS crawlers and always matches visible text.
+  if (clean === "/faq") {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: FAQ_EN.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ];
+  }
   if (clean === "/about") {
     return [
       { "@context": "https://schema.org", "@type": "AboutPage", url: `${SITE_URL}/about`, name: "About Xuvilo Business Hub", inLanguage: ["en", "ar"] },
@@ -4040,9 +4044,13 @@ ${hreflangLines}
 // Serve build artifacts (JS, CSS, images, sitemap.xml override, etc.)
 // directly from disk with proper Content-Type and long-lived caching for
 // hashed assets. Must come BEFORE the catch-all SSR handler. {index:false}
-// so requests to "/" still flow through the SSR handler below.
+// so requests to "/" still flow through the SSR handler below. {redirect:false}
+// so directory-shaped paths that exist on disk (e.g. /blog, which holds the
+// article cover images) don't 301 to a trailing slash — they fall through to
+// the SSR handler and serve their page content with a direct 200.
 app.use(express.static(distPath, {
   index: false,
+  redirect: false,
   maxAge: "7d",
   setHeaders: (res, filePath) => {
     if (/\/assets\/.+\.(js|css|woff2?|jpe?g|png|svg|webp|avif)$/.test(filePath)) {

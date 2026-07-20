@@ -256,7 +256,7 @@ function slugToCountryHtml(slug: string): string {
     ${zatcaSection}
 
     <h2>Beyond invoices — quotations and receipts for ${c.name}</h2>
-    <p>Xuvilo isn't only an invoice generator. The same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they're made, and a <a href="/templates">100+ template library</a> for industry-specific designs. Most ${c.name} businesses go through quote → invoice → receipt for every project, and Xuvilo covers all three.</p>
+    <p>Xuvilo isn't only an invoice generator. The same business profile powers a free <a href="/quotation">quotation generator</a> for sending price quotes before a deal is signed, a free <a href="/receipt">receipt generator</a> for confirming payments after they're made, and a <a href="/templates/invoice">100+ template library</a> for industry-specific designs. Most ${c.name} businesses go through quote → invoice → receipt for every project, and Xuvilo covers all three.</p>
 
     <h2>Frequently asked questions</h2>
     <p><strong>Is the ${c.name} invoice generator really free?</strong> Yes — issue unlimited invoices in ${c.currency} without an account or a payment method.</p>

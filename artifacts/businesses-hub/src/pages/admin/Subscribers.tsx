@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { useLocation } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -35,18 +35,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   listNewsletterSubscribers,
   downloadNewsletterSubscribersCsv,
+  importNewsletterSubscribers,
   unsubscribeNewsletterSubscriber,
   deleteNewsletterSubscriber,
   type NewsletterSubscriberItem,
 } from "@/lib/adminApi";
+import { analyzeSubscriberCsv, type CsvAnalysis, type CsvRowStatus } from "@/lib/csvImport";
 import {
   Loader2,
   Mail,
   RefreshCw,
   AlertTriangle,
   Download,
+  Upload,
   Search,
   Users,
   MoreHorizontal,
@@ -54,6 +65,13 @@ import {
   Trash2,
   TrendingUp,
 } from "lucide-react";
+
+/** Max CSV file size accepted for import (2 MB ≈ well past 5000 rows). */
+const IMPORT_MAX_FILE_BYTES = 2 * 1024 * 1024;
+/** Keep in sync with IMPORT_MAX_ROWS on the API server. */
+const IMPORT_MAX_ROWS = 5000;
+/** How many preview rows to render (all rows are still counted/imported). */
+const IMPORT_PREVIEW_ROWS = 200;
 
 const PAGE_SIZE = 50;
 
@@ -171,6 +189,113 @@ export default function AdminNewsletterSubscribersPage() {
       setExporting(false);
     }
   }, [search, toast, isAR]);
+
+  // ── CSV import ────────────────────────────────────────────────────────
+  const importInputRef = useRef<HTMLInputElement | null>(null);
+  const [importAnalysis, setImportAnalysis] = useState<CsvAnalysis | null>(null);
+  const [importFileName, setImportFileName] = useState("");
+  const [includeSuspicious, setIncludeSuspicious] = useState(true);
+  const [consentConfirmed, setConsentConfirmed] = useState(false);
+  const [importing, setImporting] = useState(false);
+
+  const handleImportFileChosen = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      // Allow re-picking the same file later.
+      e.target.value = "";
+      if (!file) return;
+      if (file.size > IMPORT_MAX_FILE_BYTES) {
+        toast({
+          title: isAR ? "الملف كبير جدًا" : "File too large",
+          description: isAR
+            ? "الحد الأقصى لملف الاستيراد هو 2 ميغابايت."
+            : "Import files are capped at 2 MB.",
+          variant: "destructive",
+        });
+        return;
+      }
+      try {
+        const text = await file.text();
+        const analysis = analyzeSubscriberCsv(text);
+        if (analysis.rows.length === 0) {
+          toast({
+            title: isAR ? "ملف فارغ" : "Empty file",
+            description: isAR
+              ? "لم يتم العثور على أي صفوف في هذا الملف."
+              : "No rows were found in this file.",
+            variant: "destructive",
+          });
+          return;
+        }
+        setImportFileName(file.name);
+        setIncludeSuspicious(true);
+        setConsentConfirmed(false);
+        setImportAnalysis(analysis);
+      } catch {
+        toast({
+          title: isAR ? "تعذر قراءة الملف" : "Could not read file",
+          variant: "destructive",
+        });
+      }
+    },
+    [isAR, toast],
+  );
+
+  const importableEmails = useMemo(() => {
+    if (!importAnalysis) return [];
+    return importAnalysis.rows
+      .filter(
+        (r) =>
+          r.status === "valid" ||
+          (includeSuspicious && r.status === "suspicious"),
+      )
+      .map((r) => r.email);
+  }, [importAnalysis, includeSuspicious]);
+
+  const closeImportDialog = useCallback(() => {
+    setImportAnalysis(null);
+    setImportFileName("");
+    setConsentConfirmed(false);
+  }, []);
+
+  const handleRunImport = useCallback(async () => {
+    if (importableEmails.length === 0 || !consentConfirmed || importing) return;
+    setImporting(true);
+    try {
+      const resp = await importNewsletterSubscribers(importableEmails);
+      const parts = isAR
+        ? [
+            `تمت إضافة ${resp.inserted}`,
+            resp.skippedExisting > 0 ? `${resp.skippedExisting} مشتركون بالفعل` : "",
+            resp.skippedUnsubscribed > 0
+              ? `${resp.skippedUnsubscribed} ألغوا اشتراكهم سابقًا (لن تتم إعادة اشتراكهم)`
+              : "",
+            resp.skippedInvalid > 0 ? `${resp.skippedInvalid} غير صالحة` : "",
+          ]
+        : [
+            `${resp.inserted} added`,
+            resp.skippedExisting > 0 ? `${resp.skippedExisting} already subscribed` : "",
+            resp.skippedUnsubscribed > 0
+              ? `${resp.skippedUnsubscribed} previously unsubscribed (not re-added)`
+              : "",
+            resp.skippedInvalid > 0 ? `${resp.skippedInvalid} invalid` : "",
+          ];
+      toast({
+        title: isAR ? "اكتمل الاستيراد" : "Import complete",
+        description: parts.filter(Boolean).join(" · "),
+      });
+      closeImportDialog();
+      await loadList();
+    } catch (e) {
+      toast({
+        title: isAR ? "فشل الاستيراد" : "Import failed",
+        description: e instanceof Error ? e.message : undefined,
+        variant: "destructive",
+      });
+    } finally {
+      setImporting(false);
+    }
+  }, [importableEmails, consentConfirmed, importing, isAR, toast, closeImportDialog, loadList]);
 
   const handleConfirmAction = useCallback(async () => {
     if (!pendingAction) return;
@@ -304,6 +429,23 @@ export default function AdminNewsletterSubscribersPage() {
               )}
               {isAR ? "تصدير CSV" : "Export CSV"}
             </Button>
+            <Button
+              variant="outline"
+              onClick={() => importInputRef.current?.click()}
+              disabled={importing}
+              data-testid="import-csv-button"
+            >
+              <Upload className="h-4 w-4 mr-2" />
+              {isAR ? "استيراد CSV" : "Import CSV"}
+            </Button>
+            <input
+              ref={importInputRef}
+              type="file"
+              accept=".csv,text/csv,text/plain"
+              className="hidden"
+              onChange={(e) => void handleImportFileChosen(e)}
+              data-testid="import-csv-input"
+            />
           </div>
         </div>
 
@@ -547,6 +689,197 @@ export default function AdminNewsletterSubscribersPage() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        {/* CSV import preview + confirmation */}
+        <Dialog
+          open={importAnalysis !== null}
+          onOpenChange={(open) => {
+            if (!open && !importing) closeImportDialog();
+          }}
+        >
+          <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto" data-testid="import-preview-dialog">
+            <DialogHeader>
+              <DialogTitle>
+                {isAR ? "معاينة استيراد CSV" : "CSV import preview"}
+              </DialogTitle>
+              <DialogDescription>
+                {importFileName}
+                {importAnalysis && (
+                  <>
+                    {" · "}
+                    {isAR
+                      ? `${importAnalysis.rows.length} صفًا`
+                      : `${importAnalysis.rows.length} rows`}
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+
+            {importAnalysis && (
+              <div className="space-y-4">
+                {/* Summary chips */}
+                <div className="flex flex-wrap gap-2 text-xs" data-testid="import-summary">
+                  <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300">
+                    {isAR
+                      ? `${importAnalysis.counts.valid} صالحة`
+                      : `${importAnalysis.counts.valid} valid`}
+                  </Badge>
+                  <Badge className="bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/40 dark:text-amber-300">
+                    {isAR
+                      ? `${importAnalysis.counts.suspicious} مشبوهة`
+                      : `${importAnalysis.counts.suspicious} suspicious`}
+                  </Badge>
+                  <Badge className="bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/40 dark:text-rose-300">
+                    {isAR
+                      ? `${importAnalysis.counts.invalid} غير صالحة (تُستبعد)`
+                      : `${importAnalysis.counts.invalid} invalid (excluded)`}
+                  </Badge>
+                  <Badge className="bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300">
+                    {isAR
+                      ? `${importAnalysis.counts.duplicate} مكررة (تُستبعد)`
+                      : `${importAnalysis.counts.duplicate} duplicates (excluded)`}
+                  </Badge>
+                </div>
+
+                {importAnalysis.rows.length > IMPORT_MAX_ROWS && (
+                  <p className="text-sm text-rose-600" data-testid="import-too-many-rows">
+                    {isAR
+                      ? `يتجاوز الملف حد ${IMPORT_MAX_ROWS} صف لكل عملية استيراد. قسّم الملف وأعد المحاولة.`
+                      : `This file exceeds the ${IMPORT_MAX_ROWS}-row limit per import. Split it and try again.`}
+                  </p>
+                )}
+
+                {/* Suspicious rows toggle */}
+                {importAnalysis.counts.suspicious > 0 && (
+                  <label className="flex items-start gap-2 text-sm cursor-pointer rounded-md border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 px-3 py-2">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 accent-amber-600"
+                      checked={includeSuspicious}
+                      onChange={(e) => setIncludeSuspicious(e.target.checked)}
+                      data-testid="import-include-suspicious"
+                    />
+                    <span>
+                      {isAR
+                        ? `تضمين الصفوف المشبوهة (${importAnalysis.counts.suspicious}) — عناوين وظيفية مثل info@ أو نطاقات بريد مؤقت. راجعها في الجدول أدناه قبل التضمين.`
+                        : `Include the ${importAnalysis.counts.suspicious} suspicious rows — role mailboxes like info@ or disposable domains. Review them in the table below before including.`}
+                    </span>
+                  </label>
+                )}
+
+                {/* Preview table */}
+                <div className="max-h-72 overflow-y-auto rounded-md border">
+                  <Table data-testid="import-preview-table">
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-14">{isAR ? "سطر" : "Line"}</TableHead>
+                        <TableHead>{isAR ? "البريد الإلكتروني" : "Email"}</TableHead>
+                        <TableHead>{isAR ? "الحالة" : "Status"}</TableHead>
+                        <TableHead>{isAR ? "السبب" : "Reason"}</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {importAnalysis.rows.slice(0, IMPORT_PREVIEW_ROWS).map((r) => {
+                        const statusMeta: Record<CsvRowStatus, { label: string; cls: string }> = {
+                          valid: {
+                            label: isAR ? "صالحة" : "Valid",
+                            cls: "bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300",
+                          },
+                          suspicious: {
+                            label: isAR ? "مشبوهة" : "Suspicious",
+                            cls: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/40 dark:text-amber-300",
+                          },
+                          invalid: {
+                            label: isAR ? "غير صالحة" : "Invalid",
+                            cls: "bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/40 dark:text-rose-300",
+                          },
+                          duplicate: {
+                            label: isAR ? "مكررة" : "Duplicate",
+                            cls: "bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300",
+                          },
+                        };
+                        const meta = statusMeta[r.status];
+                        return (
+                          <TableRow key={`${r.line}-${r.raw}`} data-testid={`import-row-${r.line}`}>
+                            <TableCell className="text-xs text-muted-foreground">{r.line}</TableCell>
+                            <TableCell className="font-mono text-xs break-all" dir="ltr">
+                              {r.raw || "—"}
+                            </TableCell>
+                            <TableCell>
+                              <Badge className={meta.cls}>{meta.label}</Badge>
+                            </TableCell>
+                            <TableCell className="text-xs text-muted-foreground">
+                              {r.reason ?? ""}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                  {importAnalysis.rows.length > IMPORT_PREVIEW_ROWS && (
+                    <p className="px-3 py-2 text-xs text-muted-foreground border-t">
+                      {isAR
+                        ? `يعرض أول ${IMPORT_PREVIEW_ROWS} صفًا — تُحتسب بقية الصفوف وتُستورد وفق نفس القواعد.`
+                        : `Showing the first ${IMPORT_PREVIEW_ROWS} rows — the rest are counted and imported under the same rules.`}
+                    </p>
+                  )}
+                </div>
+
+                {/* Consent gate — the import button stays disabled until this
+                    is explicitly ticked, so a stray click can't import. */}
+                <label className="flex items-start gap-2 text-sm cursor-pointer rounded-md border px-3 py-2">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 h-4 w-4 accent-primary"
+                    checked={consentConfirmed}
+                    onChange={(e) => setConsentConfirmed(e.target.checked)}
+                    data-testid="import-consent-checkbox"
+                  />
+                  <span>
+                    {isAR
+                      ? "أؤكد أن هؤلاء الأشخاص وافقوا على استلام رسائل بريدية من Xuvilo، وأتحمل مسؤولية هذا الاستيراد."
+                      : "I confirm these recipients agreed to receive emails from Xuvilo, and I take responsibility for this import."}
+                  </span>
+                </label>
+                <p className="text-xs text-muted-foreground">
+                  {isAR
+                    ? "لن تُعاد إضافة العناوين التي سبق أن ألغت اشتراكها — يتطلب ذلك موافقة جديدة من صاحب البريد نفسه."
+                    : "Addresses that previously unsubscribed will not be re-added — that requires the person to opt in again themselves."}
+                </p>
+              </div>
+            )}
+
+            <DialogFooter>
+              <Button
+                variant="outline"
+                onClick={closeImportDialog}
+                disabled={importing}
+                data-testid="import-cancel-button"
+              >
+                {isAR ? "إلغاء" : "Cancel"}
+              </Button>
+              <Button
+                onClick={() => void handleRunImport()}
+                disabled={
+                  importing ||
+                  !consentConfirmed ||
+                  importableEmails.length === 0 ||
+                  (importAnalysis?.rows.length ?? 0) > IMPORT_MAX_ROWS
+                }
+                data-testid="import-confirm-button"
+              >
+                {importing ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                ) : (
+                  <Upload className="h-4 w-4 mr-2" />
+                )}
+                {isAR
+                  ? `استيراد ${importableEmails.length.toLocaleString("ar-EG")} مشتركًا`
+                  : `Import ${importableEmails.length.toLocaleString("en-US")} subscriber${importableEmails.length === 1 ? "" : "s"}`}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </AppLayout>
   );

@@ -219,6 +219,29 @@ export async function listNewsletterSubscribers(
   return res.json();
 }
 
+export interface NewsletterImportResult {
+  success: true;
+  received: number;
+  inserted: number;
+  skippedExisting: number;
+  skippedUnsubscribed: number;
+  skippedInvalid: number;
+}
+
+/**
+ * Import the confirmed rows from the CSV preview. The server re-validates,
+ * de-duplicates against existing subscribers, and never re-subscribes
+ * addresses that previously unsubscribed.
+ */
+export function importNewsletterSubscribers(
+  emails: string[],
+): Promise<NewsletterImportResult> {
+  return adminRequest("/admin/newsletter-subscribers/import", {
+    method: "POST",
+    body: JSON.stringify({ emails }),
+  });
+}
+
 export async function unsubscribeNewsletterSubscriber(
   id: string,
 ): Promise<{ success: true; id: string }> {

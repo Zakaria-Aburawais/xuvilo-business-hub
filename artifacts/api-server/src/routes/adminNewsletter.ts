@@ -1,7 +1,9 @@
 import { Router, type IRouter } from "express";
-import { desc, sql, and, eq, gte, ilike, isNull, type SQL } from "drizzle-orm";
+import express from "express";
+import { desc, sql, and, eq, gte, ilike, inArray, isNull, type SQL } from "drizzle-orm";
 import { db, newsletterSubscribersTable } from "@workspace/db";
 import { requireRole } from "../lib/auth";
+import { rateLimit } from "../lib/rateLimit";
 import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
@@ -185,6 +187,148 @@ router.get(
         success: false,
         error: "Database not available",
         message: "Could not export newsletter subscribers.",
+      });
+    }
+  },
+);
+
+// ── CSV import ─────────────────────────────────────────────────────────────
+//
+// POST /admin/newsletter-subscribers/import
+//
+// Accepts the CONFIRMED rows from the admin UI's CSV preview as a JSON array
+// of emails. The client already parsed, validated and de-duplicated for the
+// preview, but the server re-does every check — the payload is just a browser
+// request and could bypass the UI entirely.
+//
+// Consent rule: addresses that previously UNSUBSCRIBED are never silently
+// re-subscribed by an import — they are counted and reported back instead.
+// Re-subscribing requires the person to opt in again through the site.
+
+const IMPORT_MAX_ROWS = 5000;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// One import per 10s per admin: collapses double-clicks and accidental
+// re-submits of the same file into a single run.
+const importLimiter = rateLimit({
+  windowMs: 10_000,
+  max: 1,
+  prefix: "admin:newsletter:import",
+  keyer: (req) => req.userEmail ?? "",
+  errorCode: "rate_limited",
+  message: (retryAfter) =>
+    `Please wait ${retryAfter} second${retryAfter === 1 ? "" : "s"} before running another import.`,
+});
+
+router.post(
+  "/admin/newsletter-subscribers/import",
+  requireRole("admin"),
+  importLimiter,
+  express.json({ limit: "1mb" }),
+  async (req, res) => {
+    try {
+      const raw = (req.body as { emails?: unknown } | undefined)?.emails;
+      if (!Array.isArray(raw) || raw.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: "invalid_input",
+          message: "Provide a non-empty `emails` array.",
+        });
+      }
+      if (raw.length > IMPORT_MAX_ROWS) {
+        return res.status(400).json({
+          success: false,
+          error: "too_many_rows",
+          message: `Imports are capped at ${IMPORT_MAX_ROWS} rows per run. Split the file and try again.`,
+        });
+      }
+
+      // Server-side re-validation + in-payload dedupe.
+      let skippedInvalid = 0;
+      const seen = new Set<string>();
+      for (const entry of raw) {
+        const email =
+          typeof entry === "string" ? entry.trim().toLowerCase().slice(0, 320) : "";
+        if (!email || !EMAIL_RE.test(email)) {
+          skippedInvalid++;
+          continue;
+        }
+        seen.add(email);
+      }
+      const candidates = Array.from(seen);
+      if (candidates.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: "no_valid_rows",
+          message: "None of the submitted rows contained a valid email address.",
+        });
+      }
+
+      // Look up existing rows in chunks so the IN clause stays reasonable.
+      const existingActive = new Set<string>();
+      const existingUnsubscribed = new Set<string>();
+      const CHUNK = 1000;
+      for (let i = 0; i < candidates.length; i += CHUNK) {
+        const chunk = candidates.slice(i, i + CHUNK);
+        const rows = await db
+          .select({
+            email: newsletterSubscribersTable.email,
+            unsubscribedAt: newsletterSubscribersTable.unsubscribedAt,
+          })
+          .from(newsletterSubscribersTable)
+          .where(inArray(newsletterSubscribersTable.email, chunk));
+        for (const row of rows) {
+          (row.unsubscribedAt ? existingUnsubscribed : existingActive).add(
+            row.email,
+          );
+        }
+      }
+
+      const toInsert = candidates.filter(
+        (e) => !existingActive.has(e) && !existingUnsubscribed.has(e),
+      );
+
+      let inserted = 0;
+      for (let i = 0; i < toInsert.length; i += CHUNK) {
+        const chunk = toInsert.slice(i, i + CHUNK);
+        // onConflictDoNothing guards the race where the same address signs
+        // up organically between our SELECT and this INSERT.
+        const rows = await db
+          .insert(newsletterSubscribersTable)
+          .values(chunk.map((email) => ({ email, source: "import" })))
+          .onConflictDoNothing({ target: newsletterSubscribersTable.email })
+          .returning({ id: newsletterSubscribersTable.id });
+        inserted += rows.length;
+      }
+
+      req.log.info(
+        {
+          newsletterImport: {
+            received: raw.length,
+            inserted,
+            skippedExisting: existingActive.size,
+            skippedUnsubscribed: existingUnsubscribed.size,
+            skippedInvalid,
+          },
+        },
+        "admin newsletter CSV import",
+      );
+
+      res.setHeader("Cache-Control", "private, no-store");
+      return res.json({
+        success: true,
+        received: raw.length,
+        inserted,
+        skippedExisting: existingActive.size,
+        skippedUnsubscribed: existingUnsubscribed.size,
+        skippedInvalid,
+      });
+    } catch (err) {
+      logger.error({ err }, "admin/newsletter-subscribers import failed");
+      return res.status(503).json({
+        success: false,
+        error: "Database not available",
+        message: "Could not import subscribers.",
       });
     }
   },

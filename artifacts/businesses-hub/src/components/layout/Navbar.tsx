@@ -18,98 +18,61 @@ import { cn } from "@/lib/utils";
 import { ToolsTicker } from "./ToolsTicker";
 import { NavSearch, useNavSearchToggle } from "./NavSearch";
 
-const R1 = "M16 10 Q14 8 17 8 L23 8 Q26 8 26 11 L29 50 Q29 58 22 60 Q14 60 14 53 Q14 50 17 50 Q20 50 20 52 L20 53 L19 13 Q19 11 17 11 Z";
-const R2 = "M30 10 Q28 8 31 8 L37 8 Q40 8 40 11 L43 56 Q43 65 35 66 Q26 66 26 58 Q26 55 29 55 Q32 55 32 57 L32 58 L33 13 Q33 11 31 11 Z";
-const R3 = "M44 10 Q42 8 45 8 L51 8 Q54 8 54 11 L57 48 Q57 56 50 58 Q42 58 42 51 Q42 48 45 48 Q48 48 48 50 L48 51 L47 13 Q47 11 45 11 Z";
-
-/* Floating-silk animation: the three ribbons sway continuously and gently,
-   like strips of silk in a light breeze. Subtler angles than the page loader
-   because the header logo is small and always in view. The turbulence filter
-   adds a slow cloth-like ripple. */
-const NAV_RIBBON_STYLES = `
-.xvn-r{transform-box:fill-box;transform-origin:50% 6%;will-change:transform;pointer-events:none}
-@keyframes xvn-sway1{
-  0%,100%{transform:rotate(-1.8deg) skewX(-1.2deg) translateY(0)}
-  33%{transform:rotate(1.4deg) skewX(1.6deg) translateY(-.9px)}
-  66%{transform:rotate(-.6deg) skewX(-1.8deg) translateY(-.4px)}
-}
-@keyframes xvn-sway2{
-  0%,100%{transform:rotate(1.6deg) skewX(1.3deg) translateY(-.5px)}
-  33%{transform:rotate(-1.5deg) skewX(-1.6deg) translateY(0)}
-  66%{transform:rotate(.8deg) skewX(1.8deg) translateY(-1px)}
-}
-@keyframes xvn-sway3{
-  0%,100%{transform:rotate(-1.3deg) skewX(1.5deg) translateY(-.7px)}
-  33%{transform:rotate(1.7deg) skewX(-1.4deg) translateY(-.2px)}
-  66%{transform:rotate(-.8deg) skewX(1.1deg) translateY(-1.1px)}
-}
-.xvn-r.s1{animation:xvn-sway1 4.6s ease-in-out infinite}
-.xvn-r.s2{animation:xvn-sway2 5.6s ease-in-out -1.3s infinite}
-.xvn-r.s3{animation:xvn-sway3 4.1s ease-in-out -2.2s infinite}
-@media(prefers-reduced-motion:reduce){
-  .xvn-r.s1,.xvn-r.s2,.xvn-r.s3{animation:none}
-  .xvn-cloth{filter:none}
-}
-`;
+// Xuvilo silk-ribbon mark: three fanned strips (deep indigo → blue → cyan),
+// rounded caps, converging at the base and opening upward like flowing silk.
+// Shared with the page-loading screen (index.html #js-loading) so the brand
+// reads identically in both places. The header renders it STATIC and crisp;
+// the loader animates the same paths (sway + turbulence) while the app boots.
+const RIBBON_P1 = "M28 18 C26 40 31 62 41 82";
+const RIBBON_P2 = "M50 16 C48 40 48 62 50 84";
+const RIBBON_P3 = "M72 18 C74 40 69 62 59 82";
 
 function XuviloNavLogo() {
   return (
-    <>
-      <style>{NAV_RIBBON_STYLES}</style>
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <svg
-          width={44} height={44}
-          viewBox="0 0 100 100"
-          aria-hidden="true"
-          style={{ overflow: "visible", flexShrink: 0, display: "block" }}
-        >
-          <defs>
-            <linearGradient id="xvn-g1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1e1b4b"/>
-              <stop offset="55%" stopColor="#1e40af"/>
-              <stop offset="100%" stopColor="#2563eb"/>
-            </linearGradient>
-            <linearGradient id="xvn-g2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2563eb"/>
-              <stop offset="100%" stopColor="#60a5fa"/>
-            </linearGradient>
-            <linearGradient id="xvn-g3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#7dd3fc"/>
-              <stop offset="100%" stopColor="#bae6fd"/>
-            </linearGradient>
-            <filter id="xvn-silk" x="-30%" y="-30%" width="160%" height="160%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves={2} seed={4} result="n">
-                <animate attributeName="baseFrequency" dur="8s"
-                         values="0.012 0.05;0.018 0.072;0.012 0.05" repeatCount="indefinite"/>
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={3}
-                                 xChannelSelector="R" yChannelSelector="G"/>
-            </filter>
-          </defs>
-          <g className="xvn-cloth" filter="url(#xvn-silk)" transform="translate(50 50) scale(1.389) translate(-35.5 -37)">
-            <g className="xvn-r s1"><path d={R1} fill="url(#xvn-g1)"/></g>
-            <g className="xvn-r s2"><path d={R2} fill="url(#xvn-g2)"/></g>
-            <g className="xvn-r s3"><path d={R3} fill="url(#xvn-g3)"/></g>
-          </g>
-        </svg>
-        <div style={{ lineHeight: 1.05 }}>
-          <div style={{
-            fontFamily: "'Inter',system-ui,-apple-system,sans-serif",
-            fontSize: 20, fontWeight: 700,
-            color: "var(--color-blue-800, #1e40af)", letterSpacing: "-.02em",
-          }}>
-            Xuvilo
-          </div>
-          <div style={{
-            fontFamily: "'Inter',system-ui,sans-serif",
-            fontSize: 8, fontWeight: 500, letterSpacing: ".22em",
-            color: "var(--color-gray-500, #6b7280)", textTransform: "uppercase",
-          }}>
-            Business Hub
-          </div>
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <svg
+        width={42} height={42}
+        viewBox="0 0 100 100"
+        aria-hidden="true"
+        style={{ flexShrink: 0, display: "block" }}
+      >
+        <defs>
+          <linearGradient id="xvn-g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#1e1b4b"/>
+            <stop offset="100%" stopColor="#2563eb"/>
+          </linearGradient>
+          <linearGradient id="xvn-g2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#2563eb"/>
+            <stop offset="100%" stopColor="#38bdf8"/>
+          </linearGradient>
+          <linearGradient id="xvn-g3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38bdf8"/>
+            <stop offset="100%" stopColor="#a5f3fc"/>
+          </linearGradient>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeWidth={15}>
+          <path d={RIBBON_P1} stroke="url(#xvn-g1)"/>
+          <path d={RIBBON_P2} stroke="url(#xvn-g2)"/>
+          <path d={RIBBON_P3} stroke="url(#xvn-g3)"/>
+        </g>
+      </svg>
+      <div style={{ lineHeight: 1.05 }}>
+        <div style={{
+          fontFamily: "'Inter',system-ui,-apple-system,sans-serif",
+          fontSize: 20, fontWeight: 700,
+          color: "var(--color-blue-800, #1e40af)", letterSpacing: "-.02em",
+        }}>
+          Xuvilo
+        </div>
+        <div style={{
+          fontFamily: "'Inter',system-ui,sans-serif",
+          fontSize: 8, fontWeight: 500, letterSpacing: ".22em",
+          color: "var(--color-gray-500, #6b7280)", textTransform: "uppercase",
+        }}>
+          Business Hub
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

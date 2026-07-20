@@ -724,6 +724,15 @@ export default defineConfig({
         changeOrigin: true,
         xfwd: true,
       },
+      // Direct /api/* calls (auth, drafts, AI Writer generate, billing) go to
+      // the API server. In Replit the shared reverse proxy does this; this
+      // entry provides the same behavior for local dev outside Replit.
+      // Keep AFTER "/api-proxy" — vite matches proxy keys in order.
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        xfwd: true,
+      },
     },
   },
   preview: {

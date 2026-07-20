@@ -3608,132 +3608,13 @@ app.get("/api-proxy/api/testimonials", async (_req, res) => {
   }
 });
 
-// ── AI Business Writer ────────────────────────────────────────────────────────
-// Generates a polished business email via Replit AI Integrations (Gemini).
-// Uses lightweight in-memory rate limiting to keep costs predictable.
-const AI_RATE_BUCKET = new Map<string, { count: number; resetAt: number }>();
-const AI_RATE_WINDOW_MS = 60_000;
-const AI_RATE_MAX = 6;
-
-const AI_PURPOSE_LABELS: Record<string, { label: string; guidance: string }> = {
-  payment_reminder:        { label: "Payment reminder",       guidance: "Politely remind the recipient about an unpaid invoice. Mention amount, invoice number and due date if provided. Be respectful but clear about the next step." },
-  invoice_followup:        { label: "Invoice follow-up",      guidance: "Confirm an invoice was sent and ask the recipient to confirm receipt and the expected payment timeline." },
-  quotation_submission:    { label: "Quotation submission",   guidance: "Submit a quotation. Summarise scope, total, validity period, payment terms, and ask the recipient to confirm or ask questions." },
-  supplier_request:        { label: "Supplier request",       guidance: "Request a quotation, sample, lead time, or pricing terms from a supplier. Be specific about quantities, specs, and required information." },
-  complaint_clarification: { label: "Complaint or clarification", guidance: "Raise an issue or ask for clarification firmly but professionally. State the problem, the expected resolution, and the timeline." },
-  formal_business:         { label: "Formal business message", guidance: "Write a general formal business message in a measured, professional tone." },
-  arabic_business_email:   { label: "Arabic business email",  guidance: "Write a professional Arabic business email suitable for Gulf and MENA business contexts." },
-  english_business_email:  { label: "English business email", guidance: "Write a professional English business email suitable for international business contexts." },
-};
-
-const AI_TONE_GUIDE: Record<string, string> = {
-  formal:   "very formal and respectful",
-  polite:   "polite and warm but professional",
-  firm:     "firm and direct without being rude",
-  friendly: "friendly and conversational while still professional",
-};
-
-function aiRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const entry = AI_RATE_BUCKET.get(ip);
-  if (!entry || entry.resetAt < now) {
-    AI_RATE_BUCKET.set(ip, { count: 1, resetAt: now + AI_RATE_WINDOW_MS });
-    return true;
-  }
-  if (entry.count >= AI_RATE_MAX) return false;
-  entry.count += 1;
-  return true;
-}
-
-let _genAi: any = null;
-async function getGenAi() {
-  if (_genAi) return _genAi;
-  const baseURL = process.env.AI_INTEGRATIONS_GEMINI_BASE_URL;
-  const apiKey = process.env.AI_INTEGRATIONS_GEMINI_API_KEY;
-  if (!baseURL || !apiKey) return null;
-  try {
-    const mod: any = await import("@google/genai");
-    const GoogleGenAI = mod.GoogleGenAI ?? mod.default?.GoogleGenAI;
-    _genAi = new GoogleGenAI({ apiKey, httpOptions: { apiVersion: "", baseUrl: baseURL } });
-    return _genAi;
-  } catch {
-    return null;
-  }
-}
-
-app.post("/api-proxy/api/ai-writer/generate", express.json({ limit: "16kb" }), async (req, res) => {
-  try {
-    const ip = (req.ip || req.socket.remoteAddress || "unknown").toString();
-    if (!aiRateLimit(ip)) {
-      return res.status(429).json({ error: "Too many requests. Please wait a minute and try again." });
-    }
-    const body = (req.body ?? {}) as Record<string, unknown>;
-    const purpose = String(body.purpose || "");
-    const language = body.language === "ar" ? "ar" : "en";
-    const tone = String(body.tone || "polite");
-    const recipient = trimStr(body.recipient, 300);
-    const details = trimStr(body.details, 2000);
-
-    const purposeMeta = AI_PURPOSE_LABELS[purpose];
-    const toneGuide = AI_TONE_GUIDE[tone] ?? AI_TONE_GUIDE.polite;
-    if (!purposeMeta) {
-      return res.status(400).json({ error: "Invalid message purpose." });
-    }
-    if (!details) {
-      return res.status(400).json({ error: "Please add some details so the message can be drafted." });
-    }
-
-    const ai = await getGenAi();
-    if (!ai) {
-      return res.status(503).json({ error: "AI writer is not configured. Please try again later." });
-    }
-
-    const langInstruction = language === "ar"
-      ? "Write the entire message in Modern Standard Arabic suitable for business correspondence. Use proper Arabic punctuation. Do NOT use English."
-      : "Write the entire message in clear professional English.";
-
-    const recipientLine = recipient
-      ? `Recipient: ${recipient}`
-      : "Recipient: (not specified — address generically)";
-
-    const prompt = [
-      `You are an experienced business correspondent helping a small business owner draft a "${purposeMeta.label}" email.`,
-      `Goal: ${purposeMeta.guidance}`,
-      `Tone: ${toneGuide}.`,
-      langInstruction,
-      "",
-      "Output rules (very important):",
-      "- Output ONLY the email itself. Do not add any commentary, headings, or markdown formatting.",
-      "- Start with a greeting line.",
-      "- End with a sign-off line and a placeholder name in square brackets like [Your Name].",
-      "- Use a Subject line on the first line, like: Subject: ...",
-      "- Keep the body to 90–180 words unless more is needed.",
-      "- Do not invent specific facts that are not in the user's details (no fake invoice numbers, no fake amounts).",
-      "- Do not include any disclaimers about being an AI.",
-      "",
-      recipientLine,
-      "",
-      "User-supplied details:",
-      details,
-    ].join("\n");
-
-    const result = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      config: { maxOutputTokens: 1024, temperature: 0.7 },
-    });
-
-    const text: string = (result?.text ?? result?.response?.text ?? "").toString().trim();
-    if (!text) {
-      return res.status(502).json({ error: "The AI did not return a message. Please try again." });
-    }
-    res.setHeader("Cache-Control", "no-store");
-    res.json({ text });
-  } catch (err: any) {
-    const msg = err?.message ? String(err.message).slice(0, 300) : "Failed to generate message.";
-    res.status(502).json({ error: msg });
-  }
-});
+// ── AI Business Writer ───────────────────────────────────────────────────────
+// AI Writer generation is served by the API server at /api/ai-writer/generate
+// (artifacts/api-server/src/routes/aiwriter.ts) — the same origin-relative
+// /api/* base the drafts endpoints use. A legacy inline Gemini handler used to
+// live here under /api-proxy/api/ai-writer/generate; it spoke an outdated
+// response shape ({text} instead of {success, subject, body}) and broke the
+// AI Writer in production, so it was removed.
 
 // Contact form endpoint. Email delivery is not yet wired (a SendGrid /
 // support-mailer integration can be added later); for now we accept the

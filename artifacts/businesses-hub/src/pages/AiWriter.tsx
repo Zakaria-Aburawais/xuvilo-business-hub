@@ -327,7 +327,10 @@ export default function AiWriterPage() {
     setAiUnavailableMessage(null);
     setOutput(null);
 
-    const endpoint = "/api-proxy/api/ai-writer/generate";
+    // Same-origin /api/* is routed to the API server (same as the drafts
+    // endpoints in aiWriterApi.ts) — in Replit by the shared reverse proxy,
+    // in local dev by the vite proxy config.
+    const endpoint = "/api/ai-writer/generate";
     const fallbackUnexpected = isAR
       ? "ردّت خدمة الذكاء الاصطناعي بشكل غير متوقّع. حاول مرة أخرى أو راجع سجلات الخادم."
       : "The AI service returned an unexpected response. Please try again or check the server logs.";

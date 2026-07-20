@@ -272,6 +272,19 @@ router.post("/contact", contactIpLimiter, contactLimiter, async (req, res) => {
       "contact form submission",
     );
 
+    // If BOTH durability paths failed — no DB row was written AND the team
+    // never received the email — a "success" response would silently swallow
+    // the visitor's message (the failure webhook above is optional and may
+    // not be configured). Be honest and ask them to retry instead.
+    if (!messageId && !teamMailOk) {
+      return res.status(500).json({
+        success: false,
+        error: "not_delivered",
+        message:
+          "We couldn't save your message just now. Please try again in a moment or email support@xuvilo.com directly.",
+      });
+    }
+
     return res.json({ success: true, ok: true });
   } catch (err) {
     logger.error({ err }, "contact form submission failed");

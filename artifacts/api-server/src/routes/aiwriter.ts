@@ -18,6 +18,14 @@ const router = Router();
 
 const DRAFTS_PER_USER_LIMIT = 50;
 
+/**
+ * Cap on PINNED drafts per user. Pinned drafts are exempt from the normal
+ * trim in persistDraft (they are never auto-deleted), so without a cap a
+ * user could pin an unbounded number of drafts and grow their storage
+ * forever. Enforced when pinning via PATCH /ai-writer/drafts/:id.
+ */
+const PINNED_DRAFTS_PER_USER_LIMIT = 20;
+
 /** Free-tier monthly cap for AI Writer generations. Pro is unlimited. */
 const AI_WRITER_FREE_MONTHLY_LIMIT = 20;
 
@@ -852,6 +860,26 @@ router.patch(
       const pinned = (req.body as { pinned?: unknown } | undefined)?.pinned;
       if (typeof pinned !== "boolean") {
         return res.status(400).json({ error: "invalid_request" });
+      }
+      // Pinned drafts are exempt from the auto-trim, so cap how many a user
+      // can hold. Checked only when pinning; unpinning always succeeds.
+      if (pinned) {
+        const [{ count }] = await db
+          .select({ count: sql<number>`count(*)::int` })
+          .from(aiWriterDraftsTable)
+          .where(
+            and(
+              eq(aiWriterDraftsTable.userId, userId),
+              eq(aiWriterDraftsTable.pinned, true),
+            ),
+          );
+        if (count >= PINNED_DRAFTS_PER_USER_LIMIT) {
+          return res.status(409).json({
+            error: "pinned_limit_reached",
+            message: `You can pin up to ${PINNED_DRAFTS_PER_USER_LIMIT} drafts. Unpin one to pin another.`,
+            limit: PINNED_DRAFTS_PER_USER_LIMIT,
+          });
+        }
       }
       const [row] = await db
         .update(aiWriterDraftsTable)

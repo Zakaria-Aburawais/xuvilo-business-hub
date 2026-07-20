@@ -2,7 +2,9 @@ export function normalizeChar(ch: string): string {
   return ch
     .toLowerCase()
     .normalize("NFKD")
-    .replace(/[\u064B-\u065F\u0670]/g, "")
+    // \u0640 is tatweel/kashida (decorative letter stretching, e.g. \u0641\u0640\u0640\u0640\u0627\u062A\u0648\u0631\u0629)
+    // \u2014 dropped so stretched and unstretched spellings match each other.
+    .replace(/[\u0640\u064B-\u065F\u0670]/g, "")
     .replace(/[إأآا]/g, "ا")
     .replace(/ى/g, "ي")
     .replace(/ة/g, "ه");

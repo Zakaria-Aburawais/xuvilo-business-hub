@@ -223,4 +223,49 @@ describe("AI Writer drafts — pinned drafts survive the trim path", () => {
     expect(res.status).toBe(400);
     expect(res.body.error).toBe("invalid_request");
   });
+
+  it("caps pinned drafts per user; unpinning frees a slot", async () => {
+    const app = makeApp();
+    const PINNED_LIMIT = 20;
+
+    // Fill the OTHER user's pinned quota exactly to the cap.
+    const pinnedIds = Array.from({ length: PINNED_LIMIT }, () => randomUUID());
+    await db.insert(aiWriterDraftsTable).values(
+      pinnedIds.map((id, i) => ({
+        id,
+        userId: OTHER_ID,
+        purpose: "formal_business",
+        subject: `Pinned filler ${i + 1}`,
+        body: `Body ${i + 1}`,
+        inputs: {},
+        pinned: true,
+        createdAt: new Date(Date.now() - (PINNED_LIMIT - i) * 1000),
+      })),
+    );
+
+    // Pinning one more must be rejected with the machine-readable code.
+    const over = await request(app)
+      .patch(`/api/ai-writer/drafts/${otherUsersDraftId}`)
+      .set("Authorization", `Bearer ${issueToken(OTHER_EMAIL)}`)
+      .send({ pinned: true });
+    expect(over.status).toBe(409);
+    expect(over.body.error).toBe("pinned_limit_reached");
+    expect(over.body.limit).toBe(PINNED_LIMIT);
+
+    // Unpinning is always allowed, even at the cap.
+    const unpin = await request(app)
+      .patch(`/api/ai-writer/drafts/${pinnedIds[0]}`)
+      .set("Authorization", `Bearer ${issueToken(OTHER_EMAIL)}`)
+      .send({ pinned: false });
+    expect(unpin.status).toBe(200);
+    expect(unpin.body.draft.pinned).toBe(false);
+
+    // With a slot free, the previously rejected pin now succeeds.
+    const retry = await request(app)
+      .patch(`/api/ai-writer/drafts/${otherUsersDraftId}`)
+      .set("Authorization", `Bearer ${issueToken(OTHER_EMAIL)}`)
+      .send({ pinned: true });
+    expect(retry.status).toBe(200);
+    expect(retry.body.draft.pinned).toBe(true);
+  });
 });

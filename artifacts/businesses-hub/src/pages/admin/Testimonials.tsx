@@ -290,9 +290,14 @@ export default function AdminTestimonialsPage() {
     setDialogOpen(true);
   };
 
+  // Snapshot of the row's values when the edit dialog opened — sent as the
+  // `expected` concurrency guard so a save can't silently overwrite another
+  // admin's concurrent edit (server answers 409 instead).
+  const editSnapshotRef = useRef<TestimonialInput | null>(null);
+
   const openEdit = (item: TestimonialItem) => {
     setEditingId(item.id);
-    setForm({
+    const snapshot = {
       name: item.name,
       quoteEn: item.quoteEn,
       quoteAr: item.quoteAr,
@@ -300,7 +305,9 @@ export default function AdminTestimonialsPage() {
       roleAr: item.roleAr,
       stars: item.stars,
       active: item.active,
-    });
+    };
+    editSnapshotRef.current = snapshot;
+    setForm(snapshot);
     setDialogOpen(true);
   };
 
@@ -323,7 +330,9 @@ export default function AdminTestimonialsPage() {
           title: isAR ? "تمت الإضافة" : "Testimonial added",
         });
       } else {
-        await updateTestimonial(editingId, form);
+        await updateTestimonial(editingId, form, {
+          expected: editSnapshotRef.current ?? undefined,
+        });
         toast({
           title: isAR ? "تم الحفظ" : "Testimonial updated",
         });
@@ -331,6 +340,42 @@ export default function AdminTestimonialsPage() {
       setDialogOpen(false);
       await loadList();
     } catch (e) {
+      const status = (e as Error & { status?: number }).status;
+      if (status === 409 && editingId !== null) {
+        // Another admin changed this row since the dialog opened. Keep the
+        // dialog (and the admin's typed values) open, but rebase the
+        // concurrency snapshot onto the latest server row — so pressing
+        // Save again is an INFORMED overwrite, not a silent one.
+        try {
+          const resp = await listTestimonials();
+          setItems(resp.items);
+          serverOrderRef.current = resp.items.map((r) => r.id);
+          const latest = resp.items.find((r) => r.id === editingId);
+          if (latest) {
+            editSnapshotRef.current = {
+              name: latest.name,
+              quoteEn: latest.quoteEn,
+              quoteAr: latest.quoteAr,
+              roleEn: latest.roleEn,
+              roleAr: latest.roleAr,
+              stars: latest.stars,
+              active: latest.active,
+            };
+          }
+        } catch {
+          // List refresh is best-effort; the warning toast still shows.
+        }
+        toast({
+          title: isAR
+            ? "عدّل مشرف آخر هذا الرأي"
+            : "Edited by another admin",
+          description: isAR
+            ? "تم تحديث هذا الرأي منذ فتحك للنافذة. راجع القائمة المحدّثة — الضغط على حفظ مرة أخرى سيستبدل تعديلاتهم."
+            : "This testimonial changed since you opened it. Review the refreshed list — saving again will overwrite their edit.",
+          variant: "destructive",
+        });
+        return;
+      }
       toast({
         title: isAR ? "فشل الحفظ" : "Save failed",
         description: e instanceof Error ? e.message : undefined,

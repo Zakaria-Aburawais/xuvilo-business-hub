@@ -56,8 +56,16 @@ export default function SalaryCostPage() {
         "Fill in monthly allowances: housing, transport, medical insurance, and other benefits.",
         "Click Calculate to see the true monthly and annual cost of employment.",
       ]}
-      formula={<p>Total Cost = Basic + Allowances + Employer Social Contributions + Medical + Other Benefits</p>}
-      example={<p>Basic $3,000, Housing $500, Transport $200, Employer Social 12% ($360) = $4,060/month = $48,720/year</p>}
+      formula={lang === "ar" ? (
+        <p>التكلفة الإجمالية = الراتب الأساسي + البدلات + اشتراكات التأمينات على صاحب العمل + التأمين الطبي + المزايا الأخرى</p>
+      ) : (
+        <p>Total Cost = Basic + Allowances + Employer Social Contributions + Medical + Other Benefits</p>
+      )}
+      example={lang === "ar" ? (
+        <p>راتب أساسي <span dir="ltr">$3,000</span>، بدل سكن <span dir="ltr">$500</span>، بدل مواصلات <span dir="ltr">$200</span>، اشتراكات اجتماعية 12٪ (<span dir="ltr">$360</span>) = <span dir="ltr">$4,060</span> شهرياً = <span dir="ltr">$48,720</span> سنوياً</p>
+      ) : (
+        <p>Basic $3,000, Housing $500, Transport $200, Employer Social 12% ($360) = $4,060/month = $48,720/year</p>
+      )}
       faq={[
         { q: "What employer contributions are typical in Saudi Arabia?", a: "In KSA, employers pay 9% of Saudi national salaries to GOSI (General Organization for Social Insurance). For expatriate employees, only the 2% Work Injury contribution applies. Rates can change; always verify with GOSI's official portal before running payroll." },
         { q: "Should I include the annual bonus in this calculation?", a: "Add the monthly equivalent of any guaranteed bonus (total bonus ÷ 12) to the 'Other' field for a complete picture. Discretionary bonuses that aren't contractually guaranteed can be excluded from the budgeted employment cost." },

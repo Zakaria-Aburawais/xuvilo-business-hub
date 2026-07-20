@@ -55,7 +55,13 @@ export default function SignupPage() {
 
   const turnstileEnabled = TURNSTILE_SITE_KEY.length > 0;
 
+  // Bumping the key remounts the Turnstile widget, giving the visitor a
+  // manual "try again" when the script or challenge failed to load.
+  const [turnstileAttempt, setTurnstileAttempt] = useState(0);
+  const [turnstileFailed, setTurnstileFailed] = useState(false);
+
   const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileFailed(false);
     setTurnstileToken(token);
   }, []);
   const handleTurnstileExpire = useCallback(() => {
@@ -63,6 +69,12 @@ export default function SignupPage() {
   }, []);
   const handleTurnstileError = useCallback(() => {
     setTurnstileToken("");
+    setTurnstileFailed(true);
+  }, []);
+  const retryTurnstile = useCallback(() => {
+    setTurnstileFailed(false);
+    setTurnstileToken("");
+    setTurnstileAttempt((n) => n + 1);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -258,12 +270,28 @@ export default function SignupPage() {
                 {turnstileEnabled && (
                   <div data-testid="signup-captcha">
                     <Turnstile
+                      key={turnstileAttempt}
                       siteKey={TURNSTILE_SITE_KEY}
                       language={isAR ? "ar" : "en"}
                       onToken={handleTurnstileToken}
                       onExpire={handleTurnstileExpire}
                       onError={handleTurnstileError}
                     />
+                    {turnstileFailed && (
+                      <p className="text-xs text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-3 py-2 rounded-lg mt-2">
+                        {isAR
+                          ? "تعذّر تحميل فحص الأمان — قد يكون السبب مانع إعلانات أو مشكلة في الشبكة. "
+                          : "The security check couldn't load — an ad blocker or network issue may be the cause. "}
+                        <button
+                          type="button"
+                          onClick={retryTurnstile}
+                          className="underline font-medium"
+                          data-testid="signup-captcha-retry"
+                        >
+                          {isAR ? "إعادة المحاولة" : "Try again"}
+                        </button>
+                      </p>
+                    )}
                   </div>
                 )}
 

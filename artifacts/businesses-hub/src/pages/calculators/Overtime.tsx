@@ -48,8 +48,16 @@ export default function OvertimePage() {
         "Set the overtime multiplier (1.5 is the most common).",
         "Click Calculate to see regular pay, overtime pay, and the total.",
       ]}
-      formula={<p>Overtime Pay = Hourly Rate × Multiplier × OT Hours<br/>Total = Regular Pay + Overtime Pay</p>}
-      example={<p>Hourly $20, 8 regular hrs, 3 OT hrs @ 1.5x → Regular: $160 + OT: $90 = Total: $250</p>}
+      formula={lang === "ar" ? (
+        <p>أجر العمل الإضافي = الأجر بالساعة × المعامل × ساعات العمل الإضافي<br/>الإجمالي = الأجر الاعتيادي + أجر العمل الإضافي</p>
+      ) : (
+        <p>Overtime Pay = Hourly Rate × Multiplier × OT Hours<br/>Total = Regular Pay + Overtime Pay</p>
+      )}
+      example={lang === "ar" ? (
+        <p>أجر <span dir="ltr">$20</span> بالساعة، 8 ساعات اعتيادية، 3 ساعات إضافية بمعامل <span dir="ltr">1.5</span> ← الأجر الاعتيادي: <span dir="ltr">$160</span> + أجر العمل الإضافي: <span dir="ltr">$90</span> = الإجمالي: <span dir="ltr">$250</span></p>
+      ) : (
+        <p>Hourly $20, 8 regular hrs, 3 OT hrs @ 1.5x → Regular: $160 + OT: $90 = Total: $250</p>
+      )}
       faq={[
         { q: "What is the standard overtime multiplier?", a: "Most countries require 1.5× (time-and-a-half) for weekday overtime and 2× for weekends or public holidays. GCC rules vary: Saudi Arabia's Labor Law Article 107 mandates a 50% premium on the basic hourly rate. UAE labor law requires 25% above normal pay for weekday overtime and 50% for Friday work. Always verify your local labor law." },
         { q: "Is overtime calculated on basic salary or total salary?", a: "Overtime is typically calculated on the basic hourly rate, excluding allowances, bonuses, and commissions. The basic hourly rate is the monthly basic salary divided by the number of standard working hours per month (often 208 in KSA, 192 in UAE)." },

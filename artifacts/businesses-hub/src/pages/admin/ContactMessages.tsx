@@ -195,8 +195,10 @@ export default function AdminContactMessagesPage() {
   const [, navigate] = useLocation();
   const searchString = useSearch();
 
-  // URL query string is the source of truth for filter, search, and page.
-  const { filter, triageFilter, search, page } = useMemo(() => {
+  // URL query string is the source of truth for filter, search, page, and
+  // the opened message (`m`) — so a message view is shareable/bookmarkable
+  // and browser Back returns from the message to the list.
+  const { filter, triageFilter, search, page, messageId } = useMemo(() => {
     const params = new URLSearchParams(searchString);
     const statusParam = params.get("status");
     const validStatuses: StatusFilter[] = [
@@ -229,7 +231,8 @@ export default function AdminContactMessagesPage() {
     const pageParam = parseInt(params.get("page") || "1", 10);
     const page =
       Number.isFinite(pageParam) && pageParam >= 1 ? pageParam - 1 : 0;
-    return { filter, triageFilter, search, page };
+    const messageId = (params.get("m") || "").trim() || null;
+    return { filter, triageFilter, search, page, messageId };
   }, [searchString]);
 
   const updateUrl = useCallback(
@@ -239,6 +242,8 @@ export default function AdminContactMessagesPage() {
         status?: StatusFilter;
         triage?: TriageFilter;
         page?: number;
+        // null clears the opened message; undefined leaves it unchanged.
+        m?: string | null;
       },
       opts?: { replace?: boolean },
     ) => {
@@ -246,17 +251,19 @@ export default function AdminContactMessagesPage() {
       const status = next.status !== undefined ? next.status : filter;
       const triage = next.triage !== undefined ? next.triage : triageFilter;
       const pageNum = next.page !== undefined ? next.page : page;
+      const m = next.m !== undefined ? next.m : messageId;
       const params = new URLSearchParams();
       if (q) params.set("q", q);
       if (status !== DEFAULT_FILTER) params.set("status", status);
       if (triage !== DEFAULT_TRIAGE_FILTER) params.set("triage", triage);
       if (pageNum > 0) params.set("page", String(pageNum + 1));
+      if (m) params.set("m", m);
       const qs = params.toString();
       navigate(`/admin/contact-messages${qs ? `?${qs}` : ""}`, {
         replace: opts?.replace ?? false,
       });
     },
-    [search, filter, triageFilter, page, navigate],
+    [search, filter, triageFilter, page, messageId, navigate],
   );
 
   const [searchInput, setSearchInput] = useState(search);
@@ -456,6 +463,103 @@ export default function AdminContactMessagesPage() {
     setDetailError(null);
   }, []);
 
+  // Sync the opened message with the `m` URL param, in both directions:
+  // a pasted/shared link opens the message, and Back/Escape returns to the
+  // bare list URL.
+  const selectedIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    selectedIdRef.current = selectedId;
+  }, [selectedId]);
+  useEffect(() => {
+    if (!isAdminUser) return;
+    if (messageId && messageId !== selectedIdRef.current) {
+      void openDetail(messageId);
+    } else if (!messageId && selectedIdRef.current) {
+      closeDetail();
+    }
+  }, [messageId, isAdminUser, openDetail, closeDetail]);
+
+  // ── Bulk triage actions ──────────────────────────────────────────────
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [bulkUpdating, setBulkUpdating] = useState(false);
+
+  // A new page of results (filter/search/page change) invalidates the
+  // selection — the checked rows may no longer be visible.
+  useEffect(() => {
+    setSelectedIds(new Set());
+  }, [filter, triageFilter, search, page]);
+
+  const toggleSelected = useCallback((id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
+
+  const allOnPageSelected =
+    items.length > 0 && items.every((it) => selectedIds.has(it.id));
+
+  const toggleSelectAll = useCallback(() => {
+    setSelectedIds((prev) => {
+      if (items.length > 0 && items.every((it) => prev.has(it.id))) {
+        return new Set();
+      }
+      return new Set(items.map((it) => it.id));
+    });
+  }, [items]);
+
+  const bulkSetTriage = useCallback(
+    async (triageStatus: ContactTriageStatus) => {
+      const ids = Array.from(selectedIds);
+      if (ids.length === 0 || bulkUpdating) return;
+      setBulkUpdating(true);
+      const succeeded: string[] = [];
+      const failed: string[] = [];
+      // Small concurrency window: fast for a page of 50 without stampeding
+      // the API (each update is an individual PATCH).
+      const CHUNK = 5;
+      for (let i = 0; i < ids.length; i += CHUNK) {
+        const chunk = ids.slice(i, i + CHUNK);
+        const results = await Promise.allSettled(
+          chunk.map((id) => updateContactMessageTriage(id, triageStatus)),
+        );
+        results.forEach((r, j) => {
+          (r.status === "fulfilled" ? succeeded : failed).push(chunk[j]);
+        });
+      }
+      if (succeeded.length > 0) {
+        const done = new Set(succeeded);
+        setItems((prev) =>
+          prev.map((it) => (done.has(it.id) ? { ...it, triageStatus } : it)),
+        );
+        setDetail((prev) =>
+          prev && done.has(prev.id) ? { ...prev, triageStatus } : prev,
+        );
+      }
+      // Keep only the failed rows selected so the admin can retry just those.
+      setSelectedIds(new Set(failed));
+      setBulkUpdating(false);
+      if (failed.length === 0) {
+        toast({
+          title: isAR
+            ? `تم تحديث ${succeeded.length} رسالة`
+            : `${succeeded.length} message${succeeded.length === 1 ? "" : "s"} updated`,
+        });
+      } else {
+        toast({
+          title: isAR ? "اكتمل التحديث جزئياً" : "Bulk update partially failed",
+          description: isAR
+            ? `نجح ${succeeded.length} وفشل ${failed.length}. الرسائل الفاشلة ما زالت محددة — أعد المحاولة.`
+            : `${succeeded.length} succeeded, ${failed.length} failed. The failed rows are still selected — try again.`,
+          variant: "destructive",
+        });
+      }
+    },
+    [selectedIds, bulkUpdating, isAR, toast],
+  );
+
   const totalPages = useMemo(
     () => (total > 0 ? Math.ceil(total / PAGE_SIZE) : 1),
     [total],
@@ -612,6 +716,51 @@ export default function AdminContactMessagesPage() {
           ))}
         </div>
 
+        {selectedIds.size > 0 && (
+          <div
+            className="mb-3 flex flex-wrap items-center gap-3 rounded-lg border bg-muted/50 px-4 py-2"
+            data-testid="bulk-action-bar"
+          >
+            <span className="text-sm font-medium" data-testid="bulk-selected-count">
+              {isAR
+                ? `${selectedIds.size} محددة`
+                : `${selectedIds.size} selected`}
+            </span>
+            <Button
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => void bulkSetTriage("resolved")}
+              data-testid="bulk-resolve-button"
+            >
+              {bulkUpdating ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : isAR ? (
+                "تم الحل"
+              ) : (
+                "Resolve"
+              )}
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={bulkUpdating}
+              onClick={() => void bulkSetTriage("read")}
+              data-testid="bulk-reopen-button"
+            >
+              {isAR ? "إعادة فتح / مقروءة" : "Reopen / mark read"}
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              disabled={bulkUpdating}
+              onClick={() => setSelectedIds(new Set())}
+              data-testid="bulk-clear-selection"
+            >
+              {isAR ? "إلغاء التحديد" : "Clear selection"}
+            </Button>
+          </div>
+        )}
+
         <Card>
           <CardContent className="p-0">
             {error ? (
@@ -651,6 +800,20 @@ export default function AdminContactMessagesPage() {
                 <Table data-testid="messages-table">
                   <TableHeader>
                     <TableRow>
+                      <TableHead className="w-10">
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 accent-primary cursor-pointer align-middle"
+                          checked={allOnPageSelected}
+                          onChange={toggleSelectAll}
+                          aria-label={
+                            isAR
+                              ? "تحديد كل رسائل الصفحة"
+                              : "Select all messages on this page"
+                          }
+                          data-testid="select-all-rows"
+                        />
+                      </TableHead>
                       <TableHead>{isAR ? "التاريخ" : "Received"}</TableHead>
                       <TableHead>{isAR ? "الاسم" : "Name"}</TableHead>
                       <TableHead>{isAR ? "البريد" : "Email"}</TableHead>
@@ -668,9 +831,24 @@ export default function AdminContactMessagesPage() {
                       <TableRow
                         key={row.id}
                         className="cursor-pointer hover:bg-muted/50"
-                        onClick={() => void openDetail(row.id)}
+                        onClick={() => updateUrl({ m: row.id })}
                         data-testid={`message-row-${row.id}`}
                       >
+                        <TableCell
+                          className="w-10"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <input
+                            type="checkbox"
+                            className="h-4 w-4 accent-primary cursor-pointer align-middle"
+                            checked={selectedIds.has(row.id)}
+                            onChange={() => toggleSelected(row.id)}
+                            aria-label={
+                              isAR ? "تحديد الرسالة" : "Select message"
+                            }
+                            data-testid={`select-row-${row.id}`}
+                          />
+                        </TableCell>
                         <TableCell className="whitespace-nowrap text-sm">
                           {formatDateTime(row.createdAt, isAR ? "ar" : "en")}
                         </TableCell>
@@ -807,14 +985,19 @@ export default function AdminContactMessagesPage() {
       <Dialog
         open={selectedId !== null}
         onOpenChange={(open) => {
-          if (!open) closeDetail();
+          // Clearing the `m` param is what actually closes the dialog (the
+          // URL-sync effect calls closeDetail) — keeps Back/share links sane.
+          if (!open) updateUrl({ m: null });
         }}
       >
         <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
-              {detail?.subject ||
-                (isAR ? "تفاصيل الرسالة" : "Message details")}
+              {detail?.subject
+                ? highlightMatch(detail.subject, search)
+                : isAR
+                  ? "تفاصيل الرسالة"
+                  : "Message details"}
             </DialogTitle>
             {detail ? (
               <DialogDescription className="flex flex-wrap items-center gap-2 pt-2">
@@ -854,7 +1037,9 @@ export default function AdminContactMessagesPage() {
                   className="whitespace-pre-wrap text-sm leading-6 rounded-md border bg-muted/30 p-3"
                   data-testid="detail-message-body"
                 >
-                  {detail.message || "—"}
+                  {detail.message
+                    ? highlightMatch(detail.message, search)
+                    : "—"}
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
@@ -882,6 +1067,24 @@ export default function AdminContactMessagesPage() {
                 </div>
               </div>
               <div className="flex justify-end gap-2 pt-2 border-t">
+                {detail.mailStatus !== "sent" && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={resendingId === detail.id}
+                    onClick={() => void resend(detail.id)}
+                    data-testid="detail-resend-button"
+                  >
+                    {resendingId === detail.id ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4 me-1" />
+                        {isAR ? "إعادة إرسال البريد" : "Resend emails"}
+                      </>
+                    )}
+                  </Button>
+                )}
                 {detail.triageStatus === "resolved" ? (
                   <Button
                     variant="outline"

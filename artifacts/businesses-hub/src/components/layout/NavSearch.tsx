@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
+import { normalizeText } from "@/lib/searchHighlight";
 import {
   CommandDialog,
   CommandEmpty,
@@ -85,8 +86,29 @@ const GROUP_TITLES: Record<Item["group"], { en: string; ar: string }> = {
   account:   { en: "Account", ar: "الحساب" },
 };
 
+/** The searchable haystack for one item — must match the CommandItem value. */
+function itemValue(it: Item): string {
+  return `${it.en} ${it.ar} ${it.keywords ?? ""} ${it.href}`.toLowerCase();
+}
+
+/**
+ * Arabic-aware matcher shared by cmdk's filter and the result counter.
+ * normalizeText folds alef variants, taa marbuta, diacritics and tatweel so
+ * e.g. "فـــاتورة" (stretched) still finds "إنشاء فاتورة".
+ */
+function matches(value: string, search: string): boolean {
+  return normalizeText(value).includes(normalizeText(search));
+}
+
 export function NavSearch({ open, onOpenChange, isAR, isLoggedIn }: NavSearchProps) {
   const [, navigate] = useLocation();
+  const [query, setQuery] = useState("");
+
+  // Start every open with a clean query so a stale search from the previous
+  // visit doesn't hide items.
+  useEffect(() => {
+    if (open) setQuery("");
+  }, [open]);
 
   const items = ITEMS.filter((it) => {
     if (it.group !== "account") return true;
@@ -103,12 +125,48 @@ export function NavSearch({ open, onOpenChange, isAR, isLoggedIn }: NavSearchPro
     navigate(href);
   };
 
+  const trimmedQuery = query.trim();
+  const matchCount = trimmedQuery
+    ? items.filter((it) => matches(itemValue(it), trimmedQuery)).length
+    : items.length;
+
+  const countText = (() => {
+    const n = matchCount;
+    const num = n.toLocaleString(isAR ? "ar-EG" : "en-US");
+    if (isAR) {
+      if (n === 1) return "نتيجة واحدة";
+      if (n === 2) return "نتيجتان";
+      if (n >= 3 && n <= 10) return `${num} نتائج`;
+      return `${num} نتيجة`;
+    }
+    return n === 1 ? "1 result" : `${num} results`;
+  })();
+
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
+    <CommandDialog
+      open={open}
+      onOpenChange={onOpenChange}
+      commandProps={{
+        // Arabic-aware filtering (cmdk's default matcher knows nothing about
+        // alef variants, taa marbuta or tatweel). 1 = show, 0 = hide.
+        filter: (value, search) => (matches(value, search) ? 1 : 0),
+      }}
+    >
       <CommandInput
         placeholder={isAR ? "ابحث عن أداة أو حاسبة أو صفحة…" : "Search tools, calculators, pages…"}
         data-testid="nav-search-input"
+        value={query}
+        onValueChange={setQuery}
       />
+      {trimmedQuery.length > 0 && matchCount > 0 && (
+        <div
+          className="px-4 py-1.5 text-xs text-muted-foreground border-b border-border/60"
+          aria-live="polite"
+          data-testid="nav-search-count"
+        >
+          {countText}
+        </div>
+      )}
       <CommandList>
         <CommandEmpty>
           {isAR ? "لا توجد نتائج" : "No results found"}
@@ -120,7 +178,7 @@ export function NavSearch({ open, onOpenChange, isAR, isLoggedIn }: NavSearchPro
               {list.map((it) => {
                 const Icon = it.icon;
                 const label = isAR ? it.ar : it.en;
-                const value = `${it.en} ${it.ar} ${it.keywords ?? ""} ${it.href}`.toLowerCase();
+                const value = itemValue(it);
                 return (
                   <CommandItem
                     key={it.href}

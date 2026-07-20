@@ -46,12 +46,11 @@ const SCRIPT_ID = "cf-turnstile-script";
 
 let scriptPromise: Promise<void> | null = null;
 
-function loadTurnstileScript(): Promise<void> {
-  if (typeof window === "undefined") return Promise.resolve();
-  if (window.turnstile) return Promise.resolve();
-  if (scriptPromise) return scriptPromise;
+/** How long to wait for the Turnstile script before treating it as failed. */
+const SCRIPT_LOAD_TIMEOUT_MS = 10_000;
 
-  scriptPromise = new Promise<void>((resolve, reject) => {
+function loadScriptOnce(): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
     const existing = document.getElementById(
       SCRIPT_ID,
     ) as HTMLScriptElement | null;
@@ -66,13 +65,40 @@ function loadTurnstileScript(): Promise<void> {
     script.src = SCRIPT_SRC;
     script.async = true;
     script.defer = true;
-    script.onload = () => resolve();
+    const timer = setTimeout(() => {
+      // Hung load (slow network, blocked request that never errors). Remove
+      // the tag so a retry can create a fresh one.
+      script.remove();
+      reject(new Error("turnstile_script_timeout"));
+    }, SCRIPT_LOAD_TIMEOUT_MS);
+    script.onload = () => {
+      clearTimeout(timer);
+      resolve();
+    };
     script.onerror = () => {
-      scriptPromise = null;
+      clearTimeout(timer);
+      script.remove();
       reject(new Error("turnstile_script_error"));
     };
     document.head.appendChild(script);
   });
+}
+
+function loadTurnstileScript(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
+  if (window.turnstile) return Promise.resolve();
+  if (scriptPromise) return scriptPromise;
+
+  // One automatic retry: transient network blips during first paint are the
+  // most common load failure; a second attempt recovers most of them without
+  // any user-visible friction. On final failure, clear the cached promise so
+  // a later mount (user pressing "try again") starts a fresh attempt.
+  scriptPromise = loadScriptOnce()
+    .catch(() => loadScriptOnce())
+    .catch((err) => {
+      scriptPromise = null;
+      throw err;
+    });
 
   return scriptPromise;
 }

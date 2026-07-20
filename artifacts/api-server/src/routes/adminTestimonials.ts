@@ -159,28 +159,74 @@ router.put(
         message: "Invalid testimonial id.",
       });
     }
-    const parsed = testimonialInputSchema.partial().safeParse(req.body);
-    if (!parsed.success || Object.keys(parsed.data).length === 0) {
+    const bodySchema = testimonialInputSchema.partial().extend({
+      // Optimistic-concurrency guard: the values the ADMIN'S EDIT FORM was
+      // loaded with. When present, the update only applies if the row still
+      // matches — otherwise 409, so one admin's edit can't silently
+      // overwrite another's. (The table has no updatedAt column, so this is
+      // a content compare-and-swap rather than a version check.)
+      expected: testimonialInputSchema.partial().optional(),
+    });
+    const parsed = bodySchema.safeParse(req.body);
+    if (
+      !parsed.success ||
+      Object.keys(parsed.data).filter((k) => k !== "expected").length === 0
+    ) {
       return res.status(400).json({
         success: false,
         error: "invalid_input",
         message: "Invalid testimonial data.",
       });
     }
+    const { expected, ...changes } = parsed.data;
     try {
-      const updated = await db
-        .update(testimonialsTable)
-        .set(parsed.data)
-        .where(eq(testimonialsTable.id, id))
-        .returning();
-      if (!updated[0]) {
+      let conflict = false;
+      let notFound = false;
+      let item: typeof testimonialsTable.$inferSelect | undefined;
+      await db.transaction(async (tx) => {
+        // Lock the row so two concurrent edits serialize; the loser then
+        // sees the winner's values and gets a clean 409 instead of a
+        // last-write-wins overwrite.
+        const [current] = await tx
+          .select()
+          .from(testimonialsTable)
+          .where(eq(testimonialsTable.id, id))
+          .for("update");
+        if (!current) {
+          notFound = true;
+          return;
+        }
+        if (expected) {
+          const dirty = (Object.keys(expected) as Array<keyof typeof expected>)
+            .some((k) => current[k] !== expected[k]);
+          if (dirty) {
+            conflict = true;
+            return;
+          }
+        }
+        const updated = await tx
+          .update(testimonialsTable)
+          .set(changes)
+          .where(eq(testimonialsTable.id, id))
+          .returning();
+        item = updated[0];
+      });
+      if (notFound) {
         return res.status(404).json({
           success: false,
           error: "not_found",
           message: "Testimonial not found.",
         });
       }
-      return res.json({ success: true, item: updated[0] });
+      if (conflict) {
+        return res.status(409).json({
+          success: false,
+          error: "conflict",
+          message:
+            "This testimonial was changed by another admin since you opened it. Refresh and re-apply your edit.",
+        });
+      }
+      return res.json({ success: true, item });
     } catch (err) {
       logger.error({ err }, "admin/testimonials update failed");
       return res.status(503).json({

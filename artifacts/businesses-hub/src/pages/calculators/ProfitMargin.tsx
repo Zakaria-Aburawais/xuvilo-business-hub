@@ -42,8 +42,16 @@ export default function ProfitMarginPage() {
         "Enter the revenue (selling price).",
         "Click Calculate to see your profit, margin %, and markup %.",
       ]}
-      formula={<p>Profit Margin = ((Revenue - Cost) / Revenue) × 100<br/>Markup = ((Revenue - Cost) / Cost) × 100</p>}
-      example={<p>Cost = $80, Revenue = $100 → Profit = $20 → Margin = 20% → Markup = 25%</p>}
+      formula={lang === "ar" ? (
+        <p>هامش الربح = ((الإيراد − التكلفة) ÷ الإيراد) × 100<br/>الربح الإضافي = ((الإيراد − التكلفة) ÷ التكلفة) × 100</p>
+      ) : (
+        <p>Profit Margin = ((Revenue - Cost) / Revenue) × 100<br/>Markup = ((Revenue - Cost) / Cost) × 100</p>
+      )}
+      example={lang === "ar" ? (
+        <p>التكلفة = <span dir="ltr">$80</span>، الإيراد = <span dir="ltr">$100</span> ← الربح = <span dir="ltr">$20</span> ← هامش الربح = 20٪ ← الربح الإضافي = 25٪</p>
+      ) : (
+        <p>Cost = $80, Revenue = $100 → Profit = $20 → Margin = 20% → Markup = 25%</p>
+      )}
       faq={[
         { q: "What is the difference between margin and markup?", a: "Margin is profit expressed as a percentage of revenue (selling price). Markup is profit expressed as a percentage of cost. For the same product, markup is always higher than margin: a 25% markup equals a 20% margin." },
         { q: "What is a good profit margin for my industry?", a: "Benchmarks vary widely. Retail: 2–10%. Food and beverage: 3–9%. Manufacturing: 10–20%. Technology/software: 20–40%. Professional services: 25–50%. Compare against industry peers rather than applying a universal standard." },

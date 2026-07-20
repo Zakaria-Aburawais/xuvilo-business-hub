@@ -61,8 +61,16 @@ export default function ImportCostPage() {
         "Enter the customs duty rate for your product category (e.g. 5 for 5%).",
         "Add any local delivery charges and the number of units, then click Calculate.",
       ]}
-      formula={<p>CIF = Purchase Price + Freight + Insurance<br/>Duty = CIF × Customs Rate %<br/>Total = CIF + Duty + Local Delivery</p>}
-      example={<p>Purchase $5,000 + Freight $800 + Insurance $100 = CIF $5,900. 5% duty = $295. Local $200. Total = $6,395</p>}
+      formula={lang === "ar" ? (
+        <p>قيمة <span dir="ltr">CIF</span> = سعر الشراء + الشحن + التأمين<br/>الرسوم الجمركية = قيمة <span dir="ltr">CIF</span> × نسبة الجمارك ٪<br/>التكلفة الإجمالية = قيمة <span dir="ltr">CIF</span> + الرسوم الجمركية + التوصيل المحلي</p>
+      ) : (
+        <p>CIF = Purchase Price + Freight + Insurance<br/>Duty = CIF × Customs Rate %<br/>Total = CIF + Duty + Local Delivery</p>
+      )}
+      example={lang === "ar" ? (
+        <p>شراء <span dir="ltr">$5,000</span> + شحن <span dir="ltr">$800</span> + تأمين <span dir="ltr">$100</span> = قيمة <span dir="ltr">CIF</span> <span dir="ltr">$5,900</span>. رسوم جمركية 5٪ = <span dir="ltr">$295</span>. توصيل محلي <span dir="ltr">$200</span>. الإجمالي = <span dir="ltr">$6,395</span></p>
+      ) : (
+        <p>Purchase $5,000 + Freight $800 + Insurance $100 = CIF $5,900. 5% duty = $295. Local $200. Total = $6,395</p>
+      )}
       faq={[
         { q: "What is CIF?", a: "CIF (Cost, Insurance, Freight) is the valuation basis used by most customs authorities worldwide to calculate import duties. It equals the supplier invoice price plus the cost of international freight and insurance to the destination port." },
         { q: "What is the total landed cost?", a: "Landed cost is everything you pay to bring a product from the supplier's factory to your warehouse: purchase price + international freight + insurance + customs duty + local port and clearing fees + inland delivery. This calculator combines all these elements into one total." },

@@ -61,8 +61,16 @@ export default function BreakEvenPage() {
         "Enter your selling price per unit.",
         "Click Calculate to see how many units you must sell to break even.",
       ]}
-      formula={<p>Contribution Margin = Selling Price − Variable Cost per Unit<br/>Break-Even Units = Fixed Costs ÷ Contribution Margin<br/>Break-Even Revenue = Break-Even Units × Selling Price</p>}
-      example={<p>Fixed Costs $10,000, Variable Cost $30, Price $50 → CM = $20 → BEP = 500 units = $25,000 revenue</p>}
+      formula={lang === "ar" ? (
+        <p>هامش المساهمة = سعر البيع − التكلفة المتغيرة للوحدة<br/>وحدات التعادل = التكاليف الثابتة ÷ هامش المساهمة<br/>إيراد التعادل = وحدات التعادل × سعر البيع</p>
+      ) : (
+        <p>Contribution Margin = Selling Price − Variable Cost per Unit<br/>Break-Even Units = Fixed Costs ÷ Contribution Margin<br/>Break-Even Revenue = Break-Even Units × Selling Price</p>
+      )}
+      example={lang === "ar" ? (
+        <p>تكاليف ثابتة <span dir="ltr">$10,000</span>، تكلفة متغيرة <span dir="ltr">$30</span>، سعر بيع <span dir="ltr">$50</span> ← هامش المساهمة = <span dir="ltr">$20</span> ← نقطة التعادل = 500 وحدة أي <span dir="ltr">$25,000</span> من الإيرادات</p>
+      ) : (
+        <p>Fixed Costs $10,000, Variable Cost $30, Price $50 → CM = $20 → BEP = 500 units = $25,000 revenue</p>
+      )}
       faq={[
         { q: "What is the difference between fixed costs and variable costs?", a: "Fixed costs remain the same regardless of production volume — rent, salaries, insurance, and equipment. Variable costs increase with every unit made — materials, direct labor, and packaging. Understanding the split is the starting point for any break-even analysis." },
         { q: "What does a higher contribution margin mean?", a: "A higher contribution margin per unit means each sale covers more of your fixed costs. Products with high contribution margins reach break-even faster. If your contribution margin is negative (selling price < variable cost), you lose money on every unit — a critical warning signal." },

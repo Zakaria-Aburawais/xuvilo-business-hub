@@ -27,7 +27,7 @@ import { getSettings, updateSettings, testAnthropicKey } from "@/lib/rfqApi";
 import { Link } from "wouter";
 import { openBillingPortal } from "@/lib/billingApi";
 import { Switch } from "@/components/ui/switch";
-import { encryptBackup, decryptBackup, isEncryptedBackup, scorePasswordStrength } from "@/lib/backupCrypto";
+import { encryptBackup, decryptBackup, isEncryptedBackup, scorePasswordStrength, generateBackupPassword } from "@/lib/backupCrypto";
 
 export default function SettingsPage() {
   const { user, updateProfile, deleteAccount, exportUserData, importUserData, refreshBilling } = useAuth();
@@ -83,6 +83,9 @@ export default function SettingsPage() {
   const [newPw, setNewPw] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
   const [showPw, setShowPw] = useState(false);
+  // Peek toggles for the backup-encryption password fields (export + import).
+  const [showBackupPw, setShowBackupPw] = useState(false);
+  const [showImportPw, setShowImportPw] = useState(false);
   const [pwError, setPwError] = useState("");
   const [savingPw, setSavingPw] = useState(false);
 
@@ -613,13 +616,41 @@ export default function SettingsPage() {
                 </div>
                 {encryptExport && (
                   <div>
-                    <Input
-                      type="password"
-                      value={exportPw}
-                      onChange={(e) => { setExportPw(e.target.value); setExportPwError(""); }}
-                      placeholder={isAR ? "كلمة مرور النسخة الاحتياطية (6 أحرف على الأقل)" : "Backup password (at least 6 characters)"}
-                      data-testid="settings-export-password"
-                    />
+                    <div className="relative">
+                      <Input
+                        type={showBackupPw ? "text" : "password"}
+                        value={exportPw}
+                        onChange={(e) => { setExportPw(e.target.value); setExportPwError(""); }}
+                        placeholder={isAR ? "كلمة مرور النسخة الاحتياطية (6 أحرف على الأقل)" : "Backup password (at least 6 characters)"}
+                        className="pe-9"
+                        data-testid="settings-export-password"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowBackupPw(!showBackupPw)}
+                        className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        aria-label={isAR ? "إظهار/إخفاء كلمة المرور" : "Show/hide password"}
+                        data-testid="settings-export-password-toggle"
+                      >
+                        {showBackupPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const suggested = generateBackupPassword();
+                        setExportPw(suggested);
+                        setExportPwConfirm(suggested);
+                        setExportPwError("");
+                        // Reveal it — the user must be able to copy it into
+                        // their password manager before downloading.
+                        setShowBackupPw(true);
+                      }}
+                      className="text-xs text-blue-600 dark:text-blue-400 hover:underline mt-1.5"
+                      data-testid="settings-export-password-suggest"
+                    >
+                      {isAR ? "اقتراح كلمة مرور قوية" : "Suggest a strong password"}
+                    </button>
                     {exportPw.length > 0 && (() => {
                       const strength = scorePasswordStrength(exportPw);
                       const meta = {
@@ -639,7 +670,7 @@ export default function SettingsPage() {
                       );
                     })()}
                     <Input
-                      type="password"
+                      type={showBackupPw ? "text" : "password"}
                       value={exportPwConfirm}
                       onChange={(e) => { setExportPwConfirm(e.target.value); setExportPwError(""); }}
                       placeholder={isAR ? "تأكيد كلمة المرور" : "Confirm password"}
@@ -720,14 +751,26 @@ export default function SettingsPage() {
                 );
               })()}
               {pendingImport?.encrypted && (
-                <Input
-                  type="password"
-                  value={importPw}
-                  onChange={(e) => { setImportPw(e.target.value); setImportError(""); }}
-                  placeholder={isAR ? "كلمة مرور النسخة الاحتياطية" : "Backup password"}
-                  autoFocus
-                  data-testid="settings-import-password"
-                />
+                <div className="relative">
+                  <Input
+                    type={showImportPw ? "text" : "password"}
+                    value={importPw}
+                    onChange={(e) => { setImportPw(e.target.value); setImportError(""); }}
+                    placeholder={isAR ? "كلمة مرور النسخة الاحتياطية" : "Backup password"}
+                    autoFocus
+                    className="pe-9"
+                    data-testid="settings-import-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowImportPw(!showImportPw)}
+                    className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    aria-label={isAR ? "إظهار/إخفاء كلمة المرور" : "Show/hide password"}
+                    data-testid="settings-import-password-toggle"
+                  >
+                    {showImportPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
               )}
               {pendingImport && !pendingImport.encrypted && pendingImport.sourceEmail &&
                 pendingImport.sourceEmail.toLowerCase().trim() !== user.email.toLowerCase().trim() && (

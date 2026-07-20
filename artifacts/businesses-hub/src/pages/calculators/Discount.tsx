@@ -39,8 +39,16 @@ export default function DiscountPage() {
         "Enter the discount percentage (e.g. 15 for 15%).",
         "Click Calculate to see the discount amount, final price, and total savings.",
       ]}
-      formula={<p>Discount Amount = Original Price × (Discount % / 100)<br/>Final Price = Original Price - Discount Amount</p>}
-      example={<p>$200 with 15% discount → Discount = $30 → Final = $170</p>}
+      formula={lang === "ar" ? (
+        <p>قيمة الخصم = السعر الأصلي × (نسبة الخصم ÷ 100)<br/>السعر النهائي = السعر الأصلي − قيمة الخصم</p>
+      ) : (
+        <p>Discount Amount = Original Price × (Discount % / 100)<br/>Final Price = Original Price - Discount Amount</p>
+      )}
+      example={lang === "ar" ? (
+        <p><span dir="ltr">$200</span> بخصم 15٪ ← قيمة الخصم = <span dir="ltr">$30</span> ← السعر النهائي = <span dir="ltr">$170</span></p>
+      ) : (
+        <p>$200 with 15% discount → Discount = $30 → Final = $170</p>
+      )}
       faq={[
         { q: "How do I calculate a discount percentage?", a: "Divide the discount amount by the original price and multiply by 100. Example: ($30 / $200) × 100 = 15% discount." },
         { q: "How do I calculate the final price after a discount?", a: "Multiply the original price by (1 − discount% / 100). Example: $200 at 15% off = $200 × 0.85 = $170 final price." },

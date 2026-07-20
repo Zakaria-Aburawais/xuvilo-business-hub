@@ -49,14 +49,24 @@ export default function ShippingCBMPage() {
         "Enter the actual weight in kilograms and the number of cartons.",
         "Click Calculate to see total CBM, volumetric weight, and the chargeable weight.",
       ]}
-      formula={
+      formula={lang === "ar" ? (
+        <div>
+          <p>الحجم <span dir="ltr">(CBM)</span> = الطول × العرض × الارتفاع ÷ 1,000,000 (بالسنتيمتر)</p>
+          <p>الوزن الحجمي = الحجم × <span dir="ltr">167 kg/m³</span></p>
+          <p>الوزن الخاضع للرسوم = الأكبر بين الوزن الفعلي والوزن الحجمي</p>
+        </div>
+      ) : (
         <div>
           <p>CBM = Length × Width × Height ÷ 1,000,000 (in cm)</p>
           <p>Volumetric Weight = CBM × 167 kg/m³</p>
           <p>Chargeable Weight = max(Actual Weight, Volumetric Weight)</p>
         </div>
-      }
-      example={<p>Box: 100cm × 60cm × 50cm, Weight: 20kg → CBM = 0.3 m³ → Volumetric = 50.1 kg → Chargeable = 50.1 kg</p>}
+      )}
+      example={lang === "ar" ? (
+        <p>كرتونة: <span dir="ltr">100×60×50</span> سم، الوزن: 20 كجم ← الحجم = <span dir="ltr">0.3 m³</span> ← الوزن الحجمي = 50.1 كجم ← الوزن الخاضع للرسوم = 50.1 كجم</p>
+      ) : (
+        <p>Box: 100cm × 60cm × 50cm, Weight: 20kg → CBM = 0.3 m³ → Volumetric = 50.1 kg → Chargeable = 50.1 kg</p>
+      )}
       faq={[
         { q: "What is CBM in shipping?", a: "CBM (Cubic Meter) is the standard volumetric unit for measuring cargo size in freight. Carriers bill the higher of actual weight vs. volumetric weight, so calculating CBM in advance lets you forecast shipping costs accurately before booking." },
         { q: "What volumetric weight factor does this calculator use?", a: "For sea freight (LCL), the standard is 1 CBM = 1,000 kg. For air freight, most carriers use 1 CBM = 167 kg (the 1:6000 rule). This calculator defaults to 167 kg/m³. Always confirm the exact factor with your freight forwarder or carrier as it can differ by carrier and route." },

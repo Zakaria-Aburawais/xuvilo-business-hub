@@ -48,6 +48,7 @@ export function AdminNav() {
   const isAR = lang === "ar";
   const [location] = useLocation();
   const [followUpCount, setFollowUpCount] = useState(0);
+  const [newCount, setNewCount] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -57,6 +58,16 @@ export function AdminNav() {
       })
       .catch(() => {
         if (!cancelled) setFollowUpCount(0);
+      });
+    // Separate count of untouched ("new") messages, so operators see at a
+    // glance how many submissions are waiting for a first look — not just
+    // how many have failed emails.
+    listContactMessages({ triage: "new", limit: 1 })
+      .then((res) => {
+        if (!cancelled) setNewCount(res.total);
+      })
+      .catch(() => {
+        if (!cancelled) setNewCount(0);
       });
     return () => {
       cancelled = true;
@@ -74,9 +85,12 @@ export function AdminNav() {
         const active = location === item.path;
         const isInbox = item.path === CONTACT_INBOX_PATH;
         const showBadge = isInbox && followUpCount > 0;
+        const showNewBadge = isInbox && newCount > 0;
         const href = showBadge
           ? `${CONTACT_INBOX_PATH}?status=needs_follow_up`
-          : item.path;
+          : showNewBadge
+            ? `${CONTACT_INBOX_PATH}?status=all&triage=new`
+            : item.path;
         return (
           <Link
             key={item.path}
@@ -92,6 +106,20 @@ export function AdminNav() {
           >
             <Icon className="h-4 w-4" />
             {isAR ? item.ar : item.en}
+            {showNewBadge && (
+              <span
+                className="ms-0.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-blue-600 px-1.5 py-0.5 text-[0.7rem] font-semibold leading-none text-white"
+                aria-label={
+                  isAR
+                    ? `${newCount} رسائل جديدة بانتظار الاطلاع`
+                    : `${newCount} new messages waiting`
+                }
+                title={isAR ? "رسائل جديدة" : "New messages"}
+                data-testid="admin-nav-new-badge"
+              >
+                {newCount > 99 ? "99+" : newCount}
+              </span>
+            )}
             {showBadge && (
               <span
                 className="ms-0.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-red-600 px-1.5 py-0.5 text-[0.7rem] font-semibold leading-none text-white"
@@ -100,6 +128,7 @@ export function AdminNav() {
                     ? `${followUpCount} رسائل تحتاج متابعة`
                     : `${followUpCount} messages need follow-up`
                 }
+                title={isAR ? "تحتاج متابعة بريدية" : "Email follow-up needed"}
                 data-testid="admin-nav-follow-up-badge"
               >
                 {followUpCount > 99 ? "99+" : followUpCount}

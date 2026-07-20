@@ -70,13 +70,22 @@ export default function MarkupMarginPage() {
         "Enter the percentage you know.",
         "Click Calculate to see the equivalent value on the other basis.",
       ]}
-      formula={
+      formula={lang === "ar" ? (
+        <div>
+          <p><strong>من الربح الإضافي إلى الهامش:</strong> هامش الربح = الربح الإضافي ÷ (100 + الربح الإضافي) × 100</p>
+          <p><strong>من الهامش إلى الربح الإضافي:</strong> الربح الإضافي = هامش الربح ÷ (100 − هامش الربح) × 100</p>
+        </div>
+      ) : (
         <div>
           <p><strong>Markup → Margin:</strong> Margin = Markup ÷ (100 + Markup) × 100</p>
           <p><strong>Margin → Markup:</strong> Markup = Margin ÷ (100 − Margin) × 100</p>
         </div>
-      }
-      example={<p>50% markup on a $10 item → sell at $15. Profit = $5. Margin = $5/$15 = 33.3%</p>}
+      )}
+      example={lang === "ar" ? (
+        <p>ربح إضافي 50٪ على منتج تكلفته <span dir="ltr">$10</span> ← يُباع بـ <span dir="ltr">$15</span>. الربح = <span dir="ltr">$5</span>. هامش الربح = <span dir="ltr">$5 ÷ $15</span> = 33.3٪</p>
+      ) : (
+        <p>50% markup on a $10 item → sell at $15. Profit = $5. Margin = $5/$15 = 33.3%</p>
+      )}
       faq={[
         { q: "Why is markup always higher than margin for the same product?", a: "Markup is calculated on the lower cost price, while margin is calculated on the higher selling price. Dividing the same profit by a smaller number (cost) gives a bigger percentage than dividing by a larger number (revenue). A 50% markup = a 33.3% margin." },
         { q: "Which should I use — markup or margin?", a: "Use markup when calculating your selling price from a known cost (common in retail, manufacturing, and wholesale). Use margin when analyzing profitability in your P&L, comparing to industry benchmarks, or communicating with investors (margin percentages are the financial reporting standard)." },

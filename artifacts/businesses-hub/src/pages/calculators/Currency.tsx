@@ -270,16 +270,30 @@ export default function CurrencyPage() {
             ]
       }
       formula={
-        <p>
-          Converted = Amount × (Rate<sub>To</sub> ÷ Rate<sub>From</sub>)<br />
-          <span className="text-xs text-muted-foreground">Where rates are expressed as: 1 EUR = X units of currency (InfoEuro basis)</span>
-        </p>
+        isRTL ? (
+          <p>
+            المبلغ المحوَّل = المبلغ × (سعر العملة المستهدفة ÷ سعر العملة الأصلية)<br />
+            <span className="text-xs text-muted-foreground">حيث تُعبَّر الأسعار كالتالي: 1 يورو = عدد الوحدات من العملة (وفق منهجية InfoEuro)</span>
+          </p>
+        ) : (
+          <p>
+            Converted = Amount × (Rate<sub>To</sub> ÷ Rate<sub>From</sub>)<br />
+            <span className="text-xs text-muted-foreground">Where rates are expressed as: 1 EUR = X units of currency (InfoEuro basis)</span>
+          </p>
+        )
       }
       example={
-        <p>
-          $1,000 USD → EUR: 1,000 × (1 ÷ 1.0842) = €922.39 EUR<br />
-          <span className="text-xs text-muted-foreground">Rates update monthly, published by the European Commission.</span>
-        </p>
+        isRTL ? (
+          <p>
+            تحويل <span dir="ltr">$1,000 USD</span> إلى اليورو: <span dir="ltr">1,000 × (1 ÷ 1.0842) = €922.39</span><br />
+            <span className="text-xs text-muted-foreground">تُحدَّث الأسعار شهرياً وتصدر عن المفوضية الأوروبية.</span>
+          </p>
+        ) : (
+          <p>
+            $1,000 USD → EUR: 1,000 × (1 ÷ 1.0842) = €922.39 EUR<br />
+            <span className="text-xs text-muted-foreground">Rates update monthly, published by the European Commission.</span>
+          </p>
+        )
       }
       faq={[
         {

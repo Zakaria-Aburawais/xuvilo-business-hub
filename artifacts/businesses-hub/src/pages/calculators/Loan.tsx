@@ -60,8 +60,16 @@ export default function LoanPage() {
         "Enter the loan term in years.",
         "Click Calculate to see your monthly payment, total repayment, and total interest.",
       ]}
-      formula={<p>Monthly Payment = P × [r(1+r)ⁿ] / [(1+r)ⁿ−1]<br/>where r = monthly rate, n = total months</p>}
-      example={<p>Loan $50,000 at 6% for 5 years → Monthly = $966.64 → Total = $57,998 → Interest = $7,998</p>}
+      formula={lang === "ar" ? (
+        <p>القسط الشهري = <span dir="ltr">P × [r(1+r)ⁿ] / [(1+r)ⁿ−1]</span><br/>حيث <span dir="ltr">r</span> = معدل الفائدة الشهري و<span dir="ltr">n</span> = إجمالي عدد الأشهر</p>
+      ) : (
+        <p>Monthly Payment = P × [r(1+r)ⁿ] / [(1+r)ⁿ−1]<br/>where r = monthly rate, n = total months</p>
+      )}
+      example={lang === "ar" ? (
+        <p>قرض بمبلغ <span dir="ltr">$50,000</span> بفائدة 6٪ لمدة 5 سنوات ← القسط الشهري = <span dir="ltr">$966.64</span> ← إجمالي السداد = <span dir="ltr">$57,998</span> ← إجمالي الفوائد = <span dir="ltr">$7,998</span></p>
+      ) : (
+        <p>Loan $50,000 at 6% for 5 years → Monthly = $966.64 → Total = $57,998 → Interest = $7,998</p>
+      )}
       faq={[
         { q: "What is an amortization schedule?", a: "An amortization schedule shows how each payment is split between principal and interest over the loan term. Early payments are mostly interest; later payments shift toward principal as the outstanding balance falls. This is why paying extra early in a loan saves the most money." },
         { q: "Does this calculator account for compounding?", a: "Yes. It uses the standard monthly compounding formula used by most banks: Monthly Payment = P × [r(1+r)ⁿ] / [(1+r)ⁿ−1], where r is the monthly interest rate and n is the total number of months." },

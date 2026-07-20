@@ -86,13 +86,22 @@ export default function VATPage() {
         "Enter the VAT rate (e.g. 15 for Saudi Arabia, 5 for UAE).",
         "Choose Add VAT or Extract VAT, then click Calculate.",
       ]}
-      formula={
+      formula={lang === "ar" ? (
+        <div>
+          <p><strong>إضافة الضريبة:</strong> المبلغ الإجمالي = المبلغ الصافي × (1 + النسبة ÷ 100)</p>
+          <p><strong>استخراج الضريبة:</strong> المبلغ الصافي = المبلغ الإجمالي ÷ (1 + النسبة ÷ 100) · قيمة الضريبة = المبلغ الإجمالي − المبلغ الصافي</p>
+        </div>
+      ) : (
         <div>
           <p><strong>Add VAT:</strong> Gross = Net × (1 + Rate/100)</p>
           <p><strong>Extract VAT:</strong> Net = Gross / (1 + Rate/100) · VAT = Gross - Net</p>
         </div>
-      }
-      example={<p>$1,000 + 15% VAT = $1,150. Extracting VAT from $1,150 at 15% → Net = $1,000, VAT = $150.</p>}
+      )}
+      example={lang === "ar" ? (
+        <p><span dir="ltr">$1,000</span> + ضريبة قيمة مضافة 15٪ = <span dir="ltr">$1,150</span>. وعند استخراج الضريبة من <span dir="ltr">$1,150</span> بنسبة 15٪ يكون المبلغ الصافي = <span dir="ltr">$1,000</span> وقيمة الضريبة = <span dir="ltr">$150</span>.</p>
+      ) : (
+        <p>$1,000 + 15% VAT = $1,150. Extracting VAT from $1,150 at 15% → Net = $1,000, VAT = $150.</p>
+      )}
       faq={[
         { q: "What is the standard VAT rate in Saudi Arabia?", a: "The standard VAT rate in Saudi Arabia (KSA) is 15%, raised from 5% in July 2020. It applies to most goods and services. Verify the current rate with ZATCA (the Saudi tax authority) for your specific product or service category." },
         { q: "What is the VAT rate in the UAE?", a: "The UAE introduced VAT at 5% in January 2018. It applies to most goods and services, with zero-rated categories including international exports, certain food items, and healthcare. Basic financial services are exempt." },

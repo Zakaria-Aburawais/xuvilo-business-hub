@@ -18,6 +18,7 @@ import {
 import {
   getRateLimitBucketsRetentionDays,
   RATE_LIMIT_BUCKETS_PRUNE_INTERVAL_MS,
+  pruneExpiredRateLimitBuckets,
 } from "../lib/rateLimitBucketsPrune";
 import { logger } from "../lib/logger";
 import {
@@ -545,6 +546,52 @@ router.post(
         success: false,
         error: "internal_error",
         message: "Failed to run the spam-events cleanup.",
+      });
+    }
+  },
+);
+
+// POST /admin/rate-limit-buckets/prune
+//
+// Manual "Run cleanup now" trigger for the `app_rate_limit_buckets`
+// background pruner — the rate-limit twin of /admin/spam-stats/prune above.
+// Calls the exact same `pruneExpiredRateLimitBuckets()` the scheduled pruner
+// runs, so a manual run updates the same status row the dashboard health
+// badge reads and feeds the same health notifier.
+//
+// Misuse guard: admin-only + the same per-admin 10s cool-down pattern as the
+// spam prune. The prune deletes only rows whose reset window has ALREADY
+// passed (expired buckets), so it can never loosen an active rate limit —
+// hammering it gains an attacker nothing even with a stolen admin session.
+const manualRateLimitPruneLimiter = rateLimit({
+  windowMs: 10_000,
+  max: 1,
+  prefix: "admin:rate-limit-buckets:prune",
+  keyer: (req) => req.userEmail ?? "",
+  errorCode: "rate_limited",
+  message: (retryAfter) =>
+    `Please wait ${retryAfter} second${retryAfter === 1 ? "" : "s"} before running cleanup again.`,
+});
+
+router.post(
+  "/admin/rate-limit-buckets/prune",
+  requireRole("admin"),
+  manualRateLimitPruneLimiter,
+  async (_req, res) => {
+    try {
+      const deleted = await pruneExpiredRateLimitBuckets();
+      res.setHeader("Cache-Control", "private, no-store");
+      return res.status(200).json({
+        success: true,
+        deleted,
+        retentionDays: getRateLimitBucketsRetentionDays(),
+      });
+    } catch (err) {
+      logger.error({ err }, "admin/rate-limit-buckets/prune failed");
+      return res.status(500).json({
+        success: false,
+        error: "internal_error",
+        message: "Failed to run the rate-limit-buckets cleanup.",
       });
     }
   },

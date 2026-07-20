@@ -1146,6 +1146,8 @@ export function SpamStatsCard() {
   // (like the test-alert flag) so the disabled affordance survives the
   // card's periodic re-renders.
   const [pruneRunning, setPruneRunning] = useState(false);
+  // Same, for the rate-limit-buckets pruner's manual trigger.
+  const [rateLimitPruneRunning, setRateLimitPruneRunning] = useState(false);
   // Most recent test-alert attempt for this session. Persists across the
   // periodic refresh of the surrounding card so an admin returning to the
   // tab can see the prior result without re-firing. Cleared on full page
@@ -1422,6 +1424,72 @@ export function SpamStatsCard() {
       });
     } finally {
       setPruneRunning(false);
+    }
+  };
+
+  // Force an immediate rate-limit-buckets prune run — the twin of
+  // runPruneNow above, against /admin/rate-limit-buckets/prune. Reuses the
+  // same toast copy since the interaction is identical.
+  const runRateLimitPruneNow = async () => {
+    setRateLimitPruneRunning(true);
+    try {
+      const token = getAuthToken();
+      const res = await fetch("/api/admin/rate-limit-buckets/prune", {
+        method: "POST",
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      let body: {
+        success?: boolean;
+        deleted?: number;
+        message?: string;
+        retryAfterSeconds?: number;
+      } = {};
+      try {
+        body = await res.json();
+      } catch {
+        // Tolerate a non-JSON body; status-based handling below still works.
+      }
+
+      if (res.status === 429) {
+        const retryAfter =
+          typeof body.retryAfterSeconds === "number" && body.retryAfterSeconds > 0
+            ? body.retryAfterSeconds
+            : Number(res.headers.get("Retry-After")) || 0;
+        toast({
+          title: t("admin.spam.prune.run_now.rate_limited"),
+          description:
+            body.message ||
+            (retryAfter > 0
+              ? fill(t("admin.spam.prune.run_now.rate_limited_wait"), {
+                  seconds: retryAfter,
+                })
+              : undefined),
+          variant: "destructive",
+        });
+        return;
+      }
+      if (!res.ok || body.success === false) {
+        toast({
+          title: t("admin.spam.prune.run_now.error"),
+          variant: "destructive",
+        });
+        return;
+      }
+      const deleted = typeof body.deleted === "number" ? body.deleted : 0;
+      toast({
+        title: t("admin.spam.prune.run_now.success"),
+        description: fill(t("admin.spam.prune.run_now.success_detail"), {
+          count: deleted,
+        }),
+      });
+      await load();
+    } catch {
+      toast({
+        title: t("admin.spam.prune.run_now.error"),
+        variant: "destructive",
+      });
+    } finally {
+      setRateLimitPruneRunning(false);
     }
   };
 
@@ -1708,6 +1776,26 @@ export function SpamStatsCard() {
                 t={t}
                 testIdPrefix="admin-ratelimit-prune"
                 alertHistory={data.rateLimitPrune.alertHistory}
+                action={
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => void runRateLimitPruneNow()}
+                    disabled={rateLimitPruneRunning}
+                    title={t("admin.spam.prune.run_now.tooltip")}
+                    data-testid="admin-ratelimit-prune-run-now"
+                    className="text-xs h-6 px-2 flex items-center gap-1"
+                  >
+                    {rateLimitPruneRunning ? (
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                    ) : (
+                      <Trash2 className="w-3 h-3" />
+                    )}
+                    {rateLimitPruneRunning
+                      ? t("admin.spam.prune.run_now.button_running")
+                      : t("admin.spam.prune.run_now.button")}
+                  </Button>
+                }
               />
             )}
 

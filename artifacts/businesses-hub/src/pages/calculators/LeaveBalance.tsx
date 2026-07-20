@@ -49,8 +49,16 @@ export default function LeaveBalancePage() {
         "Enter how many leave days have already been taken.",
         "Click Calculate to see the accrued and remaining balance.",
       ]}
-      formula={<p>Accrued Leave = (Annual Entitlement ÷ 12) × Months Worked<br/>Remaining = Accrued - Days Taken</p>}
-      example={<p>30 days entitlement, 9 months worked → Accrued = 22.5 days. Taken 10 days → Remaining = 12.5 days.</p>}
+      formula={lang === "ar" ? (
+        <p>الرصيد المستحق = (الاستحقاق السنوي ÷ 12) × أشهر العمل<br/>الرصيد المتبقي = الرصيد المستحق − الأيام المستخدمة</p>
+      ) : (
+        <p>Accrued Leave = (Annual Entitlement ÷ 12) × Months Worked<br/>Remaining = Accrued - Days Taken</p>
+      )}
+      example={lang === "ar" ? (
+        <p>استحقاق سنوي 30 يوماً مع 9 أشهر عمل ← الرصيد المستحق = 22.5 يوماً. استُخدمت 10 أيام ← الرصيد المتبقي = 12.5 يوماً.</p>
+      ) : (
+        <p>30 days entitlement, 9 months worked → Accrued = 22.5 days. Taken 10 days → Remaining = 12.5 days.</p>
+      )}
       faq={[
         { q: "What is the annual leave entitlement in Saudi Arabia?", a: "Saudi Labor Law gives employees 21 calendar days per year for the first five years of service, rising to 30 calendar days after five years. This is the statutory minimum; employment contracts may offer more." },
         { q: "Can unused leave carry over to the next year?", a: "It depends on your employment contract and local labor law. Saudi Labor Law generally requires leave to be taken within the year but allows carry-forward by mutual written agreement. UAE law allows carry-over for up to one year, after which unused leave is typically forfeited or paid out. Always check your specific contract." },

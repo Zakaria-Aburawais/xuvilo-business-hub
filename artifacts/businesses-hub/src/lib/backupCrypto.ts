@@ -28,6 +28,21 @@ export function scorePasswordStrength(password: string): PasswordStrength {
   return "weak";
 }
 
+/**
+ * Generate a strong, typo-resistant backup password: 4 groups of 4 chars
+ * joined with dashes (19 chars total), drawn from an alphabet without
+ * ambiguous glyphs (no 0/O, 1/l/I). ~82 bits of entropy — far beyond what
+ * PBKDF2-protected offline brute force can touch — while staying readable
+ * enough to write down, which is exactly what backup passwords need to be.
+ */
+export function generateBackupPassword(): string {
+  const alphabet = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  const chars = Array.from(bytes, (b) => alphabet[b % alphabet.length]);
+  return [0, 4, 8, 12].map((i) => chars.slice(i, i + 4).join("")).join("-");
+}
+
 export function isEncryptedBackup(parsed: unknown): parsed is EncryptedBackup {
   return (
     typeof parsed === "object" &&

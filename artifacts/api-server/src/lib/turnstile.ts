@@ -52,6 +52,12 @@ export async function verifyTurnstile(
         { status: res.status, context },
         "turnstile siteverify returned non-2xx",
       );
+      // 5xx means Cloudflare's verifier itself is unhealthy — treat like an
+      // outage (fail open, see catch below). 4xx means our request/secret is
+      // wrong — keep failing closed so misconfiguration is surfaced loudly.
+      if (res.status >= 500) {
+        return { ok: true, reason: `siteverify_http_${res.status}_failopen` };
+      }
       return { ok: false, reason: `siteverify_http_${res.status}` };
     }
     const data = (await res.json()) as {
@@ -67,10 +73,15 @@ export async function verifyTurnstile(
     };
   } catch (err) {
     logger.error({ err, context }, "turnstile siteverify call threw");
-    // Fail closed: if siteverify is unreachable while enforcement is on, we
-    // reject the submission rather than silently letting it through. This
-    // mirrors how Cloudflare itself handles transient verifier outages.
-    return { ok: false, reason: "siteverify_unreachable" };
+    // Fail OPEN on verifier outages: the caller presented a widget token
+    // (missing tokens were already rejected above), so this branch means
+    // Cloudflare's siteverify API is unreachable or timing out. Rejecting
+    // here would lock every real user out of sign-in/sign-up for the whole
+    // outage. Accepting is the availability tradeoff: bots without a token
+    // are still rejected, invalid tokens are still rejected whenever the
+    // verifier responds, and the strict per-IP/per-email rate limits on
+    // these endpoints remain the backstop while verification is degraded.
+    return { ok: true, reason: "siteverify_unreachable_failopen" };
   }
 }
 

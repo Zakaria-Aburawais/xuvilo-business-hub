@@ -68,8 +68,16 @@ export default function InvoiceAgingPage() {
         "Enter your daily late-fee rate (e.g. 0.1 for 0.1% per day) — leave 0 if you don't charge late fees.",
         "Click Calculate to see days overdue, the aging status, and the total owed.",
       ]}
-      formula={<p>Days Overdue = Today − Due Date<br/>Late Fee = Invoice Amount × Daily Rate % × Days Overdue<br/>Total Owed = Invoice Amount + Late Fee</p>}
-      example={<p>Invoice $5,000 due Jan 1, checked Feb 15 = 45 days overdue. At 0.1%/day → Late fee = $225 → Total = $5,225</p>}
+      formula={lang === "ar" ? (
+        <p>أيام التأخير = تاريخ اليوم − تاريخ الاستحقاق<br/>غرامة التأخير = مبلغ الفاتورة × النسبة اليومية ٪ × أيام التأخير<br/>الإجمالي المستحق = مبلغ الفاتورة + غرامة التأخير</p>
+      ) : (
+        <p>Days Overdue = Today − Due Date<br/>Late Fee = Invoice Amount × Daily Rate % × Days Overdue<br/>Total Owed = Invoice Amount + Late Fee</p>
+      )}
+      example={lang === "ar" ? (
+        <p>فاتورة بمبلغ <span dir="ltr">$5,000</span> مستحقة في 1 يناير وتمت المراجعة في 15 فبراير = 45 يوم تأخير. بنسبة 0.1٪ يومياً ← الغرامة = <span dir="ltr">$225</span> ← الإجمالي المستحق = <span dir="ltr">$5,225</span></p>
+      ) : (
+        <p>Invoice $5,000 due Jan 1, checked Feb 15 = 45 days overdue. At 0.1%/day → Late fee = $225 → Total = $5,225</p>
+      )}
       faq={[
         { q: "What is a typical late payment rate?", a: "Common rates range from 1.5% to 2% per month (0.05–0.067% per day). Some jurisdictions set legal maximum rates — EU commercial transactions fall under the Late Payment Directive. Always state your late fee policy on the original invoice so it is legally enforceable." },
         { q: "What does invoice aging mean in accounting?", a: "Invoice aging (accounts receivable aging) groups outstanding invoices by how long they have been unpaid: 0–30 days, 31–60 days, 61–90 days, and 90+ days. An aging report helps businesses identify overdue accounts early, allocate collection effort, and calculate bad-debt provisions." },

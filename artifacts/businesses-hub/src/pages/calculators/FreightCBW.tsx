@@ -59,14 +59,24 @@ export default function FreightCBWPage() {
         "Enter the number of pieces.",
         "Click Calculate to see whether volumetric or actual weight applies and the chargeable weight.",
       ]}
-      formula={
+      formula={lang === "ar" ? (
+        <div>
+          <p>الحجم <span dir="ltr">(CBM)</span> = الطول (سم) × العرض (سم) × الارتفاع (سم) ÷ 1,000,000</p>
+          <p>الوزن الحجمي = الحجم × المعامل (جوي: 167، بحري: 1000، بري: 333)</p>
+          <p>الوزن الخاضع للرسوم = الأكبر بين الوزن الفعلي والوزن الحجمي</p>
+        </div>
+      ) : (
         <div>
           <p>CBM = L(cm) × W(cm) × H(cm) ÷ 1,000,000</p>
           <p>Volumetric Weight = CBM × Factor (Air: 167, Sea: 1000, Road: 333)</p>
           <p>Chargeable Weight = max(Actual Weight, Volumetric Weight)</p>
         </div>
-      }
-      example={<p>Box 80×60×50cm, 10kg, air freight → CBM = 0.24m³ → Vol = 40.1kg → Chargeable = 40.1kg (volumetric)</p>}
+      )}
+      example={lang === "ar" ? (
+        <p>كرتونة <span dir="ltr">80×60×50</span> سم بوزن 10 كجم بالشحن الجوي ← الحجم = <span dir="ltr">0.24 m³</span> ← الوزن الحجمي = 40.1 كجم ← الوزن الخاضع للرسوم = 40.1 كجم (يُطبَّق الوزن الحجمي)</p>
+      ) : (
+        <p>Box 80×60×50cm, 10kg, air freight → CBM = 0.24m³ → Vol = 40.1kg → Chargeable = 40.1kg (volumetric)</p>
+      )}
       faq={[
         { q: "Why is the sea freight volumetric factor 1,000 kg/m³?", a: "Ships carry dense, heavy goods and are rarely volume-constrained, so sea freight uses a generous volumetric factor of 1 CBM = 1,000 kg. This means a light but bulky cargo item weighing under 1,000 kg per cubic meter is billed by actual weight — very different from air freight." },
         { q: "What are the common air freight volumetric factors?", a: "Most IATA airlines use 1 kg = 6,000 cm³, equivalent to 167 kg/m³. Some carriers and premium services use 1 kg = 5,000 cm³ (200 kg/m³). Always confirm the exact factor with your airline or freight forwarder before booking, as it directly determines your freight cost." },

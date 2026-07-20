@@ -314,10 +314,20 @@ export function createTestimonial(
 export function updateTestimonial(
   id: number,
   input: Partial<TestimonialInput>,
+  opts?: {
+    /**
+     * Concurrency guard: the field values the edit form was loaded with.
+     * When provided, the server rejects the save with HTTP 409 if the row
+     * no longer matches (another admin edited it in the meantime).
+     */
+    expected?: Partial<TestimonialInput>;
+  },
 ): Promise<{ success: true; item: TestimonialItem }> {
   return adminRequest(`/admin/testimonials/${id}`, {
     method: "PUT",
-    body: JSON.stringify(input),
+    body: JSON.stringify(
+      opts?.expected ? { ...input, expected: opts.expected } : input,
+    ),
   });
 }
 

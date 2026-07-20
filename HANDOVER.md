@@ -183,11 +183,17 @@ A full content authority sweep was completed:
 - About page expanded with full company background
 - Editorial Policy page created (`/editorial-policy`)
 
+**Completed 2026-07-19:**
+1. ~~Place `<AdSlot>` components on article and calculator pages~~ — done: `BlogPost.tsx` (leaderboard above article, rectangle below), `CalculatorLayout.tsx` (leaderboard mid-page, rectangle at bottom), joining the existing slot on `Blog.tsx`
+2. ~~Add `FAQPage` JSON-LD schema to all 14 calculator pages~~ — verified already done: `CalculatorLayout.tsx` emits FAQPage from the same `faq` prop all 14 pages pass (5-6 items each); SSR-only `/calculators/<slug>-calculator` SEO pages emit it server-side
+3. ~~In-article links~~ — 110 contextual links (EN + AR) added across the new cornerstone articles; the client markdown renderer in `BlogPost.tsx` now renders `[text](url)` links (it previously showed them as literal text)
+4. Duplicate slug fixed: the sweep's `receipt-vs-invoice-difference` entry duplicated the legacy hand-written SSR page and was shadowed by it — removed (78 posts, 0 duplicates)
+5. `blogSlugs.ts` re-synced: the 28 new article slugs were missing from it (its vitest sync-guard was failing), which would have made React mount over the SSR-only article pages and duplicate their content — appended; all 140 tests now pass
+6. SSR verified locally: production build served on localhost — all 28 new articles return HTTP 200 with full article HTML, title, and working internal links; Arabic articles render RTL; blog index and sitemap list them correctly
+
 **Still to do before AdSense approval:**
-1. Place `<AdSlot>` components on article and calculator pages (component exists at `src/components/AdSlot.tsx`, currently not placed)
-2. Ensure AdSense publisher ID and slot IDs are set via env vars (`VITE_ADSENSE_PUBLISHER_ID`, `VITE_ADSENSE_SLOT_*`)
-3. Add `FAQPage` JSON-LD schema to all 14 calculator pages for FAQ rich results
-4. Verify the 30 new articles are fully SSR-rendered (curl each article URL and check the response body contains article text)
+1. Ensure AdSense publisher ID and slot IDs are set via env vars (`VITE_ADSENSE_PUBLISHER_ID`, `VITE_ADSENSE_SLOT_*`)
+2. **REDEPLOY** — as of 2026-07-19 the live site returns HTTP 404 for all the new cornerstone articles (e.g. `/blog/break-even-analysis-guide`): the running deployment predates the content sweep. Push the current code to the Repl and deploy, then re-verify the article URLs return the full article HTML.
 
 See `.local/adsense-audit.md` in the Replit workspace for the full audit report.
 

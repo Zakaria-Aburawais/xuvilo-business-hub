@@ -10,6 +10,7 @@ import {
 } from "@/data/blogPosts";
 import { useLanguage } from "@/context/LanguageContext";
 import { Calendar, Clock, ChevronRight, ArrowLeft, ArrowRight, BookOpen, Tag, Share2, Link2, List } from "lucide-react";
+import { AdSlot } from "@/components/AdSlot";
 import NotFound from "@/pages/not-found";
 import { useState } from "react";
 
@@ -143,8 +144,24 @@ function renderContent(content: string, lang: "ar" | "en") {
 }
 
 function inlineFormat(text: string): React.ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
+  const parts = text.split(/(\[[^\]]+\]\([^)\s]+\)|\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
   return parts.map((part, i) => {
+    const link = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+    if (link) {
+      const [, label, href] = link;
+      if (href.startsWith("/")) {
+        return (
+          <Link key={i} href={href} className="text-blue-600 dark:text-blue-400 hover:underline">
+            {label}
+          </Link>
+        );
+      }
+      return (
+        <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+          {label}
+        </a>
+      );
+    }
     if (part.startsWith("**") && part.endsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
     if (part.startsWith("*") && part.endsWith("*")) return <em key={i}>{part.slice(1, -1)}</em>;
     if (part.startsWith("`") && part.endsWith("`")) return <code key={i} className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono text-blue-700 dark:text-blue-300" dir="ltr">{part.slice(1, -1)}</code>;
@@ -398,6 +415,11 @@ export default function BlogPostPage() {
 
         <div className="h-px bg-gray-200 dark:bg-gray-700 mb-8" />
 
+        {/* Ad slot — leaderboard above the article body */}
+        <div className="flex justify-center mb-8">
+          <AdSlot format="leaderboard" slot="blog-post-top" className="max-w-3xl" />
+        </div>
+
         {/* Table of Contents */}
         <TableOfContents headings={headings} isAR={isAR} />
 
@@ -405,6 +427,11 @@ export default function BlogPostPage() {
         <article lang={lang} className="prose-like" dir={dir}>
           {renderContent(content, lang)}
         </article>
+
+        {/* Ad slot — rectangle below the article body */}
+        <div className="flex justify-center mt-8">
+          <AdSlot format="rectangle" slot="blog-post-bottom" className="max-w-md" />
+        </div>
 
         {/* Social share */}
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">

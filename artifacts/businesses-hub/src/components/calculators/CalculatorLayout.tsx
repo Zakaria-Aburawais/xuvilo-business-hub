@@ -7,6 +7,7 @@ import { ArrowLeft, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { getPageSEO } from "@/lib/seo-config";
+import { AdSlot } from "@/components/AdSlot";
 
 interface RelatedTool {
   href: string;
@@ -99,6 +100,11 @@ export function CalculatorLayout({
           </div>
         </div>
 
+        {/* Ad slot — leaderboard between the calculator and the content sections */}
+        <div className="flex justify-center mt-10">
+          <AdSlot format="leaderboard" slot="calc-mid" className="max-w-3xl" />
+        </div>
+
         {/* Formula, example, FAQ */}
         <div className="mt-10 space-y-8">
           {howToUse && howToUse.length > 0 && (
@@ -148,6 +154,11 @@ export function CalculatorLayout({
               </div>
             </div>
           )}
+
+          {/* Ad slot — rectangle below the page content */}
+          <div className="flex justify-center">
+            <AdSlot format="rectangle" slot="calc-bottom" className="max-w-md" />
+          </div>
         </div>
       </div>
     </AppLayout>

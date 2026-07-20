@@ -7562,7 +7562,7 @@ Xuvilo لا يسجّل مطالباتك. مع نموذج المفتاح الخا
 
 At minimum, every professional invoice should contain: (1) the word "Invoice" and a unique invoice number; (2) your business name, address, and contact information; (3) the client's name and billing address; (4) the invoice date and the payment due date; (5) a clear description of goods or services provided; (6) unit prices, quantities, and line totals; (7) the subtotal, any applicable taxes (e.g. VAT), and the total amount due; and (8) your accepted payment methods.
 
-In ZATCA-regulated Saudi Arabia, e-invoices also require your Tax Identification Number (TIN), the buyer's TIN for B2B transactions, and a QR code. Use the Xuvilo invoice generator to produce ZATCA-compliant invoices automatically.
+In ZATCA-regulated Saudi Arabia, e-invoices also require your Tax Identification Number (TIN), the buyer's TIN for B2B transactions, and a QR code. Use the [Xuvilo invoice generator](/invoice) to produce ZATCA-compliant invoices automatically.
 
 **Payment terms — be specific**
 
@@ -7574,14 +7574,14 @@ Use a consistent, sequential system. A common format is INV-[YEAR]-[NUMBER], e.g
 
 **Common mistakes to avoid**
 
-The most common invoicing errors: missing or wrong client address (delays payment processing), no payment due date (gives the client an excuse to pay "whenever"), no tax breakdown (non-compliant in VAT-registered countries), and PDF sent without confirmation (follow up with an email referencing the invoice number).`,
+The most common invoicing errors: missing or wrong client address (delays payment processing), no payment due date (gives the client an excuse to pay "whenever"), no tax breakdown (non-compliant in VAT-registered countries), and PDF sent without confirmation (follow up with an email referencing the invoice number). If you charge VAT, double-check your tax lines with the free [VAT calculator](/calculators/vat-tax).`,
     contentAr: `الفاتورة الاحترافية أكثر من مجرد طلب دفع — فهي وثيقة قانونية وأداة لإدارة التدفق النقدي وانعكاس لمصداقية عملك. سواء كنت مستقلاً يُرسل أول فاتورة له أو شركة صغيرة تُعالج مئات الفواتير شهرياً، فإن فهم ما يجعل الفاتورة "احترافية" هو أساس الحصول على المدفوعات في وقتها.
 
 **الحقول الإلزامية في كل فاتورة احترافية**
 
 كحد أدنى، يجب أن تحتوي كل فاتورة احترافية على: (1) كلمة "فاتورة" ورقم فاتورة فريد؛ (2) اسم شركتك وعنوانها ومعلومات الاتصال؛ (3) اسم العميل وعنوان الفوترة؛ (4) تاريخ الفاتورة وتاريخ استحقاق الدفع؛ (5) وصف واضح للسلع أو الخدمات المقدمة؛ (6) أسعار الوحدات والكميات والإجماليات؛ (7) المجموع الفرعي وأي ضرائب مطبقة والمبلغ الإجمالي المستحق؛ و(8) طرق الدفع المقبولة.
 
-في المملكة العربية السعودية الخاضعة لنظام ZATCA، تستلزم الفواتير الإلكترونية أيضاً رقم التعريف الضريبي (TIN) والرمز السريع QR. استخدم مولّد فواتير Xuvilo لإنتاج فواتير متوافقة مع متطلبات ZATCA تلقائياً.`,
+في المملكة العربية السعودية الخاضعة لنظام ZATCA، تستلزم الفواتير الإلكترونية أيضاً رقم التعريف الضريبي (TIN) والرمز السريع QR. استخدم [مولّد فواتير Xuvilo](/invoice) لإنتاج فواتير متوافقة مع متطلبات ZATCA تلقائياً.`,
   },
 
   {
@@ -7614,14 +7614,14 @@ Early payment discounts cost money (you receive less), so use them only when cas
 
 **Which term is right for you?**
 
-New clients and small jobs: Due on Receipt or Net 7. Established business relationships: Net 30. Large enterprises with long AP cycles: Net 60. Recurring monthly services: Due on the 1st or 15th of the following month.`,
+New clients and small jobs: Due on Receipt or Net 7. Established business relationships: Net 30. Large enterprises with long AP cycles: Net 60. Recurring monthly services: Due on the 1st or 15th of the following month. Track overdue balances with the free [invoice aging calculator](/calculators/invoice-aging), and state your terms clearly on every invoice you create with the [invoice generator](/invoice).`,
     contentAr: `شروط الدفع هي الشروط التي يتوقع بموجبها البائع الحصول على المدفوعات. تظهر على كل فاتورة ولها تأثير مباشر على التدفق النقدي لشركتك.
 
 **الدفع عند الاستلام** يعني أن العميل يجب أن يدفع فور استلامه الفاتورة. الأفضل لـ: الأعمال الصغيرة لمرة واحدة، أو العملاء الجدد، أو الشركات ذات التدفق النقدي الضيق.
 
 **Net 30** — الدفع مستحق خلال 30 يوماً تقويمياً من تاريخ الفاتورة. المعيار الأكثر شيوعاً في المعاملات التجارية بين الشركات (B2B). يمنح هذا العملاء الكبار وقتاً لمعالجة الفواتير من خلال قسم الحسابات الدائنة.
 
-**2/10 Net 30** — خصم نقدي: يحصل العميل على خصم 2% إذا دفع خلال 10 أيام؛ وإلا يُستحق المبلغ كاملاً في 30 يوماً. فعّال لتشجيع الدفع المبكر.`,
+**2/10 Net 30** — خصم نقدي: يحصل العميل على خصم 2% إذا دفع خلال 10 أيام؛ وإلا يُستحق المبلغ كاملاً في 30 يوماً. فعّال لتشجيع الدفع المبكر. تابع الفواتير المتأخرة عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging) المجانية، وحدّد شروط الدفع بوضوح عند إنشاء فواتيرك عبر [مولّد الفواتير](/invoice).`,
   },
 
   {
@@ -7640,7 +7640,7 @@ New clients and small jobs: Due on Receipt or Net 7. Established business relati
 
 **Before the due date: prevention**
 
-The best time to handle a late payment is before it happens. Send the invoice immediately after delivering work (not at the end of the month). Include a clear due date. Send a friendly reminder 3 days before the due date: "This is a courtesy reminder that invoice INV-2026-0042 for $1,500 is due on [date]."
+The best time to handle a late payment is before it happens. Send the invoice immediately after delivering work (not at the end of the month) — the free [invoice generator](/invoice) makes this a five-minute job. Include a clear due date. Send a friendly reminder 3 days before the due date: "This is a courtesy reminder that invoice INV-2026-0042 for $1,500 is due on [date]."
 
 **On the due date: first follow-up**
 
@@ -7652,7 +7652,7 @@ At 7 days: reference the invoice, the amount, the original due date, and ask for
 
 **30+ days overdue: escalation**
 
-At 30+ days, escalate to a senior contact, send a formal demand letter, and consider pausing further work. For amounts above a threshold, formal debt collection or legal action may be warranted.
+At 30+ days, escalate to a senior contact, send a formal demand letter, and consider pausing further work. For amounts above a threshold, formal debt collection or legal action may be warranted. Use the [invoice aging calculator](/calculators/invoice-aging) to see exactly how long each unpaid invoice has been outstanding.
 
 **Avoiding disputes in the first place**
 
@@ -7669,7 +7669,7 @@ Get written sign-off on scope before starting work. Use a simple contract or eng
 
 **7-30 يوماً متأخرة: التصعيد التدريجي**
 
-بعد 7 أيام: أذكر الفاتورة والمبلغ وتاريخ الاستحقاق. بعد 30 يوماً: فكر في إيقاف العمل مؤقتاً وإرسال خطاب مطالبة رسمي.`,
+بعد 7 أيام: أذكر الفاتورة والمبلغ وتاريخ الاستحقاق. بعد 30 يوماً: فكر في إيقاف العمل مؤقتاً وإرسال خطاب مطالبة رسمي. استخدم [حاسبة أعمار الفواتير](/calculators/invoice-aging) لمعرفة مدة تأخر كل فاتورة غير مسددة.`,
   },
 
   {
@@ -7706,7 +7706,7 @@ A commercial invoice is the official billing document issued once goods are ship
 
 **How to use them correctly**
 
-Use a proforma invoice when: a client needs to arrange a letter of credit (LC), obtain import permits, or get internal budget approval. Use a commercial invoice when: goods have shipped, services have been delivered, and you want to be paid.`,
+Use a proforma invoice when: a client needs to arrange a letter of credit (LC), obtain import permits, or get internal budget approval. Use a commercial invoice when: goods have shipped, services have been delivered, and you want to be paid. Generate both document types for free with the [invoice generator](/invoice), and estimate duties and freight with the [import cost calculator](/calculators/import-cost).`,
     contentAr: `الفاتورة المبدئية والفاتورة التجارية يُخلَط بينهما بسهولة لكنهما تخدمان أغراضاً مختلفة تماماً.
 
 **ما هي الفاتورة المبدئية؟**
@@ -7715,7 +7715,7 @@ Use a proforma invoice when: a client needs to arrange a letter of credit (LC), 
 
 **ما هي الفاتورة التجارية؟**
 
-الفاتورة التجارية هي مستند الفوترة الرسمي الصادر بعد شحن البضائع أو تسليم الخدمات. إنها المطالبة الرسمية بالدفع والسجل القانوني للمعاملة والمستند الجمركي الأساسي.`,
+الفاتورة التجارية هي مستند الفوترة الرسمي الصادر بعد شحن البضائع أو تسليم الخدمات. إنها المطالبة الرسمية بالدفع والسجل القانوني للمعاملة والمستند الجمركي الأساسي. يمكنك إنشاء كلا النوعين مجاناً عبر [مولّد الفواتير](/invoice)، وتقدير الرسوم الجمركية والشحن عبر [حاسبة التكلفة الاستيرادية](/calculators/import-cost).`,
   },
 
   {
@@ -7752,7 +7752,7 @@ Client-prefixed: CLI01-001. Useful if you want to track invoices per client.
 
 **ZATCA compliance note**
 
-Saudi Arabia's e-invoicing system (FATOORA) assigns a UUID to every invoice at the point of generation. This is in addition to your internal sequential number. Use Xuvilo's invoice generator which handles ZATCA sequential numbering automatically.`,
+Saudi Arabia's e-invoicing system (FATOORA) assigns a UUID to every invoice at the point of generation. This is in addition to your internal sequential number. Use [Xuvilo's invoice generator](/invoice) which handles ZATCA sequential numbering automatically.`,
     contentAr: `ترقيم الفواتير يُعدّ أحد أكثر جوانب إدارة الأعمال الصغيرة إهمالاً — حتى يكشف التدقيق الضريبي عن ثغرات أو تكرارات في السجلات.
 
 **لماذا يهم ترقيم الفواتير**
@@ -7761,7 +7761,7 @@ Saudi Arabia's e-invoicing system (FATOORA) assigns a UUID to every invoice at t
 
 **تنسيقات الترقيم الشائعة**
 
-تسلسلي بسيط: 001، 002، 003. أو مسبوق بالسنة: INV-2026-001، أو مسبوق بالسنة والشهر: INV-2026-07-001.`,
+تسلسلي بسيط: 001، 002، 003. أو مسبوق بالسنة: INV-2026-001، أو مسبوق بالسنة والشهر: INV-2026-07-001. استخدم [مولّد الفواتير](/invoice) المجاني لترقيم فواتيرك تلقائياً.`,
   },
 
   {
@@ -7776,7 +7776,7 @@ Saudi Arabia's e-invoicing system (FATOORA) assigns a UUID to every invoice at t
     keywordEn: "first invoice checklist",
     keywordAr: "قائمة تحقق أول فاتورة",
     relatedSlugs: ["how-to-write-professional-invoice", "invoice-payment-terms-guide", "proforma-invoice-vs-commercial-invoice"],
-    contentEn: `Sending your first invoice is a milestone — and it's worth getting right. A poorly structured invoice delays payment, looks unprofessional, and can create accounting headaches. Use this 10-point checklist before hitting send.
+    contentEn: `Sending your first invoice is a milestone — and it's worth getting right. A poorly structured invoice delays payment, looks unprofessional, and can create accounting headaches. Use this 10-point checklist before hitting send — then create the invoice itself in minutes with the free [invoice generator](/invoice).
 
 **✓ 1. The word "Invoice" appears clearly at the top**
 Sounds obvious, but missing this label can cause problems in accounts payable systems.
@@ -7800,14 +7800,14 @@ Be specific. "Website design — homepage redesign per agreed brief, delivered J
 Never lump everything into one line if there are multiple deliverables.
 
 **✓ 8. Subtotal, taxes (VAT/GST), and total amount due**
-If you're VAT-registered, the tax line is not optional — it's legally required.
+If you're VAT-registered, the tax line is not optional — it's legally required. Get the amount right with the free [VAT calculator](/calculators/vat-tax).
 
 **✓ 9. Payment instructions**
 Bank account details, IBAN, SWIFT code if international, or a payment link. The clearer this is, the faster you get paid.
 
 **✓ 10. A polite thank-you line**
 Invoices that include "Thank you for your business" are paid, on average, 1–3 days faster according to FreshBooks research.`,
-    contentAr: `إرسال فاتورتك الأولى لحظة مهمة — ويستحق الأمر إتقانها. استخدم قائمة التحقق من 10 نقاط هذه قبل الإرسال.
+    contentAr: `إرسال فاتورتك الأولى لحظة مهمة — ويستحق الأمر إتقانها. استخدم قائمة التحقق من 10 نقاط هذه قبل الإرسال، ثم أنشئ فاتورتك في دقائق عبر [مولّد الفواتير](/invoice) المجاني.
 
 **✓ 1. كلمة "فاتورة" تظهر بوضوح في الأعلى**
 **✓ 2. رقم فاتورة فريد** — تسلسلي وغير مكرر.
@@ -7847,7 +7847,7 @@ Always include a validity period: "This quotation is valid for 30 days from the 
 
 Option A — Itemized: list every deliverable separately. Creates transparency and reduces scope disputes.
 Option B — Fixed price: one total for a defined scope. Simpler for the client; carries more risk for you.
-Option C — Tiered packages: "Basic / Standard / Premium" options. Often increases average deal value as clients self-select.
+Option C — Tiered packages: "Basic / Standard / Premium" options. Often increases average deal value as clients self-select. Whichever model you choose, check your numbers with the [profit margin calculator](/calculators/profit-margin) before committing to a price.
 
 **The most common quotation mistakes**
 
@@ -7858,7 +7858,7 @@ Option C — Tiered packages: "Basic / Standard / Premium" options. Often increa
 
 **After the quote is accepted**
 
-Get written acceptance (email confirmation is fine in most jurisdictions). Then issue a formal invoice or, for large projects, a deposit invoice to start.`,
+Get written acceptance (email confirmation is fine in most jurisdictions). Then issue a formal invoice or, for large projects, a deposit invoice to start. Create professional quotes in minutes with the free [quotation generator](/quotation).`,
     contentAr: `عرض السعر المنظم جيداً كثيراً ما يكون الفارق بين الفوز بعقد وخسارته.
 
 **ما يجب أن يتضمنه عرض السعر الاحترافي**
@@ -7867,51 +7867,7 @@ Get written acceptance (email confirmation is fine in most jurisdictions). Then 
 
 **استراتيجيات التسعير**
 
-الخيار أ — مفصّل: كل بند منفصل. الخيار ب — سعر ثابت: إجمالي واحد لنطاق محدد. الخيار ج — حزم متدرجة: "أساسية / معيارية / متميزة" — غالباً يرفع متوسط قيمة الصفقة.`,
-  },
-
-  {
-    slug: "receipt-vs-invoice-difference",
-    titleEn: "Receipt vs Invoice: What's the Difference and When to Use Each",
-    titleAr: "الإيصال مقابل الفاتورة: ما الفرق ومتى تستخدم كلاً منهما؟",
-    excerptEn: "Invoices request payment before it's made; receipts confirm payment after. Here's exactly when to issue each, what fields to include, and how Xuvilo handles both.",
-    excerptAr: "الفاتورة تطلب الدفع قبل تمامه؛ الإيصال يؤكد الدفع بعده. إليك متى تُصدر كلاً منهما.",
-    date: "2026-07-03",
-    readTime: 5,
-    category: "invoices",
-    keywordEn: "receipt vs invoice difference",
-    keywordAr: "الفرق بين الإيصال والفاتورة",
-    relatedSlugs: ["how-to-write-professional-invoice", "first-invoice-checklist", "proforma-invoice-vs-commercial-invoice"],
-    contentEn: `Invoices and receipts are often confused by new business owners, but they serve completely opposite purposes in the payment lifecycle.
-
-**The invoice: a payment request**
-
-An invoice is issued before payment is received. It says "here is what you owe me." It includes the amount due, payment terms, and a due date. Invoices are recorded in your accounts receivable.
-
-**The receipt: proof of payment**
-
-A receipt is issued after payment is made. It says "I confirm I have received your payment." It records the method of payment, the date payment was received, and confirms the balance is now zero (or shows any remaining balance). Receipts are not a request for money — they are a confirmation.
-
-**When to issue each**
-
-Issue an invoice when: you've completed work or delivered goods and are expecting payment. Issue a receipt when: a client pays in cash (a must), pays by bank transfer and asks for confirmation, or asks for proof of payment for their records.
-
-**Fields unique to receipts (vs. invoices)**
-
-Receipts need: date payment was received; method of payment (cash, bank transfer, cheque, card); amount received; any balance remaining; a receipt number (different from the invoice number it relates to).
-
-**Can one document serve as both?**
-
-Some businesses mark an invoice as "PAID" with the date and method after receiving payment — creating a combined invoice-receipt. This is acceptable in most jurisdictions but a separate receipt is more professional and avoids confusion in the client's accounting.`,
-    contentAr: `الفاتورة تُصدَر قبل استلام الدفعة — تقول "هذا ما تدين لي به." الإيصال يُصدَر بعد الدفع — يقول "أؤكد استلام دفعتك."
-
-**متى تُصدر كلاً منهما**
-
-أصدر فاتورة عندما: أتممت العمل أو سلّمت البضائع وتنتظر الدفع. أصدر إيصالاً عندما: يدفع العميل نقداً (ضروري)، أو يطلب تأكيداً لتحويل بنكي.
-
-**حقول فريدة للإيصالات**
-
-تاريخ استلام الدفع؛ طريقة الدفع (نقداً، تحويل بنكي، شيك، بطاقة)؛ المبلغ المستلم؛ أي رصيد متبقٍ.`,
+الخيار أ — مفصّل: كل بند منفصل. الخيار ب — سعر ثابت: إجمالي واحد لنطاق محدد. الخيار ج — حزم متدرجة: "أساسية / معيارية / متميزة" — غالباً يرفع متوسط قيمة الصفقة. أنشئ عروض أسعار احترافية عبر [مولّد عروض الأسعار](/quotation) وتحقق من أرقامك باستخدام [حاسبة هامش الربح](/calculators/profit-margin).`,
   },
 
   {
@@ -7946,7 +7902,7 @@ VAT rate: 5%. Mandatory threshold: OMR 38,500. Handled by the Oman Tax Authority
 
 **Common registration mistakes**
 
-Registering too late: fines start from Day 1 of exceeding the threshold. Not accounting for taxable imports: imported goods count toward your threshold in some GCC states. Missing the voluntary registration window: voluntary registration lets you reclaim input VAT before you hit the mandatory threshold — useful for capital-intensive businesses.`,
+Registering too late: fines start from Day 1 of exceeding the threshold. Not accounting for taxable imports: imported goods count toward your threshold in some GCC states. Missing the voluntary registration window: voluntary registration lets you reclaim input VAT before you hit the mandatory threshold — useful for capital-intensive businesses. Use the free [VAT calculator](/calculators/vat-tax) to work out VAT-inclusive and exclusive amounts for any GCC rate.`,
     contentAr: `تم تطبيق ضريبة القيمة المضافة في دول الخليج العربي على مرحلتين: السعودية والإمارات في 2018، والبحرين وعُمان لاحقاً. إذا تجاوز عملك حد التسجيل، فالتسجيل إلزامي — والغرامات على عدم الامتثال يمكن أن تكون صارمة.
 
 **المملكة العربية السعودية (ZATCA)**
@@ -7955,7 +7911,7 @@ Registering too late: fines start from Day 1 of exceeding the threshold. Not acc
 **الإمارات العربية المتحدة (FTA)**
 معدل الضريبة: 5%. الحد الإلزامي: 375,000 درهم.
 
-**البحرين**: معدل 10%. **عُمان**: معدل 5%.`,
+**البحرين**: معدل 10%. **عُمان**: معدل 5%. استخدم [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية لحساب المبالغ الشاملة وغير الشاملة للضريبة بأي معدل خليجي.`,
   },
 
   {
@@ -7982,11 +7938,11 @@ Government entities and qualifying public benefit organizations are exempt. Natu
 
 **The AED 375,000 tax-free threshold**
 
-Taxable income up to AED 375,000 is taxed at 0%. Income above AED 375,000 is taxed at 9%. This means a business with AED 500,000 taxable profit pays 9% only on AED 125,000 = AED 11,250 in tax.
+Taxable income up to AED 375,000 is taxed at 0%. Income above AED 375,000 is taxed at 9%. This means a business with AED 500,000 taxable profit pays 9% only on AED 125,000 = AED 11,250 in tax. To see how tax affects your bottom line, try the free [profit margin calculator](/calculators/profit-margin).
 
 **Registration and filing**
 
-Corporate tax registration is done through the FTA portal (tax.gov.ae). Businesses must file an annual return within 9 months after their financial year-end. Penalties for late registration or filing are significant.`,
+Corporate tax registration is done through the FTA portal (tax.gov.ae). Businesses must file an annual return within 9 months after their financial year-end. Penalties for late registration or filing are significant. For the VAT amounts on your invoices, the free [VAT calculator](/calculators/vat-tax) covers the UAE's 5% rate.`,
     contentAr: `أدخلت الإمارات ضريبة الشركات الاتحادية في يونيو 2023 بنسبة 9% على الدخل الخاضع للضريبة الذي يتجاوز 375,000 درهم سنوياً.
 
 **من يخضع لضريبة الشركات الإماراتية؟**
@@ -7995,7 +7951,7 @@ Corporate tax registration is done through the FTA portal (tax.gov.ae). Business
 
 **الحد المعفى من الضريبة**
 
-الدخل حتى 375,000 درهم معفى. ما يزيد عن ذلك يخضع لنسبة 9%.`,
+الدخل حتى 375,000 درهم معفى. ما يزيد عن ذلك يخضع لنسبة 9%. احسب أثر الضريبة على أرباحك عبر [حاسبة هامش الربح](/calculators/profit-margin)، واستخدم [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) لمبالغ الضريبة على فواتيرك.`,
   },
 
   {
@@ -8025,11 +7981,11 @@ Contribution margin = Selling price minus variable cost per unit. It is the amou
 Break-Even Units = Fixed Costs ÷ Contribution Margin per Unit
 Break-Even Revenue = Break-Even Units × Selling Price
 
-**Example:** A freelance translator charges $0.10 per word. Variable cost per word (software, proofreading) = $0.02. Contribution margin = $0.08/word. Fixed monthly costs (home office, subscriptions) = $800/month. Break-even = $800 ÷ $0.08 = 10,000 words per month.
+**Example:** A freelance translator charges $0.10 per word. Variable cost per word (software, proofreading) = $0.02. Contribution margin = $0.08/word. Fixed monthly costs (home office, subscriptions) = $800/month. Break-even = $800 ÷ $0.08 = 10,000 words per month. Run your own numbers with the free [break-even calculator](/calculators/break-even).
 
 **How to use break-even for pricing decisions**
 
-If you're setting a price, start with your costs. Work backward: "I need to cover $5,000 in fixed costs with 50 clients per month. That's $100 per client before any variable costs." Then add variable costs and desired profit margin.
+If you're setting a price, start with your costs. Work backward: "I need to cover $5,000 in fixed costs with 50 clients per month. That's $100 per client before any variable costs." Then add variable costs and desired [profit margin](/calculators/profit-margin).
 
 **Margin of safety**
 
@@ -8041,7 +7997,7 @@ Once you know your break-even point, calculate your margin of safety: (Actual or
 نقطة التعادل (بالوحدات) = التكاليف الثابتة ÷ هامش المساهمة لكل وحدة
 نقطة التعادل (بالإيرادات) = وحدات نقطة التعادل × سعر البيع
 
-**مثال:** مترجم مستقل يتقاضى 0.10 دولار للكلمة. تكلفة متغيرة 0.02 دولار. هامش المساهمة = 0.08 دولار. التكاليف الثابتة الشهرية = 800 دولار. نقطة التعادل = 800 ÷ 0.08 = 10,000 كلمة شهرياً.`,
+**مثال:** مترجم مستقل يتقاضى 0.10 دولار للكلمة. تكلفة متغيرة 0.02 دولار. هامش المساهمة = 0.08 دولار. التكاليف الثابتة الشهرية = 800 دولار. نقطة التعادل = 800 ÷ 0.08 = 10,000 كلمة شهرياً. جرّب [حاسبة نقطة التعادل](/calculators/break-even) المجانية لحساب أرقامك.`,
   },
 
   {
@@ -8062,7 +8018,7 @@ Once you know your break-even point, calculate your margin of safety: (Actual or
 
 Add up your monthly expenses: living costs, business costs (software, insurance, office), savings goal, and tax provision. Divide by the number of billable hours you can realistically work per month (typically 100–120 for most freelancers after accounting for admin, sales, and non-billable time). This gives your minimum hourly floor rate.
 
-Example: $4,000/month expenses + $1,000 tax provision = $5,000. At 100 billable hours: $50/hour minimum. You should charge more than this — this is your floor, not your target.
+Example: $4,000/month expenses + $1,000 tax provision = $5,000. At 100 billable hours: $50/hour minimum. You should charge more than this — this is your floor, not your target. Sanity-check your rates with the [profit margin calculator](/calculators/profit-margin) and the [markup and margin calculator](/calculators/markup-margin).
 
 **Step 2: Choose a pricing model**
 
@@ -8076,7 +8032,7 @@ Know what others charge for similar work in your market. Freelancer platforms, i
 
 **Step 4: Add a value premium**
 
-Price based on the value you create, not the time you spend. A tax filing that saves a client $10,000 is worth much more than 3 hours × $80/hour = $240. Value-based pricing requires confidence and clear communication of outcomes, not deliverables.`,
+Price based on the value you create, not the time you spend. A tax filing that saves a client $10,000 is worth much more than 3 hours × $80/hour = $240. Value-based pricing requires confidence and clear communication of outcomes, not deliverables. When you send a price to a client, present it professionally with the free [quotation generator](/quotation).`,
     contentAr: `التسعير هو الرافعة الأكبر في دخلك كمستقل — ومع ذلك يضع معظم المستقلين أسعارهم بناءً على ما يفرضه الآخرون، لا على ما يحتاجون فعلاً لكسبه.
 
 **الخطوة 1: احسب حدك الأدنى القابل للحياة**
@@ -8084,7 +8040,7 @@ Price based on the value you create, not the time you spend. A tax filing that s
 اجمع نفقاتك الشهرية: تكاليف المعيشة، تكاليف الأعمال، هدف الادخار، الضرائب. اقسم على عدد الساعات القابلة للفوترة شهرياً (عادةً 100-120 ساعة).
 
 **نماذج التسعير**
-بالساعة: واضح لكن يحد دخلك. بالمشروع: أفضل للعملاء ويمكن أن يرفع دخلك. الاشتراك الشهري: أكثر استقراراً للمستقلين المتمرسين.`,
+بالساعة: واضح لكن يحد دخلك. بالمشروع: أفضل للعملاء ويمكن أن يرفع دخلك. الاشتراك الشهري: أكثر استقراراً للمستقلين المتمرسين. تحقق من أرقامك عبر [حاسبة هامش الربح](/calculators/profit-margin) وقدّم أسعارك للعملاء عبر [مولّد عروض الأسعار](/quotation).`,
   },
 
   {
@@ -8125,7 +8081,9 @@ Port/clearing fees: $250
 Local delivery: $200
 Landed cost: $11,895
 
-Landed cost per unit (100 units): $118.95 — not $100.`,
+Landed cost per unit (100 units): $118.95 — not $100.
+
+Estimate your own shipment with the free [import cost calculator](/calculators/import-cost), and work out cargo volume and chargeable weight with the [shipping CBM calculator](/calculators/shipping-cbm) and the [freight chargeable weight calculator](/calculators/freight-cbw).`,
     contentAr: `التكلفة الكلية (Landed Cost) هي إجمالي تكلفة المنتج من لحظة مغادرته مصنع المورد حتى وصوله إلى مستودعك جاهزاً للبيع. عدم احتساب التكلفة الكلية بدقة هو أحد الأخطاء الأكثر شيوعاً بين المستوردين.
 
 **مكونات التكلفة الكلية**
@@ -8139,7 +8097,7 @@ Landed cost per unit (100 units): $118.95 — not $100.`,
 
 **مثال حسابي**
 
-سعر الشراء FOB: 10,000 دولار + شحن بحري: 800 دولار + تأمين: 100 دولار = قيمة CIF: 10,900 دولار. رسوم جمركية 5%: 545 دولار. رسوم ميناء وتوصيل: 450 دولار. التكلفة الكلية: 11,895 دولار.`,
+سعر الشراء FOB: 10,000 دولار + شحن بحري: 800 دولار + تأمين: 100 دولار = قيمة CIF: 10,900 دولار. رسوم جمركية 5%: 545 دولار. رسوم ميناء وتوصيل: 450 دولار. التكلفة الكلية: 11,895 دولار. احسب شحنتك الخاصة عبر [حاسبة التكلفة الاستيرادية](/calculators/import-cost) و[حاسبة حجم الشحن CBM](/calculators/shipping-cbm) المجانيتين.`,
   },
 
   {
@@ -8164,11 +8122,11 @@ The most common cause: timing mismatches. You deliver work in January, invoice i
 
 A 13-week (three-month) rolling cash flow forecast is the most practical tool for small business cash management. It shows: cash on hand at the start of each week; expected cash inflows (payments from clients); expected cash outflows (rent, payroll, supplier payments, taxes); and the closing balance after each week.
 
-Build it in a simple spreadsheet. Update it every week. The goal is never to be surprised.
+Build it in a simple spreadsheet. Update it every week. The goal is never to be surprised. Track how long clients actually take to pay with the [invoice aging calculator](/calculators/invoice-aging).
 
 **Five habits for better cash flow**
 
-1. Invoice immediately — every day of delay is a day later you get paid.
+1. Invoice immediately — every day of delay is a day later you get paid. The free [invoice generator](/invoice) makes this a five-minute job.
 2. Get deposits — for large projects, require 30–50% upfront. This is industry standard, not unusual.
 3. Shorten payment terms for new clients — start with Net 15 or Net 14 rather than Net 30 until trust is established.
 4. Maintain a cash buffer — 3 months of operating expenses in a separate account is the minimum.
@@ -8181,7 +8139,7 @@ Build it in a simple spreadsheet. Update it every week. The goal is never to be 
 
 **خمس عادات لتدفق نقدي أفضل**
 
-1. افوتر فوراً — كل يوم تأخير يعني يوماً إضافياً في انتظار الدفع.
+1. افوتر فوراً — كل يوم تأخير يعني يوماً إضافياً في انتظار الدفع. أنشئ فواتيرك في دقائق عبر [مولّد الفواتير](/invoice) وتابع المتأخر منها عبر [حاسبة أعمار الفواتير](/calculators/invoice-aging).
 2. اطلب دفعات مقدمة للمشاريع الكبيرة.
 3. قصّر شروط الدفع للعملاء الجدد.
 4. احتفظ باحتياطي نقدي يعادل 3 أشهر من التكاليف.
@@ -8206,12 +8164,12 @@ Build it in a simple spreadsheet. Update it every week. The goal is never to be 
 
 Formula: (Revenue − Cost of Goods Sold) / Revenue × 100
 What it tells you: how much of each dollar of sales is left after covering the direct cost of delivering your product or service. Healthy range: 20–80% depending on industry (services tend to be higher, retail lower).
-Action: if your gross margin is declining, you're either charging less or your production costs are rising — both need immediate attention.
+Action: if your gross margin is declining, you're either charging less or your production costs are rising — both need immediate attention. Calculate yours in seconds with the free [profit margin calculator](/calculators/profit-margin).
 
 **2. Net Profit Margin**
 
 Formula: Net Income / Revenue × 100
-What it tells you: how much of each dollar of revenue becomes actual profit after all expenses. Healthy range: 5–20% for most SMEs. Below 5% is a warning zone.
+What it tells you: how much of each dollar of revenue becomes actual profit after all expenses. Healthy range: 5–20% for most SMEs. Below 5% is a warning zone. Pair this with a [break-even analysis](/calculators/break-even) to know the sales level where profit starts.
 
 **3. Current Ratio (Liquidity)**
 
@@ -8229,7 +8187,7 @@ Formula: Total Debt / Total Equity
 What it tells you: how much of your business is financed by debt vs. owner funds. Below 1.0 (more equity than debt) is healthy for most SMEs. Above 2.0 suggests high financial risk.`,
     contentAr: `النسب المالية هي علامات الحيوية لشركتك. تخبرك بصورة فورية ما إذا كان عملك بصحة جيدة أو متجه نحو المشكلة.
 
-**1. هامش الربح الإجمالي**: (الإيرادات − تكلفة البضاعة المباعة) / الإيرادات × 100
+**1. هامش الربح الإجمالي**: (الإيرادات − تكلفة البضاعة المباعة) / الإيرادات × 100 — احسبه فوراً عبر [حاسبة هامش الربح](/calculators/profit-margin) المجانية
 **2. صافي هامش الربح**: صافي الدخل / الإيرادات × 100. نطاق صحي: 5-20%
 **3. نسبة التداول**: الأصول المتداولة / الخصوم المتداولة. فوق 1.5 يعني وضعاً سليماً
 **4. أيام بيع مستحقة (DSO)**: (الذمم المدينة / الإيرادات) × عدد الأيام
@@ -8267,7 +8225,7 @@ Lead with value, not history. Clients care about what you solve for them, not ho
 
 **Bilingual profiles in the MENA region**
 
-In GCC markets, a bilingual (Arabic and English) company profile is a competitive advantage and sometimes a formal requirement for government tenders. Use Xuvilo's Company Profile tool to generate professional bilingual profiles with your logo and brand colors.`,
+In GCC markets, a bilingual (Arabic and English) company profile is a competitive advantage and sometimes a formal requirement for government tenders. Use Xuvilo's Company Profile tool to generate professional bilingual profiles with your logo and brand colors. Pair your profile with matching documents from the [invoice generator](/invoice) and the full suite of free [business calculators](/calculators).`,
     contentAr: `الملف التجاري هو أول وثيقة يقرأها عميل B2B المحتمل أو الشريك. إنه السيرة الذاتية لشركتك.
 
 **الأقسام الـ8 الأساسية**
@@ -8281,7 +8239,7 @@ In GCC markets, a bilingual (Arabic and English) company profile is a competitiv
 7. الشهادات والجوائز
 8. معلومات الاتصال
 
-في أسواق دول الخليج، الملف التجاري ثنائي اللغة (عربي وإنجليزي) ميزة تنافسية وأحياناً متطلب رسمي للمناقصات الحكومية.`,
+في أسواق دول الخليج، الملف التجاري ثنائي اللغة (عربي وإنجليزي) ميزة تنافسية وأحياناً متطلب رسمي للمناقصات الحكومية. أكمل مستنداتك الاحترافية عبر [مولّد الفواتير](/invoice) ومجموعة [الحاسبات التجارية](/calculators) المجانية.`,
   },
 
   {
@@ -8312,7 +8270,7 @@ Qatar's business environment is highly international, with a large expatriate wo
 
 **Using Xuvilo for Qatar invoices**
 
-Xuvilo's free invoice generator supports QAR currency, bilingual output, and all the mandatory fields required for professional Qatar invoicing — with instant PDF export.`,
+Xuvilo's [free invoice generator](/invoice) supports QAR currency, bilingual output, and all the mandatory fields required for professional Qatar invoicing — with instant PDF export. For invoices involving foreign clients, the [currency exchange calculator](/calculators/currency-exchange) helps you convert amounts accurately.`,
     contentAr: `قطر إحدى أغنى الدول في العالم من حيث الناتج المحلي الإجمالي للفرد. اعتباراً من 2026، لم تطبّق قطر بعد ضريبة القيمة المضافة، مما يجعل الفوترة أبسط مقارنةً بدول الخليج المجاورة.
 
 **أساسيات الفوترة في قطر**
@@ -8321,7 +8279,7 @@ Xuvilo's free invoice generator supports QAR currency, bilingual output, and all
 
 **الحقول الإلزامية**
 
-رقم السجل التجاري؛ رقم سجل العميل التجاري (للمعاملات B2B)؛ تاريخ الفاتورة؛ رقم فاتورة فريد؛ وصف السلع أو الخدمات؛ الأسعار والكميات بالريال القطري؛ شروط الدفع؛ تفاصيل البنك.`,
+رقم السجل التجاري؛ رقم سجل العميل التجاري (للمعاملات B2B)؛ تاريخ الفاتورة؛ رقم فاتورة فريد؛ وصف السلع أو الخدمات؛ الأسعار والكميات بالريال القطري؛ شروط الدفع؛ تفاصيل البنك. أنشئ فاتورتك القطرية مجاناً عبر [مولّد الفواتير](/invoice)، وحوّل العملات للعملاء الأجانب عبر [حاسبة أسعار الصرف](/calculators/currency-exchange).`,
   },
 
   {
@@ -8340,7 +8298,7 @@ Xuvilo's free invoice generator supports QAR currency, bilingual output, and all
 
 **Bahrain VAT basics**
 
-Rate: 10% standard rate. Authority: National Bureau for Revenue (NBR — nbr.gov.bh). Registration threshold: BHD 37,500 in annual taxable supplies. Zero-rated categories include exports outside GCC, international transportation, and certain food items. Exempt categories include financial services, residential real estate, and local passenger transport.
+Rate: 10% standard rate. Authority: National Bureau for Revenue (NBR — nbr.gov.bh). Registration threshold: BHD 37,500 in annual taxable supplies. Zero-rated categories include exports outside GCC, international transportation, and certain food items. Exempt categories include financial services, residential real estate, and local passenger transport. Work out 10% VAT amounts instantly with the free [VAT calculator](/calculators/vat-tax).
 
 **Mandatory VAT invoice fields in Bahrain**
 
@@ -8348,7 +8306,7 @@ A VAT-compliant invoice in Bahrain must include: "Tax Invoice" (الفاتورة
 
 **Currency note**
 
-The Bahraini Dinar (BHD) is pegged to the USD at 0.376 BHD = 1 USD. It is one of the highest-valued currencies in the world. Xuvilo's invoice generator supports BHD with the correct decimal precision (3 decimal places).`,
+The Bahraini Dinar (BHD) is pegged to the USD at 0.376 BHD = 1 USD. It is one of the highest-valued currencies in the world. [Xuvilo's invoice generator](/invoice) supports BHD with the correct decimal precision (3 decimal places).`,
     contentAr: `أدخلت البحرين ضريبة القيمة المضافة بنسبة 10% في يناير 2022، مرتفعةً من 5% الأولية.
 
 **أساسيات ضريبة القيمة المضافة في البحرين**
@@ -8357,7 +8315,7 @@ The Bahraini Dinar (BHD) is pegged to the USD at 0.376 BHD = 1 USD. It is one of
 
 **الحقول الإلزامية للفواتير الضريبية**
 
-عنوان "فاتورة ضريبية"؛ اسم الشركة وعنوانها؛ رقم التسجيل الضريبي؛ بيانات العميل ورقم تسجيله الضريبي؛ رقم فاتورة تسلسلي؛ وصف السلع والخدمات؛ مبلغ الضريبة لكل بند؛ الإجمالي شاملاً الضريبة بالدينار البحريني.`,
+عنوان "فاتورة ضريبية"؛ اسم الشركة وعنوانها؛ رقم التسجيل الضريبي؛ بيانات العميل ورقم تسجيله الضريبي؛ رقم فاتورة تسلسلي؛ وصف السلع والخدمات؛ مبلغ الضريبة لكل بند؛ الإجمالي شاملاً الضريبة بالدينار البحريني. أنشئ فاتورتك مجاناً عبر [مولّد الفواتير](/invoice) واحسب الضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax).`,
   },
 
   {
@@ -8384,7 +8342,7 @@ OTA-compliant invoices must include: "Tax Invoice" (فاتورة ضريبية) l
 
 **Simplified vs. full VAT invoices**
 
-Like other GCC countries, Oman allows simplified VAT invoices for retail supplies to unregistered consumers. A simplified invoice needs the supplier's name, TRN, invoice date, description, and VAT-inclusive total — but does not need to separately itemize the VAT amount. Use full tax invoices for all B2B transactions.`,
+Like other GCC countries, Oman allows simplified VAT invoices for retail supplies to unregistered consumers. A simplified invoice needs the supplier's name, TRN, invoice date, description, and VAT-inclusive total — but does not need to separately itemize the VAT amount. Use full tax invoices for all B2B transactions. Create OTA-compliant invoices for free with the [invoice generator](/invoice), and calculate 5% VAT amounts with the [VAT calculator](/calculators/vat-tax).`,
     contentAr: `أدخلت عُمان ضريبة القيمة المضافة بنسبة 5% في أبريل 2021، تديرها هيئة الضرائب العُمانية (OTA).
 
 **أساسيات الفوترة الضريبية في عُمان**
@@ -8393,7 +8351,7 @@ Like other GCC countries, Oman allows simplified VAT invoices for retail supplie
 
 **الحقول الإلزامية**
 
-"فاتورة ضريبية"؛ اسم المورد ورقمه الضريبي؛ بيانات العميل؛ وصف السلع؛ مبلغ الضريبة والإجمالي بالريال العُماني.`,
+"فاتورة ضريبية"؛ اسم المورد ورقمه الضريبي؛ بيانات العميل؛ وصف السلع؛ مبلغ الضريبة والإجمالي بالريال العُماني. أنشئ فاتورتك العُمانية مجاناً عبر [مولّد الفواتير](/invoice) واحسب الضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax).`,
   },
 
   {
@@ -8420,12 +8378,12 @@ Every invoice in Nigeria should include: your business name, address, and TIN (T
 
 **Currency note**
 
-The Naira (NGN) has experienced significant depreciation in recent years. When invoicing international clients from Nigeria, consider whether to invoice in NGN or agree on a hard-currency equivalent to avoid exchange rate disputes at payment time.`,
+The Naira (NGN) has experienced significant depreciation in recent years. When invoicing international clients from Nigeria, consider whether to invoice in NGN or agree on a hard-currency equivalent to avoid exchange rate disputes at payment time. Use the [currency exchange calculator](/calculators/currency-exchange) to convert between NGN and hard currencies, and create FIRS-ready invoices for free with the [invoice generator](/invoice).`,
     contentAr: `نيجيريا أكبر اقتصاد في أفريقيا. تدير الهيئة الاتحادية لإيرادات الدخل الداخلية (FIRS) ضريبة القيمة المضافة بنسبة 7.5%.
 
 **أساسيات الفوترة في نيجيريا**
 
-المعدل: 7.5%. حد التسجيل: 25 مليون نيرة نيجيرية سنوياً. الإعفاءات: الأغذية الأساسية، الأدوية، المواد التعليمية، الصادرات.`,
+المعدل: 7.5%. حد التسجيل: 25 مليون نيرة نيجيرية سنوياً. الإعفاءات: الأغذية الأساسية، الأدوية، المواد التعليمية، الصادرات. أنشئ فاتورتك النيجيرية مجاناً عبر [مولّد الفواتير](/invoice) وحوّل العملات عبر [حاسبة أسعار الصرف](/calculators/currency-exchange).`,
   },
 
   {
@@ -8452,7 +8410,7 @@ Business name and address; national company registration number; customer name a
 
 **Practical tips for invoicing in Iraq**
 
-Always include both Arabic and English versions of the invoice for government and large corporate clients. For oil sector contracts, invoices typically follow international formats and may require additional documentation (purchase orders, delivery notes). Bank transfers are the dominant payment method — always include full bank details including SWIFT and IBAN.`,
+Always include both Arabic and English versions of the invoice for government and large corporate clients. For oil sector contracts, invoices typically follow international formats and may require additional documentation (purchase orders, delivery notes). Bank transfers are the dominant payment method — always include full bank details including SWIFT and IBAN. Generate bilingual Iraqi invoices for free with the [invoice generator](/invoice), and convert between IQD and USD with the [currency exchange calculator](/calculators/currency-exchange).`,
     contentAr: `العراق يمتلك قطاعاً خاصاً كبيراً ومتنامياً، لا سيما في البناء وخدمات النفط والاتصالات والتجارة. اعتباراً من 2026، لا يوجد في العراق نظام ضريبة قيمة مضافة عام سارٍ.
 
 **أساسيات الفوترة في العراق**
@@ -8461,7 +8419,7 @@ Always include both Arabic and English versions of the invoice for government an
 
 **نصائح عملية**
 
-دائماً ادرج نسخة عربية وإنجليزية للعملاء الحكوميين والمؤسسات الكبيرة. للتحويلات الدولية، ادرج SWIFT وIBAN.`,
+دائماً ادرج نسخة عربية وإنجليزية للعملاء الحكوميين والمؤسسات الكبيرة. للتحويلات الدولية، ادرج SWIFT وIBAN. أنشئ فواتير ثنائية اللغة مجاناً عبر [مولّد الفواتير](/invoice) وحوّل بين الدينار والدولار عبر [حاسبة أسعار الصرف](/calculators/currency-exchange).`,
   },
 
   {
@@ -8480,7 +8438,7 @@ Always include both Arabic and English versions of the invoice for government an
 
 **Morocco VAT rates**
 
-Standard rate: 20%. Reduced rates: 14% (electricity, transport), 10% (hotels, restaurants, banking services, certain food items), 7% (water, medicines). Zero rate: exports and international services. Registration threshold: MAD 500,000 in annual turnover for the standard regime.
+Standard rate: 20%. Reduced rates: 14% (electricity, transport), 10% (hotels, restaurants, banking services, certain food items), 7% (water, medicines). Zero rate: exports and international services. Registration threshold: MAD 500,000 in annual turnover for the standard regime. Work out any of these rates instantly with the free [VAT calculator](/calculators/vat-tax).
 
 **Mandatory invoice fields in Morocco**
 
@@ -8488,7 +8446,7 @@ DGI-compliant invoices must include: "Facture" or "فاتورة" label; supplier
 
 **Language conventions**
 
-Morocco is officially bilingual (Arabic and French), with French dominating formal business communication. Government entities often require bilingual Arabic-French documentation. For international clients, English versions alongside the French original are acceptable. Xuvilo's invoice generator supports MAD currency with bilingual output.`,
+Morocco is officially bilingual (Arabic and French), with French dominating formal business communication. Government entities often require bilingual Arabic-French documentation. For international clients, English versions alongside the French original are acceptable. [Xuvilo's invoice generator](/invoice) supports MAD currency with bilingual output.`,
     contentAr: `المغرب يمتلك نظاماً ضريبياً متطوراً تديره المديرية العامة للضرائب (DGI). تُطبَّق ضريبة القيمة المضافة بمعدلات متعددة.
 
 **معدلات ضريبة القيمة المضافة في المغرب**
@@ -8497,7 +8455,7 @@ Morocco is officially bilingual (Arabic and French), with French dominating form
 
 **اللغة في الفوترة**
 
-المغرب ثنائي اللغة رسمياً (العربية والفرنسية). الفرنسية تهيمن على الاتصالات التجارية الرسمية. يدعم مولّد فواتير Xuvilo الدرهم المغربي مع مخرجات ثنائية اللغة.`,
+المغرب ثنائي اللغة رسمياً (العربية والفرنسية). الفرنسية تهيمن على الاتصالات التجارية الرسمية. يدعم [مولّد فواتير Xuvilo](/invoice) الدرهم المغربي مع مخرجات ثنائية اللغة، ويمكنك حساب أي معدل ضريبي عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax).`,
   },
 
   {
@@ -8530,7 +8488,7 @@ Construction and contracting: use templates with a project/PO number field, site
 
 Before using a template, ensure: your logo and business color scheme are applied; your legal entity name (not a nickname) appears; your address and contact information are accurate; you have a field for your VAT/TIN number if applicable; the currency and decimal format match your market.
 
-Xuvilo's library of 320+ templates covers these categories for invoices, quotations, and receipts, available in Arabic and English with instant PDF export.`,
+Xuvilo's library of 320+ templates covers these categories for [invoices](/invoice), [quotations](/quotation), and [receipts](/receipt), available in Arabic and English with instant PDF export.`,
     contentAr: `القوالب توفر الوقت وتضمن الاتساق وتُعطي انطباعاً احترافياً. لكن ليست كل القوالب متساوية.
 
 **أنواع قوالب المستندات التجارية**
@@ -8541,7 +8499,7 @@ Xuvilo's library of 320+ templates covers these categories for invoices, quotati
 
 البناء والمقاولات: قوالب بحقل رقم المشروع وتفصيل المراحل. الخدمات المهنية: قوالب أبسط بأسطر وصف مفصّلة. الخدمات الإبداعية: قوالب تعكس هوية علامتك التجارية. التجزئة والجملة: قوالب برموز المنتجات والكميات.
 
-تضم مكتبة Xuvilo أكثر من 320 قالباً تغطي هذه الفئات للفواتير وعروض الأسعار والإيصالات، متاحة بالعربية والإنجليزية.`,
+تضم مكتبة Xuvilo أكثر من 320 قالباً تغطي هذه الفئات [للفواتير](/invoice) و[عروض الأسعار](/quotation) و[الإيصالات](/receipt)، متاحة بالعربية والإنجليزية.`,
   },
 
   {
@@ -8576,7 +8534,7 @@ Note: these rates may be reduced under a Double Taxation Treaty (DTT) if Saudi A
 
 **How WHT affects your invoicing**
 
-When you invoice a Saudi client as a non-resident, your full invoice amount may be subject to WHT. Example: Invoice $10,000 for consulting services. WHT rate 20%. Saudi client pays $8,000 and remits $2,000 to ZATCA. Your effective receipt: $8,000. Factor this into your pricing if you bear the WHT cost, or specify in your contract that amounts are "gross of any WHT obligations."`,
+When you invoice a Saudi client as a non-resident, your full invoice amount may be subject to WHT. Example: Invoice $10,000 for consulting services. WHT rate 20%. Saudi client pays $8,000 and remits $2,000 to ZATCA. Your effective receipt: $8,000. Factor this into your pricing if you bear the WHT cost, or specify in your contract that amounts are "gross of any WHT obligations." Note that WHT is separate from VAT — use the free [VAT calculator](/calculators/vat-tax) for VAT amounts, and create professional invoices for your Saudi clients with the [invoice generator](/invoice).`,
     contentAr: `ضريبة الاستقطاع في المملكة العربية السعودية اعتبار تكلفة مهم للشركات وغير المقيمين الذين يقدمون خدمات أو يستلمون مدفوعات من جهات سعودية.
 
 **معدلات ضريبة الاستقطاع الرئيسية في السعودية (2026)**
@@ -8588,7 +8546,7 @@ When you invoice a Saudi client as a non-resident, your full invoice amount may 
 
 **كيف تؤثر على فواتيرك**
 
-عند فوترة عميل سعودي كغير مقيم، قد يخضع مبلغ فاتورتك الكامل لضريبة الاستقطاع. مثال: فاتورة بـ10,000 دولار خدمات استشارية × 20% = يدفع العميل 8,000 دولار ويحوّل 2,000 دولار لـ ZATCA.`,
+عند فوترة عميل سعودي كغير مقيم، قد يخضع مبلغ فاتورتك الكامل لضريبة الاستقطاع. مثال: فاتورة بـ10,000 دولار خدمات استشارية × 20% = يدفع العميل 8,000 دولار ويحوّل 2,000 دولار لـ ZATCA. احسب مبالغ ضريبة القيمة المضافة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) وأنشئ فواتيرك عبر [مولّد الفواتير](/invoice).`,
   },
 
   {
@@ -8619,14 +8577,14 @@ Visa and Iqama fees (expatriates): Iqama renewal (approx. SAR 650/year), work vi
 
 Basic salary + Allowances + 11% GOSI (Saudi) or 2% (expat) + Medical Insurance + End-of-Service Provision (1/12 monthly) + Annual Visa/Iqama Costs ÷ 12
 
-A SAR 10,000/month basic salary employee in Saudi Arabia typically costs the employer SAR 15,000–18,000 per month in total.`,
+A SAR 10,000/month basic salary employee in Saudi Arabia typically costs the employer SAR 15,000–18,000 per month in total. Calculate the full cost for your own team with the free [employee cost calculator](/calculators/salary-cost), plus the [overtime calculator](/calculators/overtime) and [leave balance calculator](/calculators/leave-balance) for day-to-day HR sums.`,
     contentAr: `عندما يقول صاحب عمل خليجي إنه يدفع راتباً شهرياً، فإن التكلفة الفعلية للشركة عادةً ما تكون أعلى بشكل ملحوظ.
 
 **مكونات تكلفة التوظيف في السعودية**
 
 الراتب الأساسي + بدل السكن (25-40% من الأساسي) + بدل النقل + التأمين الصحي (إلزامي) + GOSI (11% للسعوديين، 2% للمغتربين) + مخصص مكافأة نهاية الخدمة (1/12 شهرياً) + رسوم التأشيرة والإقامة.
 
-**مثال سريع**: موظف براتب أساسي 10,000 ريال سعودي يكلّف صاحب العمل عادةً 15,000-18,000 ريال شهرياً بإجمالي التكاليف.`,
+**مثال سريع**: موظف براتب أساسي 10,000 ريال سعودي يكلّف صاحب العمل عادةً 15,000-18,000 ريال شهرياً بإجمالي التكاليف. احسب تكلفة موظفيك عبر [حاسبة تكلفة الموظف](/calculators/salary-cost) و[حاسبة العمل الإضافي](/calculators/overtime) المجانيتين.`,
   },
 
   {
@@ -8660,7 +8618,7 @@ Natural hedging through pricing reviews: build a periodic pricing review into yo
 
 **For GCC-pegged currency businesses**
 
-Saudi Arabia, UAE, Qatar, Bahrain, and Oman all peg their currencies to the USD at fixed rates. This eliminates USD/GCC currency risk for businesses that operate in the GCC and invoice in USD. The primary FX risk for these businesses is exposure to EUR, GBP, CNY, or other currencies.`,
+Saudi Arabia, UAE, Qatar, Bahrain, and Oman all peg their currencies to the USD at fixed rates. This eliminates USD/GCC currency risk for businesses that operate in the GCC and invoice in USD. The primary FX risk for these businesses is exposure to EUR, GBP, CNY, or other currencies. Check conversion amounts with the free [currency exchange calculator](/calculators/currency-exchange), and issue multi-currency invoices with the [invoice generator](/invoice).`,
     contentAr: `مخاطر العملة تؤثر على أي شركة تشتري أو تبيع أو تقترض بأكثر من عملة. بالنسبة للشركات في منطقة الشرق الأوسط، هذا أمر شائع.
 
 **استراتيجيات التحوط العملية للشركات الصغيرة**
@@ -8668,7 +8626,7 @@ Saudi Arabia, UAE, Qatar, Bahrain, and Oman all peg their currencies to the USD 
 الفوترة بالعملات الصعبة: للشركات المُصدِّرة، الفوترة بالدولار أو اليورو تنقل مخاطر العملة للمشتري.
 مطابقة الإيرادات والتكاليف بنفس العملة: يُقلّل من صافي التعرض لمخاطر العملة.
 العقود الآجلة: الاتفاق على شراء أو بيع عملة بسعر ثابت في تاريخ مستقبلي.
-المراجعة الدورية للأسعار: ادرج بنداً في عقودك يسمح بتعديل الأسعار عند تقلبات العملة الكبيرة.`,
+المراجعة الدورية للأسعار: ادرج بنداً في عقودك يسمح بتعديل الأسعار عند تقلبات العملة الكبيرة. احسب التحويلات عبر [حاسبة أسعار الصرف](/calculators/currency-exchange) وأصدر فواتير بعملات متعددة عبر [مولّد الفواتير](/invoice).`,
   },
 
   {
@@ -8691,7 +8649,7 @@ The standard corporate income tax rate in Egypt is 22.5%, applicable to net prof
 
 **Egypt VAT**
 
-Egypt applies a 14% VAT rate on most goods and services. Registration is mandatory for businesses with annual sales above EGP 500,000. The Egyptian Tax Authority (ETA) operates the tax portal (eta.gov.eg) for registration, filing, and e-invoicing.
+Egypt applies a 14% VAT rate on most goods and services. Registration is mandatory for businesses with annual sales above EGP 500,000. The Egyptian Tax Authority (ETA) operates the tax portal (eta.gov.eg) for registration, filing, and e-invoicing. Work out 14% VAT amounts with the free [VAT calculator](/calculators/vat-tax), and track the impact of tax on your bottom line with the [profit margin calculator](/calculators/profit-margin).
 
 **Egypt's e-invoice mandate**
 
@@ -8708,7 +8666,7 @@ Corporate tax returns must be filed within 4 months after the end of the fiscal 
 
 **ضريبة القيمة المضافة في مصر**
 
-المعدل: 14%. حد التسجيل: 500,000 جنيه مصري سنوياً.
+المعدل: 14%. حد التسجيل: 500,000 جنيه مصري سنوياً. احسب مبالغ الضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية.
 
 **نظام الفاتورة الإلكترونية الإلزامي**
 
@@ -8741,7 +8699,7 @@ Step 1: Identify the VAT category for each line item on the invoice.
 Step 2: For each standard-rated item, calculate VAT: line amount × VAT rate.
 Step 3: For zero-rated items, show the line amount with a note "Zero-rated" and VAT = 0.
 Step 4: For exempt items, show the line amount with a note "Exempt" and no VAT column entry.
-Step 5: Sum all VAT amounts and add to the subtotal for the total payable.
+Step 5: Sum all VAT amounts and add to the subtotal for the total payable. The free [VAT calculator](/calculators/vat-tax) handles inclusive and exclusive amounts for any rate.
 
 **Example (Saudi Arabia, 15% VAT)**
 
@@ -8751,7 +8709,7 @@ Step 5: Sum all VAT amounts and add to the subtotal for the total payable.
 | Export advisory | SAR 2,000 | Zero-rated | SAR 0 | SAR 2,000 |
 | Total | SAR 7,000 | | SAR 750 | SAR 7,750 |
 
-Both lines must appear on the ZATCA-compliant invoice, with the category clearly labeled.`,
+Both lines must appear on the ZATCA-compliant invoice, with the category clearly labeled. Generate compliant invoices with correct VAT lines using the free [invoice generator](/invoice).`,
     contentAr: `تُقدّم شركات كثيرة مزيجاً من السلع والخدمات التي تخضع لمعدلات ضريبية مختلفة على نفس الفاتورة.
 
 **فئات الإمدادات الضريبية**
@@ -8762,7 +8720,7 @@ Both lines must appear on the ZATCA-compliant invoice, with the category clearly
 
 **كيف تتعامل مع فاتورة مختلطة**
 
-حدّد فئة ضريبة القيمة المضافة لكل سطر. احسب الضريبة للإمدادات الخاضعة. أظهر "معدل صفري" أو "معفى" للبنود الأخرى. اجمع جميع مبالغ الضريبة وأضفها للإجمالي.`,
+حدّد فئة ضريبة القيمة المضافة لكل سطر. احسب الضريبة للإمدادات الخاضعة. أظهر "معدل صفري" أو "معفى" للبنود الأخرى. اجمع جميع مبالغ الضريبة وأضفها للإجمالي. استخدم [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية لحساب كل بند بدقة.`,
   },
 
   {
@@ -8781,7 +8739,7 @@ Both lines must appear on the ZATCA-compliant invoice, with the category clearly
 
 **Jordan GST basics**
 
-Standard rate: 16%. Reduced rates: 4% on certain food items; 0% on exports. Authority: Income and Sales Tax Department (ISTD — istd.gov.jo). Registration threshold: JOD 30,000 in annual taxable sales (mandatory). Voluntary registration is possible below this threshold.
+Standard rate: 16%. Reduced rates: 4% on certain food items; 0% on exports. Authority: Income and Sales Tax Department (ISTD — istd.gov.jo). Registration threshold: JOD 30,000 in annual taxable sales (mandatory). Voluntary registration is possible below this threshold. Calculate 16% GST amounts instantly with the free [VAT calculator](/calculators/vat-tax).
 
 **Goods and services exempt from Jordan GST**
 
@@ -8793,7 +8751,7 @@ GST-registered businesses must issue tax invoices containing: "فاتورة ضر
 
 **Currency note**
 
-The Jordanian Dinar (JOD) is pegged to the USD at 0.709 JOD = 1 USD. It uses 3 decimal places (fils). Use Xuvilo's invoice generator for JOD invoices with the correct decimal precision.`,
+The Jordanian Dinar (JOD) is pegged to the USD at 0.709 JOD = 1 USD. It uses 3 decimal places (fils). Use [Xuvilo's invoice generator](/invoice) for JOD invoices with the correct decimal precision.`,
     contentAr: `يستخدم الأردن نظام ضريبة المبيعات العامة (GST) بنسبة 16%، تديرها دائرة ضريبة الدخل والمبيعات (ISTD).
 
 **أساسيات GST الأردنية**
@@ -8802,7 +8760,7 @@ The Jordanian Dinar (JOD) is pegged to the USD at 0.709 JOD = 1 USD. It uses 3 d
 
 **متطلبات الفاتورة في الأردن**
 
-"فاتورة ضريبية"؛ اسم البائع وعنوانه ورقم التسجيل في GST؛ بيانات المشتري؛ تاريخ الفاتورة ورقم تسلسلي؛ وصف السلع؛ مبلغ GST؛ الإجمالي بالدينار الأردني (3 منازل عشرية).`,
+"فاتورة ضريبية"؛ اسم البائع وعنوانه ورقم التسجيل في GST؛ بيانات المشتري؛ تاريخ الفاتورة ورقم تسلسلي؛ وصف السلع؛ مبلغ GST؛ الإجمالي بالدينار الأردني (3 منازل عشرية). أنشئ فواتيرك الأردنية عبر [مولّد الفواتير](/invoice) واحسب الضريبة عبر [حاسبة ضريبة القيمة المضافة](/calculators/vat-tax) المجانية.`,
   },
 
 ];

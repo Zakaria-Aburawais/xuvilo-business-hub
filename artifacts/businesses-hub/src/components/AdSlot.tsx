@@ -13,8 +13,10 @@
 //      (window.adsbygoogle = window.adsbygoogle || []).push({})
 //
 // Ad placement rules (MUST NOT show ads on these routes):
-//   /invoice, /quotation, /receipt, /templates, /calculators/*,
+//   /invoice, /quotation, /receipt, /templates,
 //   /dashboard, /documents, /settings, /clients, /rfq
+// Content-rich pages (blog index, blog articles, calculator pages) MAY
+// carry ads — see the AdSense content plan in HANDOVER.md.
 //
 // Until activated, this component renders an invisible placeholder that
 // reserves space in the layout without showing anything to the user.
